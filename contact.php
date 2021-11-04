@@ -51,7 +51,6 @@
                            <a class="nav-item nav-link" href="index.php">Home</a>
                            <a class="nav-item nav-link" href="collection.php">Collection</a>
                            <a class="nav-item nav-link" href="shoes.php">Shoes</a>
-                           <a class="nav-item nav-link" href="racing boots.php">Racing Boots</a>
                            <a class="nav-item nav-link" href="contact.php">Contact</a>
                            <a class="nav-item nav-link last" href="#"><img src="images/search_icon.png"></a>
                            <a class="nav-item nav-link last" href="contact.php"><img src="images/shop_icon.png"></a>

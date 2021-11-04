@@ -187,7 +187,8 @@ width: 30%;
 .shop_text { font-size: 20px;}
 .adderess_text { font-size: 20px;}  
 .dummy_text { margin-top: 45px;}
-.email_box {  width: 95%; padding: 20px 0px;}
+.email_box {  width: 95%; padding: 40px 0px;}
+.loginregisterbox {  width: 95%; padding: 40px 0px;}
 .last{ padding-left: 12px !important; }
 
 
@@ -267,8 +268,8 @@ width: 30%;
     width: 50%;
 }
 .out_shop_bt { width: 60%;}
-.email_box {
-    width: 100%; padding: 20px 0px;}
+.email_box {width: 75%; padding: 40px 0px;}
+.loginregisterbox {width: 75%; padding: 40px 0px;}
 
 
 
@@ -447,6 +448,7 @@ ul.link li {
 .header_section { background-size: cover; background-repeat: no-repeat;}
 .buy_text { width: 100%; }
 .email_box { width: 100%; }
+.loginregisterbox { width: 100%; }
 .shop_banner { margin-top: 20px;}
 .footer-logo { padding-top: 20px;}
 .mail_section li { padding-top: 20px;}

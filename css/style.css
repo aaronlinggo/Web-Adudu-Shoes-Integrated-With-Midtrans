@@ -361,9 +361,9 @@ body{
 }
 .carousel-indicators li{
     display:block; margin-bottom:5px; border:1px solid #00a199; 
-    margin-bottom: 5px;}
-    
+    margin-bottom: 5px;
 }
+    
 .carousel-indicators li.active{
     margin-bottom:5px; background:#00a199;
     
@@ -372,9 +372,9 @@ body{
 .collection_section{ width: 100%; float: left; padding-bottom: 0px; }
 .new_text{
 	width: 100%;
-	float: left;
 	font-size: 24pt;
 	color: #0c0116;
+    text-align: center;
 }
 
 .consectetur_text{
@@ -599,12 +599,20 @@ body{
 	float: left;
 }
 .email_box {
-    width: 85%;
-    float: right;
+    width: 70%;
     background-color: #14120e;
     height: auto;
-    padding: 20px 20px;
+    padding: 40px 20px;
     opacity: 0.80;
+    margin: 0 auto;
+}
+.loginregisterbox {
+    width: 30%;
+    background-color: #14120e;
+    height: auto;
+    padding: 40px 20px;
+    opacity: 0.80;
+    margin: 0 auto;
 }
 .form-group {
     margin-bottom: 2rem;
