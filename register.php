@@ -79,6 +79,9 @@
                                         <input type="text" class="email-bt" placeholder="Email" name="email">
                                     </div>
                                     <div class="form-group">
+                                        <input type="text" class="email-bt" placeholder="Username" name="username">
+                                    </div>
+                                    <div class="form-group">
                                         <input type="text" class="email-bt" placeholder="Full Name" name="name">
                                     </div>
                                     <div class="form-group">

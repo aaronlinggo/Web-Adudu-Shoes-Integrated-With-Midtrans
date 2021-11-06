@@ -4,11 +4,11 @@ require_once("./controller/connection.php");
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['login'])){
-        $email = $_POST['email'];
+        $username = $_POST['username'];
         $password = $_POST['password'];
 
-        if ($email == "admin" && $password == "admin"){
-            header("Location: ./admin/index.html");
+        if ($username == "admin" && $password == "admin"){
+            header("Location: ./admin/index.php");
         }
     }
 }
@@ -93,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="container">
                                 <form action="" method="POST">
                                     <div class="form-group">
-                                        <input type="text" class="email-bt" placeholder="Email" name="email">
+                                        <input type="text" class="email-bt" placeholder="Username" name="username">
                                     </div>
                                     <div class="form-group">
                                         <input type="password" class="email-bt" placeholder="Password" name="password">
