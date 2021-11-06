@@ -1,3 +1,10 @@
+<?php
+session_start();
+require_once("./controller/connection.php");
+$stmt = $conn->prepare("SELECT * FROM sepatu");
+$stmt->execute();
+$sepatu = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+?>
 <!DOCTYPE html>
 <html lang="en-US">
 	<head>
@@ -39,13 +46,13 @@
 									<a class="nav-item nav-link" href="./collection.php">Collection</a>
 									<a class="nav-item nav-link" href="./shoes.php">Shoes</a>
 									<a class="nav-item nav-link last" href="#">
-										<img src="./images/search_icon.png">
+										<img src="./images/search_icon_black.png">
 									</a>
 									<a class="nav-item nav-link last" href="./cart.php">
-										<img src="./images/shop_icon.png">
+										<img src="./images/shop_icon_black.png">
 									</a>
 									<a class="nav-item nav-link" href="#">
-										<img src="./images/user_24px.png">
+										<img src="./images/user_24px_black.png">
 									</a>
 									<a class="nav-item nav-link" href="login.php">Sign In</a>
 									<a class="nav-item nav-link" href="register.php">Sign Up</a>
@@ -60,109 +67,40 @@
 					<section class="slide-wrapper">
 						<div class="container-fluid">
 							<div id="myCarousel" class="carousel slide" data-ride="carousel">
-								<ol class="carousel-indicators">
-									<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-									<li data-target="#myCarousel" data-slide-to="1"></li>
-									<li data-target="#myCarousel" data-slide-to="2"></li>
-									<li data-target="#myCarousel" data-slide-to="3"></li>
-								</ol>
+								<div class="carousel-indicators">
+									<div data-target="#myCarousel" data-slide-to="0" class="active"></div>
+								</div>
 								<div class="carousel-inner">
 									<div class="carousel-item active">
 										<div class="row">
 											<div class="col-sm-2 padding_0">
-												<p class="mens_taital">Men Shoes</p>
-												<div class="page_no">0/2</div>
-												<p class="mens_taital_2">Men Shoes</p>
 											</div>
 											<div class="col-sm-5">
 												<div class="banner_taital">
 													<h1 class="banner_text">New Running Shoes </h1>
 													<h1 class="mens_text">
-														<strong>Men's Like Plex</strong>
+														<?php 
+														$temp = count($sepatu);
+														$judul = $sepatu[$temp-1]['nama_sepatu'];
+														?>
+														<strong><?= $judul ?></strong>
 													</h1>
-													<p class="lorem_text">ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+													<?php 
+													$temp = count($sepatu);
+													$subdesc = $sepatu[$temp-1]['sub_desc'];
+													?>
+													<p class="lorem_text"><?= $subdesc ?></p>
 													<button class="buy_bt">Buy Now</button>
 													<button class="more_bt">See More</button>
 												</div>
 											</div>
 											<div class="col-sm-5">
 												<div class="shoes_img">
-													<img src="./images/running-shoes.png">
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="carousel-item">
-										<div class="row">
-											<div class="col-sm-2 padding_0">
-												<p class="mens_taital">Men Shoes</p>
-												<div class="page_no">0/2</div>
-												<p class="mens_taital_2">Men Shoes</p>
-											</div>
-											<div class="col-sm-5">
-												<div class="banner_taital">
-													<h1 class="banner_text">New Running Shoes</h1>
-													<h1 class="mens_text">
-														<strong>Men's Like Plex</strong>
-													</h1>
-													<p class="lorem_text">ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-													<button class="buy_bt">Buy Now</button>
-													<button class="more_bt">See More</button>
-												</div>
-											</div>
-											<div class="col-sm-5">
-												<div class="shoes_img">
-													<img src="./images/running-shoes.png">
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="carousel-item">
-										<div class="row">
-											<div class="col-sm-2 padding_0">
-												<p class="mens_taital">Men Shoes</p>
-												<div class="page_no">0/2</div>
-												<p class="mens_taital_2">Men Shoes</p>
-											</div>
-											<div class="col-sm-5">
-												<div class="banner_taital">
-													<h1 class="banner_text">New Running Shoes</h1>
-													<h1 class="mens_text">
-														<strong>Men's Like Plex</strong>
-													</h1>
-													<p class="lorem_text">ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-													<button class="buy_bt">Buy Now</button>
-													<button class="more_bt">See More</button>
-												</div>
-											</div>
-											<div class="col-sm-5">
-												<div class="shoes_img">
-													<img src="./images/running-shoes.png">
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="carousel-item">
-										<div class="row">
-											<div class="col-sm-2 padding_0">
-												<p class="mens_taital">Men Shoes</p>
-												<div class="page_no">0/2</div>
-												<p class="mens_taital_2">Men Shoes</p>
-											</div>
-											<div class="col-sm-5">
-												<div class="banner_taital">
-													<h1 class="banner_text">New Running Shoes</h1>
-													<h1 class="mens_text">
-														<strong>Men's Like Plex</strong>
-													</h1>
-													<p class="lorem_text">ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-													<button class="buy_bt">Buy Now</button>
-													<button class="more_bt">See More</button>
-												</div>
-											</div>
-											<div class="col-sm-5">
-												<div class="shoes_img">
-													<img src="./images/running-shoes.png">
+													<?php 
+													$temp = count($sepatu);
+													$lokasi = "./admin/" . $sepatu[$temp-1]['link_gambarsepatu'];
+													?>
+													<img src="<?= $lokasi ?>" style="z-index: -1; width: ;">
 												</div>
 											</div>
 										</div>

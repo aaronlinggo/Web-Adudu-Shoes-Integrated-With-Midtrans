@@ -214,7 +214,7 @@ button {
 .header_section{
 	width: 100%;
 	float: left;
-	background-image: url(../images/banner.png);
+	background-color: #ecedef;
 	height: auto;
 	padding: 20px 0px;
 	background-size: 100%;
@@ -249,7 +249,7 @@ button {
 }
 
 .navbar-light .navbar-nav .nav-link {
-    color: #fff;
+    color: black;
     font-size: 16pt;
 }
 
@@ -273,15 +273,16 @@ button {
 .mens_text{
 	width: 100%;
 	float: left;
-	font-size: 39pt;
-	color: #fdfcfc;
-	line-height: 40px;
+	font-size: 38pt;
+	color: black;
+	line-height: 44px;
 }
 .lorem_text{
 	width: 100%;
 	float: left;
 	font-size: 13pt;
-	color: #fefefe;
+    font-weight: 400;
+	color: black;
 	margin-left: 0px;
 }
 
