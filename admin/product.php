@@ -1,16 +1,75 @@
 <?php
 session_start();
 require_once("../controller/connection.php");
+$stmt = $conn->prepare("SELECT * FROM sepatu");
+$stmt->execute();
+$sepatu = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (isset($_POST['add'])){
-        $shoesName = $_POST['shoesName'];
-        $priceShoes = $_POST['priceShoes'];
-        $descShoes = $_POST['descShoes'];
-        $sizeShoes = $_POST['sizeShoes'];
-        $imagesShoes = $_FILES['imagesShoes'];
-        
+  if (isset($_POST['add'])) {
+    $shoesName = $_POST['shoesName'];
+    $priceShoes = $_POST['priceShoes'];
+    $subDesc = $_POST['subDesc'];
+    $descShoes = $_POST['descShoes'];
+    $sizeShoes = $_POST['sizeShoes'];
+    $stockShoes = $_POST['stockShoes'];
+    $imagesShoes = $_FILES['imagesShoes'];
+    //ALERT GA MUNCUL BABI
+    if ($shoesName != "") {
+      if ($priceShoes > 0) {
+        if ($descShoes != "") {
+          if ($subDesc != "") {
+            if ($sizeShoes > 0) {
+              if ($stockShoes > 0) {
+                if ($imagesShoes['name'] != "") {
+                  foreach ($sepatu as $key => $value) {
+                    $id = (int)$value['id_sepatu'];
+                  }
+    
+                  if (!isset($id)) {
+                    $id = 0;
+                  }
+                  $lokasi = "list_products/";
+    
+                  @mkdir($lokasi);
+    
+                  move_uploaded_file($_FILES['imagesShoes']['tmp_name'], $lokasi . ($id + 1) . '.jpg');
+                  $temp = $lokasi.($id+1).'.jpg';
+                  $stmt = $conn->prepare("INSERT INTO sepatu(nama_sepatu, harga_sepatu, sub_desc, desc_sepatu, size_sepatu, stock_sepatu, link_gambarsepatu) VALUES(?,?,?,?,?,?,?)");
+                  $stmt->bind_param("sissiis",$shoesName, $priceShoes, $subDesc, $descShoes, $sizeShoes, $stockShoes, $temp);
+                  $result =$stmt->execute();
+                  echo "<script>alert('Success Add Shoes')</script>";
+                  header("Location: product.php");
+                } 
+                else {
+                  echo "<script>alert('Please choose an image')</script>";
+                }
+              }
+              else {
+                echo "<script>alert('Stock must be more than 0')</script>";
+              }
+            } 
+            else {
+              echo "<script>alert('Size must be more than 0')</script>";
+            }
+          }
+          else {
+            echo "<script>alert('Sub Description cant be Empty')</script>";
+          }
+        } 
+        else {
+          echo "<script>alert('Description can't be empty')</script>";
+        }
+      } 
+      else {
+        echo "<script>alert('Prize must be more than 0')</script>";
+      }
+    } 
+    else {
+      echo "<script>alert('Shoes Name can't be empty')</script>";
     }
+    
+  }
 }
 ?>
 
@@ -85,7 +144,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           <li class="nav-item">
             <a class="nav-link" id="chats-tab" data-bs-toggle="tab" href="#chats-section" role="tab" aria-controls="chats-section">CHATS</a>
           </li>
-        </ul> 
+        </ul>
       </div>
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
@@ -121,7 +180,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <div class="card">
                           <div class="card-body">
                             <h4 class="card-title">Add New Shoes</h4>
-                            <form class="form-sample" method="POST" action="cek.php" enctype="multipart/form-data">
+                            <form class="form-sample" method="POST" action="" enctype="multipart/form-data">
                               <div class="row">
                                 <div class="form-group row">
                                   <label for="shoesName" class="col-sm-3 col-form-label">Shoes Name</label>
@@ -133,6 +192,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                   <label for="priceShoes" class="col-sm-3 col-form-label">Price</label>
                                   <div class="col-sm-9">
                                     <input type="number" class="form-control" name="priceShoes" id="priceShoes" placeholder="Price">
+                                  </div>
+                                </div>
+                                <div class="form-group row">
+                                  <label for="subDesc" class="col-sm-3 col-form-label">Sub Description</label>
+                                  <div class="col-sm-9">
+                                    <textarea class="form-control" name="subDesc" id="subDesc" style="height: 100px;"></textarea>
                                   </div>
                                 </div>
                                 <div class="form-group row">
@@ -180,50 +245,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <th>Name</th>
                                     <th>Size</th>
                                     <th>Stock</th>
+                                    <th>Harga</th>
                                     <th colspan="2">Action</th>
                                   </tr>
                                 </thead>
                                 <tbody>
+                                  <?php foreach($sepatu as $key => $value){ ?>
                                   <tr>
-                                    <td>000001</td>
-                                    <td>Adidas 1</td>
-                                    <td>40</td>
-                                    <td>99+</td>
-                                    <td><button type="button" class="btn btn-success">Update</button></td>
-                                    <td><button type="button" class="btn btn-danger">Delete</button></td>
+                                    <td><?= $value['id_sepatu'] ?></td>
+                                    <td><?= $value['nama_sepatu'] ?></td>
+                                    <td><?= $value['size_sepatu'] ?></td>
+                                    <td><?= $value['stock_sepatu'] ?></td>
+                                    <td><?= "Rp. " . number_format($value['harga_sepatu'],0,',','.') . ",-" ?></td>
+                                    <td>
+                                      <form action="" method="post">
+                                        <input type="hidden" name="id_sepatu" value="<?= $value['id_sepatu'] ?>">
+                                        <button type="button" class="btn btn-success" name="update">Update</button>
+                                      </form>
+                                    </td>
+                                    <td>
+                                    <form action="" method="post">
+                                        <input type="hidden" name="id_sepatu" value="<?= $value['id_sepatu'] ?>">
+                                        <button type="button" class="btn btn-danger" name="delete">Delete</button>
+                                      </form>
+                                    </td>
                                   </tr>
-                                  <tr>
-                                    <td>000001</td>
-                                    <td>Adidas 1</td>
-                                    <td>40</td>
-                                    <td>99+</td>
-                                    <td><button type="button" class="btn btn-success">Update</button></td>
-                                    <td><button type="button" class="btn btn-danger">Delete</button></td>
-                                  </tr>
-                                  <tr>
-                                    <td>000001</td>
-                                    <td>Adidas 1</td>
-                                    <td>40</td>
-                                    <td>99+</td>
-                                    <td><button type="button" class="btn btn-success">Update</button></td>
-                                    <td><button type="button" class="btn btn-danger">Delete</button></td>
-                                  </tr>
-                                  <tr>
-                                    <td>000001</td>
-                                    <td>Adidas 1</td>
-                                    <td>40</td>
-                                    <td>99+</td>
-                                    <td><button type="button" class="btn btn-success">Update</button></td>
-                                    <td><button type="button" class="btn btn-danger">Delete</button></td>
-                                  </tr>
-                                  <tr>
-                                    <td>000001</td>
-                                    <td>Adidas 1</td>
-                                    <td>40</td>
-                                    <td>99+</td>
-                                    <td><button type="button" class="btn btn-success">Update</button></td>
-                                    <td><button type="button" class="btn btn-danger">Delete</button></td>
-                                  </tr>
+                                  <?php } ?>
                                 </tbody>
                               </table>
                             </div>
