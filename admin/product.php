@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $descShoes = $_POST['descShoes'];
         $sizeShoes = $_POST['sizeShoes'];
         $imagesShoes = $_FILES['imagesShoes'];
-
+        
     }
 }
 ?>
