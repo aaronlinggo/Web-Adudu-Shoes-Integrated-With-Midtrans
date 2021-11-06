@@ -260,7 +260,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <td>
                                       <form action="" method="post">
                                         <input type="hidden" name="id_sepatu" value="<?= $value['id_sepatu'] ?>">
-                                        <button type="button" class="btn btn-success" name="update">Update</button>
+                                        <button type="button" class="btn btn-success" name="addStock">Add Stock</button>
                                       </form>
                                     </td>
                                     <td>
