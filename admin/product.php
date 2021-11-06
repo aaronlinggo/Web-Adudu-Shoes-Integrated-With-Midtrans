@@ -23,8 +23,9 @@
   <!-- endinject -->
   <link rel="shortcut icon" href="images/favicon.png" />
 </head>
+
 <body>
-  <div class="container-scroller"> 
+  <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
@@ -43,7 +44,7 @@
           </a>
         </div>
       </div>
-      <div class="navbar-menu-wrapper d-flex align-items-top"> 
+      <div class="navbar-menu-wrapper d-flex align-items-top">
         <ul class="navbar-nav">
           <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
             <h1 class="welcome-text">Good Morning, <span class="text-black fw-bold">Admin</span></h1>
@@ -51,7 +52,7 @@
           </li>
         </ul>
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item dropdown"> 
+          <li class="nav-item dropdown">
             <a class="nav-link count-indicator" id="countDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="icon-bell"></i>
               <span class="count"></span>
@@ -97,7 +98,7 @@
           </li>
           <li class="nav-item dropdown d-none d-lg-block user-dropdown">
             <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a>
+              <i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a>
           </li>
         </ul>
         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-bs-toggle="offcanvas">
@@ -113,8 +114,12 @@
         <div id="theme-settings" class="settings-panel">
           <i class="settings-close ti-close"></i>
           <p class="settings-heading">SIDEBAR SKINS</p>
-          <div class="sidebar-bg-options selected" id="sidebar-light-theme"><div class="img-ss rounded-circle bg-light border me-3"></div>Light</div>
-          <div class="sidebar-bg-options" id="sidebar-dark-theme"><div class="img-ss rounded-circle bg-dark border me-3"></div>Dark</div>
+          <div class="sidebar-bg-options selected" id="sidebar-light-theme">
+            <div class="img-ss rounded-circle bg-light border me-3"></div>Light
+          </div>
+          <div class="sidebar-bg-options" id="sidebar-dark-theme">
+            <div class="img-ss rounded-circle bg-dark border me-3"></div>Dark
+          </div>
           <p class="settings-heading mt-2">HEADER SKINS</p>
           <div class="color-tiles mx-0 px-4">
             <div class="tiles success"></div>
@@ -307,113 +312,54 @@
             <div class="col-sm-12">
               <div class="home-tab">
                 <div class="tab-content tab-content-basic">
-                  <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview"> 
+                  <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview">
                     <div class="row">
-                      <div class="col-sm-12">
-                        <div class="statistics-details d-flex align-items-center justify-content-between">
-                          <div>
-                            <p class="statistics-title">Bounce Rate</p>
-                            <h3 class="rate-percentage">32.53%</h3>
-                            <p class="text-danger d-flex"><i class="mdi mdi-menu-down"></i><span>-0.5%</span></p>
-                          </div>
-                          <div>
-                            <p class="statistics-title">Page Views</p>
-                            <h3 class="rate-percentage">7,682</h3>
-                            <p class="text-success d-flex"><i class="mdi mdi-menu-up"></i><span>+0.1%</span></p>
-                          </div>
-                          <div>
-                            <p class="statistics-title">New Sessions</p>
-                            <h3 class="rate-percentage">68.8</h3>
-                            <p class="text-danger d-flex"><i class="mdi mdi-menu-down"></i><span>68.8</span></p>
-                          </div>
-                          <div class="d-none d-md-block">
-                            <p class="statistics-title">Avg. Time on Site</p>
-                            <h3 class="rate-percentage">2m:35s</h3>
-                            <p class="text-success d-flex"><i class="mdi mdi-menu-down"></i><span>+0.8%</span></p>
-                          </div>
-                          <div class="d-none d-md-block">
-                            <p class="statistics-title">New Sessions</p>
-                            <h3 class="rate-percentage">68.8</h3>
-                            <p class="text-danger d-flex"><i class="mdi mdi-menu-down"></i><span>68.8</span></p>
-                          </div>
-                          <div class="d-none d-md-block">
-                            <p class="statistics-title">Avg. Time on Site</p>
-                            <h3 class="rate-percentage">2m:35s</h3>
-                            <p class="text-success d-flex"><i class="mdi mdi-menu-down"></i><span>+0.8%</span></p>
-                          </div>
-                        </div>
-                      </div>
-                    </div> 
-                    <div class="row">
-                      <div class="col-lg-8 d-flex flex-column">
-                        <div class="row flex-grow">
-                          <div class="col-12 col-lg-4 col-lg-12 grid-margin stretch-card">
-                            <div class="card card-rounded">
-                              <div class="card-body">
-                                <div class="d-sm-flex justify-content-between align-items-start">
-                                  <div>
-                                   <h4 class="card-title card-title-dash">Performance Line Chart</h4>
-                                   <h5 class="card-subtitle card-subtitle-dash">Lorem Ipsum is simply dummy text of the printing</h5>
+                      <div class="col-12 grid-margin">
+                        <div class="card">
+                          <div class="card-body">
+                            <h4 class="card-title">Add New Shoes</h4>
+                            <form class="form-sample">
+                              <div class="row">
+                                <div class="form-group row">
+                                  <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Shoes Name</label>
+                                  <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="exampleInputUsername2" placeholder="Shoes Name">
                                   </div>
-                                  <div id="performance-line-legend"></div>
                                 </div>
-                                <div class="chartjs-wrapper mt-5">
-                                  <canvas id="performaneLine"></canvas>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-lg-4 d-flex flex-column">
-                        <div class="row flex-grow">
-                          <div class="col-md-6 col-lg-12 grid-margin stretch-card">
-                            <div class="card bg-primary card-rounded">
-                              <div class="card-body pb-0">
-                                <h4 class="card-title card-title-dash text-white mb-4">Status Summary</h4>
-                                <div class="row">
-                                  <div class="col-sm-4">
-                                    <p class="status-summary-ight-white mb-1">Closed Value</p>
-                                    <h2 class="text-info">357</h2>
+                                <div class="form-group row">
+                                  <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Price</label>
+                                  <div class="col-sm-9">
+                                    <input type="number" class="form-control" id="exampleInputUsername2" placeholder="Price">
                                   </div>
-                                  <div class="col-sm-8">
-                                    <div class="status-summary-chart-wrapper pb-4">
-                                      <canvas id="status-summary"></canvas>
-                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                  <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Description</label>
+                                  <div class="col-sm-9">
+                                    <textarea class="form-control" id="exampleInputUsername2" style="height: 100px;"></textarea>
+                                  </div>
+                                </div>
+                                <div class="form-group row">
+                                  <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Size</label>
+                                  <div class="col-sm-9">
+                                    <input type="number" class="form-control" id="exampleInputUsername2" placeholder="Size">
+                                  </div>
+                                </div>
+                                <div class="form-group row">
+                                  <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Stock</label>
+                                  <div class="col-sm-9">
+                                    <input type="number" class="form-control" id="exampleInputUsername2" placeholder="Stock">
+                                  </div>
+                                </div>
+                                <div class="form-group row">
+                                  <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Images</label>
+                                  <div class="col-sm-9">
+                                    <input type="file" class="form-control" id="exampleInputUsername2">
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                          </div>
-                          <div class="col-md-6 col-lg-12 grid-margin stretch-card">
-                            <div class="card card-rounded">
-                              <div class="card-body">
-                                <div class="row">
-                                  <div class="col-sm-6">
-                                    <div class="d-flex justify-content-between align-items-center mb-2 mb-sm-0">
-                                      <div class="circle-progress-width">
-                                        <div id="totalVisitors" class="progressbar-js-circle pr-2"></div>
-                                      </div>
-                                      <div>
-                                        <p class="text-small mb-2">Total Visitors</p>
-                                        <h4 class="mb-0 fw-bold">26.80%</h4>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-6">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                      <div class="circle-progress-width">
-                                        <div id="visitperday" class="progressbar-js-circle pr-2"></div>
-                                      </div>
-                                      <div>
-                                        <p class="text-small mb-2">Visits per day</p>
-                                        <h4 class="mb-0 fw-bold">9065</h4>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
+                              <button class="btn btn-primary" style="color: white;">Submit</button>
+                              <button class="btn btn-light">Reset</button>
+                            </form>
                           </div>
                         </div>
                       </div>
@@ -427,7 +373,7 @@
                                 <div class="d-sm-flex justify-content-between align-items-start">
                                   <div>
                                     <h4 class="card-title card-title-dash">Market Overview</h4>
-                                   <p class="card-subtitle card-subtitle-dash">Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+                                    <p class="card-subtitle card-subtitle-dash">Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
                                   </div>
                                   <div>
                                     <div class="dropdown">
@@ -444,8 +390,14 @@
                                   </div>
                                 </div>
                                 <div class="d-sm-flex align-items-center mt-1 justify-content-between">
-                                  <div class="d-sm-flex align-items-center mt-4 justify-content-between"><h2 class="me-2 fw-bold">$36,2531.00</h2><h4 class="me-2">USD</h4><h4 class="text-success">(+1.37%)</h4></div>
-                                  <div class="me-3"><div id="marketing-overview-legend"></div></div>
+                                  <div class="d-sm-flex align-items-center mt-4 justify-content-between">
+                                    <h2 class="me-2 fw-bold">$36,2531.00</h2>
+                                    <h4 class="me-2">USD</h4>
+                                    <h4 class="text-success">(+1.37%)</h4>
+                                  </div>
+                                  <div class="me-3">
+                                    <div id="marketing-overview-legend"></div>
+                                  </div>
                                 </div>
                                 <div class="chartjs-bar-wrapper mt-3">
                                   <canvas id="marketingOverview"></canvas>
@@ -475,7 +427,7 @@
                                 <div class="d-sm-flex justify-content-between align-items-start">
                                   <div>
                                     <h4 class="card-title card-title-dash">Pending Requests</h4>
-                                   <p class="card-subtitle card-subtitle-dash">You have 50+ new requests</p>
+                                    <p class="card-subtitle card-subtitle-dash">You have 50+ new requests</p>
                                   </div>
                                   <div>
                                     <button class="btn btn-primary btn-lg text-white mb-0 me-0" type="button"><i class="mdi mdi-account-plus"></i>Add new member</button>
@@ -502,7 +454,7 @@
                                         <td>
                                           <div class="form-check form-check-flat mt-0">
                                             <label class="form-check-label">
-                                            <input type="checkbox" class="form-check-input" aria-checked="false"><i class="input-helper"></i></label>
+                                              <input type="checkbox" class="form-check-input" aria-checked="false"><i class="input-helper"></i></label>
                                           </div>
                                         </td>
                                         <td>
@@ -529,13 +481,15 @@
                                             </div>
                                           </div>
                                         </td>
-                                        <td><div class="badge badge-opacity-warning">In progress</div></td>
+                                        <td>
+                                          <div class="badge badge-opacity-warning">In progress</div>
+                                        </td>
                                       </tr>
                                       <tr>
                                         <td>
                                           <div class="form-check form-check-flat mt-0">
                                             <label class="form-check-label">
-                                            <input type="checkbox" class="form-check-input" aria-checked="false"><i class="input-helper"></i></label>
+                                              <input type="checkbox" class="form-check-input" aria-checked="false"><i class="input-helper"></i></label>
                                           </div>
                                         </td>
                                         <td>
@@ -562,13 +516,15 @@
                                             </div>
                                           </div>
                                         </td>
-                                        <td><div class="badge badge-opacity-warning">In progress</div></td>
+                                        <td>
+                                          <div class="badge badge-opacity-warning">In progress</div>
+                                        </td>
                                       </tr>
                                       <tr>
                                         <td>
                                           <div class="form-check form-check-flat mt-0">
                                             <label class="form-check-label">
-                                            <input type="checkbox" class="form-check-input" aria-checked="false"><i class="input-helper"></i></label>
+                                              <input type="checkbox" class="form-check-input" aria-checked="false"><i class="input-helper"></i></label>
                                           </div>
                                         </td>
                                         <td>
@@ -595,13 +551,15 @@
                                             </div>
                                           </div>
                                         </td>
-                                        <td><div class="badge badge-opacity-warning">In progress</div></td>
+                                        <td>
+                                          <div class="badge badge-opacity-warning">In progress</div>
+                                        </td>
                                       </tr>
                                       <tr>
                                         <td>
                                           <div class="form-check form-check-flat mt-0">
                                             <label class="form-check-label">
-                                            <input type="checkbox" class="form-check-input" aria-checked="false"><i class="input-helper"></i></label>
+                                              <input type="checkbox" class="form-check-input" aria-checked="false"><i class="input-helper"></i></label>
                                           </div>
                                         </td>
                                         <td>
@@ -628,13 +586,15 @@
                                             </div>
                                           </div>
                                         </td>
-                                        <td><div class="badge badge-opacity-danger">Pending</div></td>
+                                        <td>
+                                          <div class="badge badge-opacity-danger">Pending</div>
+                                        </td>
                                       </tr>
                                       <tr>
                                         <td>
                                           <div class="form-check form-check-flat mt-0">
                                             <label class="form-check-label">
-                                            <input type="checkbox" class="form-check-input" aria-checked="false"><i class="input-helper"></i></label>
+                                              <input type="checkbox" class="form-check-input" aria-checked="false"><i class="input-helper"></i></label>
                                           </div>
                                         </td>
                                         <td>
@@ -661,7 +621,9 @@
                                             </div>
                                           </div>
                                         </td>
-                                        <td><div class="badge badge-opacity-success">Completed</div></td>
+                                        <td>
+                                          <div class="badge badge-opacity-success">Completed</div>
+                                        </td>
                                       </tr>
                                     </tbody>
                                   </table>
@@ -727,7 +689,7 @@
                                     </div>
                                   </div>
                                 </div>
-                                
+
                                 <div class="list align-items-center pt-3">
                                   <div class="wrapper w-100">
                                     <p class="mb-0">
@@ -1042,4 +1004,3 @@
 </body>
 
 </html>
-
