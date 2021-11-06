@@ -73,9 +73,9 @@ $sepatu = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 								<div class="carousel-inner">
 									<div class="carousel-item active">
 										<div class="row">
-											<div class="col-sm-2 padding_0">
+											<div class="col-sm-1 padding_0">
 											</div>
-											<div class="col-sm-5">
+											<div class="col-sm-6">
 												<div class="banner_taital">
 													<h1 class="banner_text">New Running Shoes </h1>
 													<h1 class="mens_text">
