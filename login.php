@@ -1,7 +1,17 @@
 <?php
 session_start();
-require_once("connection.php");
+require_once("./controller/connection.php");
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_POST['login'])){
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        if ($email == "admin" && $password == "admin"){
+            header("Location: ./admin/index.html");
+        }
+    }
+}
 
 ?>
 
@@ -83,10 +93,10 @@ require_once("connection.php");
                             <div class="container">
                                 <form action="" method="POST">
                                     <div class="form-group">
-                                        <input type="text" class="email-bt" placeholder="Email" name="Email">
+                                        <input type="text" class="email-bt" placeholder="Email" name="email">
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" class="email-bt" placeholder="Password" name="Name">
+                                        <input type="password" class="email-bt" placeholder="Password" name="password">
                                     </div>
                                     <div class="send_btn">
                                         <button class="main_bt" name="login">Login</button>
