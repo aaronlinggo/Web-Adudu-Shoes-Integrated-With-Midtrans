@@ -5,9 +5,9 @@ $('#update_form').on("submit", function(event){
   {  
    alert("Shoes Name can't be empty");  
   }  
-  else if($('#priceShoes1').val() == '')  
+  else if(parseInt($('#priceShoes1').val()) > 0)  
   {  
-   alert("Price can't be empty");  
+   alert("Prize must be more than 0");  
   }    
   else if($('#subDesc1').val() == '')  
   {  
@@ -17,13 +17,13 @@ $('#update_form').on("submit", function(event){
   {  
    alert("Description can't be empty");  
   }
-  else if($('#sizeShoes1').val() == '')  
+  else if(parseInt($('#sizeShoes1').val()) > 0)  
   {  
-   alert("Size Shoes can't be empty");  
+   alert("Size must be more than 0");  
   }  
-  else if($('#stockShoes1').val() == '')  
+  else if(parseInt($('#stockShoes1').val()) > 0)  
   {  
-   alert("Stock can't be empty");  
+   alert("Stock must be more than 0");  
   }  
   
   else 
