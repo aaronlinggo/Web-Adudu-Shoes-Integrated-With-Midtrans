@@ -180,8 +180,8 @@ button {
 }
 
 .layout_padding {
-    padding-top: 90px;
-    padding-bottom: 90px;
+    padding-top: 80px;
+    padding-bottom: 80px;
 }
 
 .header_section {
@@ -580,29 +580,27 @@ body {
 }
 
 .gallery_section {
-    width: 100%;
     float: left;
+    width: 100%;
     height: auto;
-
 }
 
 .best_shoes {
-    width: 100%;
-    float: left;
     background-color: #ecedef;
-    height: auto;
-    padding: 20px 20px 20px 0px;
     margin-top: 15px;
     margin-bottom: 15px;
+    padding: 25px;
+    width: 100%;
+    height: 100%;
 }
 
 .best_text {
-    width: 100%;
-    float: left;
-    font-size: 14pt;
     color: #000;
-    text-align: center;
+    font-size: 14pt;
     margin-left: 0px;
+    margin-right: 0px;
+    text-align: center;
+    width: 100%;
 }
 
 .shoes_icon {
@@ -614,14 +612,17 @@ body {
 
 .star_text {
     width: 100%;
-    float: left;
+    /* float: left; */
 }
 
 .left_part {
-    width: 60%;
+    width: 20%;
+    /* width: 60%; */
     float: left;
+    /* padding-left: 15px;
+    padding-top: 15px; */
     padding-left: 15px;
-    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 .left_part ul {
@@ -635,7 +636,8 @@ body {
 }
 
 .right_part {
-    width: 40%;
+    width: 100%;
+    /* width: 80%; */
     float: left;
 }
 

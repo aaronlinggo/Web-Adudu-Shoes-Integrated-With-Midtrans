@@ -69,6 +69,7 @@
 			<div class="container">
 				<?php
 					$indexDecrement = count($sepatu) - 1;
+					// $indexDecrement = 8;
 
 					while($indexDecrement > 0) {
 					?>
@@ -77,22 +78,30 @@
 								for($i = 0; $i < 3; $i++) {
 									$lokasi = './admin/'.$sepatu[$indexDecrement]['link_gambarsepatu'];
 									?>
-										<div class="col-sm-4">
-											<div class="best_shoes">
-												<p class="best_text"><?= $sepatu[$indexDecrement]['nama_sepatu'] ?></p>
-												<div class="shoes_icon"><img src='<?= $lokasi ?>'></div>
-												<div class="star_text">
-													<div class="left_part">
-														<ul>
-															<li><a href="#"><img src="./images/star-icon.png"></a></li>
-															<li><a href="#"><img src="./images/star-icon.png"></a></li>
-															<li><a href="#"><img src="./images/star-icon.png"></a></li>
-															<li><a href="#"><img src="./images/star-icon.png"></a></li>
-															<li><a href="#"><img src="./images/star-icon.png"></a></li>
-														</ul>
-													</div>
-													<div class="right_part">
-														<div class="shoes_price">Rp. <span style="color: #ff4e5b;"><?= $sepatu[$indexDecrement]['harga_sepatu'] ?></span></div>
+										<div class="col-sm-12 col-md-6 col-lg-4" style="margin: 15px 0;">
+										<!-- <div class="col-sm-4 col-md-6" style="margin: 15px 0;"> -->
+										<!-- <div class="col-sm-4"> -->
+											<div class="best_shoes flex-center flex-column flex-hend flex-between">
+												<div>
+													<p class="best_text"><?= $sepatu[$indexDecrement]['nama_sepatu'] ?></p>
+												</div>
+												<div>
+													<div class="shoes_icon"><img src='<?= $lokasi ?>'></div>
+													<div class="star_text flex-center flex-vend">
+													<!-- <div class="star_text"> -->
+														<div class="left_part">
+															INI PERLU BINTANG2AN GAK RON???
+															<ul>
+																<li><a href="#"><img src="./images/star-icon.png"></a></li>
+																<li><a href="#"><img src="./images/star-icon.png"></a></li>
+																<li><a href="#"><img src="./images/star-icon.png"></a></li>
+																<li><a href="#"><img src="./images/star-icon.png"></a></li>
+																<li><a href="#"><img src="./images/star-icon.png"></a></li>
+															</ul>
+														</div>
+														<div class="right_part">
+															<div class="shoes_price">Rp. <span style="color: #ff4e5b;"><?= $sepatu[$indexDecrement]['harga_sepatu'] ?></span></div>
+														</div>
 													</div>
 												</div>
 											</div>
