@@ -124,7 +124,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </a>
           </li>
           <li class="nav-item dropdown d-none d-lg-block user-dropdown">
-            <a class="nav-link" href="../logout.php">
+            <a class="nav-link" id="UserDropdown" href="../logout.php">
               <i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out
             </a>
           </li>

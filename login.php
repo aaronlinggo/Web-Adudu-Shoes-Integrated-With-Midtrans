@@ -17,11 +17,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($username == $value['username']){
                 if (md5($password) == $value['password']){
                     $_SESSION['active'] = $value['id_user'];
-                    if ($value['admin'] == "admin"){
+                    if ($value['roles'] == "admin"){
                         header("Location: ./admin/index.php");
                     }
                     else{
-                        
+
                     }
                 }
                 else{

@@ -1,31 +1,38 @@
+<?php
+session_start();
+require_once("../controller/connection.php");
+
+
+if (!isset($_SESSION['active'])) {
+  header('Location: index.php');
+}
+else{
+  $id_user = $_SESSION['active'];
+}
+$stmt = $conn->prepare("SELECT * FROM users WHERE id_user=$id_user");
+$stmt->execute();
+$admin = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Admin Dashboard</title>
-  <!-- plugins:css -->
   <link rel="stylesheet" href="vendors/feather/feather.css">
   <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="vendors/typicons/typicons.css">
   <link rel="stylesheet" href="vendors/simple-line-icons/css/simple-line-icons.css">
   <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
-  <!-- endinject -->
-  <!-- Plugin css for this page -->
   <link rel="stylesheet" href="vendors/datatables.net-bs4/dataTables.bootstrap4.css">
   <link rel="stylesheet" href="js/select.dataTables.min.css">
-  <!-- End plugin css for this page -->
-  <!-- inject:css -->
   <link rel="stylesheet" href="css/vertical-layout-light/style.css">
-  <!-- endinject -->
   <link rel="shortcut icon" href="images/favicon.png" />
 </head>
 <body>
   <div class="container-scroller"> 
-    <!-- partial:partials/_navbar.html -->
     <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
         <div class="me-3">
@@ -46,7 +53,7 @@
       <div class="navbar-menu-wrapper d-flex align-items-top"> 
         <ul class="navbar-nav">
           <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
-            <h1 class="welcome-text">Good Morning, <span class="text-black fw-bold">Admin</span></h1>
+            <h1 class="welcome-text">Good Morning, <span class="text-black fw-bold"><?= $admin[0]['nama'] ?></span></h1>
             <h3 class="welcome-sub-text">Your performance summary this week </h3>
           </li>
         </ul>
@@ -96,8 +103,9 @@
               <img class="img-xs rounded-circle" src="images/faces/face8.jpg" alt="Profile image"> </a>
           </li>
           <li class="nav-item dropdown d-none d-lg-block user-dropdown">
-            <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a>
+            <a class="nav-link" id="UserDropdown" href="../logout.php">
+              <i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out
+            </a>
           </li>
         </ul>
         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-bs-toggle="offcanvas">
