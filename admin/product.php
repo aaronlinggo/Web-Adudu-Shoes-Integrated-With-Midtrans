@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stockShoes = $_POST['stockShoes'];
     $imagesShoes = $_FILES['imagesShoes'];
     //ALERT GA MUNCUL BABI
-    if ($shoesName != "") {
+    if (!empty($shoesName)) {
       if ($priceShoes > 0) {
         if ($descShoes != "") {
           if ($subDesc != "") {
@@ -25,50 +25,48 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                   foreach ($sepatu as $key => $value) {
                     $id = (int)$value['id_sepatu'];
                   }
-    
+
                   if (!isset($id)) {
                     $id = 0;
                   }
                   $lokasi = "list_products/";
-    
+
                   @mkdir($lokasi);
-    
+
                   move_uploaded_file($_FILES['imagesShoes']['tmp_name'], $lokasi . ($id + 1) . '.jpg');
-                  $temp = $lokasi.($id+1).'.jpg';
+                  $temp = $lokasi . ($id + 1) . '.jpg';
                   $stmt = $conn->prepare("INSERT INTO sepatu(nama_sepatu, harga_sepatu, sub_desc, desc_sepatu, size_sepatu, stock_sepatu, link_gambarsepatu) VALUES(?,?,?,?,?,?,?)");
-                  $stmt->bind_param("sissiis",$shoesName, $priceShoes, $subDesc, $descShoes, $sizeShoes, $stockShoes, $temp);
-                  $result =$stmt->execute();
+                  $stmt->bind_param("sissiis", $shoesName, $priceShoes, $subDesc, $descShoes, $sizeShoes, $stockShoes, $temp);
+                  $result = $stmt->execute();
                   echo "<script>alert('Success Add Shoes')</script>";
                   header("Location: product.php");
-                } 
-                else {
+                } else {
                   echo "<script>alert('Please choose an image')</script>";
                 }
-              }
-              else {
+              } else {
                 echo "<script>alert('Stock must be more than 0')</script>";
               }
-            } 
-            else {
+            } else {
               echo "<script>alert('Size must be more than 0')</script>";
             }
-          }
-          else {
+          } else {
             echo "<script>alert('Sub Description cant be Empty')</script>";
           }
-        } 
-        else {
+        } else {
           echo "<script>alert('Description can't be empty')</script>";
         }
-      } 
-      else {
+      } else {
         echo "<script>alert('Prize must be more than 0')</script>";
       }
-    } 
-    else {
+    } else {
       echo "<script>alert('Shoes Name can't be empty')</script>";
     }
-    
+  }
+  if (isset($_POST['delete'])) {
+    $id_sepatu = $_POST["id_sepatu"];
+    $result = $conn->query("DELETE FROM sepatu WHERE id_sepatu=$id_sepatu");
+    echo "<script>alert('Success Delete Shoes ID $id_sepatu')</script>";
+    header('Location: product.php');
   }
 }
 ?>
@@ -90,6 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <link rel="stylesheet" href="js/select.dataTables.min.css">
   <link rel="stylesheet" href="css/vertical-layout-light/style.css">
   <link rel="shortcut icon" href="images/favicon.png" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body>
@@ -237,7 +236,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <div class="card">
                           <div class="card-body">
                             <h4 class="card-title">List Products</h4>
-                            <div class="table-responsive">
+                            <div class="table-responsive" id="tableUpdate">
                               <table class="table table-hover" style="text-align: center;">
                                 <thead>
                                   <tr>
@@ -246,30 +245,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <th>Size</th>
                                     <th>Stock</th>
                                     <th>Harga</th>
-                                    <th colspan="2">Action</th>
+                                    <th>Action</th>
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  <?php foreach($sepatu as $key => $value){ ?>
-                                  <tr>
-                                    <td><?= $value['id_sepatu'] ?></td>
-                                    <td><?= $value['nama_sepatu'] ?></td>
-                                    <td><?= $value['size_sepatu'] ?></td>
-                                    <td><?= $value['stock_sepatu'] ?></td>
-                                    <td><?= "Rp. " . number_format($value['harga_sepatu'],0,',','.') . ",-" ?></td>
-                                    <td>
-                                      <form action="" method="post">
-                                        <input type="hidden" name="id_sepatu" value="<?= $value['id_sepatu'] ?>">
-                                        <button type="button" class="btn btn-success" name="addStock">Add Stock</button>
-                                      </form>
-                                    </td>
-                                    <td>
-                                    <form action="" method="post">
-                                        <input type="hidden" name="id_sepatu" value="<?= $value['id_sepatu'] ?>">
-                                        <button type="button" class="btn btn-danger" name="delete">Delete</button>
-                                      </form>
-                                    </td>
-                                  </tr>
+                                  <?php foreach ($sepatu as $key => $value) { ?>
+                                    <tr>
+                                      <td><?= $value['id_sepatu'] ?></td>
+                                      <td><?= $value['nama_sepatu'] ?></td>
+                                      <td><?= $value['size_sepatu'] ?></td>
+                                      <td><?= $value['stock_sepatu'] ?></td>
+                                      <td><?= "Rp. " . number_format($value['harga_sepatu'], 0, ',', '.') . ",-" ?></td>
+                                      <td>
+                                        <div class="d-flex">
+                                          <div>
+                                            <button class="btn btn-success edit_data" name="edit" id="<?= $value['id_sepatu'] ?>">Edit</button>
+                                          </div>
+                                          <form action="" method="post">
+                                            <input type="hidden" name="id_sepatu" value="<?= $value['id_sepatu'] ?>">
+                                            <button class="btn btn-danger" name="delete">Delete</button>
+                                          </form>
+                                        </div>
+                                      </td>
+                                    </tr>
                                   <?php } ?>
                                 </tbody>
                               </table>
@@ -285,8 +283,58 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           </div>
         </div>
       </div>
+      <div id="editModal" class="modal fade">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Edit Shoes</h4>
+            </div>
+            <div class="modal-body" id="form_edit">
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+  <script>
+    $(document).ready(function() {
+      //Begin Tampil Form Edit
+      $(document).on('click', '.edit_data', function() {
+        var id_sepatu = $(this).attr("id");
+        $.ajax({
+          url: "edit.php",
+          method: "POST",
+          data: {
+            id_sepatu: id_sepatu
+          },
+          success: function(data) {
+            $('#form_edit').html(data);
+            $('#editModal').modal('show');
+          }
+        });
+      });
+
+      //Begin Aksi Delete Data
+      $(document).on('click', '.hapus_data', function() {
+        var employee_id = $(this).attr("id");
+        $.ajax({
+          url: "delete.php",
+          method: "POST",
+          data: {
+            employee_id: employee_id
+          },
+          success: function(data) {
+            $('#employee_table').html(data);
+          }
+        });
+      });
+    });
+  </script>
   <script src="vendors/js/vendor.bundle.base.js"></script>
   <script src="vendors/chart.js/Chart.min.js"></script>
   <script src="vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
