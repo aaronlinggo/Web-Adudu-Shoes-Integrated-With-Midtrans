@@ -117,7 +117,6 @@ $users = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                                     <th>Email</th>
                                     <th>Nama</th>
                                     <th>Tanggal Lahir</th>
-                                    <th>Saldo</th>
                                     <th>Roles</th>
                                   </tr>
                                 </thead>
@@ -129,16 +128,6 @@ $users = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                                       <td><?= $value['email'] ?></td>
                                       <td><?= $value['nama'] ?></td>
                                       <td><?= $value['tanggal_lahir'] ?></td>
-                                      <td>
-                                        <?php 
-                                          if ($value['roles'] == "admin") {
-                                            echo "<div class='btn btn-danger' style='cursor: default; margin:0;'>admin</div>";
-                                          }
-                                          else{
-                                            echo "Rp. " . number_format($value['saldo'], 0, ',', '.') . ",-";
-                                          }
-                                        ?>
-                                      </td>
                                       <td>
                                         <?php 
                                           if ($value['roles'] == "admin") {
