@@ -88,14 +88,14 @@
 													<h1 class="banner_text">New Running Shoes </h1>
 													<h1 class="mens_text">
 														<?php 
-															$temp = count($sepatu);
-															$judul = $sepatu[$temp-1]['nama_sepatu'];
+															$stmt = $conn->prepare("SELECT * FROM sepatu ORDER BY id_sepatu DESC LIMIT 1");
+															$stmt->execute();
+															$lastShoes = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 														?>
-														<strong><?= $judul ?></strong>
+														<strong><?= $lastShoes[0]['nama_sepatu'] ?></strong>
 													</h1>
 													<?php 
-														$temp = count($sepatu);
-														$subdesc = $sepatu[$temp-1]['sub_desc'];
+														$subdesc = $lastShoes[0]['sub_desc'];
 													?>
 													<p class="lorem_text"><?= $subdesc ?></p>
 													<button class="buy_bt">Buy Now</button>
@@ -105,8 +105,7 @@
 											<div class="col-sm-5">
 												<div class="shoes_img">
 													<?php 
-														$temp = count($sepatu);
-														$lokasi = "./admin/".$sepatu[$temp-1]['link_gambarsepatu'];
+														$lokasi = "./admin/".$lastShoes[0]['link_gambarsepatu'];
 													?>
 													<img src="<?= $lokasi ?>" style="z-index: -1; width: ;">
 												</div>
