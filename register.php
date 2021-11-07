@@ -1,42 +1,125 @@
+<?php
+session_start();
+require_once("./controller/connection.php");
+
+$stmt = $conn->prepare("SELECT * FROM users");
+$stmt->execute();
+$users = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_POST['register'])){
+        $email = $_POST['email'];
+        $username = $_POST['username'];
+        $name = $_POST['name'];
+        $date = $_POST['date'];
+        $pass = $_POST['pass'];
+        $cpass = $_POST['cpass'];
+        $timestamp = strtotime($date);
+        $timestampNow = strtotime('-18 years');
+        if ($email != ""){
+            if ($username != ""){
+                if ($name != ""){
+                    if($date != ""){
+                        if($pass != ""){
+                            if ($cpass != ""){
+                                if (strlen($pass) > 8){
+                                    if ($pass == $cpass){
+                                        if ($timestamp > $timestampNow){
+                                            echo "<script>alert('Umur harus >= 18');</script>";
+                                            echo "<script>window.location = './register.php'</script>";
+                                        }
+                                        else{
+                                            $ada = false;
+
+                                            foreach($users as $key => $value){
+                                                if ($value['username'] == $username || $value['email'] == $email){
+                                                    $ada = true;
+                                                }
+                                            }
+                                            if (!$ada){
+                                                $saldo = 0;
+                                                $roles = "Customer";
+                                                $encrypt = md5($password);
+                                                var_dump($encrypt);
+                                                // $stmt = $conn->prepare("INSERT INTO users(username, email, nama, tanggal_lahir, saldo, password, roles) VALUES(?,?,?,?,?,?,?)");
+                                                // $stmt->bind_param("ssssiss", $username, $email, $name, $date, $saldo, $encrypt, $roles);
+                                                // $result = $stmt->execute();
+
+                                                // echo "<script>alert('Registration Success');</script>";
+                                                // echo "<script>window.location = './login.php'</script>";
+                                            }
+                                            else{
+                                                echo "<script>alert('Username sudah terdaftar');</script>";
+                                                echo "<script>window.location = './register.php'</script>";
+                                            }
+                                        }
+                                    }
+                                    else{
+                                        echo "<script>alert('Password tidak sama');</script>";
+                                        echo "<script>window.location = './register.php'</script>";
+                                    }
+                                }
+                                else{
+                                    echo "<script>alert('Password minimmum 8 Character');</script>";
+                                    echo "<script>window.location = './register.php'</script>";
+                                }
+                            }
+                            else{
+                                echo "<script>alert('Confirm Password Kosong');</script>";
+                                echo "<script>window.location = './register.php'</script>";
+                            }
+                        }
+                        else{
+                            echo "<script>alert('Password Kosong');</script>";
+                            echo "<script>window.location = './register.php'</script>";
+                        }
+                    }
+                    else{
+                        echo "<script>alert('Date Kosong');</script>";
+                        echo "<script>window.location = './register.php'</script>";
+                    }
+                }
+                else{
+                    echo "<script>alert('Full Name Kosong');</script>";
+                    echo "<script>window.location = './register.php'</script>";
+                }
+            }
+            else{
+                echo "<script>alert('Username Kosong');</script>";
+                echo "<script>window.location = './register.php'</script>";
+            }
+        }
+        else{
+            echo "<script>alert('Email Kosong');</script>";
+            echo "<script>window.location = './register.php'</script>";
+        }
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <!-- basic -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- mobile metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-    <!-- site metas -->
     <title>Sign Up</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
-    <!-- bootstrap css -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- style css -->
     <link rel="stylesheet" href="css/style.css">
-    <!-- Responsive-->
     <link rel="stylesheet" href="css/responsive.css">
-    <!-- fevicon -->
     <link rel="icon" href="images/fevicon.png" type="image/gif" />
-    <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
-    <!-- Tweaks for older IEs-->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-    <!-- owl stylesheets -->
     <link rel="stylesheet" href="css/owl.carousel.min.css">
     <link rel="stylesheet" href="css/owl.theme.default.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 </head>
-<!-- body -->
-
 <body class="main-layout">
-    <!-- header section start -->
     <div class="header_section">
         <div class="container">
             <div class="row">
@@ -77,7 +160,7 @@
             </div>
         </div>
     </div>
-    <div class="collection_text">Sign In</div>
+    <div class="collection_text">Sign Up</div>
     <div class="layout_padding contact_section">
         <div class="container-fluid ram">
             <div class="row">
@@ -87,25 +170,31 @@
                             <div class="container">
                                 <form action="" method="POST">
                                     <div class="form-group">
-                                        <input type="text" class="email-bt" placeholder="Email" name="email">
+                                        <label for="email" class="email-bt" style="border: none; color: white;">Email</label>
+                                        <input type="email" class="email-bt" placeholder="Email" name="email" id="email" required>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" class="email-bt" placeholder="Username" name="username">
+                                        <label for="username" class="email-bt" style="border: none; color: white;">Username</label>
+                                        <input type="text" class="email-bt" placeholder="Username" name="username" id="username" required>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" class="email-bt" placeholder="Full Name" name="name">
+                                        <label for="name" class="email-bt" style="border: none; color: white;">Full Name</label>
+                                        <input type="text" class="email-bt" placeholder="Full Name" name="name" id="name" required>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" class="email-bt" placeholder="Password" name="pass">
+                                        <label for="date" class="email-bt" style="border: none; color: white;">Date of Birth</label>
+                                        <input type="date" class="email-bt" name="date" id="date" required>
                                     </div>
                                     <div class="form-group">
-                                        <input type="date" class="email-bt" name="date">
+                                        <label for="pass" class="email-bt" style="border: none; color: white;">Password</label>
+                                        <input type="password" class="email-bt" placeholder="Password" name="pass" id="pass" required>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" class="email-bt" placeholder="Confirm Password" name="cpass">
+                                        <label for="cpass" class="email-bt" style="border: none; color: white;">Confirm Password</label>
+                                        <input type="password" class="email-bt" placeholder="Confirm Password" name="cpass" id="cpass" required>
                                     </div>
                                     <div class="send_btn">
-                                        <button class="main_bt">Login</button>
+                                        <button class="main_bt" name="register">Register</button>
                                     </div>
                                 </form>
                             </div>

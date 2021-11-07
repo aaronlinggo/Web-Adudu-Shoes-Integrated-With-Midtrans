@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                   $stmt->bind_param("sissiis", $shoesName, $priceShoes, $subDesc, $descShoes, $sizeShoes, $stockShoes, $temp);
                   $result = $stmt->execute();
                   echo "<script>alert('Success Add Shoes')</script>";
-                  header("Location: product.php");
+                  echo "<script>window.location = './product.php'</script>";
                 } else {
                   echo "<script>alert('Please choose an image')</script>";
                 }

@@ -132,20 +132,20 @@ $users = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                                       <td>
                                         <?php 
                                           if ($value['roles'] == "admin") {
-                                            echo "<div class='btn btn-danger' style='cursor: default ;'>admin</div>";
+                                            echo "<div class='btn btn-danger' style='cursor: default; margin:0;'>admin</div>";
                                           }
                                           else{
-                                            echo $value['saldo'];
+                                            echo "Rp. " . number_format($value['saldo'], 0, ',', '.') . ",-";
                                           }
                                         ?>
                                       </td>
                                       <td>
                                         <?php 
                                           if ($value['roles'] == "admin") {
-                                            echo "<div class='btn btn-danger' style='cursor: default ;'>admin</div>";
+                                            echo "<div class='btn btn-danger' style='cursor: default; margin:0;'>admin</div>";
                                           }
                                           else{
-                                            echo "<div class='btn btn-outline-success'>Customer<div>";
+                                            echo "<div class='btn btn-success' style='cursor: default; margin:0;'>Customer<div>";
                                           }
                                         ?>
                                       </td>

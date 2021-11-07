@@ -15,18 +15,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         foreach($users as $key => $value){
             if ($username == $value['username']){
+                $encrypt = md5($password);
+                var_dump($encrypt);
+                echo "<br>";
+                var_dump(md5($password));
+                echo "<br>";
+                var_dump($value['password']);
                 if (md5($password) == $value['password']){
-                    $_SESSION['active'] = $value['id_user'];
-                    if ($value['roles'] == "admin"){
-                        header("Location: ./admin/index.php");
-                    }
-                    else{
-
-                    }
+                    // $_SESSION['active'] = $value['id_user'];
+                    // if ($value['roles'] == "admin"){
+                    //     header("Location: ./admin/index.php");
+                    // }
+                    // else{
+                    //     header("Location: ./index.php");
+                    // }
                 }
                 else{
                     echo "<script>alert('Wrong Password!')</script>";
-                    echo "<script>window.location = './login.php'</script>";
+                    // echo "<script>window.location = './login.php'</script>";
                 }
                 $ada = true;
             }
@@ -114,10 +120,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="container">
                                 <form action="" method="POST">
                                     <div class="form-group">
-                                        <input type="text" class="email-bt" placeholder="Username" name="username">
+                                        <label for="username" class="email-bt" style="border: none; color: white;">Username</label>
+                                        <input type="text" class="email-bt" placeholder="Username" name="username" id="username" required>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" class="email-bt" placeholder="Password" name="password">
+                                        <label for="password" class="email-bt" style="border: none; color: white;">Password</label>
+                                        <input type="password" class="email-bt" placeholder="Password" name="password" id="password" required>
                                     </div>
                                     <div class="send_btn">
                                         <button class="main_bt" name="login">Login</button>
