@@ -477,10 +477,11 @@ body{
 }
 
 .collectipn_section_3{ width: 100%; float: left; padding-top: 0px;}
+
 .racing_shoes {
     width: 100%;
     float: left;
-    background-color: #eae7e7;
+    background-color: #ecedef;
     height: auto;
     padding-top: 70px;
     background-size: 100%;
@@ -803,4 +804,59 @@ a:hover {
     width: 100%;
     height: auto;
     background: #0c0116;
+}
+
+/* FLEXBOX */
+.flex {
+    display: flex;
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-hstart {
+    justify-content: flex-start;
+}
+
+.flex-hcenter {
+    justify-content: center;
+}
+
+.flex-hend {
+    justify-content: flex-end;
+}
+
+.flex-vstart {
+    align-items: flex-start;
+}
+
+.flex-vcenter {
+    align-items: center;
+}
+
+.flex-vend {
+    align-items: flex-end;
+}
+
+.flex-column {
+    flex-flow: column;
+}
+
+.flex-row {
+    flex-flow: row;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.flex-around {
+    justify-content: space-around;
+}
+
+.flex-between {
+    justify-content: space-between;
 }

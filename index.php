@@ -1,10 +1,11 @@
 <?php
-session_start();
-require_once("./controller/connection.php");
-$stmt = $conn->prepare("SELECT * FROM sepatu");
-$stmt->execute();
-$sepatu = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+	session_start();
+	require_once("./controller/connection.php");
+	$stmt = $conn->prepare("SELECT * FROM sepatu");
+	$stmt->execute();
+	$sepatu = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 ?>
+
 <!DOCTYPE html>
 <html lang="en-US">
 	<head>
@@ -174,20 +175,26 @@ $sepatu = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 			<div class="container">
 				<div class="racing_shoes">
 					<div class="row">
-						<div class="col-md-8">
-							<div class="shoes-img3">
-								<img src="./images/shoes-img3.png">
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="sale_text">
-								<strong>Sale <br><span style="color: #0a0506;">JOGGING</span> <br>SHOES</strong>
-							</div>
-							<div class="number_text">
-								<strong>$ <span style="color: #0a0506">100</span></strong>
-							</div>
-							<button class="seemore">See More</button>
-						</div>
+						<?php
+							$randomIndex = rand(0, count($sepatu) - 1);
+							?>
+								<div class="col-md-7 flex-center">
+									<div class="shoes-img3">
+										<img src='<?= "./admin/".$sepatu[$randomIndex]['link_gambarsepatu'] ?>' style="max-width: 70%;">
+									</div>
+								</div>
+								<div class="col-md-5 flex flex-hcenter flex-column">
+									<div class="sale_text">
+										<strong>Sale <br>
+										<span style="color: #0a0506;"><?= $sepatu[$randomIndex]['nama_sepatu'] ?></span></strong>
+									</div>
+									<div class="number_text">
+										<strong>Rp. <span style="color: #0a0506"><?= $sepatu[$randomIndex]['harga_sepatu'] ?></span></strong>
+									</div>
+									<button class="seemore">See More</button>
+								</div>
+							<?php
+						?>
 					</div>
 				</div>
 			</div>
