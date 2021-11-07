@@ -63,6 +63,7 @@ $sepatu = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                                     <a class="nav-item nav-link" href="#">
                                         <img src="./images/user_24px_black.png">
                                     </a>
+									<a class="btn btn-outline-danger" href="logout.php" style="height: 100%;">Sign Out</a>
                                 <?php }
                                 ?>
                             </div>

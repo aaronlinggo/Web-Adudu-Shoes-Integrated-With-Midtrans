@@ -15,24 +15,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         foreach($users as $key => $value){
             if ($username == $value['username']){
-                $encrypt = md5($password);
-                var_dump($encrypt);
-                echo "<br>";
-                var_dump(md5($password));
-                echo "<br>";
-                var_dump($value['password']);
                 if (md5($password) == $value['password']){
-                    // $_SESSION['active'] = $value['id_user'];
-                    // if ($value['roles'] == "admin"){
-                    //     header("Location: ./admin/index.php");
-                    // }
-                    // else{
-                    //     header("Location: ./index.php");
-                    // }
+                    $_SESSION['active'] = $value['id_user'];
+                    if ($value['roles'] == "admin"){
+                        header("Location: ./admin/index.php");
+                    }
+                    else{
+                        header("Location: ./index.php");
+                    }
                 }
                 else{
                     echo "<script>alert('Wrong Password!')</script>";
-                    // echo "<script>window.location = './login.php'</script>";
+                    echo "<script>window.location = './login.php'</script>";
                 }
                 $ada = true;
             }
@@ -101,6 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <a class="nav-item nav-link" href="#">
                                         <img src="./images/user_24px_black.png">
                                     </a>
+                                    <a class="btn btn-outline-danger" href="logout.php" style="height: 100%;">Sign Out</a>
                                 <?php }
                                 ?>
                             </div>

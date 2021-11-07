@@ -39,14 +39,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             if (!$ada){
                                                 $saldo = 0;
                                                 $roles = "Customer";
-                                                $encrypt = md5($password);
-                                                var_dump($encrypt);
-                                                // $stmt = $conn->prepare("INSERT INTO users(username, email, nama, tanggal_lahir, saldo, password, roles) VALUES(?,?,?,?,?,?,?)");
-                                                // $stmt->bind_param("ssssiss", $username, $email, $name, $date, $saldo, $encrypt, $roles);
-                                                // $result = $stmt->execute();
+                                                $encrypt = md5($pass);
+                                                $stmt = $conn->prepare("INSERT INTO users(username, email, nama, tanggal_lahir, saldo, password, roles) VALUES(?,?,?,?,?,?,?)");
+                                                $stmt->bind_param("ssssiss", $username, $email, $name, $date, $saldo, $encrypt, $roles);
+                                                $result = $stmt->execute();
 
-                                                // echo "<script>alert('Registration Success');</script>";
-                                                // echo "<script>window.location = './login.php'</script>";
+                                                echo "<script>alert('Registration Success');</script>";
+                                                echo "<script>window.location = './login.php'</script>";
                                             }
                                             else{
                                                 echo "<script>alert('Username sudah terdaftar');</script>";
@@ -151,6 +150,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <a class="nav-item nav-link" href="#">
                                         <img src="./images/user_24px_black.png">
                                     </a>
+                                    <a class="btn btn-outline-danger" href="logout.php" style="height: 100%;">Sign Out</a>
                                 <?php }
                                 ?>
                             </div>
