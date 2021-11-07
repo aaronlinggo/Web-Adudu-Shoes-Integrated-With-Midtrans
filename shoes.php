@@ -89,7 +89,7 @@
 													<div class="shoes_icon"><img src='<?= $lokasi ?>'></div>
 													<div class="star_text flex-center flex-vend">
 													<!-- <div class="star_text"> -->
-														<div class="left_part">
+														<!-- <div class="left_part">
 															INI PERLU BINTANG2AN GAK RON???
 															<ul>
 																<li><a href="#"><img src="./images/star-icon.png"></a></li>
@@ -98,7 +98,7 @@
 																<li><a href="#"><img src="./images/star-icon.png"></a></li>
 																<li><a href="#"><img src="./images/star-icon.png"></a></li>
 															</ul>
-														</div>
+														</div> -->
 														<div class="right_part">
 															<div class="shoes_price">Rp. <span style="color: #ff4e5b;"><?= $sepatu[$indexDecrement]['harga_sepatu'] ?></span></div>
 														</div>
