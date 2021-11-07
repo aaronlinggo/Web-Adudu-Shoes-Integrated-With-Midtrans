@@ -2,13 +2,39 @@
 session_start();
 require_once("./controller/connection.php");
 
+$stmt = $conn->prepare("SELECT * FROM users");
+$stmt->execute();
+$users = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['login'])){
         $username = $_POST['username'];
         $password = $_POST['password'];
 
-        if ($username == "admin" && $password == "admin"){
-            header("Location: ./admin/index.php");
+        $ada = false;
+
+        foreach($users as $key => $value){
+            if ($username == $value['username']){
+                if (md5($password) == $value['password']){
+                    $_SESSION['active'] = $value['id_user'];
+                    if ($value['admin'] == "admin"){
+                        header("Location: ./admin/index.php");
+                    }
+                    else{
+                        
+                    }
+                }
+                else{
+                    echo "<script>alert('Wrong Password!')</script>";
+                    echo "<script>window.location = './login.php'</script>";
+                }
+                $ada = true;
+            }
+        }
+
+        if (!$ada){
+            echo "<script>alert('Username not found !')</script>";
+            echo "<script>window.location = './login.php'</script>";
         }
     }
 }
@@ -46,14 +72,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="css/owl.carousel.min.css">
     <link rel="stylesheet" href="css/owl.theme.default.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 </head>
-<!-- body -->
-
 <body class="main-layout">
-    <!-- header section start -->
     <div class="header_section header_main">
         <div class="container">
             <div class="row">
@@ -82,7 +102,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
         </div>
     </div>
-    <!-- contact section start -->
     <div class="collection_text">Sign In</div>
     <div class="layout_padding contact_section">
         <div class="container-fluid ram">
