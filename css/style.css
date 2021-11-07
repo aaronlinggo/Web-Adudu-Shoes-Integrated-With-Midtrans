@@ -582,7 +582,6 @@ body {
 .gallery_section {
     width: 100%;
     float: left;
-    background-color: #ff4e5b;
     height: auto;
 
 }
@@ -590,7 +589,7 @@ body {
 .best_shoes {
     width: 100%;
     float: left;
-    background-color: #ffffff;
+    background-color: #ecedef;
     height: auto;
     padding: 20px 20px 20px 0px;
     margin-top: 15px;
