@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 06, 2021 at 05:18 PM
+-- Generation Time: Nov 07, 2021 at 03:43 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -148,9 +148,19 @@ CREATE TABLE `users` (
   `email` varchar(100) NOT NULL,
   `nama` varchar(100) NOT NULL,
   `tanggal_lahir` date NOT NULL,
-  `saldo` int(16) NOT NULL,
-  `password` varchar(100) NOT NULL
+  `password` varchar(100) NOT NULL,
+  `roles` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id_user`, `username`, `email`, `nama`, `tanggal_lahir`, `password`, `roles`) VALUES
+(1, 'pwsimpgodlike', 'samuel_20@mhs.istts.ac.id', 'Samuel Gunawan', '2002-07-01', 'eceddfdf7ace495d066389ca0f59a59b', 'admin'),
+(2, 'aaronlinggo', 'aaron_l20@mhs.istts.ac.id', 'Aaron Linggo Satria', '2002-01-01', '5eb116c57180cd6056b58b79ee84643d', 'admin'),
+(3, 'admin1', 'admin@dummy.com', 'Admin 1', '2002-11-25', 'e00cf25ad42683b3df678c61f42c6bda', 'admin'),
+(4, 'aaron', 'aaronlinggosatria@gmail.com', 'Aaron Linggo', '2002-01-01', '5eb116c57180cd6056b58b79ee84643d', 'Customer');
 
 --
 -- Indexes for dumped tables
@@ -208,7 +218,7 @@ ALTER TABLE `sepatu`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(16) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_user` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables

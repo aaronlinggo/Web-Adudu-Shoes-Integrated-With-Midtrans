@@ -221,7 +221,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </div>
                               </div>
                               <button class="btn btn-primary" style="color: white;" name="add">Submit</button>
-                              <button class="btn btn-light">Reset</button>
+                              <button class="btn btn-light"><a href="product.php" style="text-decoration: none; color: inherit;">Reset</a></button>
                             </form>
                           </div>
                         </div>
@@ -250,7 +250,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                       <td><?= $value['id_sepatu'] ?></td>
                                       <td><?= $value['nama_sepatu'] ?></td>
                                       <td><?= $value['size_sepatu'] ?></td>
-                                      <td><?= $value['stock_sepatu'] ?></td>
+                                      <td>
+                                        <?php 
+                                        if ($value['stock_sepatu'] > 0){
+                                          echo $value['stock_sepatu'];
+                                        } else {
+                                          echo "<p class='red-500'>Out of Stock</p>";
+                                        }
+                                        ?>
+                                      </td>
                                       <td><?= "Rp. " . number_format($value['harga_sepatu'], 0, ',', '.') . ",-" ?></td>
                                       <td>
                                         <div class="d-flex">
