@@ -542,13 +542,15 @@ body {
 }
 
 .collection_text {
-    width: 100%;
+    width: calc(100vw - 4vh);
     float: left;
-    color: #ffffff;
+    color: black;
     text-align: center;
     font-weight: bold;
     font-size: 40px;
-    background-color: #db5660;
+    border: 3px solid black;
+    margin: 2vh 2vh;
+    background-color: #fff;
     padding: 30px 0px;
 }
 
