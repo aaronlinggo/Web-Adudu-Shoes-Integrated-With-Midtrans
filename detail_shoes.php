@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="col-lg-8 col-md-6 col-sm-12" style="border-right: 1px solid black;">
                     <?php $lokasi = "./admin/" . $sepatu[0]['link_gambarsepatu']; ?>
                     <div style="overflow: hidden; height: 25vw;">
-                        <img src="<?= $lokasi ?>" class="img-fluid" alt="..." style="width: 100vw; margin-bottom: -10vw; margin-top: -20vw;">
+                        <img src="<?= $lokasi ?>" class="img-fluid" alt="" style="width: 100vw; margin-bottom: -10vw; margin-top: -20vw;">
                     </div>
                     <div class="detail_shoes">
                         <h1><?= $sepatu[0]['sub_desc'] ?></h1>
@@ -63,7 +63,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class="shoes_price">Price Rp. <span style="color: #ff4e5b;"><?= number_format($sepatu[0]['harga_sepatu'], 0, ',', '.') . ",-" ?></span></div>
                     <div class="shoes_price">Size UK <span><?= number_format($sepatu[0]['size_sepatu'], 0, ',', '.') ?></span></div>
                     <div>
-                        <button class="btn btn-dark" style="width: 100%;">Add to Cart</button>
+                        <a href="
+                        <?php
+                        if (!isset($_SESSION['active'])) { 
+                            echo "login.php";
+                        } else { 
+                            //nambah cart
+                            
+                        }
+                        ?>">
+                            <button class="btn btn-dark" style="width: 100%;">Add to Cart</button>
+                        </a>
                     </div>
                 </div>
             </div>
