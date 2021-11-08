@@ -53,57 +53,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/responsive.css">
-    <link rel="icon" href="images/fevicon.png" type="image/gif" />
-    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+
+    <?php require_once("./section/connection_head.php") ?>
 </head>
 <body class="main-layout">
     <div class="header_section">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-3">
-                    <div class="logo"><a href="#"><img src="images/logo.png"></a></div>
-                </div>
-                <div class="col-sm-9">
-                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                            <div class="navbar-nav" style="align-items: center;">
-                                <a class="nav-item nav-link" href="./index.php">Home</a>
-                                <a class="nav-item nav-link" href="./collection.php">Collection</a>
-                                <a class="nav-item nav-link" href="./shoes.php">Shoes</a>
-                                <a class="nav-item nav-link last" href="#">
-                                    <img src="./images/search_icon_black.png">
-                                </a>
-                                <a class="nav-item nav-link last" href="./cart.php">
-                                    <img src="./images/shop_icon_black.png">
-                                </a>
-                                <?php 
-                                if (!isset($_SESSION['active'])) { ?>
-                                    <a class="btn btn-outline-danger" href="login.php" style="height: 100%;">Sign In</a>
-                                    <a class="btn btn-outline-danger" href="register.php" style="height: 100%;">Sign Up</a>
-                                <?php }
-                                else{ ?>
-                                    <a class="nav-item nav-link" href="#">
-                                        <img src="./images/user_24px_black.png">
-                                    </a>
-                                    <a class="btn btn-outline-danger" href="logout.php" style="height: 100%;">Sign Out</a>
-                                <?php }
-                                ?>
-                            </div>
-                        </div>
-                    </nav>
-                </div>
-            </div>
-        </div>
+        <?php require_once("./section/nav_section.php") ?>
     </div>
     <div class="collection_text">Sign In</div>
     <div class="layout_padding contact_section">
@@ -133,45 +88,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
         </div>
     </div>
-    <div class="copyright">2019 All Rights Reserved. <a href="https://html.design">Free html Templates</a></div>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/jquery-3.0.0.min.js"></script>
-    <script src="js/plugin.js"></script>
-    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="js/custom.js"></script>
-    <script src="js/owl.carousel.js"></script>
-    <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $(".fancybox").fancybox({
-                openEffect: "none",
-                closeEffect: "none"
-            });
-
-
-            $('#myCarousel').carousel({
-                interval: false
-            });
-            $("#myCarousel").on("touchstart", function(event) {
-
-                var yClick = event.originalEvent.touches[0].pageY;
-                $(this).one("touchmove", function(event) {
-
-                    var yMove = event.originalEvent.touches[0].pageY;
-                    if (Math.floor(yClick - yMove) > 1) {
-                        $(".carousel").carousel('next');
-                    } else if (Math.floor(yClick - yMove) < -1) {
-                        $(".carousel").carousel('prev');
-                    }
-                });
-                $(".carousel").on("touchend", function() {
-                    $(this).off("touchmove");
-                });
-            });
-        });
-    </script>
+    <?php require_once("./section/footer_section.php") ?>
+    <?php require_once("./section/script_section.php") ?>
 </body>
 
 </html>

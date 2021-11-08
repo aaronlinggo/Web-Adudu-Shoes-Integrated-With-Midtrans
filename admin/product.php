@@ -283,14 +283,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <button type="button" class="close" data-dismiss="modal" style="font-size: 1.5em;">&times;</button>
               <h4 class="modal-title">Edit Shoes</h4>
             </div>
             <div class="modal-body" id="form_edit">
 
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
           </div>
         </div>
@@ -315,19 +312,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         });
       });
 
-      //Begin Aksi Delete Data
-      $(document).on('click', '.hapus_data', function() {
-        var employee_id = $(this).attr("id");
-        $.ajax({
-          url: "delete.php",
-          method: "POST",
-          data: {
-            employee_id: employee_id
-          },
-          success: function(data) {
-            $('#employee_table').html(data);
-          }
-        });
+      $(document).on('click', '.close', function() {
+        $('#editModal').modal('hide');
       });
     });
   </script>
