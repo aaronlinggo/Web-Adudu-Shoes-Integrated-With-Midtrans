@@ -48,8 +48,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="row">
                 <div class="col-lg-8 col-md-6 col-sm-12" style="border-right: 1px solid black;">
                     <?php $lokasi = "./admin/" . $sepatu[0]['link_gambarsepatu']; ?>
+                    <!-- sub_desc dibagian atas
+                        desc_sepatu dibawah
+                -->
                     <div style="overflow: hidden; height: 25vw;">
                         <img src="<?= $lokasi ?>" class="img-fluid" alt="" style="width: 100vw; margin-bottom: -10vw; margin-top: -20vw;">
+
+                        <!-- Hover -->
+                        
                     </div>
                     <div class="detail_shoes">
                         <h1><?= $sepatu[0]['sub_desc'] ?></h1>
@@ -69,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             echo "login.php";
                         } else { 
                             //nambah cart
-                            
+
                         }
                         ?>">
                             <button class="btn btn-dark" style="width: 100%;">Add to Cart</button>

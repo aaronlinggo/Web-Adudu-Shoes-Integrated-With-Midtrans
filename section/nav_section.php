@@ -20,7 +20,15 @@
                         <a class="nav-item nav-link last" href="#">
                             <img src="./images/search_icon_black.png">
                         </a>
-                        <a class="nav-item nav-link last" href="./cart.php">
+                        <a class="nav-item nav-link last" href="
+                        <?php
+                            if (!isset($_SESSION['active'])) {
+                                echo "./login.php";
+                            } else {
+                                echo "./cart.php";
+                            }
+                        ?>
+                        ">
                             <img src="./images/shop_icon_black.png">
                         </a>
                         <?php
