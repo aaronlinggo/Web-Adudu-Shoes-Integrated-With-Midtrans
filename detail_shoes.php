@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="container-fluid ram">
             <div><a href="shoes.php"><button class="btn btn-dark" style="width: 10vw;">Back</button></a></div>
             <div class="row">
-                <div class="col-lg-8 col-md-6 col-sm-12">
+                <div class="col-lg-8 col-md-6 col-sm-12" style="border-right: 1px solid black;">
                     <?php $lokasi = "./admin/" . $sepatu[0]['link_gambarsepatu']; ?>
                     <div style="overflow: hidden; height: 25vw;">
                         <img src="<?= $lokasi ?>" class="img-fluid" alt="..." style="width: 100vw; margin-bottom: -10vw; margin-top: -20vw;">
