@@ -4,6 +4,14 @@ require_once("./controller/connection.php");
 $stmt = $conn->prepare("SELECT * FROM sepatu ORDER BY 1 DESC");
 $stmt->execute();
 $sepatu = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_POST['details'])){
+		$id_sepatu = $_POST['id_sepatu'];
+        header("Location: detail_shoes.php?id_sepatu=$id_sepatu");
+	}
+}
 ?>
 
 <!DOCTYPE html>
@@ -41,7 +49,12 @@ $sepatu = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 							<div>
 								<div class="shoes_icon"><img src='<?= $lokasi ?>'></div>
 								<div class="star_text flex-center flex-vend">
-									<button class="btn-success" style="border-radius: 4px;">Add to Chart</button>
+									<div class="button_part">
+										<form action="" method="post">
+											<input type="hidden" name="id_sepatu" value="<?= $value['id_sepatu'] ?>">
+											<button class="btn btn-success" style="border-radius: 4px;" name="details">Details</button>
+										</form>
+									</div>
 									<div class="right_part">
 										<div class="shoes_price">Rp. <span style="color: #ff4e5b;"><?= number_format($value['harga_sepatu'], 0, ',', '.') . ",-" ?></span></div>
 									</div>

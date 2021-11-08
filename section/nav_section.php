@@ -24,8 +24,8 @@
                             <img src="./images/shop_icon_black.png">
                         </a>
                         <?php
-                        if (!isset($_SESSION['active'])) { ?>
-                            <a class="btn btn-outline-danger" href="login.php" style="height: 100%;">Sign In</a>
+                            if (!isset($_SESSION['active'])) { ?>
+                            <a class="btn btn-outline-success" href="login.php" style="height: 100%;">Sign In</a>
                             <a class="btn btn-outline-danger" href="register.php" style="height: 100%;">Sign Up</a>
                         <?php } else { ?>
                             <a class="nav-item nav-link" href="#">

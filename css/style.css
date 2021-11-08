@@ -640,7 +640,12 @@ body {
 .right_part {
     width: 100%;
     /* width: 80%; */
+    align-items: center;
     float: left;
+}
+
+.button_part{
+    align-items: center;
 }
 
 .shoes_price {
