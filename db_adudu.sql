@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 07, 2021 at 03:43 PM
+-- Generation Time: Nov 09, 2021 at 04:39 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -26,29 +26,67 @@ USE `db_adudu`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dtrans`
+-- Table structure for table `cart_item`
 --
 
-DROP TABLE IF EXISTS `dtrans`;
-CREATE TABLE `dtrans` (
-  `id_dtrans` int(16) NOT NULL,
-  `htrans_id` int(16) NOT NULL,
+DROP TABLE IF EXISTS `cart_item`;
+CREATE TABLE `cart_item` (
+  `id_cart` int(16) NOT NULL,
+  `user_id` int(16) NOT NULL,
   `sepatu_id` int(16) NOT NULL,
-  `harga_transaksi` int(16) NOT NULL,
-  `qty_transaksi` int(16) NOT NULL
+  `qty` int(16) NOT NULL,
+  `price` int(16) NOT NULL,
+  `active` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `cart_item`
+--
+
+INSERT INTO `cart_item` (`id_cart`, `user_id`, `sepatu_id`, `qty`, `price`, `active`) VALUES
+(1, 4, 59, 1, 2560000, 1),
+(2, 4, 56, 1, 850000, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_details`
+--
+
+DROP TABLE IF EXISTS `order_details`;
+CREATE TABLE `order_details` (
+  `id_order` int(16) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `payment_id` int(11) NOT NULL,
+  `total` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `htrans`
+-- Table structure for table `order_items`
 --
 
-DROP TABLE IF EXISTS `htrans`;
-CREATE TABLE `htrans` (
-  `id_htrans` int(16) NOT NULL,
-  `tanggal_transaksi` date NOT NULL,
-  `user_id` int(16) NOT NULL
+DROP TABLE IF EXISTS `order_items`;
+CREATE TABLE `order_items` (
+  `id_order_item` int(16) NOT NULL,
+  `order_id` int(16) NOT NULL,
+  `sepatu_id` int(16) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payment_details`
+--
+
+DROP TABLE IF EXISTS `payment_details`;
+CREATE TABLE `payment_details` (
+  `id_payment` int(16) NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `total` int(11) NOT NULL,
+  `token` int(11) NOT NULL,
+  `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -128,7 +166,7 @@ INSERT INTO `sepatu` (`id_sepatu`, `nama_sepatu`, `harga_sepatu`, `sub_desc`, `d
 (52, 'SEPATU GRAND COURT', 1100000, 'SNEAKER BERDESAIN MINIMALIS DENGAN STYLE KLASIK.\r\n', 'Style era 70-an yang dihadirkan kembali. Sepatu ini mengambil inspirasi dari style sporty ikonik dari koleksi klasik dan menghadirkannya ke masa depan. Sepatu ini memiliki desain yang kasual dengan upper berbahan kulit halus. 3-Stripes ciri khas adidas menghiasi bagian samping. Bantalan midsole yang empuk membuat kaki Anda nyaman saat melangkah.\r\n', 12, 78, 'list_products/52.jpg'),
 (53, 'DAILY 3.0 SHOES', 900000, 'CLASSIC SHOES WITH A SEE-THROUGH OUTSOLE.\r\n', 'What do shoes have to be for you to wear them on the daily? Comfortable enough you don\'t think about them all day. And clean enough to match almost everything in your closet. This adidas pair accomplishes both, plus it has a translucent outsole that gives it a little edge.\r\n', 12, 69, 'list_products/53.jpg'),
 (54, 'ULTRABOOST SUMMER.RDY TOKYO SHOES', 3000000, 'WARM-WEATHER RUNNING SHOES CO-CREATED BY HIROKO TAKAHASHI.\r\n', 'You might be sweaty and two uphill kilometres from home. But you can draw energy and inspiration from the athletes who\'ll compete this summer when you wear these adidas running shoes. They\'re designed in collaboration with Tokyo artist Hiroko Takahashi and her label, HIROCOLEDGE. The responsive midsole is decked out in circular shapes, a favourite pattern of hers for its neutrality in gender, nationality and time. From problem to performance This shoe\'s upper is made with Primeblue, a high-perfo', 12, 11, 'list_products/54.jpg'),
-(55, 'SEPATU ULTRABOOST 4.0 DNA', 2800000, '2800000\r\n', 'Legenda muda. adidas Ultraboost pertama kali dirilis di tahun 2015, dan trennya jauh melampaui dunia olahraga lari. Sepatu ini memiliki upper berbahan rajut lembut yang menawarkan ventilasi di bagian yang paling kami perlukan. Dilengkapi teknologi orisinal, dengan midsole Boost untuk menghasilkan kenyamanan yang harus kami rasakan sendiri untuk membuktikannya.\r\n', 12, 13, 'list_products/55.jpg'),
+(55, 'SEPATU ULTRABOOST 4.0 DNA', 2800000, 'SEPATU ULTRABOOST YANG NYAMAN DIPAKAI SEHARI-HARI.\r\n', 'Legenda muda. adidas Ultraboost pertama kali dirilis di tahun 2015, dan trennya jauh melampaui dunia olahraga lari. Sepatu ini memiliki upper berbahan rajut lembut yang menawarkan ventilasi di bagian yang paling kami perlukan. Dilengkapi teknologi orisinal, dengan midsole Boost untuk menghasilkan kenyamanan yang harus kami rasakan sendiri untuk membuktikannya.\r\n', 12, 13, 'list_products/55.jpg'),
 (56, 'SEPATU TENIS GAMECOURT', 850000, 'SEPATU YANG NYAMAN UNTUK MENDOMINASI PERMAINAN DI LAPANGAN.\r\n', 'Tingkatkan permainan tanpa meninggalkan zona nyamanmu. Upper dari bahan breathable mesh pada sepatu tenis adidas GameCourt ini membuat kakimu tetap terasa sejuk. Material TPU yang suportif membantu menyesuaikan dengan bentuk kaki untuk menghasilkan fit yang nyaman dan penguncian yang pas. Midsole Cloudfoam membuat setiap langkah terasa lembut saat intensitas meningkat.\r\n', 12, 32, 'list_products/56.jpg'),
 (57, 'SEPATU ADIZERO ADIOS 5', 2200000, 'SEPATU RUNNING RINGAN YANG DIDESAIN UNTUK MEMAKSIMALKAN KECEPATAN.\r\n', 'Capai rekor pribadi yang baru dan tinggalkan para pesaingmu. Lakukan hal tersebut dengan sepatu running adidas ini. Didesain khusus untuk kecepatan, sesuai untukmu. Upper ultraringan beradaptasi dengan kaki untuk menghasilkan sensasi breathable yang nyaman. Bantalan Lightstrike dan Boost mengombinasikan sensasi pengembalian energi yang elastis. Siap untuk half-marathon? Kini, kamu siap.\r\n', 12, 78, 'list_products/57.jpg'),
 (58, 'SEPATU GOLF SPIKELESS CODECHAOS 21 PRIMEBLUE', 2700000, 'SEPATU GOLF SPIKELESS UNTUK KENYAMANAN DAN TOPANGAN YANG MENINGKATKAN KEPERCAYAAN DIRI.\r\n', 'Hadirkan karakter disruptif di lapangan golf. Sepatu Golf Spikeless adidas Codechaos BOA® 21 Primeblue ini menghadirkan kenyamanan tinggi dan energi dalam permainanmu. Upper dari bahan rajut mesh waterproof dengan overlay suportif menawarkan performa ringan dengan tampilan yang unik. Boost di sepanjang bagian bawah memberikan energi seharian di lapangan golf, sedangkan outsole Adiwear spikeless dengan daya cengkeram yang kuat memberikan traksi dan stabilitas setingkat tur golf.\r\n', 12, 33, 'list_products/58.jpg'),
@@ -167,18 +205,30 @@ INSERT INTO `users` (`id_user`, `username`, `email`, `nama`, `tanggal_lahir`, `p
 --
 
 --
--- Indexes for table `dtrans`
+-- Indexes for table `cart_item`
 --
-ALTER TABLE `dtrans`
-  ADD PRIMARY KEY (`id_dtrans`),
-  ADD KEY `htrans_id` (`htrans_id`);
+ALTER TABLE `cart_item`
+  ADD PRIMARY KEY (`id_cart`),
+  ADD KEY `sepatu_id` (`sepatu_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `htrans`
+-- Indexes for table `order_details`
 --
-ALTER TABLE `htrans`
-  ADD PRIMARY KEY (`id_htrans`),
-  ADD KEY `user_id` (`user_id`);
+ALTER TABLE `order_details`
+  ADD PRIMARY KEY (`id_order`);
+
+--
+-- Indexes for table `order_items`
+--
+ALTER TABLE `order_items`
+  ADD PRIMARY KEY (`id_order_item`);
+
+--
+-- Indexes for table `payment_details`
+--
+ALTER TABLE `payment_details`
+  ADD PRIMARY KEY (`id_payment`);
 
 --
 -- Indexes for table `sepatu`
@@ -197,16 +247,28 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `dtrans`
+-- AUTO_INCREMENT for table `cart_item`
 --
-ALTER TABLE `dtrans`
-  MODIFY `id_dtrans` int(16) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `cart_item`
+  MODIFY `id_cart` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `htrans`
+-- AUTO_INCREMENT for table `order_details`
 --
-ALTER TABLE `htrans`
-  MODIFY `id_htrans` int(16) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `order_details`
+  MODIFY `id_order` int(16) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `order_items`
+--
+ALTER TABLE `order_items`
+  MODIFY `id_order_item` int(16) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `payment_details`
+--
+ALTER TABLE `payment_details`
+  MODIFY `id_payment` int(16) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `sepatu`
@@ -225,16 +287,11 @@ ALTER TABLE `users`
 --
 
 --
--- Constraints for table `dtrans`
+-- Constraints for table `cart_item`
 --
-ALTER TABLE `dtrans`
-  ADD CONSTRAINT `dtrans_ibfk_1` FOREIGN KEY (`htrans_id`) REFERENCES `htrans` (`id_htrans`);
-
---
--- Constraints for table `htrans`
---
-ALTER TABLE `htrans`
-  ADD CONSTRAINT `htrans_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id_user`);
+ALTER TABLE `cart_item`
+  ADD CONSTRAINT `cart_item_ibfk_1` FOREIGN KEY (`sepatu_id`) REFERENCES `sepatu` (`id_sepatu`),
+  ADD CONSTRAINT `cart_item_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id_user`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

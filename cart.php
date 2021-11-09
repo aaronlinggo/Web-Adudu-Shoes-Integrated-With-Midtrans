@@ -79,7 +79,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                 <button class="btn btn-danger" name="delete">Delete</button>
                                             </form>
                                         </div>
-
                                     </td>
                                 </tr>
                             <?php  } ?>
