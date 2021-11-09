@@ -2,41 +2,13 @@
 session_start();
 require_once("./controller/connection.php");
 
-$stmt = $conn->prepare("SELECT * FROM users");
+$id_user = $_SESSION['active'];
+
+$stmt = $conn->prepare("SELECT * FROM cart_item WHERE user_id=$id_user and active = 1");
 $stmt->execute();
-$users = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+$cart_item = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (isset($_POST['login'])){
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-
-        $ada = false;
-
-        foreach($users as $key => $value){
-            if ($username == $value['username']){
-                if (md5($password) == $value['password']){
-                    $_SESSION['active'] = $value['id_user'];
-                    if ($value['roles'] == "admin"){
-                        header("Location: ./admin/index.php");
-                    }
-                    else{
-                        header("Location: ./index.php");
-                    }
-                }
-                else{
-                    echo "<script>alert('Wrong Password!')</script>";
-                    echo "<script>window.location = './login.php'</script>";
-                }
-                $ada = true;
-            }
-        }
-
-        if (!$ada){
-            echo "<script>alert('Username not found !')</script>";
-            echo "<script>window.location = './login.php'</script>";
-        }
-    }
 }
 
 ?>
@@ -49,13 +21,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-    <title>Sign In</title>
+    <title>Cart</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
 
     <?php require_once("./section/connection_head.php") ?>
 </head>
+
 <body class="main-layout">
     <div class="header_section">
         <?php require_once("./section/nav_section.php") ?>
@@ -65,7 +38,53 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="container-fluid ram">
             <div class="row">
                 <div class="col-md-12">
-                    
+                    <table class="table table-hover" style="text-align: center;">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Shoes Name</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Subtotal</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($cart_item as $key => $value) { 
+                                ?>
+                                <tr>
+                                    <td><?= ($key+1) ?></td>
+                                    <td>
+                                        <?php 
+                                        $sepatu_id = $value['sepatu_id'] ;
+                                        
+                                        $stmt = $conn->prepare("SELECT * FROM sepatu WHERE id_sepatu=$sepatu_id");
+                                        $stmt->execute();
+                                        $sepatu = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
+                                        echo $sepatu[0]['nama_sepatu'];
+                                        ?>
+                                    </td>
+                                    <td><?= "Rp. " . number_format($value['price'], 0, ',', '.') . ",-" ?></td>
+                                    <td><?= $value['qty'] ?></td>
+                                    <td><?= "Rp. " . number_format(($value['price']*$value['qty']), 0, ',', '.') . ",-" ?></td>
+                                    <td>
+                                        <div class="row">
+                                            <div>
+                                                <a href="<?= "detail_shoes.php?id_sepatu=" . $value['sepatu_id'] ?>">
+                                                    <button class="btn btn-success">Details</button>
+                                                </a>
+                                            </div>
+                                            <form action="" method="post">
+                                                <button class="btn btn-danger" name="delete">Delete</button>
+                                            </form>
+                                        </div>
+
+                                    </td>
+                                </tr>
+                            <?php  } ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

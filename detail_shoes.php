@@ -6,19 +6,39 @@ $stmt = $conn->prepare("SELECT * FROM users");
 $stmt->execute();
 $users = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
-if (isset($_GET['id_sepatu'])){
-    $idx = $_GET['id_sepatu'];
-    $stmt = $conn->prepare("SELECT * FROM sepatu WHERE id_sepatu=$idx");
+if (isset($_GET['id_sepatu'])) {
+    $id_sepatu = $_GET['id_sepatu'];
+    $stmt = $conn->prepare("SELECT * FROM sepatu WHERE id_sepatu=$id_sepatu");
     $stmt->execute();
     $sepatu = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-    
-}
-else{
+} else {
     header('Location: shoes.php');
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    
+    if (isset($_POST['addCart'])){
+        $id_user = $_SESSION['active'];
+        $active = true;
+        $qty = 1;
+        $price = $sepatu[0]['harga_sepatu'];
+
+        $stmt = $conn->prepare("SELECT * FROM cart_item WHERE user_id=$id_user AND active = 1");
+        $stmt->execute();
+        $checking = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
+        $ada = false;
+        foreach($checking as $key => $value){
+            if ($value['sepatu_id'] == $id_sepatu){
+                $ada = true;
+            }
+        }
+
+        if (!$ada){
+            $stmt = $conn->prepare("INSERT INTO cart_item(user_id, sepatu_id, qty, price, active) VALUES(?,?,?,?,?)");
+            $stmt->bind_param("iiiii", $id_user, $id_sepatu, $qty, $price, $active);
+            $result = $stmt->execute();
+        }
+    }
 }
 
 ?>
@@ -38,6 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <?php require_once("./section/connection_head.php") ?>
 </head>
+
 <body class="main-layout">
     <div class="header_section">
         <?php require_once("./section/nav_section.php") ?>
@@ -51,13 +72,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <!-- sub_desc dibagian atas
                         desc_sepatu dibawah
                 -->
-                    <div style="overflow: hidden; height: 25vw;">
-                        <img src="<?= $lokasi ?>" class="img-fluid" alt="" style="width: 100vw; margin-bottom: -10vw; margin-top: -20vw;">
+                    <div style="overflow: hidden; height: 50vw;">
+                        <img src="<?= $lokasi ?>" class="img-fluid" alt="" style="width: 100vw; margin-bottom: -15vw; margin-top: -15vw;">
 
                         <!-- Hover -->
-                        
+                        <!-- <div class="container-fluid">
+                            <h1><?= $sepatu[0]['sub_desc'] ?></h1>
+                            <div class="desc">
+                                <p><?= $sepatu[0]['desc_sepatu'] ?></p>
+                            </div>
+                        </div> -->
+
                     </div>
-                    <div class="detail_shoes">
+                    <div class="container-fluid">
                         <h1><?= $sepatu[0]['sub_desc'] ?></h1>
                         <div class="desc">
                             <p><?= $sepatu[0]['desc_sepatu'] ?></p>
@@ -69,17 +96,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class="shoes_price">Price Rp. <span style="color: #ff4e5b;"><?= number_format($sepatu[0]['harga_sepatu'], 0, ',', '.') . ",-" ?></span></div>
                     <div class="shoes_price">Size UK <span><?= number_format($sepatu[0]['size_sepatu'], 0, ',', '.') ?></span></div>
                     <div>
-                        <a href="
                         <?php
-                        if (!isset($_SESSION['active'])) { 
-                            echo "login.php";
-                        } else { 
-                            //nambah cart
-
+                        if (isset($_SESSION['active'])) {
+                            echo "<form action='' method='post'>";
                         }
-                        ?>">
-                            <button class="btn btn-dark" style="width: 100%;">Add to Cart</button>
-                        </a>
+                        ?>
+                        
+                            <input type="hidden" name="id_sepatu" value="<?= $id_sepatu ?>">
+                            <a href='<?php
+                                        if (!isset($_SESSION['active'])) {
+                                            echo "login.php";
+                                        }
+                                        ?>'>
+                                <button class="btn btn-dark" style="width: 100%;" <?php
+                                                                                    if (isset($_SESSION['active'])) {
+                                                                                        echo "name='addCart'";
+                                                                                    }
+                                                                                    ?>>Add to Cart</button>
+                            </a>
+                        <?php
+                        if (isset($_SESSION['active'])) {
+                            echo "</form>";
+                        }
+                        ?>
                     </div>
                 </div>
             </div>

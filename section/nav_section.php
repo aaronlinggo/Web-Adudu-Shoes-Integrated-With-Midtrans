@@ -22,17 +22,31 @@
                         </a>
                         <a class="nav-item nav-link last" href="
                         <?php
-                            if (!isset($_SESSION['active'])) {
-                                echo "./login.php";
-                            } else {
-                                echo "./cart.php";
-                            }
+                        if (!isset($_SESSION['active'])) {
+                            echo "./login.php";
+                        } else {
+                            echo "./cart.php";
+                        }
                         ?>
                         ">
                             <img src="./images/shop_icon_black.png">
+                            <?php
+                            if (isset($_SESSION['active'])) { ?>
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    <?php 
+                                        $id_user = $_SESSION['active'];
+                                        $stmt = $conn->prepare("SELECT count(*) as 'total' FROM cart_item WHERE user_id=$id_user AND active = 1");
+                                        $stmt->execute();
+                                        $cart = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+                                        echo $cart[0]['total'];
+                                    ?>
+                                </span>
+                            <?php
+                            }
+                            ?>
                         </a>
                         <?php
-                            if (!isset($_SESSION['active'])) { ?>
+                        if (!isset($_SESSION['active'])) { ?>
                             <a class="btn btn-outline-success" href="login.php" style="height: 100%;">Sign In</a>
                             <a class="btn btn-outline-danger" href="register.php" style="height: 100%;">Sign Up</a>
                         <?php } else { ?>

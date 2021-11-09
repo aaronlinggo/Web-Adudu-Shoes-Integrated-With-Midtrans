@@ -1,4 +1,4 @@
-<!-- <link rel="icon" href="./images/favicon.png" type="image/gif"> -->
+<link rel="icon" href="./images/logo.png" type="image/gif">
 <link rel="stylesheet" href="./css/bootstrap.min.css">
 <link rel="stylesheet" href="./css/style.css">
 <link rel="stylesheet" href="./css/responsive.css">
