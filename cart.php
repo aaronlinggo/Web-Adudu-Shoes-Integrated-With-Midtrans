@@ -9,6 +9,14 @@ $stmt->execute();
 $cart_item = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_POST['delete'])){
+        $id_cart = $_POST['id_cart'];
+        $result = $conn->query("DELETE FROM cart_item WHERE id_cart=$id_cart");
+        header('Location: cart.php');
+    }
+    if (isset($_POST['payment'])){
+        
+    }
 }
 
 ?>
@@ -76,12 +84,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                 </a>
                                             </div>
                                             <form action="" method="post">
+                                                <input type="hidden" name="id_cart" value="<?= $value['id_cart'] ?>">
                                                 <button class="btn btn-danger" name="delete">Delete</button>
                                             </form>
                                         </div>
                                     </td>
                                 </tr>
                             <?php  } ?>
+                                <tr>
+                                    <td colspan="6">
+                                        <form action="" method="post" style="float: right;">
+                                            <button class="btn btn-success" name="payment">Payment</button>
+                                        </form>
+                                    </td>
+                                </tr>
                         </tbody>
                     </table>
                 </div>
