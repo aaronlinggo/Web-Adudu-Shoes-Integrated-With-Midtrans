@@ -3,15 +3,15 @@
     event.preventDefault();
     if ($('#shoesName1').val() == '') {
       alert("Shoes Name can't be empty");
-    } else if (parseInt($('#priceShoes1').val()) > 0) {
+    } else if (parseInt($('#priceShoes1').val()) <= 0) {
       alert("Prize must be more than 0");
     } else if ($('#subDesc1').val() == '') {
       alert("Sub Description can't be empty");
     } else if ($('#descShoes1').val() == '') {
       alert("Description can't be empty");
-    } else if (parseInt($('#sizeShoes1').val()) > 0) {
+    } else if (parseInt($('#sizeShoes1').val()) <= 0) {
       alert("Size must be more than 0");
-    } else if (parseInt($('#stockShoes1').val()) > 0) {
+    } else if (parseInt($('#stockShoes1').val()) <= 0) {
       alert("Stock must be more than 0");
     } else {
       $.ajax({
