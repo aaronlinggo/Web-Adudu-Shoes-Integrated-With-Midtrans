@@ -10,14 +10,7 @@
 <!DOCTYPE html>
 <html lang="en-US">
     <head>
-        <meta http-equiv="X-UA-Compatible" charset="utf-8" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="viewport" content="initial-scale=1, maximum-scale=1">
         <title>Collection | Adudu Shoes</title>
-        <meta name="keywords" content="">
-        <meta name="description" content="">
-        <meta name="author" content="">
-
         <?php require_once("./section/connection_head.php") ?>
     </head>
     <body class="main-layout">
