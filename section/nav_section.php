@@ -33,7 +33,7 @@
                         <?php
                             if(isset($_SESSION['active'])) {
                             ?>
-                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                <span class="top-0 start-100 translate-middle badge rounded-pill bg-danger">
                                     <?php
                                         $id_user = $_SESSION['active'];
                                         $stmt = $conn -> prepare("SELECT count(*) as 'total' FROM cart_item WHERE user_id = $id_user AND active = 1");
