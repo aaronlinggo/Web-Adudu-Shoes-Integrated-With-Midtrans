@@ -2,7 +2,7 @@
 	session_start();
 	require_once("./controller/connection.php");
 
-	$stmt = $conn -> prepare("SELECT * FROM SEPATU");
+	$stmt = $conn -> prepare("SELECT * FROM sepatu");
 	$stmt -> execute();
 	$sepatu = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
 ?>
@@ -34,9 +34,9 @@
 													<h1 class="banner_text">New Running Shoes </h1>
 													<h1 class="mens_text">
 														<?php
-														$stmt = $conn->prepare("SELECT * FROM sepatu ORDER BY id_sepatu DESC LIMIT 1");
-														$stmt->execute();
-														$lastShoes = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+														$stmt = $conn -> prepare("SELECT * FROM sepatu ORDER BY id_sepatu DESC LIMIT 1");
+														$stmt -> execute();
+														$lastShoes = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
 														?>
 														<strong><?= $lastShoes[0]['nama_sepatu'] ?></strong>
 													</h1>
