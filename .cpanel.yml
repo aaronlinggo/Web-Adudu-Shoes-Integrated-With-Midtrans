@@ -7,6 +7,7 @@ deployment:
     - /bin/cp detail_shoes.php $DEPLOYPATH
     - /bin/cp index.php $DEPLOYPATH
     - /bin/cp login.php $DEPLOYPATH
+    - /bin/cp ajax.php $DEPLOYPATH
     - /bin/cp logout.php $DEPLOYPATH
     - /bin/cp register.php $DEPLOYPATH
     - /bin/cp shoes.php $DEPLOYPATH
