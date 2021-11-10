@@ -17,9 +17,18 @@
                         <a class="nav-item nav-link" href="./index.php">Home</a>
                         <a class="nav-item nav-link" href="./collection.php">Collection</a>
                         <a class="nav-item nav-link" href="./shoes.php">Shoes</a>
-                        <a class="nav-item nav-link last flex-center" href="#">
+                        <div id="search_icon" class="nav-item nav-link last flex-center" style="cursor: pointer; position: relative;">
                             <img src="./images/search_icon_black.png">
-                        </a>
+                            <div id="search_area" style="position: absolute; top: 80px; left: 30px; display: none;" class="flex">
+                                <!-- <form action="" method=""> -->
+                                    <input type="text" name="search" id="search">
+                                    <button name="search_btn" id="search_btn" style="margin-left: 10px;">Search</button>
+                                <!-- </form> -->
+                            </div>
+                        </div>
+                        <!-- <a class="nav-item nav-link last flex-center" href="#">
+                            <img src="./images/search_icon_black.png">
+                        </a> -->
                         <a class="nav-item nav-link last flex-center" href="
                         <?php
                             if(!isset($_SESSION['active'])) {

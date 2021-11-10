@@ -36,6 +36,21 @@
 		</div>
 		<?php require_once("./section/footer_section.php") ?>
 		<?php require_once("./section/script_section.php") ?>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$("#search_icon").click(function(e) {
+					e.preventDefault();
+
+					// BELUM MULUS
+					$("#search_area").slideToggle();
+				});
+				$("#search_btn").click(function(e) {
+					e.preventDefault();
+
+					// REGEX OR QUERY GOES HERE THEN CALL THE AJAX
+				});
+			});
+		</script>
 		<script type="text/javascript" src="./js/ajax.js"></script>
 	</body>
 </html>
