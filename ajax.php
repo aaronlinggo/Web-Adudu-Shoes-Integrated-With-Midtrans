@@ -1,6 +1,6 @@
 <?php
 	require_once("./controller/connection.php");
-    
+
     $pages = 1;
     $limit = 18;
 
@@ -15,6 +15,7 @@
 	$stmt -> execute();
 	$sepatu = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
 
+    // NEED TO IMPLEMENT LAZY IMAGE OR USE SPINNER
     foreach($sepatu as $key => $value) {
         $lokasi = "./admin/" . $value['link_gambarsepatu'];
         ?>
@@ -52,33 +53,41 @@
         $total_records = $results['COUNTER'];
 
         $total_pages = ceil($total_records / $limit);
-        // echo "<script>alert($total_pages);</script>";
-        $jumlah_number = 1; //jumlah halaman ke kanan dan kiri dari halaman yang aktif
-        $start_number = ($pages > $jumlah_number) ? $pages - $jumlah_number : 1;
-        // $end_number = ($pages < ($total_pages - $jumlah_number)) ? $pages + $jumlah_number : $total_pages;
-        
-        // if($pages == 1){
-        //     echo '<li class="page-item disabled"><a class="page-link" href="#">First</a></li>';
-        //     echo '<li class="page-item disabled"><a class="page-link" href="#"><span aria-hidden="true">&laquo;</span></a></li>';
-        // } else {
-        //     $link_prev = ($pages > 1) ? $pages - 1 : 1;
-        //     echo '<li class="page-item halaman" id="1"><a class="page-link" href="#">First</a></li>';
-        //     echo '<li class="page-item halaman" id="'.$link_prev.'"><a class="page-link" href="#"><span aria-hidden="true">&laquo;</span></a></li>';
-        // }
-        
-        // for($i = $start_number; $i <= $end_number; $i++){
-        //     $link_active = ($pages == $i) ? ' active' : '';
-        //     echo '<li class="page-item halaman '.$link_active.'" id="'.$i.'"><a class="page-link" href="#">'.$i.'</a></li>';
-        // }
+        $number_count = 1;
+        $start_number = ($pages > $number_count) ? $pages - $number_count : 1;
+        $end_number = ($pages < ($total_pages - $number_count)) ? $pages + $number_count : $total_pages;
+
+        if($pages == 1) {
+            echo '<li class="page-item disabled"><div class="page-link">First</div></li>';
+            echo '<li class="page-item disabled"><div class="page-link"><span aria-hidden="true">&laquo;</span></div></li>';
+            // echo '<li class="page-item disabled"><a class="page-link" href="#">First</a></li>';
+            // echo '<li class="page-item disabled"><a class="page-link" href="#"><span aria-hidden="true">&laquo;</span></a></li>';
+        } else {
+            $link_prev = ($pages > 1) ? $pages - 1 : 1;
+            echo '<li class="page-item halaman" id="1"><div class="page-link">First</div></li>';
+            echo '<li class="page-item halaman" id="'.$link_prev.'"><div class="page-link"><span aria-hidden="true">&laquo;</span></div></li>';
+            // echo '<li class="page-item halaman" id="1"><a class="page-link" href="#">First</a></li>';
+            // echo '<li class="page-item halaman" id="'.$link_prev.'"><a class="page-link" href="#"><span aria-hidden="true">&laquo;</span></a></li>';
+        }
+
+        for($i = $start_number; $i <= $end_number; $i++){
+            $link_active = ($pages == $i) ? ' active' : '';
+            echo '<li class="page-item halaman '.$link_active.'" id="'.$i.'"><div class="page-link">'.$i.'</div></li>';
+            // echo '<li class="page-item halaman '.$link_active.'" id="'.$i.'"><a class="page-link" href="#">'.$i.'</a></li>';
+        }
  
-        // if($pages == $total_pages){
-        //     echo '<li class="page-item disabled"><a class="page-link" href="#"><span aria-hidden="true">&raquo;</span></a></li>';
-        //     echo '<li class="page-item disabled"><a class="page-link" href="#">Last</a></li>';
-        // } else {
-        //     $link_next = ($pages < $total_pages) ? $pages + 1 : $total_pages;
-        //     echo '<li class="page-item halaman" id="'.$link_next.'"><a class="page-link" href="#"><span aria-hidden="true">&raquo;</span></a></li>';
-        //     echo '<li class="page-item halaman" id="'.$total_pages.'"><a class="page-link" href="#">Last</a></li>';
-        // }
+        if($pages == $total_pages){
+            echo '<li class="page-item disabled"><div class="page-link"><span aria-hidden="true">&raquo;</span></div></li>';
+            echo '<li class="page-item disabled"><div class="page-link">Last</div></li>';
+            // echo '<li class="page-item disabled"><a class="page-link" href="#"><span aria-hidden="true">&raquo;</span></a></li>';
+            // echo '<li class="page-item disabled"><a class="page-link" href="#">Last</a></li>';
+        } else {
+            $link_next = ($pages < $total_pages) ? $pages + 1 : $total_pages;
+            echo '<li class="page-item halaman" id="'.$link_next.'"><div class="page-link"><span aria-hidden="true">&raquo;</span></div></li>';
+            echo '<li class="page-item halaman" id="'.$total_pages.'"><div class="page-link">Last</div></li>';
+            // echo '<li class="page-item halaman" id="'.$link_next.'"><a class="page-link" href="#"><span aria-hidden="true">&raquo;</span></a></li>';
+            // echo '<li class="page-item halaman" id="'.$total_pages.'"><a class="page-link" href="#">Last</a></li>';
+        }
     ?>
     </ul>
 </nav>

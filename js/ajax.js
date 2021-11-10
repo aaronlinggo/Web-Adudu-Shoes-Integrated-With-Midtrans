@@ -8,11 +8,8 @@ $(document).ready(function() {
     });
 
     loadCatalog();
-
+    
     function loadCatalog(page) {
-        // $("#catalog_row").load("./ajax.php", "", function(response, status, request) {
-        // });
-
         $.ajax({
             method: "POST",
             url: "./ajax.php",
@@ -20,9 +17,13 @@ $(document).ready(function() {
                 page: page
             },
             success: function(response) {
-                console.log(response);
                 $("#catalog_row").html(response);
             }
         });
     }
+
+    $(document).on('click', '.halaman', function(){
+        $(window).scrollTop(0);
+        loadCatalog($(this).attr("id"));
+    });
 });

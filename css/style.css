@@ -233,6 +233,7 @@ button {
 
 .top-logo {
     max-width: 85%;
+    /* padding-top: 2px; */
 }
 
 .navbar-light .navbar-nav .nav-link {
