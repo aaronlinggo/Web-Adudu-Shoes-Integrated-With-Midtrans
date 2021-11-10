@@ -1,14 +1,14 @@
 <div class="container">
-    <div class="row">
+    <div class="row flex-row">
         <div class="col-sm-3 flex flex-vstart">
             <div class="logo">
-                <a href="#">
+                <a href="./index.php">
                     <img class="top-logo" src="./images/logo.png">
                 </a>
             </div>
         </div>
         <div class="col-sm-9">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light flex flex-hend fullheight">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>

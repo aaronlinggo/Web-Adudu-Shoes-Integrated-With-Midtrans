@@ -480,14 +480,14 @@
     }
 
     .navbar-light .navbar-toggler {
-        color: #ffffff;
-        border-color: #fff;
-        background: white;
+        background: transparent;
+        /* border-color: transparent; */
+        color: transparent;
     }
 
     .bg-light {
-        background-color: #0c0116!important;
-        width: 50%;
+        background-color: transparent!important;
+        /* width: 50%; */
     }
 
     .out_shop_bt {
@@ -511,6 +511,10 @@
 }
 
 @media (max-width: 767px) {
+    .top-logo {
+        max-width: 110%!important;
+    }
+
     .last {
         display: none;
     }
@@ -627,14 +631,14 @@
     }
 
     .navbar-light .navbar-toggler {
-        color: #ffffff;
-        border-color: #fff;
-        background: white;
+        background: transparent;
+        /* border-color: transparent; */
+        color: transparent;
     }
 
     .bg-light {
-        background-color: #0c0116!important;
-        width: 50%;
+        background-color: transparent!important;
+        /* width: 50%; */
     }
 
     .star_icon li {
@@ -657,6 +661,10 @@
 }
 
 @media (max-width: 575px) {
+    .top-logo {
+        max-width: 85%!important;
+    }
+
     .last {
         display: none;
     }
@@ -671,7 +679,8 @@
 
     .logo {
         float: inherit;
-        padding-bottom: 15px;
+        padding-top: 4px;
+        padding-bottom: 12px;
         text-align: center;
     }
 
@@ -783,7 +792,7 @@
     }
 
     .bg-light {
-        background-color: #db5660!important;
+        background-color: transparent!important;
     }
 
     .header_section {
