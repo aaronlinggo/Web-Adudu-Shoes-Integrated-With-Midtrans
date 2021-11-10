@@ -24,9 +24,9 @@
             $(this).one("touchmove", function(event) {
                 var yMove = event.originalEvent.touches[0].pageY;
 
-                if (Math.floor(yClick - yMove) > 1) {
+                if(Math.floor(yClick - yMove) > 1) {
                     $(".carousel").carousel('next');
-                } else if (Math.floor(yClick - yMove) < -1) {
+                } else if(Math.floor(yClick - yMove) < -1) {
                     $(".carousel").carousel('prev');
                 }
             });

@@ -2,22 +2,21 @@
 	session_start();
 	require_once("./controller/connection.php");
 
-	$stmt = $conn->prepare("SELECT * FROM sepatu");
-	$stmt->execute();
-	$sepatu = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+	$stmt = $conn -> prepare("SELECT * FROM SEPATU");
+	$stmt -> execute();
+	$sepatu = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
 <html lang="en-US">
 	<head>
-		<meta http-equiv="X-UA-Compatible" charset="utf-8" content="IE=edge">
+		<meta http-equiv="X-UA-Compatible" charset="UTF-8" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="viewport" content="initial-scale=1, maximum-scale=1">
 		<title>Adudu Shoes</title>
 		<meta name="keywords" content="">
 		<meta name="description" content="">
 		<meta name="author" content="">
-		
 		<?php require_once("./section/connection_head.php") ?>
 	</head>
 	<body class="main-layout">
@@ -40,15 +39,15 @@
 												<div class="banner_taital">
 													<h1 class="banner_text">New Running Shoes </h1>
 													<h1 class="mens_text">
-														<?php 
-															$stmt = $conn->prepare("SELECT * FROM sepatu ORDER BY id_sepatu DESC LIMIT 1");
-															$stmt->execute();
-															$lastShoes = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+														<?php
+														$stmt = $conn->prepare("SELECT * FROM sepatu ORDER BY id_sepatu DESC LIMIT 1");
+														$stmt->execute();
+														$lastShoes = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 														?>
 														<strong><?= $lastShoes[0]['nama_sepatu'] ?></strong>
 													</h1>
-													<?php 
-														$subdesc = $lastShoes[0]['sub_desc'];
+													<?php
+													$subdesc = $lastShoes[0]['sub_desc'];
 													?>
 													<p class="lorem_text"><?= $subdesc ?></p>
 													<button class="buy_bt">Buy Now</button>
@@ -57,8 +56,8 @@
 											</div>
 											<div class="col-sm-5">
 												<div class="shoes_img">
-													<?php 
-														$lokasi = "./admin/".$lastShoes[0]['link_gambarsepatu'];
+													<?php
+													$lokasi = "./admin/" . $lastShoes[0]['link_gambarsepatu'];
 													?>
 													<img src="<?= $lokasi ?>" style="z-index: -1; width: ;">
 												</div>
@@ -135,24 +134,24 @@
 				<div class="racing_shoes">
 					<div class="row">
 						<?php
-							$randomIndex = rand(0, count($sepatu) - 1);
-							?>
-								<div class="col-md-7 flex-center">
-									<div class="shoes-img3">
-										<img src='<?= "./admin/".$sepatu[$randomIndex]['link_gambarsepatu'] ?>' style="max-width: 70%;">
-									</div>
-								</div>
-								<div class="col-md-5 flex flex-hcenter flex-column">
-									<div class="sale_text">
-										<strong>Sale <br>
-										<span style="color: #0a0506;"><?= $sepatu[$randomIndex]['nama_sepatu'] ?></span></strong>
-									</div>
-									<div class="number_text">
-										<strong>Rp. <span style="color: #0a0506"><?= $sepatu[$randomIndex]['harga_sepatu'] ?></span></strong>
-									</div>
-									<button class="seemore">See More</button>
-								</div>
-							<?php
+						$randomIndex = rand(0, count($sepatu) - 1);
+						?>
+						<div class="col-md-7 flex-center">
+							<div class="shoes-img3">
+								<img src='<?= "./admin/" . $sepatu[$randomIndex]['link_gambarsepatu'] ?>' style="max-width: 70%;">
+							</div>
+						</div>
+						<div class="col-md-5 flex flex-hcenter flex-column">
+							<div class="sale_text">
+								<strong>Sale <br>
+									<span style="color: #0a0506;"><?= $sepatu[$randomIndex]['nama_sepatu'] ?></span></strong>
+							</div>
+							<div class="number_text">
+								<strong>Rp. <span style="color: #0a0506"><?= $sepatu[$randomIndex]['harga_sepatu'] ?></span></strong>
+							</div>
+							<button class="seemore">See More</button>
+						</div>
+						<?php
 						?>
 					</div>
 				</div>
@@ -311,6 +310,5 @@
 		</div>
 		<?php require_once("./section/footer_section.php") ?>
 		<?php require_once("./section/script_section.php") ?>
-		
 	</body>
 </html>

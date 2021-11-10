@@ -225,7 +225,7 @@
     }
 
     .navbar-expand-lg .navbar-nav .nav-link {
-        padding-right: 0.5rem;
+        padding-right: 0.9rem;
         padding-left: 1.5rem;
     }
 
@@ -312,7 +312,15 @@
     }
 
     .last {
-        padding-left: 12px !important;
+        padding-left: 24px!important;
+    }
+
+    img {
+        max-width: 90%;
+    }
+
+    .top-logo {
+        max-width: 77.5%!important;
     }
 }
 
@@ -478,7 +486,7 @@
     }
 
     .bg-light {
-        background-color: #0c0116 !important;
+        background-color: #0c0116!important;
         width: 50%;
     }
 
@@ -625,7 +633,7 @@
     }
 
     .bg-light {
-        background-color: #0c0116 !important;
+        background-color: #0c0116!important;
         width: 50%;
     }
 
@@ -775,7 +783,7 @@
     }
 
     .bg-light {
-        background-color: #db5660 !important;
+        background-color: #db5660!important;
     }
 
     .header_section {
