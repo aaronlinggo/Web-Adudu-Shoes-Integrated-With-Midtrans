@@ -10,7 +10,7 @@
 
     $limit_start = ($pages - 1) * $limit;
 
-	$stmt = $conn -> prepare("SELECT * FROM SEPATU ORDER BY 1 DESC LIMIT ?, ?");
+	$stmt = $conn -> prepare("SELECT * FROM sepatu ORDER BY 1 DESC LIMIT ?, ?");
 	$stmt -> bind_param("ii", $limit_start, $limit);
 	$stmt -> execute();
 	$sepatu = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
@@ -46,7 +46,7 @@
 <nav class="mb-5">
     <ul class="pagination justify-content-end">
     <?php
-        $query = $conn -> prepare("SELECT COUNT(*) AS COUNTER FROM SEPATU");
+        $query = $conn -> prepare("SELECT COUNT(*) AS COUNTER FROM sepatu");
         $query -> execute();
         $results = $query -> get_result() -> fetch_assoc();
         $total_records = $results['COUNTER'];
