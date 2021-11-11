@@ -10,10 +10,22 @@
 
     $limit_start = ($pages - 1) * $limit;
 
-	$stmt = $conn -> prepare("SELECT * FROM sepatu ORDER BY 1 DESC LIMIT ?, ?");
-	$stmt -> bind_param("ii", $limit_start, $limit);
+    if(isset($_POST['query'])) {
+        // $query = "'%".strtolower($_POST['query'])."%'";
+        $temp = $_POST['query'];
+        $query = "'%".$temp."%'";
+
+        $stmt = $conn -> prepare("SELECT * FROM sepatu WHERE nama_sepatu LIKE '%".$temp."%' ORDER BY 1 DESC");
+        // $stmt -> bind_param("s", $temp);
+    } else {
+        $stmt = $conn -> prepare("SELECT * FROM sepatu ORDER BY 1 DESC LIMIT ?, ?");
+        $stmt -> bind_param("ii", $limit_start, $limit);
+    }
+
 	$stmt -> execute();
 	$sepatu = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
+
+    // var_dump(count($sepatu));
 
     // NEED TO IMPLEMENT LAZY IMAGE OR USE SPINNER
     foreach($sepatu as $key => $value) {
@@ -47,10 +59,17 @@
 <nav class="mb-5">
     <ul class="pagination justify-content-end">
     <?php
-        $query = $conn -> prepare("SELECT COUNT(*) AS COUNTER FROM sepatu");
-        $query -> execute();
-        $results = $query -> get_result() -> fetch_assoc();
-        $total_records = $results['COUNTER'];
+        if(isset($_POST['query'])) {
+            $query = $conn -> prepare("SELECT COUNT(*) AS COUNTER FROM sepatu");
+            $query -> execute();
+            $results = $query -> get_result() -> fetch_assoc();
+            $total_records = $results['COUNTER'];
+        } else {
+            $total_records = count($sepatu);
+            $limit = (count($sepatu) > 18) ? 18 : count($sepatu);
+        }
+
+        // var_dump($total_records);
 
         $total_pages = ceil($total_records / $limit);
         $number_count = 1;

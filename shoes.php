@@ -40,15 +40,16 @@
 			$(document).ready(function() {
 				$("#search_icon").click(function(e) {
 					e.preventDefault();
+					e.stopPropagation();
 
 					// BELUM MULUS
-					$("#search_area").slideToggle();
+					// $("#search_area").slideToggle();
 				});
-				$("#search_btn").click(function(e) {
-					e.preventDefault();
+				// $("#search_btn").click(function(e) {
+				// 	e.preventDefault();
 
-					// REGEX OR QUERY GOES HERE THEN CALL THE AJAX
-				});
+				// 	// REGEX OR QUERY GOES HERE THEN CALL THE AJAX
+				// });
 			});
 		</script>
 		<script type="text/javascript" src="./js/ajax.js"></script>

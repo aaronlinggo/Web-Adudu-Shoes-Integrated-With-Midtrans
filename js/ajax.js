@@ -9,12 +9,13 @@ $(document).ready(function() {
 
     loadCatalog();
     
-    function loadCatalog(page) {
+    function loadCatalog(page, query) {
         $.ajax({
             method: "POST",
             url: "./ajax.php",
             data: {
-                page: page
+                page: page,
+                query: query
             },
             success: function(response) {
                 $("#catalog_row").html(response);
@@ -25,5 +26,10 @@ $(document).ready(function() {
     $(document).on('click', '.halaman', function(){
         $(window).scrollTop(0);
         loadCatalog($(this).attr("id"));
+    });
+
+    $("#search_btn").click(function(e) {
+        // e.preventDefault();
+        loadCatalog(1, $("#search_bar").val());
     });
 });
