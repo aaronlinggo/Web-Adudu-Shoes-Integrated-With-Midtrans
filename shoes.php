@@ -38,6 +38,14 @@
 		<?php require_once("./section/script_section.php") ?>
 		<script type="text/javascript">
 			$(document).ready(function() {
+				$.ajax({
+					"cache": false
+				});
+
+				$.ajaxPrefilter(function(options, originalOptions, jqXHR) {
+					options.async = true;
+				});
+
 				$("#search_img").click(function(e) {
 					e.preventDefault();
 					e.stopPropagation();
