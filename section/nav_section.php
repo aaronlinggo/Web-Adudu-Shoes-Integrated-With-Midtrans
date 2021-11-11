@@ -29,15 +29,7 @@
                         <!-- <a class="nav-item nav-link last flex-center" href="#">
                             <img src="./images/search_icon_black.png">
                         </a> -->
-                        <a class="nav-item nav-link last flex-center" href="
-                        <?php
-                            if(!isset($_SESSION['active'])) {
-                                echo "./login.php";
-                            } else {
-                                echo "./midtrans/index.php/snap";
-                            }
-                        ?>
-                        ">
+                        <a class="nav-item nav-link last flex-center" href='<?= (!isset($_SESSION['active'])) ? "./login.php" : "./midtrans/index.php/snap" ?>'>
                         <img src="./images/shop_icon_black.png">
                         <?php
                             if(isset($_SESSION['active'])) {
