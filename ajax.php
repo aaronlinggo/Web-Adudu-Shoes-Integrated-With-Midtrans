@@ -10,10 +10,22 @@
 
     $limit_start = ($pages - 1) * $limit;
 
-	$stmt = $conn -> prepare("SELECT * FROM sepatu ORDER BY 1 DESC LIMIT ?, ?");
-	$stmt -> bind_param("ii", $limit_start, $limit);
+    if(isset($_POST['query'])) {
+        // $query = "'%".strtolower($_POST['query'])."%'";
+        $temp = $_POST['query'];
+        $query = "'%".$temp."%'";
+
+        $stmt = $conn -> prepare("SELECT * FROM sepatu WHERE nama_sepatu LIKE '%".$temp."%' ORDER BY 1 DESC");
+        // $stmt -> bind_param("s", $temp);
+    } else {
+        $stmt = $conn -> prepare("SELECT * FROM sepatu ORDER BY 1 DESC LIMIT ?, ?");
+        $stmt -> bind_param("ii", $limit_start, $limit);
+    }
+
 	$stmt -> execute();
 	$sepatu = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
+
+    // var_dump(count($sepatu));
 
     // NEED TO IMPLEMENT LAZY IMAGE OR USE SPINNER
     foreach($sepatu as $key => $value) {

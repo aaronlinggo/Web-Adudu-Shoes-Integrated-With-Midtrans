@@ -19,9 +19,9 @@
                         <a class="nav-item nav-link" href="./shoes.php">Shoes</a>
                         <div id="search_icon" class="nav-item nav-link last flex-center" style="cursor: pointer; position: relative;">
                             <img src="./images/search_icon_black.png">
-                            <div id="search_area" style="position: absolute; top: 80px; left: 30px; display: none;" class="flex">
+                            <div id="search_area" style="position: absolute; top: 80px; left: 30px; display: flex;" class="flex">
                                 <!-- <form action="" method=""> -->
-                                    <input type="text" name="search" id="search">
+                                    <input type="text" name="search_bar" id="search_bar">
                                     <button name="search_btn" id="search_btn" style="margin-left: 10px;">Search</button>
                                 <!-- </form> -->
                             </div>
