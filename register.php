@@ -6,8 +6,8 @@ $stmt = $conn->prepare("SELECT * FROM users");
 $stmt->execute();
 $users = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (isset($_POST['register'])){
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if(isset($_POST['register'])) {
         $email = $_POST['email'];
         $username = $_POST['username'];
         $name = $_POST['name'];
@@ -16,27 +16,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $cpass = $_POST['cpass'];
         $timestamp = strtotime($date);
         $timestampNow = strtotime('-18 years');
-        if ($email != ""){
-            if ($username != ""){
-                if ($name != ""){
-                    if($date != ""){
-                        if($pass != ""){
-                            if ($cpass != ""){
-                                if (strlen($pass) >= 8){
-                                    if ($pass == $cpass){
-                                        if ($timestamp > $timestampNow){
-                                            echo "<script>alert('Umur harus >= 18');</script>";
+        if($email != "") {
+            if($username != "") {
+                if($name != "") {
+                    if($date != "") {
+                        if($pass != "") {
+                            if($cpass != "") {
+                                if(strlen($pass) >= 8) {
+                                    if($pass == $cpass) {
+                                        if($timestamp > $timestampNow) {
+                                            echo "<script>alert('Umur harus lebih dari sama dengan 18 tahun!');</script>";
                                             echo "<script>window.location = './register.php'</script>";
                                         }
-                                        else{
+                                        else {
                                             $ada = false;
 
-                                            foreach($users as $key => $value){
-                                                if ($value['username'] == $username || $value['email'] == $email){
+                                            foreach($users as $key => $value) {
+                                                if($value['username'] == $username || $value['email'] == $email) {
                                                     $ada = true;
                                                 }
                                             }
-                                            if (!$ada){
+                                            if(!$ada) {
                                                 $saldo = 0;
                                                 $roles = "Customer";
                                                 $encrypt = md5($pass);
@@ -44,52 +44,52 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                 $stmt->bind_param("ssssiss", $username, $email, $name, $date, $saldo, $encrypt, $roles);
                                                 $result = $stmt->execute();
 
-                                                echo "<script>alert('Registration Success');</script>";
+                                                echo "<script>alert('Registration success!');</script>";
                                                 echo "<script>window.location = './login.php'</script>";
                                             }
-                                            else{
-                                                echo "<script>alert('Username sudah terdaftar');</script>";
+                                            else {
+                                                echo "<script>alert('Username sudah terdaftar!');</script>";
                                                 echo "<script>window.location = './register.php'</script>";
                                             }
                                         }
                                     }
-                                    else{
-                                        echo "<script>alert('Password tidak sama');</script>";
+                                    else {
+                                        echo "<script>alert('Password tidak sama!');</script>";
                                         echo "<script>window.location = './register.php'</script>";
                                     }
                                 }
-                                else{
-                                    echo "<script>alert('Password minimmum 8 Character');</script>";
+                                else {
+                                    echo "<script>alert('Password minimmum 8 karakter!');</script>";
                                     echo "<script>window.location = './register.php'</script>";
                                 }
                             }
-                            else{
-                                echo "<script>alert('Confirm Password Kosong');</script>";
+                            else {
+                                echo "<script>alert('Confirm password kosong!');</script>";
                                 echo "<script>window.location = './register.php'</script>";
                             }
                         }
-                        else{
-                            echo "<script>alert('Password Kosong');</script>";
+                        else {
+                            echo "<script>alert('Password kosong!');</script>";
                             echo "<script>window.location = './register.php'</script>";
                         }
                     }
-                    else{
-                        echo "<script>alert('Date Kosong');</script>";
+                    else {
+                        echo "<script>alert('Date kosong!');</script>";
                         echo "<script>window.location = './register.php'</script>";
                     }
                 }
-                else{
-                    echo "<script>alert('Full Name Kosong');</script>";
+                else {
+                    echo "<script>alert('Full name kosong!');</script>";
                     echo "<script>window.location = './register.php'</script>";
                 }
             }
-            else{
-                echo "<script>alert('Username Kosong');</script>";
+            else {
+                echo "<script>alert('Username kosong!');</script>";
                 echo "<script>window.location = './register.php'</script>";
             }
         }
-        else{
-            echo "<script>alert('Email Kosong');</script>";
+        else {
+            echo "<script>alert('Email kosong!');</script>";
             echo "<script>window.location = './register.php'</script>";
         }
     }

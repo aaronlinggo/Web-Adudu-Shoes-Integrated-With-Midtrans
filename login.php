@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         if (!$ada){
-            echo "<script>alert('Username not found !')</script>";
+            echo "<script>alert('Username not found!')</script>";
             echo "<script>window.location = './login.php'</script>";
         }
     }
