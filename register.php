@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     if($date != ""){
                         if($pass != ""){
                             if ($cpass != ""){
-                                if (strlen($pass) > 8){
+                                if (strlen($pass) >= 8){
                                     if ($pass == $cpass){
                                         if ($timestamp > $timestampNow){
                                             echo "<script>alert('Umur harus >= 18');</script>";
@@ -37,11 +37,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                 }
                                             }
                                             if (!$ada){
-                                                $saldo = 0;
                                                 $roles = "Customer";
                                                 $encrypt = md5($pass);
-                                                $stmt = $conn->prepare("INSERT INTO users(username, email, nama, tanggal_lahir, saldo, password, roles) VALUES(?,?,?,?,?,?,?)");
-                                                $stmt->bind_param("ssssiss", $username, $email, $name, $date, $saldo, $encrypt, $roles);
+                                                $stmt = $conn->prepare("INSERT INTO users(username, email, nama, tanggal_lahir, password, roles) VALUES(?,?,?,?,?,?)");
+                                                $stmt->bind_param("ssssss", $username, $email, $name, $date, $encrypt, $roles);
                                                 $result = $stmt->execute();
 
                                                 echo "<script>alert('Registration Success');</script>";
