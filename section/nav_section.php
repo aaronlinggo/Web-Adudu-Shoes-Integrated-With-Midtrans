@@ -34,7 +34,7 @@
                             if(!isset($_SESSION['active'])) {
                                 echo "./login.php";
                             } else {
-                                echo "./cart.php";
+                                echo "./midtrans/index.php/snap";
                             }
                         ?>
                         ">
