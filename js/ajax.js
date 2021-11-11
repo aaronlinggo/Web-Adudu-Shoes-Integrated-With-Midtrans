@@ -30,6 +30,8 @@ $(document).ready(function() {
 
     $("#search_btn").click(function(e) {
         // e.preventDefault();
+        // $("#search_area").css({ display: "none" });
         loadCatalog(1, $("#search_bar").val());
+        $("#search_bar").val("");
     });
 });

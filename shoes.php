@@ -38,12 +38,20 @@
 		<?php require_once("./section/script_section.php") ?>
 		<script type="text/javascript">
 			$(document).ready(function() {
-				$("#search_icon").click(function(e) {
+				$("#search_img").click(function(e) {
 					e.preventDefault();
 					e.stopPropagation();
 
 					// BELUM MULUS
-					// $("#search_area").slideToggle();
+					$("#search_area").slideToggle();
+				});
+
+				$("#search_btn").click(function(e) {
+					e.preventDefault();
+					e.stopPropagation();
+
+					// BELUM MULUS
+					$("#search_area").hide();
 				});
 				// $("#search_btn").click(function(e) {
 				// 	e.preventDefault();
