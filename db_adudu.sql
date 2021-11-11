@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 09, 2021 at 04:39 AM
+-- Generation Time: Nov 11, 2021 at 04:55 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -44,8 +44,9 @@ CREATE TABLE `cart_item` (
 --
 
 INSERT INTO `cart_item` (`id_cart`, `user_id`, `sepatu_id`, `qty`, `price`, `active`) VALUES
-(1, 4, 59, 1, 2560000, 1),
-(2, 4, 56, 1, 850000, 1);
+(2, 4, 56, 1, 850000, 1),
+(3, 4, 53, 1, 900000, 1),
+(4, 4, 52, 1, 1100000, 1);
 
 -- --------------------------------------------------------
 
@@ -72,6 +73,34 @@ CREATE TABLE `order_items` (
   `id_order_item` int(16) NOT NULL,
   `order_id` int(16) NOT NULL,
   `sepatu_id` int(16) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payment`
+--
+
+DROP TABLE IF EXISTS `payment`;
+CREATE TABLE `payment` (
+  `id` int(11) NOT NULL,
+  `status_code` varchar(3) NOT NULL,
+  `status_message` varchar(50) NOT NULL,
+  `transaction_id` varchar(100) NOT NULL,
+  `order_id` varchar(10) NOT NULL,
+  `gross_amount` decimal(20,2) NOT NULL,
+  `payment_type` varchar(40) NOT NULL,
+  `transaction_time` datetime NOT NULL,
+  `transaction_status` varchar(40) NOT NULL,
+  `bank` varchar(40) NOT NULL,
+  `va_number` varchar(40) NOT NULL,
+  `fraud_status` varchar(40) NOT NULL,
+  `bca_va_number` varchar(40) NOT NULL,
+  `permata_va_number` varchar(40) NOT NULL,
+  `pdf_url` varchar(200) NOT NULL,
+  `finish_redirect_url` varchar(200) NOT NULL,
+  `bill_key` varchar(20) NOT NULL,
+  `biller_code` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -187,18 +216,21 @@ CREATE TABLE `users` (
   `nama` varchar(100) NOT NULL,
   `tanggal_lahir` date NOT NULL,
   `password` varchar(100) NOT NULL,
-  `roles` varchar(100) NOT NULL
+  `roles` varchar(100) NOT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id_user`, `username`, `email`, `nama`, `tanggal_lahir`, `password`, `roles`) VALUES
-(1, 'pwsimpgodlike', 'samuel_20@mhs.istts.ac.id', 'Samuel Gunawan', '2002-07-01', 'eceddfdf7ace495d066389ca0f59a59b', 'admin'),
-(2, 'aaronlinggo', 'aaron_l20@mhs.istts.ac.id', 'Aaron Linggo Satria', '2002-01-01', '5eb116c57180cd6056b58b79ee84643d', 'admin'),
-(3, 'admin1', 'admin@dummy.com', 'Admin 1', '2002-11-25', 'e00cf25ad42683b3df678c61f42c6bda', 'admin'),
-(4, 'aaron', 'aaronlinggosatria@gmail.com', 'Aaron Linggo', '2002-01-01', '5eb116c57180cd6056b58b79ee84643d', 'Customer');
+INSERT INTO `users` (`id_user`, `username`, `email`, `nama`, `tanggal_lahir`, `password`, `roles`, `first_name`, `last_name`) VALUES
+(1, 'pwsimpgodlike', 'samuel_20@mhs.istts.ac.id', 'Samuel Gunawan', '2002-07-01', 'eceddfdf7ace495d066389ca0f59a59b', 'admin', 'Samuel', 'Gunawan'),
+(2, 'aaronlinggo', 'aaron_l20@mhs.istts.ac.id', 'Aaron Linggo Satria', '2002-01-01', '5eb116c57180cd6056b58b79ee84643d', 'admin', 'Aaron', 'Linggo Satria'),
+(3, 'admin1', 'admin@dummy.com', 'Admin 1', '2002-11-25', 'e00cf25ad42683b3df678c61f42c6bda', 'admin', 'Admin', '1'),
+(4, 'aaron', 'aaronlinggosatria@gmail.com', 'Aaron Linggo', '2002-01-01', '5eb116c57180cd6056b58b79ee84643d', 'Customer', 'Aaron', 'Linggo'),
+(5, 'usertesting1', 'aaronlinggo@gmail.com', 'User Testing 1', '2002-01-01', '5eb116c57180cd6056b58b79ee84643d', 'Customer', 'User', 'Testing 1');
 
 --
 -- Indexes for dumped tables
@@ -223,6 +255,12 @@ ALTER TABLE `order_details`
 --
 ALTER TABLE `order_items`
   ADD PRIMARY KEY (`id_order_item`);
+
+--
+-- Indexes for table `payment`
+--
+ALTER TABLE `payment`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `payment_details`
@@ -250,7 +288,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart_item`
 --
 ALTER TABLE `cart_item`
-  MODIFY `id_cart` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_cart` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `order_details`
@@ -263,6 +301,12 @@ ALTER TABLE `order_details`
 --
 ALTER TABLE `order_items`
   MODIFY `id_order_item` int(16) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `payment`
+--
+ALTER TABLE `payment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `payment_details`
@@ -280,7 +324,7 @@ ALTER TABLE `sepatu`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_user` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
