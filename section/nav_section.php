@@ -29,7 +29,7 @@
                         <!-- <a class="nav-item nav-link last flex-center" href="#">
                             <img src="./images/search_icon_black.png">
                         </a> -->
-                        <a class="nav-item nav-link last flex-center" href="
+                        <a class="nav-item nav-link last flex-center" href='
                         <?php
                             if(!isset($_SESSION['active'])) {
                                 echo "./login.php";
@@ -37,7 +37,7 @@
                                 echo "./midtrans/index.php/snap";
                             }
                         ?>
-                        ">
+                        '>
                         <img src="./images/shop_icon_black.png">
                         <?php
                             if(isset($_SESSION['active'])) {

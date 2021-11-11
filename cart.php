@@ -1,14 +1,6 @@
 <?php
 session_start();
-$host = 'localhost';
-$user = 'root';
-$password = '';
-$database = 'db_adudu';
-$port = '3306';
-$conn = new mysqli($host, $user, $password, $database);
-if ($conn->connect_errno) {
-    die("gagal connect : " . $conn->connect_error);
-}
+require_once("./controller/connection.php");
 
 $id_user = $_SESSION['active'];
 
@@ -35,104 +27,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Cart | Adudu Shoes</title>
     <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="<SB-Mid-client-3OxJRhBsnTXSca5E>"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <meta http-equiv="X-UA-Compatible" charset="UTF-8" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="#" type="image/png">
-    <link rel="stylesheet" href="../../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../css/style.css">
-    <link rel="stylesheet" href="../../css/responsive.css">
-    <link rel="stylesheet" href="../../css/jquery.mCustomScrollbar.min.css">
-    <link rel="stylesheet" href="../../css/owl.carousel.min.css">
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
-
+    <?php require_once("./section/connection_head.php") ?>
 </head>
 
 <body class="main-layout">
     <div class="header_section">
-    <div class="container">
-    <div class="row flex-row">
-        <div class="col-sm-3 flex flex-vstart">
-            <div class="logo">
-                <a href="../../index.php">
-                    <img class="top-logo" src="../../images/logo.png">
-                </a>
-            </div>
-        </div>
-        <div class="col-sm-9">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light flex flex-hend fullheight">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse flex-between" id="navbarNavAltMarkup">
-                    <div class="navbar-nav flex-vcenter" style="align-items: center;">
-                        <a class="nav-item nav-link" href="../../index.php">Home</a>
-                        <a class="nav-item nav-link" href="../../collection.php">Collection</a>
-                        <a class="nav-item nav-link" href="../../shoes.php">Shoes</a>
-                        <div id="search_icon" class="nav-item nav-link last flex-center" style="cursor: pointer; position: relative;">
-                            <img src="../../images/search_icon_black.png">
-                            <div id="search_area" style="position: absolute; top: 80px; left: 30px; display: none;" class="flex">
-                                <!-- <form action="" method=""> -->
-                                    <input type="text" name="search" id="search">
-                                    <button name="search_btn" id="search_btn" style="margin-left: 10px;">Search</button>
-                                <!-- </form> -->
-                            </div>
-                        </div>
-                        <!-- <a class="nav-item nav-link last flex-center" href="#">
-                            <img src="./images/search_icon_black.png">
-                        </a> -->
-                        <a class="nav-item nav-link last flex-center" href="
-                        <?php
-                            if(!isset($_SESSION['active'])) {
-                                echo "../../login.php";
-                            } else {
-                                echo "../../cart.php";
-                            }
-                        ?>
-                        ">
-                        <img src="../../images/shop_icon_black.png">
-                        <?php
-                            if(isset($_SESSION['active'])) {
-                            ?>
-                                <span class="top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                    <?php
-                                        $id_user = $_SESSION['active'];
-                                        $stmt = $conn -> prepare("SELECT count(*) as 'total' FROM cart_item WHERE user_id = $id_user AND active = 1");
-                                        $stmt -> execute();
-                                        $cart = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
-                                        echo $cart[0]['total'];
-                                    ?>
-                                </span>
-                            <?php
-                            }
-                        ?>
-                        </a>
-                    </div>
-                    <div class="navbar-nav flex-vcenter" style="align-items: center;">
-                        <?php
-                            if(!isset($_SESSION['active'])) {
-                            ?>
-                                <a class="role-out btn btn-outline-success fullheight" href="../../login.php">Sign In</a>
-                                <a class="role-out btn btn-outline-danger fullheight" href="../../register.php">Sign Up</a>
-                            <?php
-                            } else {
-                            ?>
-                                <a class="nav-item nav-link" href="#">
-                                    <img src="../../images/user_24px_black.png">
-                                </a>
-                                <a class="btn btn-outline-danger fullheight" href="../../logout.php">Sign Out</a>
-                            <?php
-                            }
-                        ?>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </div>
+    <?php require_once("./section/nav_section.php") ?>
 </div>
 
     </div>
@@ -153,7 +53,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($cart_item as $key => $value) {
+                            <?php $total = 0; foreach ($cart_item as $key => $value) {
+                                $total += ($value['price'] * $value['qty']);
                             ?>
                                 <tr>
                                     <td><?= ($key + 1) ?></td>
@@ -186,6 +87,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     </td>
                                 </tr>
                             <?php  } ?>
+                            <tr class="bg-secondary text-white">
+                                <td colspan="4">
+                                    <div style="float: right;">
+                                        Subtotal : 
+                                    </div>
+                                </td>
+                                <td>
+                                    <?= "Rp. " . number_format($total, 0, ',', '.') . ",-" ?> 
+                                </td>
+                                <td></td>
+                            </tr>
                             <tr>
                                 <td colspan="6">
                                     <form action="" method="post" style="float: right;">
