@@ -12,6 +12,7 @@ deployment:
     - /bin/cp register.php $DEPLOYPATH
     - /bin/cp shoes.php $DEPLOYPATH
     - /bin/cp -R admin $DEPLOYPATH
+    - /bin/cp -R midtrans $DEPLOYPATH
     - /bin/cp -R controller $DEPLOYPATH
     - /bin/cp -R css $DEPLOYPATH
     - /bin/cp -R images $DEPLOYPATH
