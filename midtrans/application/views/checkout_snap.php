@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <meta name="keywords" content="">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link rel="icon" href="#" type="image/png">
+  <link rel="icon" href="../../images/logo.png" type="image/png">
   <link rel="stylesheet" href="../../css/bootstrap.min.css">
   <link rel="stylesheet" href="../../css/style.css">
   <link rel="stylesheet" href="../../css/responsive.css">
