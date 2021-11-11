@@ -67,8 +67,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         <td><?= $value['qty'] ?></td>
                                         <td><?= "Rp. " . number_format(($value['price']*$value['qty']), 0, ',', '.') . ",-" ?></td>
                                         <td>
-                                            <div class="row">
-                                                <div>
+                                            <div class="d-flex justify-content-center">
+                                                <div style="margin-right: 1vh;">
                                                     <a href="<?= "detail_shoes.php?id_sepatu=" . $value['sepatu_id'] ?>">
                                                         <button class="btn btn-success">Details</button>
                                                     </a>
