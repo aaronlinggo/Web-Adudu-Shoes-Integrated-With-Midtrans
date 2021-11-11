@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     if($date != ""){
                         if($pass != ""){
                             if ($cpass != ""){
-                                if (strlen($pass) > 8){
+                                if (strlen($pass) >= 8){
                                     if ($pass == $cpass){
                                         if ($timestamp > $timestampNow){
                                             echo "<script>alert('Umur harus >= 18');</script>";
