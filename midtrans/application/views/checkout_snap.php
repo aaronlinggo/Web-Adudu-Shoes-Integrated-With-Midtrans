@@ -11,6 +11,9 @@ if ($conn->connect_errno) {
 }
 
 $id_user = $_SESSION['active'];
+$stmt = $conn->prepare("SELECT * FROM users WHERE id_user=$id_user");
+$stmt->execute();
+$u = $stmt->get_result()->fetch_assoc();
 
 $stmt = $conn->prepare("SELECT * FROM cart_item WHERE user_id=$id_user and active = 1");
 $stmt->execute();
@@ -152,10 +155,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
               </tr>
             </thead>
             <tbody>
-              <?php foreach ($cart_item as $key => $value) {
+              <?php $amount = 0;
+              $item_details = array();
+              foreach ($cart_item as $key => $value) {
+                $amount += ($value['price'] * $value['qty']);
+
               ?>
                 <tr>
-                  <td><?= ($key + 1) ?></td>
+                  <td><?= ($key + 1) ?>
+                  </td>
                   <td>
                     <?php
                     $sepatu_id = $value['sepatu_id'];
@@ -163,6 +171,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $stmt = $conn->prepare("SELECT * FROM sepatu WHERE id_sepatu=$sepatu_id");
                     $stmt->execute();
                     $sepatu = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
+                    $item1_details = array(
+                      'id' => $key,
+                      'price' => $value['price'],
+                      'quantity' => $value['qty'],
+                      'name' => $sepatu[0]['nama_sepatu']
+                    );
+
+                    array_push($item_details, $item1_details);
 
                     echo $sepatu[0]['nama_sepatu'];
                     ?>
@@ -185,9 +202,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                   </td>
                 </tr>
               <?php  } ?>
+              <tr class="bg-secondary text-white">
+                <td colspan="4">
+                  <div style="float: right;">
+                    Subtotal :
+                  </div>
+                </td>
+                <td>
+                  <?= "Rp. " . number_format($amount, 0, ',', '.') . ",-" ?>
+                </td>
+                <td></td>
+              </tr>
               <tr>
                 <td colspan="6">
-                  <form action="" style="float: right;">
+                  <form style="float: right;">
+                    <input type="hidden" id="user" name="user" value='<?= json_encode($u) ?>'>
+                    <input type="hidden" id="cart_item" name="cart_item" value='<?= json_encode($item_details) ?>'>
+                    <input type="hidden" id="amount" name="amount" value='<?= $amount ?>'>
                     <button class="btn btn-success" id="pay-button" name="payment">Payment</button>
                   </form>
                 </td>
@@ -249,8 +280,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       event.preventDefault();
       $(this).attr("disabled", "disabled");
 
+      var cart_item = $("#cart_item").val();
+      var amount = $("#amount").val();
+      var user = $("#user").val();
+
       $.ajax({
+        method: 'POST',
         url: '<?= site_url() ?>/snap/token',
+        data: {
+          cart_item: cart_item,
+          amount: amount,
+          user: user
+        },
         cache: false,
 
         success: function(data) {
@@ -262,6 +303,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           var resultData = document.getElementById('result-data');
           console.log(resultType);
           console.log(resultData);
+
           function changeResult(type, data) {
             $("#result-type").val(type);
             $("#result-data").val(JSON.stringify(data));

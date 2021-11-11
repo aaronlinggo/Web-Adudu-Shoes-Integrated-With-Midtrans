@@ -1,6 +1,4 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, OPTIONS');
 class Snap extends CI_Controller {
 
 	/**
@@ -23,6 +21,11 @@ class Snap extends CI_Controller {
 	public function __construct()
     {
         parent::__construct();
+
+		header("Access-Control-Allow-Origin: *");
+		header("Access-Control-Allow-Methods: PUT, GET, POST");
+		header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+
         $params = array('server_key' => 'SB-Mid-server-sJ6sUsMDGblgf6YmhU1pSx0-', 'production' => false);
 		$this->load->library('midtrans');
 		$this->midtrans->config($params);
@@ -36,102 +39,52 @@ class Snap extends CI_Controller {
 
     public function token()
     {
-		// session_start();
-
-		// $host = 'localhost';
-		// $user = 'root';
-		// $password = '';
-		// $database = 'db_adudu';
-		// $port = '3306';
-		// $conn = new mysqli($host, $user, $password, $database);
-		// if ($conn->connect_errno) {
-		// 	die("gagal connect : " . $conn->connect_error);
-		// }
-
-		// $id_user = $_SESSION['active'];
-
-		// $stmt = $conn->prepare("SELECT * FROM cart_item WHERE user_id=$id_user and active = 1");
-		// $stmt->execute();
-		// $cart_item = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-
-		// $amount = 0;
-		// $item_details = array ();
-
-		// foreach($cart_item as $key => $value){
-		// 	$amount += ($value['price']*$value['qty']);
-
-		// 	$sepatu_id = $value['sepatu_id'];
-
-		// 	$stmt = $conn->prepare("SELECT * FROM sepatu WHERE id_sepatu=$sepatu_id");
-		// 	$stmt->execute();
-		// 	$sepatu = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-
-		// 	$item1_details = array(
-		// 		'id' => $key,
-		// 		'price' => $value['price'],
-		// 		'quantity' => $value['qty'],
-		// 		'name' => $sepatu[0]['nama_sepatu']
-		// 	);
-
-		// 	array_push($item_details, $item1_details);
-		// }
-
-
 		// Required
 		$transaction_details = array(
-		  'order_id' => rand(),
-		  'gross_amount' => 94000, // no decimal allowed for creditcard
+			'order_id' => rand(),
+			'gross_amount' => (int)$this->input->post('amount'), // no decimal allowed for creditcard
 		);
 
-		// Optional
-		$item1_details = array(
-		  'id' => 'a1',
-		  'price' => 18000,
-		  'quantity' => 3,
-		  'name' => "Apple"
-		);
+		$cart_item = json_decode($this->input->post('cart_item'), TRUE);
+		
+		$item_details = array ();
+		foreach($cart_item as $key => $value){
+			$item1_details = array(
+				'id' => $value['id'],
+				'price' => (int)$value['price'],
+				'quantity' => (int)$value['quantity'],
+				'name' => $value['name']
+			);
 
-		// Optional
-		$item2_details = array(
-		  'id' => 'a2',
-		  'price' => 20000,
-		  'quantity' => 2,
-		  'name' => "Orange"
-		);
+			$item_details[] = $item1_details;
+			//array_push($item_details, $item1_details);
+		}
+		// // Optional
+		// $item1_details = array(
+		//   'id' => 'a1',
+		//   'price' => 18000,
+		//   'quantity' => 3,
+		//   'name' => "Apple"
+		// );
 
-		// Optional
-		$item_details = array ($item1_details, $item2_details);
+		// // Optional
+		// $item2_details = array(
+		//   'id' => 'a2',
+		//   'price' => 20000,
+		//   'quantity' => 2,
+		//   'name' => "Orange"
+		// );
 
-		// Optional
-		$billing_address = array(
-		  'first_name'    => "Andri",
-		  'last_name'     => "Litani",
-		  'address'       => "Mangga 20",
-		  'city'          => "Jakarta",
-		  'postal_code'   => "16602",
-		  'phone'         => "081122334455",
-		  'country_code'  => 'IDN'
-		);
+		// // Optional
+		//$item_details = array ($item1_details, $item2_details);
 
-		// Optional
-		$shipping_address = array(
-		  'first_name'    => "Obet",
-		  'last_name'     => "Supriadi",
-		  'address'       => "Manggis 90",
-		  'city'          => "Jakarta",
-		  'postal_code'   => "16601",
-		  'phone'         => "08113366345",
-		  'country_code'  => 'IDN'
-		);
+		$user = json_decode($this->input->post('user'), TRUE);
 
 		// Optional
 		$customer_details = array(
-		  'first_name'    => "Andri",
-		  'last_name'     => "Litani",
-		  'email'         => "andri@litani.com",
-		  'phone'         => "081122334455",
-		  'billing_address'  => $billing_address,
-		  'shipping_address' => $shipping_address
+		  'first_name'    => $user['first_name'],
+		  'last_name'     => $user['last_name'],
+		  'email'         => $user['email']
 		);
 
 		// Data yang akan dikirim untuk request redirect_url.
@@ -163,10 +116,11 @@ class Snap extends CI_Controller {
 
     public function finish()
     {
-    	$result = json_decode($this->input->post('result_data'));
-    	echo 'RESULT <br><pre>';
-    	var_dump($result);
-    	echo '</pre>' ;
+		$result = json_decode($this->input->post('result_data')); 
+		print_r($result);
+		
+    	$this->data['finish'] = json_decode($this->input->post('result_data')); 
+		$this->load->view('konfirmasi', $this->data);
 
     }
 }
