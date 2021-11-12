@@ -31,6 +31,24 @@ class Transaction extends CI_Controller {
 
     public function index()
     {
+		
+		$host = 'localhost';
+		$user = 'root';
+		$password = '';
+		$database = 'db_adudu';
+		$port = '3306';
+		$conn = new mysqli($host, $user, $password, $database);
+		if ($conn->connect_errno) {
+			die("gagal connect : " . $conn->connect_error);
+		}
+
+		$stmt = $conn->prepare("SELECT * FROM payment");
+		$stmt->execute();
+		$payment = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+		foreach($payment as $key => $value){
+			$this->status($value['order_id']);
+		}
+
     	$this->load->view('transaction');
     }
 
@@ -57,8 +75,38 @@ class Transaction extends CI_Controller {
 
 	public function status($order_id)
 	{
-		echo 'test get status </br>';
-		print_r ($this->veritrans->status($order_id) );
+		$host = 'localhost';
+		$user = 'root';
+		$password = '';
+		$database = 'db_adudu';
+		$port = '3306';
+		$conn = new mysqli($host, $user, $password, $database);
+		if ($conn->connect_errno) {
+			die("gagal connect : " . $conn->connect_error);
+		}
+
+		$response = $this->veritrans->status($order_id);
+		$transaction_status = $response->transaction_status;
+
+		$update = $conn->query("update payment set transaction_status = '$transaction_status' where order_id='$order_id'");
+
+		if ($transaction_status == "settlement"){
+			$stmt = $conn->prepare("SELECT id FROM payment WHERE order_id='$order_id'");
+			$stmt->execute();
+			$p = $stmt->get_result()->fetch_assoc();
+	
+			$id_payment = $p['id'];
+	
+			$stmt = $conn->prepare("SELECT * FROM order_details WHERE payment_id='$id_payment'");
+			$stmt->execute();
+			$od = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
+			foreach($od as $key => $value){
+				$stat = 1;
+				$id_od = $value['id_order_details'];
+				$result = $conn->query("update order_details set status = '$stat' where id_order_details='$id_od'");
+			}
+		}
 	}
 
 	public function cancel($order_id)

@@ -171,12 +171,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $stmt = $conn->prepare("SELECT * FROM sepatu WHERE id_sepatu=$sepatu_id");
                     $stmt->execute();
                     $sepatu = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-
+                    if (strlen($sepatu[0]['nama_sepatu']) > 25)
+                      $nama_sepatu = substr($sepatu[0]['nama_sepatu'], 0, 25);
+                    else{
+                      $nama_sepatu = $sepatu[0]['nama_sepatu'];
+                    }
                     $item1_details = array(
                       'id' => $key,
                       'price' => $value['price'],
                       'quantity' => $value['qty'],
-                      'name' => $sepatu[0]['nama_sepatu']
+                      'name' => $nama_sepatu
                     );
 
                     array_push($item_details, $item1_details);
@@ -233,7 +237,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
   <form id="payment-form" method="post" action="<?= site_url() ?>/snap/finish">
+  <!-- <form id="payment-form" method="post" action="<?= site_url() ?>/transaction"> -->
+  <!-- <form id="payment-form" method="post" action="./transaction"> -->
     <input type="hidden" name="result_type" id="result-type" value=""></div>
+    <input type="hidden" id="userid" name="userid" value='<?= $u['id_user'] ?>'>
     <input type="hidden" name="result_data" id="result-data" value=""></div>
   </form>
   <script src="../../js/jquery.min.js"></script>
@@ -300,13 +307,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           console.log('token = ' + data);
 
           var resultType = document.getElementById('result-type');
+          var userid = document.getElementById('userid').value;
           var resultData = document.getElementById('result-data');
           console.log(resultType);
           console.log(resultData);
+          console.log(userid);
 
           function changeResult(type, data) {
             $("#result-type").val(type);
             $("#result-data").val(JSON.stringify(data));
+            $("#userid").val(userid);
             //resultType.innerHTML = type;
             //resultData.innerHTML = JSON.stringify(data);
           }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 11, 2021 at 04:55 PM
+-- Generation Time: Nov 12, 2021 at 05:14 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -44,9 +44,16 @@ CREATE TABLE `cart_item` (
 --
 
 INSERT INTO `cart_item` (`id_cart`, `user_id`, `sepatu_id`, `qty`, `price`, `active`) VALUES
-(2, 4, 56, 1, 850000, 1),
-(3, 4, 53, 1, 900000, 1),
-(4, 4, 52, 1, 1100000, 1);
+(2, 4, 56, 1, 850000, 0),
+(3, 4, 53, 1, 900000, 0),
+(4, 4, 52, 1, 1100000, 0),
+(6, 4, 56, 1, 850000, 0),
+(7, 4, 53, 1, 900000, 0),
+(8, 4, 59, 1, 2560000, 0),
+(9, 4, 57, 1, 2200000, 0),
+(10, 4, 56, 1, 850000, 0),
+(11, 4, 59, 1, 2560000, 0),
+(12, 4, 59, 1, 2560000, 0);
 
 -- --------------------------------------------------------
 
@@ -56,11 +63,22 @@ INSERT INTO `cart_item` (`id_cart`, `user_id`, `sepatu_id`, `qty`, `price`, `act
 
 DROP TABLE IF EXISTS `order_details`;
 CREATE TABLE `order_details` (
-  `id_order` int(16) NOT NULL,
+  `id_order_details` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `payment_id` int(11) NOT NULL,
-  `total` int(11) NOT NULL
+  `total` int(255) NOT NULL,
+  `status` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `order_details`
+--
+
+INSERT INTO `order_details` (`id_order_details`, `user_id`, `payment_id`, `total`, `status`) VALUES
+(1, 4, 1, 5410000, 0),
+(2, 4, 2, 3050000, 0),
+(3, 4, 3, 2560000, 0),
+(4, 4, 4, 2560000, 1);
 
 -- --------------------------------------------------------
 
@@ -72,8 +90,23 @@ DROP TABLE IF EXISTS `order_items`;
 CREATE TABLE `order_items` (
   `id_order_item` int(16) NOT NULL,
   `order_id` int(16) NOT NULL,
-  `sepatu_id` int(16) NOT NULL
+  `sepatu_id` int(16) NOT NULL,
+  `qty` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `order_items`
+--
+
+INSERT INTO `order_items` (`id_order_item`, `order_id`, `sepatu_id`, `qty`) VALUES
+(1, 1, 56, 1),
+(2, 1, 52, 1),
+(3, 1, 53, 1),
+(4, 1, 59, 1),
+(5, 2, 57, 1),
+(6, 2, 56, 1),
+(7, 3, 59, 1),
+(8, 4, 59, 1);
 
 -- --------------------------------------------------------
 
@@ -95,28 +128,21 @@ CREATE TABLE `payment` (
   `bank` varchar(40) NOT NULL,
   `va_number` varchar(40) NOT NULL,
   `fraud_status` varchar(40) NOT NULL,
-  `bca_va_number` varchar(40) NOT NULL,
-  `permata_va_number` varchar(40) NOT NULL,
   `pdf_url` varchar(200) NOT NULL,
   `finish_redirect_url` varchar(200) NOT NULL,
   `bill_key` varchar(20) NOT NULL,
   `biller_code` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `payment_details`
+-- Dumping data for table `payment`
 --
 
-DROP TABLE IF EXISTS `payment_details`;
-CREATE TABLE `payment_details` (
-  `id_payment` int(16) NOT NULL,
-  `order_id` int(11) NOT NULL,
-  `total` int(11) NOT NULL,
-  `token` int(11) NOT NULL,
-  `status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+INSERT INTO `payment` (`id`, `status_code`, `status_message`, `transaction_id`, `order_id`, `gross_amount`, `payment_type`, `transaction_time`, `transaction_status`, `bank`, `va_number`, `fraud_status`, `pdf_url`, `finish_redirect_url`, `bill_key`, `biller_code`) VALUES
+(1, '201', 'Transaksi sedang diproses', '63659a30-fe06-4c28-87ae-418857ce6e15', '1903503215', '5410000.00', 'bank_transfer', '2021-11-12 22:30:42', 'expire', 'bca', '66703039637', 'accept', 'https://app.sandbox.midtrans.com/snap/v1/transactions/f089a767-3034-413c-9c5e-2533d66eec9b/pdf', 'http://example.com?order_id=1903503215&status_code=201&transaction_status=pending', '-', '-'),
+(2, '201', 'Transaksi sedang diproses', '004a0aaa-c63a-4fdb-82cf-542850a213fa', '2092435340', '3050000.00', 'bank_transfer', '2021-11-12 22:34:57', 'expire', 'bca', '66703808953', 'accept', 'https://app.sandbox.midtrans.com/snap/v1/transactions/77001dac-7a4b-4d8e-8291-b759d210ccdb/pdf', 'http://example.com?order_id=2092435340&status_code=201&transaction_status=pending', '-', '-'),
+(3, '201', 'Transaksi sedang diproses', '8ef4d4d1-7a42-476a-bbba-9094238e4864', '1923273917', '2560000.00', 'bank_transfer', '2021-11-12 22:49:32', 'expire', 'bca', '66703812789', 'accept', 'https://app.sandbox.midtrans.com/snap/v1/transactions/762aa9ff-182d-45e0-a549-b6b3de3e646e/pdf', 'http://example.com?order_id=1923273917&status_code=201&transaction_status=pending', '-', '-'),
+(4, '201', 'Transaksi sedang diproses', '7a72e460-4c6a-47a8-9c94-642694c8b5ae', '1346175814', '2560000.00', 'bank_transfer', '2021-11-12 22:53:22', 'settlement', 'bca', '66703317720', 'accept', 'https://app.sandbox.midtrans.com/snap/v1/transactions/90e60a58-bb00-4271-8b5d-cfae13f392d1/pdf', 'http://example.com?order_id=1346175814&status_code=201&transaction_status=pending', '-', '-');
 
 -- --------------------------------------------------------
 
@@ -199,7 +225,7 @@ INSERT INTO `sepatu` (`id_sepatu`, `nama_sepatu`, `harga_sepatu`, `sub_desc`, `d
 (56, 'SEPATU TENIS GAMECOURT', 850000, 'SEPATU YANG NYAMAN UNTUK MENDOMINASI PERMAINAN DI LAPANGAN.\r\n', 'Tingkatkan permainan tanpa meninggalkan zona nyamanmu. Upper dari bahan breathable mesh pada sepatu tenis adidas GameCourt ini membuat kakimu tetap terasa sejuk. Material TPU yang suportif membantu menyesuaikan dengan bentuk kaki untuk menghasilkan fit yang nyaman dan penguncian yang pas. Midsole Cloudfoam membuat setiap langkah terasa lembut saat intensitas meningkat.\r\n', 12, 32, 'list_products/56.jpg'),
 (57, 'SEPATU ADIZERO ADIOS 5', 2200000, 'SEPATU RUNNING RINGAN YANG DIDESAIN UNTUK MEMAKSIMALKAN KECEPATAN.\r\n', 'Capai rekor pribadi yang baru dan tinggalkan para pesaingmu. Lakukan hal tersebut dengan sepatu running adidas ini. Didesain khusus untuk kecepatan, sesuai untukmu. Upper ultraringan beradaptasi dengan kaki untuk menghasilkan sensasi breathable yang nyaman. Bantalan Lightstrike dan Boost mengombinasikan sensasi pengembalian energi yang elastis. Siap untuk half-marathon? Kini, kamu siap.\r\n', 12, 78, 'list_products/57.jpg'),
 (58, 'SEPATU GOLF SPIKELESS CODECHAOS 21 PRIMEBLUE', 2700000, 'SEPATU GOLF SPIKELESS UNTUK KENYAMANAN DAN TOPANGAN YANG MENINGKATKAN KEPERCAYAAN DIRI.\r\n', 'Hadirkan karakter disruptif di lapangan golf. Sepatu Golf Spikeless adidas Codechaos BOA® 21 Primeblue ini menghadirkan kenyamanan tinggi dan energi dalam permainanmu. Upper dari bahan rajut mesh waterproof dengan overlay suportif menawarkan performa ringan dengan tampilan yang unik. Boost di sepanjang bagian bawah memberikan energi seharian di lapangan golf, sedangkan outsole Adiwear spikeless dengan daya cengkeram yang kuat memberikan traksi dan stabilitas setingkat tur golf.\r\n', 12, 33, 'list_products/58.jpg'),
-(59, 'ADIDAS ULTRABOOST X LEGO® COLORS SHOES (1 PAIR PER CUSTOMER)', 2560000, 'HIGH-PERFORMANCE RUNNING SHOES MADE IN PARTNERSHIP WITH THE LEGO GROUP.\r\n', 'Running is your time to play. And if you couldn\'t tell by the pops of colour and LEGO® bricks inspired design, these adidas running shoes created with the LEGO Group are all about play. Play, and comfort. Because nothing needs to get in the way of a good time. A plush Boost midsole takes care of the cushioning, and the Continental™ Better Rubber outsole balances fast moves with steady grounding.\r\n', 12, 90, 'list_products/59.jpg'),
+(59, 'ADIDAS ULTRABOOST X LEGO COLORS SHOES (1 PAIR PER CUSTOMER)', 2560000, 'HIGH-PERFORMANCE RUNNING SHOES MADE IN PARTNERSHIP WITH THE LEGO GROUP.\r\n', 'Running is your time to play. And if you couldn\'t tell by the pops of colour and LEGO® bricks inspired design, these adidas running shoes created with the LEGO Group are all about play. Play, and comfort. Because nothing needs to get in the way of a good time. A plush Boost midsole takes care of the cushioning, and the Continental™ Better Rubber outsole balances fast moves with steady grounding.\r\n', 12, 90, 'list_products/59.jpg'),
 (60, 'SEPATU HARDEN VOL. 5 FUTURENATURAL TOKYO', 1400000, 'PRODUK TERKINI DARI ADIDAS BASKETBALL DAN JAMES HARDEN.\r\n', 'Harden Vol. 5 dari adidas Basketball memiliki fit dan penguncian revolusioner untuk bergerak bebas dengan maksimal saat berada di lapangan basket, terinspirasi kecepatan dan kemampuan James Harden yang tak tertandingi untuk mengubah arah saat mendribel bola. Teknologi Futurenatural memperkenalkan sistem fit baru dan konstruksi tanpa jahitan untuk menghasilkan kontrol yang optimal. Kombinasi midsole Boost dan keunggulan Lightstrike yang ringan menghasilkan kenyamanan dan stabilitas yang dibutuhka', 12, 5, 'list_products/60.jpg');
 
 -- --------------------------------------------------------
@@ -248,7 +274,7 @@ ALTER TABLE `cart_item`
 -- Indexes for table `order_details`
 --
 ALTER TABLE `order_details`
-  ADD PRIMARY KEY (`id_order`);
+  ADD PRIMARY KEY (`id_order_details`);
 
 --
 -- Indexes for table `order_items`
@@ -261,12 +287,6 @@ ALTER TABLE `order_items`
 --
 ALTER TABLE `payment`
   ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `payment_details`
---
-ALTER TABLE `payment_details`
-  ADD PRIMARY KEY (`id_payment`);
 
 --
 -- Indexes for table `sepatu`
@@ -288,31 +308,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart_item`
 --
 ALTER TABLE `cart_item`
-  MODIFY `id_cart` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_cart` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id_order` int(16) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_order_details` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id_order_item` int(16) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_order_item` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `payment_details`
---
-ALTER TABLE `payment_details`
-  MODIFY `id_payment` int(16) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `sepatu`

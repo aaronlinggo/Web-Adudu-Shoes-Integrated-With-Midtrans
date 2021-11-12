@@ -122,7 +122,7 @@ class Midtrans {
 	    curl_setopt_array($ch, $curl_options);
 
 	    $result = curl_exec($ch);
-      $info = curl_getinfo($ch);
+      	$info = curl_getinfo($ch);
 	    // curl_close($ch);
 
 	    if ($result === FALSE) {
