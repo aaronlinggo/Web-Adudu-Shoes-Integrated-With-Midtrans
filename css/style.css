@@ -211,276 +211,6 @@ button {
     justify-content: space-evenly;
 }
 
-/* BUANG */
-.paddind_bottom_0 {
-    padding-bottom: 0 !important;
-}
-.lead {
-    font-size: 18px;
-    line-height: 30px;
-    color: #767676;
-    margin: 0;
-    padding: 0;
-}
-.btn-custom {
-    margin-top: 20px;
-    background-color: transparent !important;
-    border: 2px solid #ddd;
-    padding: 12px 40px;
-    font-size: 16px;
-}
-.form-control:focus {
-    border-color: #ffffff !important;
-    box-shadow: 0 0 0 .2rem rgba(255, 255, 255, .25);
-}
-.navbar-form input {
-    border: none !important;
-}
-.full, .padding_0 {
-    float: left;
-    width: 100%;
-}
-.mens_taital {
-    width: 100%;
-    float: left;
-    color: #908d92;
-    font-size: 14pt;
-}
-.mens_taital_2 {
-    width: 100%;
-    float: left;
-    color: #908d92;
-    font-size: 14pt;
-    margin-top: 150px;
-}
-.page_no {
-    width: 28%;
-    text-align: center;
-    color: #ffffff;
-    border: 2px solid #8d8791;
-    border-radius: 30px;
-    margin-top: 150px;
-    padding-bottom: 10px;
-    display: inline-block;
-    padding-top: 12px;
-    margin-left: 30px;
-}
-body {
-    width: 100%;
-    height: 100%;
-}
-.collection_section_2 {
-    float: left;
-    width: 100%;
-}
-.about-img {
-    width: 100%;
-    float: left;
-    background-color: #ffffff;
-    height: auto;
-    margin-left: 64px;
-    box-shadow: 0px 0px 10px 0px;
-    position: relative;
-    z-index: 1;
-}
-.new_bt {
-    width: 18%;
-    float: left;
-    background-color: #000;
-    font-size: 14pt;
-    text-align: center;
-    color: #ffffff;
-    height: 50px;
-    margin-left: -60px;
-}
-.shoes-img {
-    float: left;
-    text-align: center;
-    margin: 0px;
-    padding: 40px 0;
-    width: 100%;
-}
-.sport_text {
-    width: 24%;
-    text-align: center;
-    padding-top: 30px;
-    font-size: 16pt;
-    color: #0c0116;
-    border-bottom: 1px solid#000;
-    margin: 0 auto;
-}
-.dolar_text {
-    width: 100%;
-    float: left;
-    text-align: center;
-    color: #000;
-    font-size: 20pt;
-}
-.about-img2 {
-    width: 100%;
-    float: left;
-    background-image: url(../images/about-img2.png);
-    height: auto;
-    box-shadow: 0px 0px 10px 0px;
-    margin-left: -50px;
-    margin-top: 74px;
-}
-.shoes-img2 {
-    width: 100%;
-    float: left;
-    text-align: center;
-    padding-top: 100px;
-    padding-bottom: 40px;
-    margin: 0px
-}
-.seemore_bt {
-    width: 32%;
-    height: 50px;
-    color: #ffffff;
-    background-color: #ff4e5b;
-    color: #ffffff;
-    font-size: 16pt;
-    margin-top: 35px;
-    margin-bottom: 90px;
-}
-.left_part {
-    float: left;
-    width: 20%;
-    width: 60%;
-    padding-left: 15px;
-    padding-top: 15px;
-    padding-left: 15px;
-    padding-bottom: 15px;
-}
-.left_part ul {
-    margin: 0px;
-    padding: 0px;
-}
-.left_part li {
-    float: left;
-    padding-left: 10px;
-}
-.email_box {
-    background-color: #14120e;
-    opacity: 0.8;
-    padding: 40px 20px;
-    margin: 0 auto;
-    width: 70%;
-    height: auto;
-}
-.massage-bt {
-    border: 1px solid #000;
-    color: #000000;
-    width: 100%;
-    height: 200px;
-    font-size: 22px;
-    padding: 70px 20px 10px 20px;
-}
-.shop_banner {
-    float: left;
-    background-image: url(../images/shop-banner.png);
-    padding: 70px;
-    width: 100%;
-    height: auto;
-}
-.our_shop {
-    float: left;
-    padding-top: 205px;
-    padding-bottom: 205px;
-    width: 100%;
-}
-.mail_section {
-    float: left;
-    width: 100%;
-}
-.mail_section li {
-    float: left;
-    font-size: 12pt;
-    color: #fdfefe;
-    padding-right: 35px;
-}
-.footer-logo {
-    float: left;
-    font-size: 12pt;
-    color: #fdfefe;
-}
-.footer_section_2 {
-    float: left;
-    width: 100%;
-    padding-top: 20px;
-}
-.shop_text {
-    width: 100%;
-    float: left;
-    font-size: 28px;
-    color: #ebebeb;
-}
-.dummy_text {
-    width: 100%;
-    float: left;
-    font-size: 12pt;
-    color: #ffffff;
-    margin-left: 0px;
-    margin-top: 55px;
-    line-height: 25px;
-}
-.image-icon {
-    float: left;
-    width: 100%;
-    padding-top: 6px;
-}
-.pet_text {
-    font-size: 12pt;
-    color: #ffffff;
-    padding-left: 16px;
-    display: flex;
-    top: -26px;
-    position: relative;
-    padding-left: 20px;
-}
-.adderess_text {
-    width: 100%;
-    float: left;
-    font-size: 28px;
-    color: #ebebeb;
-}
-.map_text {
-    padding-left: 15px;
-}
-.delivery_text {
-    width: 100%;
-    float: left;
-    font-size: 17px;
-    color: #ffffff;
-}
-.enter_email {
-    border: 1px solid #000;
-    color: #000000;
-    width: 100%;
-    height: 44px;
-    font-size: 14px;
-    padding: 20px;
-}
-.subscribr_bt {
-    width: 80%;
-    float: right;
-    background-color: #ff4e5b;
-    font-size: 13pt;
-    height: 50px;
-    color: #ffffff;
-}
-.about_main {
-    width: 100%;
-    float: left;
-    padding-bottom: 30px;
-}
-.header_main {
-    width: 100%;
-    height: auto;
-    background: #0c0116;
-}
-/* EOT */
-
 /* MY STYLE */
 .fullsize {
     width: 100%;
@@ -514,7 +244,7 @@ body {
 }
 
 .bg-light {
-    background-color: transparent!important;
+    background-color: transparent !important;
 }
 
 .top-logo {
@@ -538,7 +268,7 @@ body {
 }
 
 .last {
-    padding-left: 30px!important;
+    padding-left: 30px !important;
 }
 
 .role-out {
@@ -605,6 +335,7 @@ body {
     background-position: center center;
     background-size: cover;
 }
+
 .slide-wrapper {
     display: inline;
 }
@@ -612,8 +343,9 @@ body {
 .slide-wrapper .container {
     padding: 0;
 }
-.carousel-inner > .carousel-item.carousel-item-next,
-.carousel-inner > .carousel-item.active.carousel-item-right {
+
+.carousel-inner>.carousel-item.carousel-item-next,
+.carousel-inner>.carousel-item.active.carousel-item-right {
     -webkit-transform: translate3d(0, 100%, 0);
     -moz-transform: translate3d(0, 100%, 0);
     -ms-transform: translate3d(0, 100%, 0);
@@ -621,8 +353,9 @@ body {
     transform: translate3d(0, 100%, 0);
     top: 0;
 }
-.carousel-inner > .carousel-item.carousel-item-prev,
-.carousel-inner > .carousel-item.active.carousel-item-left {
+
+.carousel-inner>.carousel-item.carousel-item-prev,
+.carousel-inner>.carousel-item.active.carousel-item-left {
     -webkit-transform: translate3d(0, -100%, 0);
     -moz-transform: translate3d(0, -100%, 0);
     -ms-transform: translate3d(0, -100%, 0);
@@ -630,9 +363,10 @@ body {
     transform: translate3d(0, -100%, 0);
     top: 0;
 }
-.carousel-inner > .carousel-item.next.carousel-item-left,
-.carousel-inner > .carousel-item.carousel-item-prev.carousel-item-right,
-.carousel-inner > .carousel-item.active {
+
+.carousel-inner>.carousel-item.next.carousel-item-left,
+.carousel-inner>.carousel-item.carousel-item-prev.carousel-item-right,
+.carousel-inner>.carousel-item.active {
     -webkit-transform: translate3d(0, 0, 0);
     -moz-transform: translate3d(0, 0, 0);
     -ms-transform: translate3d(0, 0, 0);
@@ -640,6 +374,7 @@ body {
     transform: translate3d(0, 0, 0);
     top: 0;
 }
+
 .carousel-indicators {
     position: absolute;
     top: 0;
@@ -655,15 +390,18 @@ body {
     -o-transform: rotate(90deg);
     transform: rotate(90deg);
 }
+
 .carousel-indicators li {
     border: 1px solid #00a199;
     display: block;
     margin-bottom: 5px;
 }
+
 .carousel-indicators li.active {
     background: #00a199;
     margin-bottom: 5px;
 }
+
 /* MUNGKIN GA PERLU */
 
 .collection_section {
@@ -695,15 +433,18 @@ body {
     margin: 0 auto;
     text-align: center;
 }
+
 .star_icon ul {
     margin: 0px;
     padding: 0px;
 }
+
 .star_icon li {
     float: left;
     padding-right: 10px;
     padding-bottom: 25px;
 }
+
 /* MUNGKIN GA PERLU */
 
 .shoes_img {
@@ -909,14 +650,14 @@ body {
 }
 
 .copyright {
-    width: 100%;
     float: left;
-    font-size: 12pt;
-    color: #ffffff;
-    text-align: center;
-    padding: 10px 0px;
     background-color: #000;
+    color: #ffffff;
     font-family: Poppins;
+    font-size: 12pt;
+    padding: 10px 0px;
+    text-align: center;
+    width: 100%;
 }
 
 .copyright a {
@@ -926,7 +667,108 @@ body {
 .copyright a:hover {
     color: #000;
 }
-/* EOU */
+
+.collection_section_2 {
+    float: left;
+    width: 100%;
+}
+
+.about-img {
+    float: left;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 10px 0px;
+    height: auto;
+    margin-left: 64px;
+    position: relative;
+    width: 100%;
+    z-index: 1;
+}
+
+.new_bt {
+    float: left;
+    background-color: #000;
+    color: #ffffff;
+    font-size: 14pt;
+    margin-left: -60px;
+    text-align: center;
+    width: 18%;
+    height: 50px;
+}
+
+.shoes-img {
+    float: left;
+    margin: 0px;
+    padding: 40px 0;
+    text-align: center;
+    width: 100%;
+}
+
+.sport_text {
+    border-bottom: 1px solid#000;
+    color: #0c0116;
+    font-size: 16pt;
+    margin: 0 auto;
+    padding-top: 30px;
+    text-align: center;
+    width: 24%;
+}
+
+.dolar_text {
+    float: left;
+    color: #000;
+    font-size: 20pt;
+    text-align: center;
+    width: 100%;
+}
+
+.about-img2 {
+    float: left;
+    background-image: url(../images/about-img2.png);
+    box-shadow: 0px 0px 10px 0px;
+    margin-top: 74px;
+    margin-left: -50px;
+    width: 100%;
+    height: auto;
+}
+
+.shoes-img2 {
+    float: left;
+    margin: 0px;
+    padding-top: 100px;
+    padding-bottom: 40px;
+    text-align: center;
+    width: 100%;
+}
+
+.seemore_bt {
+    background-color: #ff4e5b;
+    color: #fff;
+    font-size: 16pt;
+    margin-top: 35px;
+    margin-bottom: 90px;
+    width: 32%;
+    height: 50px;
+}
+
+.left_part {
+    float: left;
+    /* WHICH ONE??? */
+    width: 20%;
+    width: 60%;
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-bottom: 15px;
+}
+
+.left_part ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+.left_part li {
+    float: left;
+    padding-left: 10px;
+}
 
 ::-webkit-scrollbar {
     width: 10px;
