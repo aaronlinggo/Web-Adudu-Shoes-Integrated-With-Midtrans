@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
   <title>Cart | Adudu Shoes</title>
   <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="<SB-Mid-client-3OxJRhBsnTXSca5E>"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
   <meta http-equiv="X-UA-Compatible" charset="UTF-8" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
@@ -177,7 +177,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                       $nama_sepatu = $sepatu[0]['nama_sepatu'];
                     }
                     $item1_details = array(
-                      'id' => $key,
+                      'id' => $sepatu_id,
                       'price' => $value['price'],
                       'quantity' => $value['qty'],
                       'name' => $nama_sepatu
@@ -206,7 +206,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                   </td>
                 </tr>
               <?php  } ?>
-              <tr class="bg-secondary text-white">
+              <tr class="bg-secondary text-white align-self-center">
                 <td colspan="4">
                   <div style="float: right;">
                     Subtotal :
@@ -215,11 +215,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <td>
                   <?= "Rp. " . number_format($amount, 0, ',', '.') . ",-" ?>
                 </td>
-                <td></td>
-              </tr>
-              <tr>
-                <td colspan="6">
-                  <form style="float: right;">
+                <td>
+                  <form style="margin: 0;">
                     <input type="hidden" id="user" name="user" value='<?= json_encode($u) ?>'>
                     <input type="hidden" id="cart_item" name="cart_item" value='<?= json_encode($item_details) ?>'>
                     <input type="hidden" id="amount" name="amount" value='<?= $amount ?>'>
@@ -236,20 +233,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <div class="copyright">2021 All Rights Reserved | <a href="./">Adudu Shoes</a></div>
 
 
-  <form id="payment-form" method="post" action="<?= site_url() ?>/snap/finish">
+  <form id="payment-form" method="post" action="./snap/finish">
   <!-- <form id="payment-form" method="post" action="<?= site_url() ?>/transaction"> -->
   <!-- <form id="payment-form" method="post" action="./transaction"> -->
     <input type="hidden" name="result_type" id="result-type" value=""></div>
     <input type="hidden" id="userid" name="userid" value='<?= $u['id_user'] ?>'>
     <input type="hidden" name="result_data" id="result-data" value=""></div>
   </form>
-  <script src="../../js/jquery.min.js"></script>
+  <!-- <script src="../../js/jquery.min.js"></script> -->
   <script src="../../js/popper.min.js"></script>
   <script src="../../js/bootstrap.bundle.min.js"></script>
   <script src="../../js/jquery-3.0.0.min.js"></script>
-  <script src="../../js/plugin.js"></script>
+  <!-- <script src="../../js/plugin.js"></script> -->
   <script src="../../js/jquery.mCustomScrollbar.concat.min.js"></script>
-  <script src="../../js/custom.js"></script>
+  <!-- <script src="../../js/custom.js"></script> -->
   <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
   <script>
     $(document).ready(function() {
@@ -285,7 +282,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <script type="text/javascript">
     $('#pay-button').click(function(event) {
       event.preventDefault();
-      $(this).attr("disabled", "disabled");
 
       var cart_item = $("#cart_item").val();
       var amount = $("#amount").val();
@@ -293,7 +289,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
       $.ajax({
         method: 'POST',
-        url: '<?= site_url() ?>/snap/token',
+        url: './snap/token',
         data: {
           cart_item: cart_item,
           amount: amount,

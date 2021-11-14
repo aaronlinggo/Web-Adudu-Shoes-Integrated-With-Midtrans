@@ -87,8 +87,10 @@ class Transaction extends CI_Controller {
 
 		$response = $this->veritrans->status($order_id);
 		$transaction_status = $response->transaction_status;
+		$status_code = $response->status_code;
+		$status_message = $response->status_message;
 
-		$update = $conn->query("update payment set transaction_status = '$transaction_status' where order_id='$order_id'");
+		$update = $conn->query("update payment set transaction_status = '$transaction_status', status_code = '$status_code', status_message = '$status_message' where order_id='$order_id'");
 
 		if ($transaction_status == "settlement"){
 			$stmt = $conn->prepare("SELECT id FROM payment WHERE order_id='$order_id'");

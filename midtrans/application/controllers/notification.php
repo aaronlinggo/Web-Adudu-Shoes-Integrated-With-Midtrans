@@ -22,7 +22,7 @@ class Notification extends CI_Controller {
 	public function __construct()
     {
         parent::__construct();
-        $params = array('server_key' => 'your_server_key', 'production' => false);
+        $params = array('server_key' => 'SB-Mid-server-sJ6sUsMDGblgf6YmhU1pSx0-', 'production' => false);
 		$this->load->library('veritrans');
 		$this->veritrans->config($params);
 		$this->load->helper('url');
@@ -33,13 +33,23 @@ class Notification extends CI_Controller {
 	{
 		echo 'test notification handler';
 		$json_result = file_get_contents('php://input');
-		$result = json_decode($json_result);
+		$result = json_decode($json_result, true);
 
-		if($result){
-		$notif = $this->veritrans->status($result->order_id);
+		$order_id = $result['order_id'];
+
+		$data = [
+			'status_code' => $result['status_code']
+		];
+
+		if ($result['status_code'] == 200){
+			$this->db->update('payment', $data, array('order_id'=>$order_id));
 		}
 
-		error_log(print_r($result,TRUE));
+		// if($result){
+		// $notif = $this->veritrans->status($result->order_id);
+		// }
+
+		// error_log(print_r($result,TRUE));
 
 		//notification handler sample
 

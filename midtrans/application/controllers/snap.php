@@ -53,7 +53,7 @@ class Snap extends CI_Controller {
 		$item_details = array ();
 		foreach($cart_item as $key => $value){
 			$item1_details = array(
-				'id' => $value['id'],
+				'id' => ($key+1),
 				'price' => (int)$value['price'],
 				'quantity' => (int)$value['quantity'],
 				'name' => $value['name']
@@ -166,15 +166,16 @@ class Snap extends CI_Controller {
 		// 	'biller_code' => $biller_code,
 		// 	'bca_va_number' => $bca_va_number,
 		// ];
-		$host = 'localhost';
-		$user = 'root';
-		$password = '';
-		$database = 'db_adudu';
-		$port = '3306';
-		$conn = new mysqli($host, $user, $password, $database);
-		if ($conn->connect_errno) {
-			die("gagal connect : " . $conn->connect_error);
-		}
+		// $host = 'localhost';
+		// $user = 'root';
+		// $password = '';
+		// $database = 'db_adudu';
+		// $port = '3306';
+		// $conn = new mysqli($host, $user, $password, $database);
+		// if ($conn->connect_errno) {
+		// 	die("gagal connect : " . $conn->connect_error);
+		// }
+		require_once("../controller/connection.php");
 		$stmt = $conn->prepare("INSERT INTO payment(status_code, status_message, transaction_id, order_id, gross_amount, payment_type, transaction_time, transaction_status, bank, va_number, fraud_status, pdf_url, finish_redirect_url, bill_key, biller_code) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 		$stmt->bind_param("sssssssssssssss", $result->status_code, $result->status_message, $result->transaction_id, $result->order_id, $result->gross_amount, $result->payment_type, $result->transaction_time, $result->transaction_status, $bank, $va_number, $result->fraud_status, $result->pdf_url, $result->finish_redirect_url, $bill_key, $biller_code);
 		$return = $stmt->execute();
