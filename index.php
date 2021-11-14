@@ -18,50 +18,38 @@
 			<?php require_once("./section/nav_section.php") ?>
 			<div class="banner_section">
 				<div class="container-fluid">
-					<section class="slide-wrapper">
-						<div class="container-fluid">
-							<div id="myCarousel" class="carousel slide" data-ride="carousel">
-								<div class="carousel-indicators">
-									<div data-target="#myCarousel" data-slide-to="0" class="active"></div>
+					<div class="container-fluid">
+						<div class="carousel-inner flex flex-wrap">
+							<div class="col-sm-1 fullwidth"></div>
+							<div class="col-sm-6">
+								<div class="banner_taital">
+									<h1 class="banner_text">New Shoes Model</h1>
+									<h1 class="mens_text">
+										<?php
+											$stmt = $conn -> prepare("SELECT * FROM sepatu ORDER BY id_sepatu DESC LIMIT 1");
+											$stmt -> execute();
+											$lastShoes = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
+										?>
+										<strong><?= $lastShoes[0]['nama_sepatu'] ?></strong>
+									</h1>
+									<?php
+										$subdesc = $lastShoes[0]['sub_desc'];
+									?>
+									<p class="lorem_text"><?= $subdesc ?></p>
+									<button class="buy_bt">Buy Now</button>
+									<button class="more_bt">See More</button>
 								</div>
-								<div class="carousel-inner">
-									<div class="carousel-item active">
-										<div class="row">
-											<div class="col-sm-1 fullwidth">
-											</div>
-											<div class="col-sm-6">
-												<div class="banner_taital">
-													<h1 class="banner_text">New Shoes Model</h1>
-													<h1 class="mens_text">
-														<?php
-															$stmt = $conn -> prepare("SELECT * FROM sepatu ORDER BY id_sepatu DESC LIMIT 1");
-															$stmt -> execute();
-															$lastShoes = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
-														?>
-														<strong><?= $lastShoes[0]['nama_sepatu'] ?></strong>
-													</h1>
-													<?php
-														$subdesc = $lastShoes[0]['sub_desc'];
-													?>
-													<p class="lorem_text"><?= $subdesc ?></p>
-													<button class="buy_bt">Buy Now</button>
-													<button class="more_bt">See More</button>
-												</div>
-											</div>
-											<div class="col-sm-5">
-												<div class="shoes_img">
-													<?php
-														$lokasi = "./admin/" . $lastShoes[0]['link_gambarsepatu'];
-													?>
-													<img src="<?= $lokasi ?>" style="z-index: -1; width: ;">
-												</div>
-											</div>
-										</div>
-									</div>
+							</div>
+							<div class="col-sm-5">
+								<div class="shoes_img">
+									<?php
+										$lokasi = "./admin/" . $lastShoes[0]['link_gambarsepatu'];
+									?>
+									<img src="<?= $lokasi ?>" style="z-index: -1; width: ;">
 								</div>
 							</div>
 						</div>
-					</section>
+					</div>
 				</div>
 			</div>
 		</div>

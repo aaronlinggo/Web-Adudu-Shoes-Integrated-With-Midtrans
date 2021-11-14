@@ -131,11 +131,6 @@ p {
     margin: 20px;
 }
 
-img {
-    max-width: 100%;
-    height: auto;
-}
-
 blockquote {
     margin: 20px 0 20px;
     padding: 30px;
@@ -211,6 +206,26 @@ button {
     justify-content: space-evenly;
 }
 
+/* NAVBAR */
+.navbar-light .navbar-nav .nav-link {
+    color: #000;
+    font-size: 16pt;
+}
+
+.navbar-light .navbar-nav .nav-link:focus,
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #db5660;
+}
+
+.navbar-light .navbar-toggler {
+    background: transparent;
+    color: transparent;
+}
+
+.bg-light {
+    background-color: transparent !important;
+}
+
 /* MY STYLE */
 .fullsize {
     width: 100%;
@@ -225,54 +240,30 @@ button {
     height: 100%;
 }
 
-.badge {
-    font-weight: 500;
-}
-
-.layout_padding {
-    padding: 80px 0;
-}
-
 .header_section {
-    float: left;
     background-color: #ecedef;
     background-repeat: no-repeat;
     background-size: 100%;
-    padding: 20px 0px;
+    padding: 15px 0px;
     width: 100%;
     height: auto;
 }
 
-.bg-light {
-    background-color: transparent !important;
-}
-
-.top-logo {
-    padding-top: 2px;
-    max-width: 85%;
-}
-
-.navbar-light .navbar-nav .nav-link {
-    color: #000;
-    font-size: 16pt;
-}
-
-.navbar-light .navbar-nav .nav-link:focus,
-.navbar-light .navbar-nav .nav-link:hover {
-    color: #db5660;
-}
-
-.navbar-expand-lg .navbar-nav .nav-link {
-    padding-left: 1.6rem;
-    padding-right: 0.9rem;
+.nav-android-menu.last {
+    display: none;
 }
 
 .last {
     padding-left: 30px !important;
 }
 
-.role-out {
-    margin-left: 15px;
+.badge {
+    color: #000!important;
+    line-height: normal;
+}
+
+.layout_padding {
+    padding: 80px 0;
 }
 
 .banner_taital {

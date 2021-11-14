@@ -1,77 +1,51 @@
 <div class="container">
-    <div class="row flex-row">
-        <div class="col-sm-3 flex flex-vstart">
-            <div class="logo">
-                <a href="./index.php">
-                    <img class="top-logo" src="./images/logo.png">
-                </a>
-            </div>
-        </div>
-        <div class="col-sm-9">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light flex flex-hend fullheight">
+    <div class="row flex-row" style="position: relative;">
+        <div class="col-sm-12">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light flex flex-hend flex-between fullheight">
+                <div class="logo">
+                    <a href="./index.php" class="flex flex-hstart">
+                        <img class="top-logo" src="./images/logo_2.png">
+                    </a>
+                </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse flex-between" id="navbarNavAltMarkup">
-                    <div class="navbar-nav flex-vcenter" style="align-items: center;">
-                        <a class="nav-item nav-link" href="./index.php">Home</a>
-                        <a class="nav-item nav-link" href="./collection.php">Collection</a>
-                        <a class="nav-item nav-link" href="./shoes.php">Shoes</a>
-                        <div id="search_icon" class="nav-item nav-link last flex-center" style="cursor: pointer; position: relative;">
-                            <img id="search_img" src="./images/search_icon_black.png">
-                            <div id="search_area" style="position: absolute; top: 80px; left: 30px; display: none;" class="flex">
-                                <!-- <form action="" method=""> -->
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav flex flex-row flex-between flex-vcenter fullwidth">
+                        <div class="medium-scale flex flex-between">
+                            <a class="nav-item nav-link nav-android-menu" href="./index.php">Home</a>
+                            <a class="nav-item nav-link nav-android-menu" href="./collection.php">Collection</a>
+                            <a class="nav-item nav-link nav-android-menu" href="./shoes.php">Shoes</a>
+                            <a class="nav-item nav-link nav-android-menu last" href="#">Search</a>
+                            <a class="nav-item nav-link nav-android-menu last" href='<?= (!isset($_SESSION['active'])) ? "./login.php" : "./midtrans/index.php/snap" ?>'>Cart</a>
+                            <div id="search_icon" class="nav-item nav-link last flex-center" style="cursor: pointer; position: relative;">
+                                <img id="search_img" src="./images/search_icon_black.png">
+                                <div id="search_area" style="position: absolute; top: 80px; left: 30px; display: none;" class="flex">
                                     <input type="text" name="search_bar" id="search_bar">
                                     <button name="search_btn" id="search_btn" style="margin-left: 10px;">Search</button>
-                                <!-- </form> -->
+                                </div>
                             </div>
+                            <a class="nav-item nav-link last flex-center" href='<?= (!isset($_SESSION['active'])) ? "./login.php" : "./midtrans/index.php/snap" ?>' style="position: relative;">
+                                <img src="./images/shop_icon_black_2.png">
+                            </a>
                         </div>
-                        <!-- <a class="nav-item nav-link last flex-center" href="#">
-                            <img src="./images/search_icon_black.png">
-                        </a> -->
-                        <a class="nav-item nav-link last flex-center" href='
-                        <?php
-                            if(!isset($_SESSION['active'])) {
-                                echo "./login.php";
-                            } else {
-                                echo "./midtrans/index.php/snap";
-                            }
-                        ?>
-                        '>
-                        <img src="./images/shop_icon_black.png">
-                        <?php
-                            if(isset($_SESSION['active'])) {
-                            ?>
-                                <span class="top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                    <?php
-                                        $id_user = $_SESSION['active'];
-                                        $stmt = $conn -> prepare("SELECT count(*) as 'total' FROM cart_item WHERE user_id = $id_user AND active = 1");
-                                        $stmt -> execute();
-                                        $cart = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
-                                        echo $cart[0]['total'];
-                                    ?>
-                                </span>
+                        <div class="medium-scale flex flex-vcenter flex-between">
                             <?php
-                            }
-                        ?>
-                        </a>
-                    </div>
-                    <div class="navbar-nav flex-vcenter" style="align-items: center;">
-                        <?php
-                            if(!isset($_SESSION['active'])) {
+                                if(!isset($_SESSION['active'])) {
+                                ?>
+                                    <a class="role-out btn btn-outline-success fullheight" href="./login.php">Sign In</a>
+                                    <a class="role-out btn btn-outline-danger fullheight" href="./register.php">Sign Up</a>
+                                <?php
+                                } else {
+                                ?>
+                                    <a class="nav-item nav-link profile flex flex-hend" href="#">
+                                        <img src="./images/user_24px_black.png">
+                                    </a>
+                                    <a class="btn btn-outline-danger fullheight" href="./logout.php">Sign Out</a>
+                                <?php
+                                }
                             ?>
-                                <a class="role-out btn btn-outline-success fullheight" href="./login.php">Sign In</a>
-                                <a class="role-out btn btn-outline-danger fullheight" href="./register.php">Sign Up</a>
-                            <?php
-                            } else {
-                            ?>
-                                <a class="nav-item nav-link" href="#">
-                                    <img src="./images/user_24px_black.png">
-                                </a>
-                                <a class="btn btn-outline-danger fullheight" href="./logout.php">Sign Out</a>
-                            <?php
-                            }
-                        ?>
+                        </div>
                     </div>
                 </div>
             </nav>
