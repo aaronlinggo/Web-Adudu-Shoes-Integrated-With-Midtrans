@@ -13,9 +13,9 @@ $stmt = $conn->prepare("SELECT * FROM users WHERE id_user=$id_user");
 $stmt->execute();
 $admin = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
-$stmt = $conn->prepare("SELECT * FROM users");
+$stmt = $conn->prepare("SELECT * FROM payment where transaction_status = 'settlement'");
 $stmt->execute();
-$users = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+$payment = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,7 +52,7 @@ $users = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                         <hr>
                         <ul class="nav nav-pills flex-column mb-auto" style="width: 200px;">
                             <li>
-                                <a href="./index.php" class="nav-link link-dark active">
+                                <a href="./index.php" class="nav-link link-dark">
                                     <svg class="bi me-2" width="16" height="16">
                                         <use xlink:href="#speedometer2" />
                                     </svg>
@@ -60,7 +60,7 @@ $users = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link link-dark">
+                                <a href="./orders.php" class="nav-link link-dark active">
                                     <svg class="bi me-2" width="16" height="16">
                                         <use xlink:href="#table" />
                                     </svg>
@@ -118,35 +118,44 @@ $users = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
             <div class="navbar-menu-wrapper">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">List Users</h4>
+                        <h4 class="card-title">List Order</h4>
+                        <form action="" method="post" class="dashboard_btn">
+                            <label for="searchID">Order ID : </label>
+                            <input type="text" name="searchID" id="searchID">
+                            <button class='btn btn-secondary' style='cursor: default; margin:0; background-color: #d4e1ed;'>Search</button>
+                        </form>
                         <div class="table-responsive" id="tableUpdate">
                             <table class="table table-hover" style="text-align: center;">
                                 <thead>
                                     <tr>
-                                        <th>ID USER</th>
-                                        <th>Username</th>
-                                        <th>Email</th>
-                                        <th>Nama</th>
-                                        <th>Tanggal Lahir</th>
-                                        <th>Roles</th>
+                                        <th>No.</th>
+                                        <th>Order ID</th>
+                                        <th>Price</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody class="dashboard_btn">
-                                    <?php foreach ($users as $key => $value) { ?>
+                                    <?php foreach ($payment as $key => $value) { ?>
                                         <tr>
-                                            <td><?= $value['id_user'] ?></td>
-                                            <td><?= $value['username'] ?></td>
-                                            <td><?= $value['email'] ?></td>
-                                            <td><?= $value['nama'] ?></td>
-                                            <td><?= $value['tanggal_lahir'] ?></td>
+                                            <td><?= ($key+1) ?></td>
+                                            <td><?= $value['order_id'] ?></td>
+                                            <td><?= "Rp. " . number_format($value['gross_amount'], 0, ',', '.') . ",-" ?></td>
                                             <td>
-                                                <?php
-                                                if ($value['roles'] == "admin") {
-                                                    echo "<button class='btn btn-danger' style='cursor: default; margin:0; background-color: #F95F53;'>admin</button>";
-                                                } else {
-                                                    echo "<button class='btn btn-success' style='cursor: default; margin:0; background-color: #34B1AA;'>Customer</button>";
-                                                }
+                                                <?php 
+                                                    if ($value['transaction_status'] == "settlement"){
+                                                        echo "<button class='btn btn-success' style='cursor: default; margin:0; background-color: #34B1AA;'>Success</button>";
+                                                    }
+                                                    else if ($value['transaction_status'] == "pending"){
+                                                        echo "<button class='btn btn-secondary' style='cursor: default; margin:0; background-color: #d4e1ed;'>Pending</button>";
+                                                    }
+                                                    else{
+                                                        echo "<button class='btn btn-danger' style='cursor: default; margin:0; background-color: #F95F53;'>Expired</button>";
+                                                    }
                                                 ?>
+                                            </td>
+                                            <td>
+                                                <button class='btn btn-success' style='cursor: default; margin:0; background-color: #34B1AA;'>Details</button>
                                             </td>
                                         </tr>
                                     <?php } ?>
