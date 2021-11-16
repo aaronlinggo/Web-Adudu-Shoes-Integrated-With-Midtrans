@@ -126,9 +126,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <li>
                                 <a href="./orders.php" class="nav-link link-dark">
                                     <svg class="bi me-2" width="16" height="16">
-                                        <use xlink:href="#table" />
+                                        <use xlink:href="#cart" />
                                     </svg>
-                                    Orders
+                                    Transaction
                                 </a>
                             </li>
                             <li>

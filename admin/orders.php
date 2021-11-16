@@ -62,9 +62,9 @@ $payment = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                             <li>
                                 <a href="./orders.php" class="nav-link link-dark active">
                                     <svg class="bi me-2" width="16" height="16">
-                                        <use xlink:href="#table" />
+                                        <use xlink:href="#cart" />
                                     </svg>
-                                    Orders
+                                    Transaction
                                 </a>
                             </li>
                             <li>
@@ -155,7 +155,7 @@ $payment = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                                                 ?>
                                             </td>
                                             <td>
-                                                <button class='btn btn-success' style='cursor: default; margin:0; background-color: #34B1AA;'>Details</button>
+                                                <button class='btn btn-success' style='margin:0; background-color: #34B1AA;'>Details</button>
                                             </td>
                                         </tr>
                                     <?php } ?>
