@@ -124,7 +124,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link link-dark">
+                                <a href="./orders.php" class="nav-link link-dark">
                                     <svg class="bi me-2" width="16" height="16">
                                         <use xlink:href="#table" />
                                     </svg>
