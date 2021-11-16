@@ -10,7 +10,7 @@ if (!isset($_SESSION['active'])) {
 }
 $stmt = $conn->prepare("SELECT * FROM users WHERE id_user=$id_user");
 $stmt->execute();
-$admin = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+$admin = $stmt->get_result()->fetch_assoc();
 
 $stmt = $conn->prepare("SELECT * FROM sepatu");
 $stmt->execute();
@@ -157,7 +157,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="navbar-menu-wrapper d-flex align-items-top justify-content-between">
                 <div class="navbar-nav">
                     <div class="nav-item font-weight-semibold d-none d-lg-block ms-0">
-                        <h1 class="welcome-text">Good Morning, <span class="text-black fw-bold">Aaron Linggo Satria</span></h1>
+                        <h1 class="welcome-text">Good Morning, <span class="text-black fw-bold"><?= $admin['nama'] ?></span></h1>
                         <h3 class="welcome-sub-text">Your performance summary this week </h3>
                     </div>
                 </div>

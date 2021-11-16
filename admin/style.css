@@ -147,3 +147,6 @@
     flex: 1 1 auto;
     padding: 0.9375rem;
 }
+a:hover {
+    color: inherit;
+}
