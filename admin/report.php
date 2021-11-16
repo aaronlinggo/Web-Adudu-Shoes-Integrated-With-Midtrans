@@ -7,11 +7,13 @@ if (!isset($_SESSION['active'])) {
     header('Location: ../index.php');
 } else {
     $id_user = $_SESSION['active'];
+    $stmt = $conn->prepare("SELECT * FROM users WHERE id_user=$id_user");
+    $stmt->execute();
+    $admin = $stmt->get_result()->fetch_assoc();
+    if ($admin['roles'] != "admin"){
+        header('Location: ../index.php');
+    }
 }
-
-$stmt = $conn->prepare("SELECT * FROM users WHERE id_user=$id_user");
-$stmt->execute();
-$admin = $stmt->get_result()->fetch_assoc();
 
 $stmt = $conn->prepare("SELECT * FROM users WHERE roles='Customer'");
 $stmt->execute();
