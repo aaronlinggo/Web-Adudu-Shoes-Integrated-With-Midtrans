@@ -118,7 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <li>
                                 <a href="./index.php" class="nav-link link-dark">
                                     <svg class="bi me-2" width="16" height="16">
-                                        <use xlink:href="#speedometer2" />
+                                        <use xlink:href="#dashboard_svg" />
                                     </svg>
                                     Dashboard
                                 </a>
@@ -140,7 +140,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link link-dark">
+                                <a href="./report.php" class="nav-link link-dark">
                                     <svg class="bi me-2" width="16" height="16">
                                         <use xlink:href="#chat-quote-fill" />
                                     </svg>

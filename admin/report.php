@@ -54,13 +54,13 @@ $payment = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                             <li>
                                 <a href="./index.php" class="nav-link link-dark">
                                     <svg class="bi me-2" width="16" height="16">
-                                        <use xlink:href="#speedometer2" />
+                                        <use xlink:href="#dashboard_svg" />
                                     </svg>
                                     Dashboard
                                 </a>
                             </li>
                             <li>
-                                <a href="./orders.php" class="nav-link link-dark active">
+                                <a href="./orders.php" class="nav-link link-dark">
                                     <svg class="bi me-2" width="16" height="16">
                                         <use xlink:href="#table" />
                                     </svg>
@@ -76,7 +76,7 @@ $payment = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link link-dark">
+                                <a href="./report.php" class="nav-link link-dark active">
                                     <svg class="bi me-2" width="16" height="16">
                                         <use xlink:href="#chat-quote-fill" />
                                     </svg>

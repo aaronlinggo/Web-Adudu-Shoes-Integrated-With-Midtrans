@@ -16,6 +16,19 @@ $admin = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 $stmt = $conn->prepare("SELECT * FROM users");
 $stmt->execute();
 $users = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
+$stmt = $conn->prepare("SELECT * FROM users where roles = 'Customer'");
+$stmt->execute();
+$cust = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
+
+$stmt = $conn->prepare("SELECT * FROM sepatu");
+$stmt->execute();
+$sepatu = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
+$stmt = $conn->prepare("SELECT * FROM payment");
+$stmt->execute();
+$payment = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +49,6 @@ $users = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     <link rel="stylesheet" href="../css/owl.carousel.min.css">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
-
 </head>
 
 <body class="main-layout" style="background-color: #f4f5f7;">
@@ -54,7 +66,7 @@ $users = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                             <li>
                                 <a href="./index.php" class="nav-link link-dark active">
                                     <svg class="bi me-2" width="16" height="16">
-                                        <use xlink:href="#speedometer2" />
+                                        <use xlink:href="#dashboard_svg" />
                                     </svg>
                                     Dashboard
                                 </a>
@@ -76,7 +88,7 @@ $users = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link link-dark">
+                                <a href="./report.php" class="nav-link link-dark">
                                     <svg class="bi me-2" width="16" height="16">
                                         <use xlink:href="#chat-quote-fill" />
                                     </svg>
@@ -116,6 +128,57 @@ $users = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                 </div>
             </div>
             <div class="navbar-menu-wrapper">
+                <div class="d-flex">
+                    <div class="card" style="margin-right: 2vh; width: 33%;">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <div class="card-title">Customer</div>
+                                    <div class="welcome-text"><?= count($cust) ?></div>
+
+                                </div>
+                                <div>
+                                    <svg class="bi me-2" width="60" height="60">
+                                        <use xlink:href="#customer" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card" style="margin-right: 2vh; width: 34%">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <div class="card-title">Products</div>
+                                    <div class="welcome-text"><?= count($sepatu) ?></div>
+
+                                </div>
+                                <div>
+                                    <svg class="bi me-2" width="60" height="60">
+                                        <use xlink:href="#grid" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card" style="width: 33%">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <div class="card-title">Transaction</div>
+                                    <div class="welcome-text"><?= count($payment) ?></div>
+
+                                </div>
+                                <div>
+                                    <svg class="bi me-2" width="60" height="60">
+                                        <use xlink:href="#cart" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">List Users</h4>
