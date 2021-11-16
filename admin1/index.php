@@ -39,101 +39,124 @@ $users = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
 </head>
 
-<body class="main-layout">
+<body class="main-layout" style="background-color: #f4f5f7;">
+    <?php require_once("./section/svg_section.php") ?>
     <div class="row">
-        <div class="col-2">
-            <div class="header_section" style="min-height: 100vh;">
+        <div class="col-lg-2">
+            <div class="header_section" style="min-height: 100vh; background-color: transparent;">
                 <div class="container">
-                    <nav class="navbar navbar-expand-lg navbar-light bg-light flex-column flex-hend flex-between fullheight">
-                        <div class="logo">
-                            <a href="../index.php" class="flex flex-hstart">
-                                <img class="top-logo" src="../images/logo_2.png">
-                            </a>
-                        </div>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidebar" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="sidebar">
-                            <div class="navbar-nav flex flex-column flex-between flex-vcenter fullwidth">
-                                <div class="medium-scale flex flex-column">
-                                    <a class="nav-item nav-link nav-android-menu" href="./index.php">Dashboard</a>
-                                    <a class="nav-item nav-link nav-android-menu" href="#">Products</a>
-                                    <a class="nav-item nav-link nav-android-menu" href="#">Report</a>
-                                </div>
-                                <div class="medium-scale flex flex-vcenter flex-column">
-                                    <a class="nav-item nav-link profile flex flex-hend" href="#">
-                                        <img src="../images/user_24px_black.png">
-                                    </a>
-                                    <a class="btn btn-outline-danger fullheight" href="../logout.php">Sign Out</a>
-                                </div>
-                            </div>
-                        </div>
-                    </nav>
+                    <div class="d-flex flex-column flex-shrink-0 p-3 bg-light">
+                        <a href="./index.php" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                            <span class="fs-4"><img src="../images/logo.png" alt="" style="width: 8vw;"></span>
+                        </a>
+                        <hr>
+                        <ul class="nav nav-pills flex-column mb-auto" style="width: 200px;">
+                            <li>
+                                <a href="./index.php" class="nav-link link-dark active">
+                                    <svg class="bi me-2" width="16" height="16">
+                                        <use xlink:href="#speedometer2" />
+                                    </svg>
+                                    Dashboard
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link link-dark">
+                                    <svg class="bi me-2" width="16" height="16">
+                                        <use xlink:href="#table" />
+                                    </svg>
+                                    Orders
+                                </a>
+                            </li>
+                            <li>
+                                <a href="./product.php" class="nav-link link-dark">
+                                    <svg class="bi me-2" width="16" height="16">
+                                        <use xlink:href="#grid" />
+                                    </svg>
+                                    Products
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link link-dark">
+                                    <svg class="bi me-2" width="16" height="16">
+                                        <use xlink:href="#chat-quote-fill" />
+                                    </svg>
+                                    Report
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-10">
-            <div class="main-panel">
-                <div class="content-wrapper">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="home-tab">
-                                <meta charset="utf-8">
-                                <div class="tab-content tab-content-basic">
-                                    <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview">
-                                        <div class="row">
-                                            <div class="col-lg-12 grid-margin stretch-card">
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <h4 class="card-title">List Users</h4>
-                                                        <div class="table-responsive" id="tableUpdate">
-                                                            <table class="table table-hover" style="text-align: center;">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>ID USER</th>
-                                                                        <th>Username</th>
-                                                                        <th>Email</th>
-                                                                        <th>Nama</th>
-                                                                        <th>Tanggal Lahir</th>
-                                                                        <th>Roles</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <?php foreach ($users as $key => $value) { ?>
-                                                                        <tr>
-                                                                            <td><?= $value['id_user'] ?></td>
-                                                                            <td><?= $value['username'] ?></td>
-                                                                            <td><?= $value['email'] ?></td>
-                                                                            <td><?= $value['nama'] ?></td>
-                                                                            <td><?= $value['tanggal_lahir'] ?></td>
-                                                                            <td>
-                                                                                <?php
-                                                                                if ($value['roles'] == "admin") {
-                                                                                    echo "<div class='btn btn-danger' style='cursor: default; margin:0;'>admin</div>";
-                                                                                } else {
-                                                                                    echo "<div class='btn btn-success' style='cursor: default; margin:0;'>Customer<div>";
-                                                                                }
-                                                                                ?>
-                                                                            </td>
-                                                                        </tr>
-                                                                    <?php } ?>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+        <div class="col-lg-10">
+            <div class="navbar-menu-wrapper d-flex align-items-top justify-content-between">
+                <div class="navbar-nav">
+                    <div class="nav-item font-weight-semibold d-none d-lg-block ms-0">
+                        <h1 class="welcome-text">Good Morning, <span class="text-black fw-bold">Aaron Linggo Satria</span></h1>
+                        <h3 class="welcome-sub-text">Your performance summary this week </h3>
+                    </div>
+                </div>
+                <div class="ms-auto d-flex align-items-center">
+                    <div class="nav-item dropdown d-none d-lg-block user-dropdown">
+                        <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img class="img-xs rounded-circle" src="../images/user_24px_black.png" alt="Profile image">
+                        </a>
+                    </div>
+                    <div class="nav-item dropdown d-none d-lg-block user-dropdown">
+                        <a class="nav-link" id="UserDropdown" href="../logout.php" style="display: flex; align-items: center; flex-direction: row;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-power" viewBox="0 0 16 16" style="color: #2a4bc0;">
+                                <path d="M7.5 1v7h1V1h-1z" />
+                                <path d="M3 8.812a4.999 4.999 0 0 1 2.578-4.375l-.485-.874A6 6 0 1 0 11 3.616l-.501.865A5 5 0 1 1 3 8.812z" />
+                            </svg>
+                            <span style="margin-top: 0.5vh;">
+                                Sign Out
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="navbar-menu-wrapper">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">List Users</h4>
+                        <div class="table-responsive" id="tableUpdate">
+                            <table class="table table-hover" style="text-align: center;">
+                                <thead>
+                                    <tr>
+                                        <th>ID USER</th>
+                                        <th>Username</th>
+                                        <th>Email</th>
+                                        <th>Nama</th>
+                                        <th>Tanggal Lahir</th>
+                                        <th>Roles</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="dashboard_btn">
+                                    <?php foreach ($users as $key => $value) { ?>
+                                        <tr>
+                                            <td><?= $value['id_user'] ?></td>
+                                            <td><?= $value['username'] ?></td>
+                                            <td><?= $value['email'] ?></td>
+                                            <td><?= $value['nama'] ?></td>
+                                            <td><?= $value['tanggal_lahir'] ?></td>
+                                            <td>
+                                                <?php
+                                                if ($value['roles'] == "admin") {
+                                                    echo "<button class='btn btn-danger' style='cursor: default; margin:0; background-color: #F95F53;'>admin</button>";
+                                                } else {
+                                                    echo "<button class='btn btn-success' style='cursor: default; margin:0; background-color: #34B1AA;'>Customer</button>";
+                                                }
+                                                ?>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
-    
         </div>
-
     </div>
 
     <script src="../js/jquery.min.js"></script>
