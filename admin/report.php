@@ -13,9 +13,17 @@ $stmt = $conn->prepare("SELECT * FROM users WHERE id_user=$id_user");
 $stmt->execute();
 $admin = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
+$stmt = $conn->prepare("SELECT * FROM users WHERE roles='Customer'");
+$stmt->execute();
+$users = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
 $stmt = $conn->prepare("SELECT * FROM payment where transaction_status = 'settlement'");
 $stmt->execute();
 $payment = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
+$stmt = $conn->prepare("SELECT sum(gross_amount) as 'total' FROM payment where transaction_status = 'settlement'");
+$stmt->execute();
+$amount_total = $stmt->get_result()->fetch_assoc();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,6 +39,7 @@ $payment = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     <link rel="icon" href="../images/logo.png" type="image/png">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="../css/responsive.css">
     <link rel="stylesheet" href="../css/jquery.mCustomScrollbar.min.css">
     <link rel="stylesheet" href="../css/owl.carousel.min.css">
@@ -116,47 +125,68 @@ $payment = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                 </div>
             </div>
             <div class="navbar-menu-wrapper">
+                <div class="d-flex">
+                    <div class="card" style="margin-right: 2vh; width: 50%;">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <div class="card-title">Income</div>
+                                    <div class="welcome-text"><?= "Rp. " . number_format($amount_total['total'], 0, ',', '.') . ",-" ?></div>
+    
+                                </div>
+                                <div>
+                                    <svg class="bi me-2" width="60" height="60">
+                                        <use xlink:href="#wallet" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card" style="width: 50%;">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <div class="card-title">Income</div>
+                                    <div class="welcome-text"><?= "Rp. " . number_format($amount_total['total'], 0, ',', '.') . ",-" ?></div>
+    
+                                </div>
+                                <div>
+                                    <svg class="bi me-2" width="60" height="60">
+                                        <use xlink:href="#wallet" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">List Order</h4>
-                        <form action="" method="post" class="dashboard_btn">
-                            <label for="searchID">Order ID : </label>
-                            <input type="text" name="searchID" id="searchID">
-                            <button class='btn btn-secondary' style='cursor: default; margin:0; background-color: #d4e1ed;'>Search</button>
-                        </form>
+                        <h4 class="card-title">List Report</h4>
                         <div class="table-responsive" id="tableUpdate">
                             <table class="table table-hover" style="text-align: center;">
                                 <thead>
                                     <tr>
                                         <th>No.</th>
-                                        <th>Order ID</th>
-                                        <th>Price</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
+                                        <th>ID User</th>
+                                        <th>Name</th>
+                                        <th>Total Order</th>
+                                        <th>Total Payment</th>
                                     </tr>
                                 </thead>
                                 <tbody class="dashboard_btn">
-                                    <?php foreach ($payment as $key => $value) { ?>
+                                    <?php foreach ($users as $key => $value) {     
+                                    $user_id = $value['id_user'];
+                                    $stmt = $conn->prepare("SELECT count(*) as 'tot', sum(total) as 'totalpay' FROM order_details WHERE status=1 and user_id = $user_id");
+                                    $stmt->execute();
+                                    $orders = $stmt->get_result()->fetch_assoc();
+                                    ?>
                                         <tr>
                                             <td><?= ($key+1) ?></td>
-                                            <td><?= $value['order_id'] ?></td>
-                                            <td><?= "Rp. " . number_format($value['gross_amount'], 0, ',', '.') . ",-" ?></td>
-                                            <td>
-                                                <?php 
-                                                    if ($value['transaction_status'] == "settlement"){
-                                                        echo "<button class='btn btn-success' style='cursor: default; margin:0; background-color: #34B1AA;'>Success</button>";
-                                                    }
-                                                    else if ($value['transaction_status'] == "pending"){
-                                                        echo "<button class='btn btn-secondary' style='cursor: default; margin:0; background-color: #d4e1ed;'>Pending</button>";
-                                                    }
-                                                    else{
-                                                        echo "<button class='btn btn-danger' style='cursor: default; margin:0; background-color: #F95F53;'>Expired</button>";
-                                                    }
-                                                ?>
-                                            </td>
-                                            <td>
-                                                <button class='btn btn-success' style='cursor: default; margin:0; background-color: #34B1AA;'>Details</button>
-                                            </td>
+                                            <td><?= $value['id_user'] ?></td>
+                                            <td><?= $value['nama'] ?></td>
+                                            <td><?= $orders['tot'] ?></td>
+                                            <td><?= "Rp. " . number_format($orders['totalpay'], 0, ',', '.') . ",-" ?></td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>

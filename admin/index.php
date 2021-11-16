@@ -44,6 +44,7 @@ $payment = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     <link rel="icon" href="../images/logo.png" type="image/png">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="../css/responsive.css">
     <link rel="stylesheet" href="../css/jquery.mCustomScrollbar.min.css">
     <link rel="stylesheet" href="../css/owl.carousel.min.css">
@@ -186,7 +187,7 @@ $payment = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                             <table class="table table-hover" style="text-align: center;">
                                 <thead>
                                     <tr>
-                                        <th>ID USER</th>
+                                        <th>ID User</th>
                                         <th>Username</th>
                                         <th>Email</th>
                                         <th>Nama</th>
