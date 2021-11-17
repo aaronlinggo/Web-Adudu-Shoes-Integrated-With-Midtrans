@@ -38,7 +38,7 @@
                                 <?php
                                 } else {
                                 ?>
-                                    <a class="nav-item nav-link profile flex flex-hend" href="#">
+                                    <a class="nav-item nav-link profile flex flex-hend" href="./profile.php">
                                         <img src="./images/user_24px_black.png">
                                     </a>
                                     <a class="btn btn-outline-danger fullheight" href="./logout.php">Sign Out</a>

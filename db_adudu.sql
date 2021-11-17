@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 12, 2021 at 05:14 PM
+-- Generation Time: Nov 17, 2021 at 01:49 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -53,7 +53,19 @@ INSERT INTO `cart_item` (`id_cart`, `user_id`, `sepatu_id`, `qty`, `price`, `act
 (9, 4, 57, 1, 2200000, 0),
 (10, 4, 56, 1, 850000, 0),
 (11, 4, 59, 1, 2560000, 0),
-(12, 4, 59, 1, 2560000, 0);
+(12, 4, 59, 1, 2560000, 0),
+(13, 5, 59, 1, 2560000, 1),
+(14, 4, 59, 1, 2560000, 0),
+(15, 4, 55, 1, 2800000, 0),
+(16, 4, 60, 1, 1400000, 0),
+(17, 4, 56, 1, 850000, 0),
+(18, 4, 53, 1, 900000, 0),
+(19, 4, 52, 1, 1100000, 0),
+(20, 4, 49, 1, 1300000, 0),
+(21, 4, 57, 1, 2200000, 0),
+(22, 4, 59, 1, 2560000, 0),
+(23, 4, 56, 1, 850000, 0),
+(24, 4, 55, 1, 2800000, 0);
 
 -- --------------------------------------------------------
 
@@ -78,7 +90,17 @@ INSERT INTO `order_details` (`id_order_details`, `user_id`, `payment_id`, `total
 (1, 4, 1, 5410000, 0),
 (2, 4, 2, 3050000, 0),
 (3, 4, 3, 2560000, 0),
-(4, 4, 4, 2560000, 1);
+(4, 4, 4, 2560000, 1),
+(5, 4, 5, 2560000, 1),
+(6, 4, 6, 2800000, 0),
+(7, 4, 7, 1400000, 1),
+(8, 4, 8, 850000, 0),
+(9, 4, 9, 900000, 0),
+(10, 4, 10, 1100000, 0),
+(11, 4, 11, 1300000, 0),
+(12, 4, 12, 2200000, 0),
+(13, 4, 13, 3410000, 1),
+(14, 4, 14, 2800000, 1);
 
 -- --------------------------------------------------------
 
@@ -106,7 +128,18 @@ INSERT INTO `order_items` (`id_order_item`, `order_id`, `sepatu_id`, `qty`) VALU
 (5, 2, 57, 1),
 (6, 2, 56, 1),
 (7, 3, 59, 1),
-(8, 4, 59, 1);
+(8, 4, 59, 1),
+(9, 5, 59, 1),
+(10, 6, 55, 1),
+(11, 7, 60, 1),
+(12, 8, 56, 1),
+(13, 9, 53, 1),
+(14, 10, 52, 1),
+(15, 11, 49, 1),
+(16, 12, 57, 1),
+(17, 13, 59, 1),
+(18, 13, 56, 1),
+(19, 14, 55, 1);
 
 -- --------------------------------------------------------
 
@@ -139,10 +172,20 @@ CREATE TABLE `payment` (
 --
 
 INSERT INTO `payment` (`id`, `status_code`, `status_message`, `transaction_id`, `order_id`, `gross_amount`, `payment_type`, `transaction_time`, `transaction_status`, `bank`, `va_number`, `fraud_status`, `pdf_url`, `finish_redirect_url`, `bill_key`, `biller_code`) VALUES
-(1, '201', 'Transaksi sedang diproses', '63659a30-fe06-4c28-87ae-418857ce6e15', '1903503215', '5410000.00', 'bank_transfer', '2021-11-12 22:30:42', 'expire', 'bca', '66703039637', 'accept', 'https://app.sandbox.midtrans.com/snap/v1/transactions/f089a767-3034-413c-9c5e-2533d66eec9b/pdf', 'http://example.com?order_id=1903503215&status_code=201&transaction_status=pending', '-', '-'),
-(2, '201', 'Transaksi sedang diproses', '004a0aaa-c63a-4fdb-82cf-542850a213fa', '2092435340', '3050000.00', 'bank_transfer', '2021-11-12 22:34:57', 'expire', 'bca', '66703808953', 'accept', 'https://app.sandbox.midtrans.com/snap/v1/transactions/77001dac-7a4b-4d8e-8291-b759d210ccdb/pdf', 'http://example.com?order_id=2092435340&status_code=201&transaction_status=pending', '-', '-'),
-(3, '201', 'Transaksi sedang diproses', '8ef4d4d1-7a42-476a-bbba-9094238e4864', '1923273917', '2560000.00', 'bank_transfer', '2021-11-12 22:49:32', 'expire', 'bca', '66703812789', 'accept', 'https://app.sandbox.midtrans.com/snap/v1/transactions/762aa9ff-182d-45e0-a549-b6b3de3e646e/pdf', 'http://example.com?order_id=1923273917&status_code=201&transaction_status=pending', '-', '-'),
-(4, '201', 'Transaksi sedang diproses', '7a72e460-4c6a-47a8-9c94-642694c8b5ae', '1346175814', '2560000.00', 'bank_transfer', '2021-11-12 22:53:22', 'settlement', 'bca', '66703317720', 'accept', 'https://app.sandbox.midtrans.com/snap/v1/transactions/90e60a58-bb00-4271-8b5d-cfae13f392d1/pdf', 'http://example.com?order_id=1346175814&status_code=201&transaction_status=pending', '-', '-');
+(1, '407', 'Success, transaction is found', '63659a30-fe06-4c28-87ae-418857ce6e15', '1903503215', '5410000.00', 'bank_transfer', '2021-11-12 22:30:42', 'expire', 'bca', '66703039637', 'accept', 'https://app.sandbox.midtrans.com/snap/v1/transactions/f089a767-3034-413c-9c5e-2533d66eec9b/pdf', 'http://example.com?order_id=1903503215&status_code=201&transaction_status=pending', '-', '-'),
+(2, '407', 'Success, transaction is found', '004a0aaa-c63a-4fdb-82cf-542850a213fa', '2092435340', '3050000.00', 'bank_transfer', '2021-11-12 22:34:57', 'expire', 'bca', '66703808953', 'accept', 'https://app.sandbox.midtrans.com/snap/v1/transactions/77001dac-7a4b-4d8e-8291-b759d210ccdb/pdf', 'http://example.com?order_id=2092435340&status_code=201&transaction_status=pending', '-', '-'),
+(3, '407', 'Success, transaction is found', '8ef4d4d1-7a42-476a-bbba-9094238e4864', '1923273917', '2560000.00', 'bank_transfer', '2021-11-12 22:49:32', 'expire', 'bca', '66703812789', 'accept', 'https://app.sandbox.midtrans.com/snap/v1/transactions/762aa9ff-182d-45e0-a549-b6b3de3e646e/pdf', 'http://example.com?order_id=1923273917&status_code=201&transaction_status=pending', '-', '-'),
+(4, '200', 'Success, transaction is found', '7a72e460-4c6a-47a8-9c94-642694c8b5ae', '1346175814', '2560000.00', 'bank_transfer', '2021-11-12 22:53:22', 'settlement', 'bca', '66703317720', 'accept', 'https://app.sandbox.midtrans.com/snap/v1/transactions/90e60a58-bb00-4271-8b5d-cfae13f392d1/pdf', 'http://example.com?order_id=1346175814&status_code=201&transaction_status=pending', '-', '-'),
+(5, '200', 'Success, transaction is found', '8687b9bf-2be1-4bbd-866c-efb9c6664c52', '333973575', '2560000.00', 'bank_transfer', '2021-11-13 19:23:08', 'settlement', 'bca', '66703576410', 'accept', 'https://app.sandbox.midtrans.com/snap/v1/transactions/05b7d6ce-9452-4adb-bc8d-a3835c8c5c8c/pdf', 'http://example.com?order_id=333973575&status_code=201&transaction_status=pending', '-', '-'),
+(6, '407', 'Success, transaction is found', '106b0ed9-356a-463c-9316-0d9542e1acbc', '1088761053', '2800000.00', 'bank_transfer', '2021-11-13 19:26:38', 'expire', 'bca', '66703800221', 'accept', 'https://app.sandbox.midtrans.com/snap/v1/transactions/79b5f635-f8ad-4460-b4e4-10066dd2bd79/pdf', 'http://example.com?order_id=1088761053&status_code=201&transaction_status=pending', '-', '-'),
+(7, '200', 'Success, transaction is found', 'a7b63f71-5498-4d0a-93d6-d35f9a128121', '719483375', '1400000.00', 'bank_transfer', '2021-11-13 19:27:05', 'settlement', 'bca', '66703135642', 'accept', 'https://app.sandbox.midtrans.com/snap/v1/transactions/f89be394-2d3d-402d-a759-ead7281d613e/pdf', 'http://example.com?order_id=719483375&status_code=201&transaction_status=pending', '-', '-'),
+(8, '407', 'Success, transaction is found', '9d3e58f1-af24-4453-8a7b-62600602cdde', '930099122', '850000.00', 'bank_transfer', '2021-11-14 12:04:49', 'expire', 'bca', '66703289097', 'accept', 'https://app.sandbox.midtrans.com/snap/v1/transactions/858c5f1c-1fd6-454a-9d25-49d4df2f3f38/pdf', 'http://example.com?order_id=930099122&status_code=201&transaction_status=pending', '-', '-'),
+(9, '407', 'Success, transaction is found', '582c8556-d9ca-43a1-8645-3c9eec3b91ad', '452836652', '900000.00', 'bank_transfer', '2021-11-14 12:05:42', 'expire', 'bca', '66703493759', 'accept', 'https://app.sandbox.midtrans.com/snap/v1/transactions/b9024b33-4fb2-4706-bc60-10f82f025e0e/pdf', 'http://example.com?order_id=452836652&status_code=201&transaction_status=pending', '-', '-'),
+(10, '407', 'Success, transaction is found', '68635540-b509-4035-b44e-bb396c65b769', '1219869781', '1100000.00', 'bank_transfer', '2021-11-14 12:06:16', 'expire', 'bca', '66703575156', 'accept', 'https://app.sandbox.midtrans.com/snap/v1/transactions/78b86a7f-4983-46fa-a51f-2dd40556ce7a/pdf', 'http://example.com?order_id=1219869781&status_code=201&transaction_status=pending', '-', '-'),
+(11, '407', 'Success, transaction is found', '0c0fd072-898b-4fe1-926a-25a1c656f321', '1902836423', '1300000.00', 'bank_transfer', '2021-11-14 12:08:02', 'expire', 'bca', '66703716499', 'accept', 'https://app.sandbox.midtrans.com/snap/v1/transactions/2d4089c5-425a-435a-9486-d04afb54828d/pdf', 'http://example.com?order_id=1902836423&status_code=201&transaction_status=pending', '-', '-'),
+(12, '407', 'Success, transaction is found', '1f5bb947-d77c-4e01-a965-550fd24d63b9', '2049696859', '2200000.00', 'bank_transfer', '2021-11-14 12:09:20', 'expire', 'bca', '66703499086', 'accept', 'https://app.sandbox.midtrans.com/snap/v1/transactions/52ddde4f-5944-4209-a0a9-8c595b05556d/pdf', 'http://example.com?order_id=2049696859&status_code=201&transaction_status=pending', '-', '-'),
+(13, '200', 'Success, transaction is found', '7507d810-7d4c-46c2-be11-7b08c61d69f5', '1785201125', '3410000.00', 'bank_transfer', '2021-11-17 18:51:38', 'settlement', 'bca', '66703540429', 'accept', 'https://app.sandbox.midtrans.com/snap/v1/transactions/eac4ce47-110b-4b9b-9c1c-04da2d7986e4/pdf', 'http://example.com?order_id=1785201125&status_code=201&transaction_status=pending', '-', '-'),
+(14, '200', 'Success, transaction is found', '347b914a-b8f4-474b-b31a-95b19124d89e', '1239563901', '2800000.00', 'bank_transfer', '2021-11-17 18:54:13', 'settlement', 'bca', '66703950630', 'accept', 'https://app.sandbox.midtrans.com/snap/v1/transactions/c2d6b127-929c-46df-89e5-17c66f6fed5e/pdf', 'http://example.com?order_id=1239563901&status_code=201&transaction_status=pending', '-', '-');
 
 -- --------------------------------------------------------
 
@@ -167,7 +210,7 @@ CREATE TABLE `sepatu` (
 --
 
 INSERT INTO `sepatu` (`id_sepatu`, `nama_sepatu`, `harga_sepatu`, `sub_desc`, `desc_sepatu`, `size_sepatu`, `stock_sepatu`, `link_gambarsepatu`) VALUES
-(1, 'SEPATU BOLA COPA SENSE.1 FIRM GROUND', 2800000, 'SEPATU BERBAHAN KULIT UNTUK SENTUHAN YANG SELEMBUT SUTRA.\r\n', 'Beberapa pemain menarik perhatian. Tapi yang benar-benar hebat tak seperti itu, memecah kebisingan dengan sentuhan yang paling ringan. Fokus pada insting sepak bolamu dengan adidas Copa Sense. Foam Sensepoda mengisi setiap celah di bagian tumit sepatu bola untuk lapangan padat ini, yang membuatmu menyatu dengan upper berbahan K-leather yang lembut. Di bagian luar, tambahan bantalan Touchpods dan Softstuds membuatmu tetap fokus pada permainan.\r\n', 11, 50, 'list_products/1.jpg'),
+(1, 'SEPATU BOLA COPA SENSE.1 FIRM GROUND', 2800000, 'SEPATU BERBAHAN KULIT UNTUK SENTUHAN YANG SELEMBUT SUTRA.\r\n', 'Beberapa pemain menarik perhatian. Tapi yang benar-benar hebat tak seperti itu, memecah kebisingan dengan sentuhan yang paling ringan. Fokus pada insting sepak bolamu dengan adidas Copa Sense. Foam Sensepoda mengisi setiap celah di bagian tumit sepatu bola untuk lapangan padat ini, yang membuatmu menyatu dengan upper berbahan K-leather yang lembut. Di bagian luar, tambahan bantalan Touchpods dan Softstuds membuatmu tetap fokus pada permainan.\r\n', 11, 51, 'list_products/1.jpg'),
 (2, 'SEPATU ULTRABOOST 21', 3200000, 'TINGKATKAN LEVEL LARIMU DENGAN SEPATU ULTRABOOST 21 INI.\r\n', 'Prototipe demi prototipe. Inovasi demi inovasi. Pengujian demi pengujian. Bersama-sama dengan kami dalam mewujudkan harmonisasi terbaik dalam hal berat, bantalan, dan responsitivitas. Ultraboost 21. Sambut pengembalian energi yang luar biasa.\r\n', 11, 20, 'list_products/2.jpg'),
 (3, 'SEPATU FUTSAL PREDATOR FREAK.3 INDOOR', 1200000, 'SEPATU FUTSAL LOW-CUT YANG MEMBANTUMU MENGONTROL PERMAINAN DI LAPANGAN DENGAN PERMUKAAN DATAR.\r\n', 'Di luar dinding ini, sulit untuk membuat dirimu terdengar. Namun di lapangan, kamu menjadi pengendali. Bebaskan kepribadian unikmu dengan adidas Predator. Sepatu futsal ini memiliki upper berbahan mesh lembut yang dilengkapi lapisan untuk membantumu mendominasi permainan dengan nyaman. Desain low-cut membuat sepatu ini mudah untuk dipakai dan dilepas. Ekspansi lebar elemen Demonscale dengan proses cetak 3D mencengkeram bola untuk membuatmu tetap fokus.\r\n', 11, 30, 'list_products/3.jpg'),
 (4, 'GAMEMODE TURF BOOTS', 1200000, 'SOFT SYNTHETIC BOOTS IN MAN UTD COLOURS.\r\n', 'Every court is a platform. Every cage a stage. Where some players picture hard work, others see opportunity. The choice is yours. Express your beautiful game in adidas Gamemode. These football boots have a HybridTouch upper for a lightweight feel and soft touch. The universal fit and EVA cushioning add comfort. Underneath, a lugged outsole helps you display your skills on artificial turf. Up top, Manchester United\'s colours and badge show you stand with your club.\r\n', 11, 100, 'list_products/4.jpg'),
@@ -308,25 +351,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart_item`
 --
 ALTER TABLE `cart_item`
-  MODIFY `id_cart` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_cart` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id_order_details` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_order_details` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id_order_item` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_order_item` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `sepatu`

@@ -1,7 +1,6 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if(!defined('BASEPATH')) exit('No direct script access allowed');
 
 class Transaction extends CI_Controller {
-
 	/**
 	 * Index Page for this controller.
 	 *
@@ -18,96 +17,92 @@ class Transaction extends CI_Controller {
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
 
-
-	public function __construct()
-    {
+	public function __construct() {
         parent::__construct();
         $params = array('server_key' => 'SB-Mid-server-sJ6sUsMDGblgf6YmhU1pSx0-', 'production' => false);
-		$this->load->library('veritrans');
-		$this->veritrans->config($params);
-		$this->load->helper('url');
-		
+		$this -> load -> library('veritrans');
+		$this -> veritrans -> config($params);
+		$this -> load -> helper('url');
     }
 
-    public function index()
-    {
-		
+    public function index() {
 		$host = 'localhost';
 		$user = 'root';
 		$password = '';
 		$database = 'db_adudu';
 		$port = '3306';
 		$conn = new mysqli($host, $user, $password, $database);
-		if ($conn->connect_errno) {
-			die("gagal connect : " . $conn->connect_error);
+
+		if($conn -> connect_errno) {
+			die("Gagal Connect: " . $conn -> connect_error);
 		}
 
-		$stmt = $conn->prepare("SELECT * FROM payment");
-		$stmt->execute();
-		$payment = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-		foreach($payment as $key => $value){
-			$this->status($value['order_id']);
+		$stmt = $conn -> prepare("SELECT * FROM payment");
+		$stmt -> execute();
+		$payment = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
+
+		foreach($payment as $key => $value) {
+			$this -> status($value['order_id']);
 		}
 
-    	$this->load->view('transaction');
+    	$this -> load -> view('transaction');
     }
 
-    public function process()
-    {
-    	$order_id = $this->input->post('order_id');
-    	$action = $this->input->post('action');
-    	switch ($action) {
+    public function process() {
+    	$order_id = $this -> input -> post('order_id');
+    	$action = $this -> input -> post('action');
+
+		switch($action) {
 		    case 'status':
-		        $this->status($order_id);
+		        $this -> status($order_id);
 		        break;
 		    case 'approve':
-		        $this->approve($order_id);
+		        $this -> approve($order_id);
 		        break;
 		    case 'expire':
-		        $this->expire($order_id);
+		        $this -> expire($order_id);
 		        break;
 		   	case 'cancel':
-		        $this->cancel($order_id);
+		        $this -> cancel($order_id);
 		        break;
 		}
-
     }
 
-	public function status($order_id)
-	{
+	public function status($order_id) {
 		$host = 'localhost';
 		$user = 'root';
 		$password = '';
 		$database = 'db_adudu';
 		$port = '3306';
 		$conn = new mysqli($host, $user, $password, $database);
-		if ($conn->connect_errno) {
-			die("gagal connect : " . $conn->connect_error);
+
+		if($conn -> connect_errno) {
+			die("Gagal Connect: " . $conn -> connect_error);
 		}
 
-		$response = $this->veritrans->status($order_id);
-		$transaction_status = $response->transaction_status;
-		$status_code = $response->status_code;
-		$status_message = $response->status_message;
+		$response = $this -> veritrans -> status($order_id);
+		$transaction_status = $response -> transaction_status;
+		$status_code = $response -> status_code;
+		$status_message = $response -> status_message;
 
-		$update = $conn->query("update payment set transaction_status = '$transaction_status', status_code = '$status_code', status_message = '$status_message' where order_id='$order_id'");
+		$update = $conn -> query("update payment set transaction_status = '$transaction_status', status_code = '$status_code', status_message = '$status_message' where order_id = '$order_id'");
 
-		if ($transaction_status == "settlement"){
-			$stmt = $conn->prepare("SELECT id FROM payment WHERE order_id='$order_id'");
-			$stmt->execute();
-			$p = $stmt->get_result()->fetch_assoc();
+		if($transaction_status == "settlement") {
+			$stmt = $conn -> prepare("SELECT id FROM payment WHERE order_id = '$order_id'");
+			$stmt -> execute();
+			$p = $stmt -> get_result() -> fetch_assoc();
 	
 			$id_payment = $p['id'];
 	
-			$stmt = $conn->prepare("SELECT * FROM order_details WHERE payment_id='$id_payment'");
-			$stmt->execute();
-			$od = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+			$stmt = $conn -> prepare("SELECT * FROM order_details WHERE payment_id = '$id_payment'");
+			$stmt -> execute();
+			$od = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
 
-			foreach($od as $key => $value){
-				if ($value['status'] == 0){
+			foreach($od as $key => $value) {
+				if($value['status'] == 0) {
 					$stat = 1;
 					$id_od = $value['id_order_details'];
-					$result = $conn->query("update order_details set status = '$stat' where id_order_details='$id_od'");
+					$result = $conn -> query("update order_details set status = '$stat' where id_order_details = '$id_od'");
 
 					//update pengurangan stock sepatu
 				}
@@ -115,21 +110,18 @@ class Transaction extends CI_Controller {
 		}
 	}
 
-	public function cancel($order_id)
-	{
+	public function cancel($order_id) {
 		echo 'test cancel trx </br>';
-		echo $this->veritrans->cancel($order_id);
+		echo $this -> veritrans -> cancel($order_id);
 	}
 
-	public function approve($order_id)
-	{
+	public function approve($order_id) {
 		echo 'test get approve </br>';
-		print_r ($this->veritrans->approve($order_id) );
+		print_r($this -> veritrans -> approve($order_id));
 	}
 
-	public function expire($order_id)
-	{
+	public function expire($order_id) {
 		echo 'test get expire </br>';
-		print_r ($this->veritrans->expire($order_id) );
+		print_r($this -> veritrans -> expire($order_id));
 	}
 }

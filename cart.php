@@ -1,23 +1,22 @@
 <?php
-session_start();
-require_once("./controller/connection.php");
+    session_start();
+    require_once("./controller/connection.php");
 
-$id_user = $_SESSION['active'];
+    $id_user = $_SESSION['active'];
+    $stmt = $conn -> prepare("SELECT * FROM cart_item WHERE user_id = $id_user and active = 1");
+    $stmt -> execute();
+    $cart_item = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
 
-$stmt = $conn->prepare("SELECT * FROM cart_item WHERE user_id=$id_user and active = 1");
-$stmt->execute();
-$cart_item = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if(isset($_POST['delete'])) {
+            $id_cart = $_POST['id_cart'];
+            $result = $conn -> query("DELETE FROM cart_item WHERE id_cart = $id_cart");
+            header('Location: cart.php');
+        }
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (isset($_POST['delete'])) {
-        $id_cart = $_POST['id_cart'];
-        $result = $conn->query("DELETE FROM cart_item WHERE id_cart=$id_cart");
-        header('Location: cart.php');
+        if(isset($_POST['payment'])) {
+        }
     }
-    if (isset($_POST['payment'])) {
-    }
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -49,41 +48,45 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $total = 0;
-                                foreach ($cart_item as $key => $value) {
-                                    $total += ($value['price'] * $value['qty']);
+                                <?php
+                                    $total = 0;
+
+                                    foreach($cart_item as $key => $value) {
+                                        $total += ($value['price'] * $value['qty']);
+                                        ?>
+                                            <tr>
+                                                <td><?= ($key + 1) ?></td>
+                                                <td>
+                                                <?php
+                                                    $sepatu_id = $value['sepatu_id'];
+
+                                                    $stmt = $conn -> prepare("SELECT * FROM sepatu WHERE id_sepatu = $sepatu_id");
+                                                    $stmt -> execute();
+                                                    $sepatu = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
+
+                                                    echo $sepatu[0]['nama_sepatu'];
+                                                ?>
+                                                </td>
+                                                <td><?= "Rp. " . number_format($value['price'], 0, ',', '.') . ",-" ?></td>
+                                                <td><?= $value['qty'] ?></td>
+                                                <td><?= "Rp. " . number_format(($value['price'] * $value['qty']), 0, ',', '.') . ",-" ?></td>
+                                                <td>
+                                                    <div class="d-flex justify-content-center">
+                                                        <div style="margin-right: 1vh;">
+                                                            <a href="../../<?= "detail_shoes.php?id_sepatu=" . $value['sepatu_id'] ?>">
+                                                                <button class="btn btn-success">Details</button>
+                                                            </a>
+                                                        </div>
+                                                        <form action="" method="POST">
+                                                            <input type="hidden" name="id_cart" value="<?= $value['id_cart'] ?>">
+                                                            <button class="btn btn-danger" name="delete">Delete</button>
+                                                        </form>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        <?php
+                                    }
                                 ?>
-                                    <tr>
-                                        <td><?= ($key + 1) ?></td>
-                                        <td>
-                                            <?php
-                                            $sepatu_id = $value['sepatu_id'];
-
-                                            $stmt = $conn->prepare("SELECT * FROM sepatu WHERE id_sepatu=$sepatu_id");
-                                            $stmt->execute();
-                                            $sepatu = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-
-                                            echo $sepatu[0]['nama_sepatu'];
-                                            ?>
-                                        </td>
-                                        <td><?= "Rp. " . number_format($value['price'], 0, ',', '.') . ",-" ?></td>
-                                        <td><?= $value['qty'] ?></td>
-                                        <td><?= "Rp. " . number_format(($value['price'] * $value['qty']), 0, ',', '.') . ",-" ?></td>
-                                        <td>
-                                            <div class="d-flex justify-content-center">
-                                                <div style="margin-right: 1vh;">
-                                                    <a href="../../<?= "detail_shoes.php?id_sepatu=" . $value['sepatu_id'] ?>">
-                                                        <button class="btn btn-success">Details</button>
-                                                    </a>
-                                                </div>
-                                                <form action="" method="post">
-                                                    <input type="hidden" name="id_cart" value="<?= $value['id_cart'] ?>">
-                                                    <button class="btn btn-danger" name="delete">Delete</button>
-                                                </form>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                <?php  } ?>
                                 <tr class="bg-secondary text-white">
                                     <td colspan="4">
                                         <div style="float: right;">
@@ -135,9 +138,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $(this).one("touchmove", function(event) {
                         var yMove = event.originalEvent.touches[0].pageY;
 
-                        if (Math.floor(yClick - yMove) > 1) {
+                        if(Math.floor(yClick - yMove) > 1) {
                             $(".carousel").carousel('next');
-                        } else if (Math.floor(yClick - yMove) < -1) {
+                        } else if(Math.floor(yClick - yMove) < -1) {
                             $(".carousel").carousel('prev');
                         }
                     });

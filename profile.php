@@ -7,22 +7,21 @@
     $users = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
 
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
-        
     }
 ?>
 
 <!DOCTYPE html>
 <html lang="en-US">
     <head>
-        <title>Profile| Adudu Shoes</title>
+        <title>Profile | Adudu Shoes</title>
         <?php require_once("./section/connection_head.php") ?>
     </head>
     <body class="main-layout flex flex-column flex-between">
         <div class="header_section">
             <?php require_once("./section/nav_section.php") ?>
         </div>
-        <div class="container-fluid">
-            <div class="container flex-center flex-vstart flex-wrap h-auto">
+        <div class="container-fluid" id="history_list">
+            <!-- <div class="container flex-center flex-vstart flex-wrap h-auto">
                 <div class="col-lg-6 col-12 h-100" style="padding: 30px;">
                     <h1>Sign In</h1>
                     <form action="" method="POST">
@@ -53,9 +52,32 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
         <?php require_once("./section/footer_section.php") ?>
         <?php require_once("./section/script_section.php") ?>
+        <script>
+            $(document).ready(function() {
+                $.ajax({
+                    "cache": false
+                });
+
+                $.ajaxPrefilter(function(options, originalOptions, jqXHR) {
+                    options.async = true;
+                });
+
+                function loadHistory() {
+                    $.ajax({
+                        method: "GET",
+                        url: "./midtrans/index.php/transaction",
+                        success: function(response) {
+                            $("#history_list").html(response);
+                        }
+                    });
+                }
+
+                loadHistory();
+            });
+        </script>
     </body>
 </html>
