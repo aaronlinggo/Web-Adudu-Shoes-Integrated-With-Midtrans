@@ -1,68 +1,68 @@
 <?php
-session_start();
-require_once("./controller/connection.php");
+    session_start();
+    require_once("./controller/connection.php");
 
-$stmt = $conn->prepare("SELECT * FROM users");
-$stmt->execute();
-$users = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    $stmt = $conn -> prepare("SELECT * FROM users");
+    $stmt -> execute();
+    $users = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
 
-if($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if(isset($_POST['register'])) {
-        $first_name = $_POST['first_name'];
-        $last_name = $_POST['last_name'];
-        $date = $_POST['date'];
-        $username = $_POST['username'];
-        $email = $_POST['email'];
-        $pass = $_POST['pass'];
-        $cpass = $_POST['cpass'];
+    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if(isset($_POST['register'])) {
+            $first_name = $_POST['first_name'];
+            $last_name = $_POST['last_name'];
+            $date = $_POST['date'];
+            $username = $_POST['username'];
+            $email = $_POST['email'];
+            $pass = $_POST['pass'];
+            $cpass = $_POST['cpass'];
 
-        $timestamp = strtotime($date);
-        $timestampNow = strtotime('-18 years');
+            $timestamp = strtotime($date);
+            $timestampNow = strtotime('-18 years');
 
-        if(strlen($pass) >= 8) {
-            if($pass == $cpass) {
-                if($timestamp > $timestampNow) {
-                    echo "<script>alert('Umur harus lebih dari sama dengan 18 tahun!');</script>";
-                    echo "<script>window.location = './register.php'</script>";
-                } else {
-                    $ada = false;
+            if(strlen($pass) >= 8) {
+                if($pass == $cpass) {
+                    if($timestamp > $timestampNow) {
+                        echo "<script>alert('Umur harus lebih dari sama dengan 18 tahun!');</script>";
+                        echo "<script>window.location = './register.php'</script>";
+                    } else {
+                        $ada = false;
 
-                    foreach($users as $key => $value) {
-                        if($value['username'] == $username || $value['email'] == $email) {
-                            $ada = true;
+                        foreach($users as $key => $value) {
+                            if($value['username'] == $username || $value['email'] == $email) {
+                                $ada = true;
+                            }
+                        }
+
+                        if(!$ada) {
+                            $name = $first_name . " " . $last_name;
+                            $roles = "Customer";
+                            $encrypt = md5($pass);
+
+                            $stmt = $conn -> prepare("INSERT INTO users(username, email, nama, tanggal_lahir, password, roles, first_name, last_name) VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
+                            $stmt -> bind_param("ssssssss", $username, $email, $name, $date, $encrypt, $roles, $first_name, $last_name);
+                            $result = $stmt -> execute();
+
+                            echo "<script>alert('Registration success!');</script>";
+                            echo "<script>window.location = './login.php'</script>";
+                        } else {
+                            echo "<script>alert('Username is already registered!');</script>";
+                            echo "<script>window.location = './register.php'</script>";
                         }
                     }
-
-                    if(!$ada) {
-                        $name = $first_name . " " . $last_name;
-                        $roles = "Customer";
-                        $encrypt = md5($pass);
-
-                        $stmt = $conn->prepare("INSERT INTO users(username, email, nama, tanggal_lahir, password, roles, first_name, last_name) VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
-                        $stmt->bind_param("ssssssss", $username, $email, $name, $date, $encrypt, $roles, $first_name, $last_name);
-                        $result = $stmt->execute();
-
-                        // echo "<script>alert('Registration success!');</script>";
-                        // echo "<script>window.location = './login.php'</script>";
-                    } else {
-                        echo "<script>alert('Username is already registered!');</script>";
-                        echo "<script>window.location = './register.php'</script>";
-                    }
+                } else {
+                    echo "<script>alert('Password doesn't match!');</script>";
+                    echo "<script>window.location = './register.php'</script>";
                 }
             } else {
-                echo "<script>alert('Password doesn't match!');</script>";
+                echo "<script>alert('Password length must be 8 characters or more!');</script>";
                 echo "<script>window.location = './register.php'</script>";
             }
-        } else {
-            echo "<script>alert('Password length must be 8 characters or more!');</script>";
-            echo "<script>window.location = './register.php'</script>";
+        }
+
+        if(isset($_POST['login'])) {
+            echo "<script>window.location = './login.php'</script>";
         }
     }
-
-    if(isset($_POST['login'])) {
-        echo "<script>window.location = './login.php'</script>";
-    }
-}
 ?>
 
 <!DOCTYPE html>
