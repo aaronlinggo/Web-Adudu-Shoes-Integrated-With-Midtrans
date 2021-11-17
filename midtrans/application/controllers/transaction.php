@@ -105,6 +105,22 @@ class Transaction extends CI_Controller {
 					$result = $conn -> query("update order_details set status = '$stat' where id_order_details = '$id_od'");
 
 					//update pengurangan stock sepatu
+					$order_id_temp = $value['id_order_details'];
+					$stmt = $conn->prepare("SELECT * FROM order_items WHERE order_id='$order_id_temp'");
+					$stmt->execute();
+					$order_items = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+					foreach($order_items as $k => $v){
+						$sepatu_id= $v['sepatu_id'];
+						$stmt = $conn->prepare("SELECT * FROM sepatu WHERE id_sepatu='$sepatu_id'");
+						$stmt->execute();
+						$sepatu = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+						
+						foreach($sepatu as $kt => $vt){
+							$stock_sepatu = $vt['stock_sepatu']-$v['qty'];
+							$id_sepatu = $vt['id_sepatu'];
+							$update_stock = $conn->query("update sepatu set stock_sepatu = '$stock_sepatu' where id_sepatu='$id_sepatu'");
+						}
+					}
 				}
 			}
 		}
