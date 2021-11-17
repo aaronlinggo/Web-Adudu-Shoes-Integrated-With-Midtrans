@@ -49,9 +49,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	<link rel="stylesheet" href="../../css/owl.carousel.min.css">
 	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
-
 	<script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="<SB-Mid-client-3OxJRhBsnTXSca5E>"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<link rel="stylesheet" href="../../admin/style.css">
 </head>
 
 <body class="main-layout">
@@ -119,7 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 					<div class="d-flex flex-row-reverse" style="padding: 0 1vw;">
 						<button class="btn btn-success"><a href="./transaction" style="text-decoration: none; color:inherit">Check for Updates!</a></button>
 					</div>
-					<table class="table table-hover" style="text-align: center;">
+					<table class="table table-hover dashboard_btn" style="text-align: center;">
 						<thead>
 							<tr>
 								<th>No.</th>
@@ -151,21 +152,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 										<?php
 										if ($payment['transaction_status'] == "settlement") {
 										?>
-											<div class="btn btn-success">Done</div>
+											<button class="btn btn-success" style="margin: 0; cursor: default;">Done</button>
 										<?php
 										} else if ($payment['transaction_status'] == "expire") {
 										?>
-											<div class="btn btn-danger">Expired</div>
+											<button class="btn btn-danger" style="margin: 0; cursor: default;">Expired</button>
 										<?php
 										} else {
 										?>
-											<button class="btn btn-success">Pay!</button>
+											<button class="btn btn-success" id="<?= $payment['id'] ?>" onclick="payNow(this)">Pay!</button>
 										<?php
 										}
 										?>
 									</td>
 									<td>
-										<button class="btn btn-info">Details</button>
+										<button class='btn btn-info' id="<?= $payment['id'] ?>" onclick="showDetail(this)" style='margin:0; background-color: #34B1AA;'>Details</button>
 									</td>
 								</tr>
 							<?php  } ?>
@@ -178,9 +179,57 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	<form action="<?= site_url() ?>/transaction" method="POST" id="frm">
 		<button id="updatepage" style="display: none;">klik</button>
 	</form>
+	<div id="editModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" style="font-size: 1.5em; margin: 0;">&times;</button>
+                    <h4 class="modal-title">Order Detail</h4>
+                </div>
+                <div class="modal-body" id="form_edit">
 
+                </div>
+            </div>
+        </div>
+    </div>
 	<div class="copyright">2021 All Rights Reserved | <a href="./">Adudu Shoes</a></div>
-
+	<script>
+        function showDetail(obj){
+            var id_payment = $(obj).attr("id");
+            $.ajax({
+                type:"post",
+                url:".../../../../admin/ajax.php",
+                data:{
+                    'action':'showDetail_user',
+                    'id_payment' : id_payment
+                },
+                success: function(data) {
+                    $('#form_edit').html(data);
+                    $('#editModal').modal('show');
+                }
+            });
+        }
+        function payNow(obj){
+            var id_payment = $(obj).attr("id");
+            $.ajax({
+                type:"post",
+                url:".../../../../admin/ajax.php",
+                data:{
+                    'action':'payNow',
+                    'id_payment' : id_payment
+                },
+                success: function(data) {
+                    $('#form_edit').html(data);
+                    $('#editModal').modal('show');
+                }
+            });
+        }
+        $(document).ready(function() {
+            $(document).on('click', '.close', function() {
+                $('#editModal').modal('hide');
+            });
+        });
+    </script>
 	<script src="../../js/jquery.min.js"></script>
 	<script src="../../js/popper.min.js"></script>
 	<script src="../../js/bootstrap.bundle.min.js"></script>
