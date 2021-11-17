@@ -1,44 +1,47 @@
 <?php
-session_start();
-require_once("./controller/connection.php");
+    session_start();
+    require_once("./controller/connection.php");
 
-$stmt = $conn->prepare("SELECT * FROM users");
-$stmt->execute();
-$users = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    $stmt = $conn -> prepare("SELECT * FROM users");
+    $stmt -> execute();
+    $users = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (isset($_POST['login'])){
-        $username = $_POST['username'];
-        $password = $_POST['password'];
+    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if(isset($_POST['login'])) {
+            $username = $_POST['username'];
+            $password = $_POST['password'];
 
-        $ada = false;
+            $ada = false;
 
-        foreach($users as $key => $value){
-            if ($username == $value['username']){
-                if (md5($password) == $value['password']){
-                    $_SESSION['active'] = $value['id_user'];
-                    if ($value['roles'] == "admin"){
-                        header("Location: ./admin/index.php");
+            foreach($users as $key => $value) {
+                if($username == $value['username']) {
+                    if(md5($password) == $value['password']) {
+                        $_SESSION['active'] = $value['id_user'];
+
+                        if($value['roles'] == "admin") {
+                            header("Location: ./admin/index.php");
+                        } else {
+                            header("Location: ./");
+                        }
+                    } else {
+                        echo "<script>alert('You entered wrong password!')</script>";
+                        echo "<script>window.location = './login.php'</script>";
                     }
-                    else{
-                        header("Location: ./");
-                    }
+
+                    $ada = true;
                 }
-                else{
-                    echo "<script>alert('Wrong Password!')</script>";
-                    echo "<script>window.location = './login.php'</script>";
-                }
-                $ada = true;
+            }
+
+            if(!$ada) {
+                echo "<script>alert('Username is not found!')</script>";
+                echo "<script>window.location = './login.php'</script>";
             }
         }
 
-        if (!$ada){
-            echo "<script>alert('Username not found!')</script>";
-            echo "<script>window.location = './login.php'</script>";
+        if(isset($_POST['register'])) {
+            echo "<script>window.location = './register.php'</script>";
         }
     }
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -47,33 +50,39 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <title>Sign In | Adudu Shoes</title>
         <?php require_once("./section/connection_head.php") ?>
     </head>
-    <body class="main-layout">
+    <body class="main-layout flex flex-column flex-between">
         <div class="header_section">
             <?php require_once("./section/nav_section.php") ?>
         </div>
-        <div class="collection_text">Sign In</div>
-        <div class="layout_padding contact_section">
-            <div class="container-fluid ram">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="loginregisterbox">
-                            <div class="input_main">
-                                <div class="container">
-                                    <form action="" method="POST">
-                                        <div class="form-group">
-                                            <label for="username" class="email-bt" style="border: none; color: white;">Username</label>
-                                            <input type="text" class="email-bt" placeholder="Username" name="username" id="username" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="password" class="email-bt" style="border: none; color: white;">Password</label>
-                                            <input type="password" class="email-bt" placeholder="Password" name="password" id="password" required>
-                                        </div>
-                                        <div class="send_btn">
-                                            <button class="main_bt" name="login">Login</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
+        <div class="container-fluid">
+            <div class="container flex-center flex-vstart flex-wrap h-auto">
+                <div class="col-lg-6 col-12 h-100" style="padding: 30px;">
+                    <h1>Sign In</h1>
+                    <form action="" method="POST">
+                        <div class="form-group">
+                            <input type="text" class="email-bt" placeholder="Username" name="username" id="username" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="email-bt" placeholder="Password" name="password" id="password" required>
+                        </div>
+                        <button class="main_bt" name="login">Sign In</button>
+                    </form>
+                </div>
+                <div class="col-lg-6 col-12 h-100" style="padding: 30px;">
+                    <h1>Sign Up</h1>
+                    <div>
+                        <div style="padding: 10px 0;">
+                            It's very easy. Just fill a simple registration form on the next page and you can enjoy more benefits from us:
+                        </div>
+                        <div class="flex">
+                            <ul>
+                                <li style="list-style-type: circle;">View your personal information</li>
+                                <li style="list-style-type: circle;">Track and check your order</li>
+                                <li style="list-style-type: circle;">Proceed with the checkout easily and faster too</li>
+                                <form action="" method="POST">
+                                    <button class="main_bt" name="register">Sign Up</button>
+                                </form>
+                            </ul>
                         </div>
                     </div>
                 </div>

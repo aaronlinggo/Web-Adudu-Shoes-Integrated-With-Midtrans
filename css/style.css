@@ -26,6 +26,7 @@
 
 html,
 body {
+    height: 100%;
     min-height: 100%;
     overflow-x: hidden;
 }
@@ -256,6 +257,8 @@ button {
 .last {
     padding-left: 30px !important;
 }
+
+
 
 .badge {
     color: #000!important;
