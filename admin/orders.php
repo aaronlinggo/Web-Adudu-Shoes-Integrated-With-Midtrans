@@ -122,11 +122,12 @@ $payment = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">List Order</h4>
-                        <form action="" method="post" class="dashboard_btn">
+                        <div class="dashboard_btn">
                             <label for="searchID">Order ID : </label>
                             <input type="text" name="searchID" id="searchID">
-                            <button class='btn btn-secondary' style='cursor: default; margin:0; background-color: #d4e1ed;'>Search</button>
-                        </form>
+                            <button class='btn btn-secondary' onclick="searchBtn()" style='cursor: default; margin:0; background-color: #d4e1ed;'>Search</button>
+                            <button class='btn btn-success' onclick="viewAll()" style='cursor: default; margin:0; background-color: #34B1AA;'>View All</button>
+                        </div>
                         <div class="table-responsive" id="tableUpdate">
                             <table class="table table-hover" style="text-align: center;">
                                 <thead>
@@ -179,6 +180,36 @@ $payment = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     <script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="../js/custom.js"></script>
     <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+    <script>
+        function searchBtn(){
+            var order_id = $("#searchID").val();
+            $.ajax({
+                type:"get",
+                url:"./ajax.php",
+                data:{
+                    'action':'search',
+                    'order_id' : order_id
+                },
+                success:function(response){
+                    $("#tableUpdate").html("");
+                    $("#tableUpdate").html(response);
+                }
+            });
+        }
+        function viewAll(){
+            $.ajax({
+                type:"get",
+                url:"./ajax.php",
+                data:{
+                    'action':'viewAll'
+                },
+                success:function(response){
+                    $("#tableUpdate").html("");
+                    $("#tableUpdate").html(response);
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>
