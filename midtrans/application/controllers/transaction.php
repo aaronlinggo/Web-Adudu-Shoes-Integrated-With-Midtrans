@@ -104,9 +104,13 @@ class Transaction extends CI_Controller {
 			$od = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
 			foreach($od as $key => $value){
-				$stat = 1;
-				$id_od = $value['id_order_details'];
-				$result = $conn->query("update order_details set status = '$stat' where id_order_details='$id_od'");
+				if ($value['status'] == 0){
+					$stat = 1;
+					$id_od = $value['id_order_details'];
+					$result = $conn->query("update order_details set status = '$stat' where id_order_details='$id_od'");
+
+					//update pengurangan stock sepatu
+				}
 			}
 		}
 	}
