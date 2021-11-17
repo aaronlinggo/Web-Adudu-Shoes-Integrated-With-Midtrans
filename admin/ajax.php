@@ -423,7 +423,7 @@
                             <button class="btn btn-info">Click me to Pay!</button>
                         </a>
                         <a href="./transaction">
-                            <button class="btn btn-success">Already Paid!</button>
+                            <button class="btn btn-success" style="color: white;">Already Paid!</button>
                         </a>
                     </td>
                 </tr>
