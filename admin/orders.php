@@ -39,7 +39,7 @@ $payment = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     <link rel="stylesheet" href="../css/owl.carousel.min.css">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body class="main-layout" style="background-color: #f4f5f7;">
@@ -163,7 +163,7 @@ $payment = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                                                 ?>
                                             </td>
                                             <td>
-                                                <button class='btn btn-success' id="<?= $value['id'] ?>" style='margin:0; background-color: #34B1AA;'>Details</button>
+                                                <button class='btn btn-success' id="<?= $value['id'] ?>" onclick="showDetail()" style='margin:0; background-color: #34B1AA;'>Details</button>
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -175,7 +175,19 @@ $payment = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
             </div>
         </div>
     </div>
+    <div id="editModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" style="font-size: 1.5em; margin: 0;">&times;</button>
+                    <h4 class="modal-title">Order Detail</h4>
+                </div>
+                <div class="modal-body" id="form_edit">
 
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="../js/jquery.min.js"></script>
     <script src="../js/popper.min.js"></script>
     <script src="../js/bootstrap.bundle.min.js"></script>
@@ -188,7 +200,7 @@ $payment = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         function searchBtn(){
             var order_id = $("#searchID").val();
             $.ajax({
-                type:"get",
+                type:"post",
                 url:"./ajax.php",
                 data:{
                     'action':'search',
@@ -200,9 +212,25 @@ $payment = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                 }
             });
         }
+        function showDetail(){
+            var id_payment = $(this).attr("id");
+            alert(id_payment);
+            $.ajax({
+                type:"post",
+                url:"./ajax.php",
+                data:{
+                    'action':'showDetail',
+                    'id_payment' : id_payment
+                },
+                success: function(data) {
+                    $('#form_edit').html(data);
+                    $('#editModal').modal('show');
+                }
+            });
+        }
         function viewAll(){
             $.ajax({
-                type:"get",
+                type:"post",
                 url:"./ajax.php",
                 data:{
                     'action':'viewAll'
@@ -213,6 +241,11 @@ $payment = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                 }
             });
         }
+        $(document).ready(function() {
+            $(document).on('click', '.close', function() {
+                $('#editModal').modal('hide');
+            });
+        });
     </script>
 </body>
 
