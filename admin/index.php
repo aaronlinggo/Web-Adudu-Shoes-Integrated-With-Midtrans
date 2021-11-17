@@ -133,54 +133,60 @@ $payment = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
             </div>
             <div class="navbar-menu-wrapper">
                 <div class="d-flex">
-                    <div class="card" style="margin-right: 2vh; width: 33%;">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <div class="card-title">Customer</div>
-                                    <div class="welcome-text"><?= count($cust) ?></div>
-
-                                </div>
-                                <div>
-                                    <svg class="bi me-2" width="60" height="60">
-                                        <use xlink:href="#customer" />
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card" style="margin-right: 2vh; width: 34%">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <div class="card-title">Products</div>
-                                    <div class="welcome-text"><?= count($sepatu) ?></div>
-
-                                </div>
-                                <div>
-                                    <svg class="bi me-2" width="60" height="60">
-                                        <use xlink:href="#grid" />
-                                    </svg>
+                    <a href="./index.php" style="margin-right: 2vh; width: 33%;">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <div class="card-title">Customer</div>
+                                        <div class="welcome-text"><?= count($cust) ?></div>
+    
+                                    </div>
+                                    <div>
+                                        <svg class="bi me-2" width="60" height="60">
+                                            <use xlink:href="#customer" />
+                                        </svg>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card" style="width: 33%">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <div class="card-title">Transaction</div>
-                                    <div class="welcome-text"><?= count($payment) ?></div>
-
-                                </div>
-                                <div>
-                                    <svg class="bi me-2" width="60" height="60">
-                                        <use xlink:href="#cart" />
-                                    </svg>
+                    </a>
+                    <a href="./product.php" style="margin-right: 2vh; width: 34%">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <div class="card-title">Products</div>
+                                        <div class="welcome-text"><?= count($sepatu) ?></div>
+    
+                                    </div>
+                                    <div>
+                                        <svg class="bi me-2" width="60" height="60">
+                                            <use xlink:href="#grid" />
+                                        </svg>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
+                    <a href="./orders.php" style="width: 33%">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <div class="card-title">Transaction</div>
+                                        <div class="welcome-text"><?= count($payment) ?></div>
+    
+                                    </div>
+                                    <div>
+                                        <svg class="bi me-2" width="60" height="60">
+                                            <use xlink:href="#cart" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
                 </div>
                 <br>
                 <div class="card">
