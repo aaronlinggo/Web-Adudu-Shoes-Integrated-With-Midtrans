@@ -163,7 +163,7 @@ $payment = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                                                 ?>
                                             </td>
                                             <td>
-                                                <button class='btn btn-success' id="<?= $value['id'] ?>" onclick="showDetail()" style='margin:0; background-color: #34B1AA;'>Details</button>
+                                                <button class='btn btn-success' id="<?= $value['id'] ?>" onclick="showDetail(this)" style='margin:0; background-color: #34B1AA;'>Details</button>
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -212,9 +212,8 @@ $payment = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                 }
             });
         }
-        function showDetail(){
-            var id_payment = $(this).attr("id");
-            alert(id_payment);
+        function showDetail(obj){
+            var id_payment = $(obj).attr("id");
             $.ajax({
                 type:"post",
                 url:"./ajax.php",

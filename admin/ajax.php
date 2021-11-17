@@ -39,7 +39,7 @@
                                 ?>
                             </td>
                             <td>
-                                <button class='btn btn-success' id="<?= $value['id'] ?>" onclick="showDetail()" style='margin:0; background-color: #34B1AA;'>Details</button>
+                                <button class='btn btn-success' id="<?= $value['id'] ?>" onclick="showDetail(this)" style='margin:0; background-color: #34B1AA;'>Details</button>
                             </td>
                         </tr>
                     <?php } ?>
@@ -83,7 +83,7 @@
                                 ?>
                             </td>
                             <td>
-                                <button class='btn btn-success' id="<?= $value['id'] ?>" onclick="showDetail()" style='margin:0; background-color: #34B1AA;'>Details</button>
+                                <button class='btn btn-success' id="<?= $value['id'] ?>" onclick="showDetail(this)" style='margin:0; background-color: #34B1AA;'>Details</button>
                             </td>
                         </tr>
                     <?php } ?>
@@ -148,7 +148,7 @@
                             ?>
                         </td>
                         <td>
-                            <button class='btn btn-success' id="<?= $value['id'] ?>" onclick="showDetail()" style='margin:0; background-color: #34B1AA;'>Details</button>
+                            <button class='btn btn-success' id="<?= $value['id'] ?>" onclick="showDetail(this)" style='margin:0; background-color: #34B1AA;'>Details</button>
                         </td>
                     </tr>
                 <?php } ?>
@@ -198,7 +198,8 @@
                                 else{
                                     echo "<button class='btn btn-danger' style='cursor: default; margin:0; background-color: #F95F53;'>Expired</button>";
                                 }
-                            ?></td>
+                            ?>
+                    </td>
                 </tr>
                 <tr>
                     <td>ID User : <?= $user_details['id_user'] ?></td>
