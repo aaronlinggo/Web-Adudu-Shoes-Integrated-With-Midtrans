@@ -152,7 +152,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 										<?php
 										if ($payment['transaction_status'] == "settlement") {
 										?>
-											<button class="btn btn-success" style="margin: 0; cursor: default;">Done</button>
+											<button class="btn btn-success" style="margin: 0; cursor: default; color: white;">Done</button>
 										<?php
 										} else if ($payment['transaction_status'] == "expire") {
 										?>
@@ -160,7 +160,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 										<?php
 										} else {
 										?>
-											<button class="btn btn-success" id="<?= $payment['id'] ?>" onclick="payNow(this)">Pay!</button>
+											<button class="btn btn-success" id="<?= $payment['id'] ?>" onclick="payNow(this)" style="margin: 0; color: white;">Pay!</button>
 										<?php
 										}
 										?>
