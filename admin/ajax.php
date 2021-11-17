@@ -310,7 +310,7 @@
                         <td>
                             <div class="d-flex">
                                 <div style="width: 20%; height: 100px; margin-right: 2vh;">
-                                    <img src="<?= "../../admin/".$sepatu['link_gambarsepatu'] ?>" alt="" style="width: 100px; height: 100px;">
+                                    <img src="<?= "./admin/".$sepatu['link_gambarsepatu'] ?>" alt="" style="width: 100px; height: 100px;">
                                 </div>
                                 <div class="d-flex flex-column" style="width: 80%;">
                                     <div class="text-wrap fw-bold"><?= $value['qty'] . "x " . $sepatu['nama_sepatu'] ?></div>
