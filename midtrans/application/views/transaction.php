@@ -113,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		</div>
 	</div>
 	<div class="collection_text">History Transaction</div>
-	<div class="layout_padding contact_section">
+	<div class="contact_section">
 		<div class="container-fluid ram">
 			<div class="row">
 				<div class="col-md-12">
@@ -156,7 +156,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 										<?php
 										} else if ($payment['transaction_status'] == "expire") {
 										?>
-											<button class="btn btn-danger" style="margin: 0; cursor: default;">Expired</button>
+											<button class="btn btn-danger" style="margin: 0; cursor: default; background-color: #F95F53;">Expired</button>
 										<?php
 										} else {
 										?>
