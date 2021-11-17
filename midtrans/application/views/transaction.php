@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 							<div class="navbar-nav flex flex-row flex-between flex-vcenter fullwidth">
 								<div class="medium-scale flex flex-between">
 									<a class="nav-item nav-link nav-android-menu" href="../../index.php">Home</a>
-									<a class="nav-item nav-link nav-android-menu" href="../../collection.php">Collection</a>
+									<a class="nav-item nav-link nav-android-menu" href="../../aboutus.php">About Us</a>
 									<a class="nav-item nav-link nav-android-menu" href="../../shoes.php">Shoes</a>
 									<a class="nav-item nav-link nav-android-menu last" href="#">Search</a>
 									<a class="nav-item nav-link nav-android-menu last" href='<?= (!isset($_SESSION['active'])) ? "../../login.php" : "./snap" ?>'>Cart</a>

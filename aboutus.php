@@ -10,14 +10,14 @@
 <!DOCTYPE html>
 <html lang="en-US">
     <head>
-        <title>Collection | Adudu Shoes</title>
+        <title>About Us | Adudu Shoes</title>
         <?php require_once("./section/connection_head.php") ?>
     </head>
     <body class="main-layout">
         <div class="header_section">
             <?php require_once("./section/nav_section.php") ?>
         </div>
-        <div class="collection_text">Collection</div>
+        <div class="collection_text">About Us</div>
         <div class="layout_padding collection_section">
             <div class="container">
                 <h1 class="new_text"><strong>New Collection</strong></h1>
