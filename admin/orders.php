@@ -124,15 +124,19 @@ $payment = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                         <h4 class="card-title">List Order</h4>
                         <div class="dashboard_btn">
                             <label for="searchID">Order ID : </label>
-                            <input type="text" name="searchID" id="searchID">
-                            <button class='btn btn-secondary' onclick="searchBtn()" style='cursor: default; margin:0; background-color: #d4e1ed;'>Search</button>
-                            <button class='btn btn-success' onclick="viewAll()" style='cursor: default; margin:0; background-color: #34B1AA;'>View All</button>
+                            <input type="text" name="searchID" id="searchID" style="border: 1px solid lightgray; border-radius: 5px;">
+                            <button class='btn btn-secondary' onclick="searchBtn()" style='margin:0; background-color: #d4e1ed;'>
+                                <svg class="bi me-2" width="10" height="10">
+                                    <use xlink:href="#search" />
+                                </svg>
+                            </button>
+                            <button class='btn btn-success' onclick="viewAll()" style='margin:0; background-color: #34B1AA;'>View All</button>
                         </div>
                         <div class="table-responsive" id="tableUpdate">
                             <table class="table table-hover" style="text-align: center;">
                                 <thead>
                                     <tr>
-                                        <th>No.</th>
+                                        <th>ID Payment</th>
                                         <th>Order ID</th>
                                         <th>Price</th>
                                         <th>Status</th>
@@ -159,7 +163,7 @@ $payment = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                                                 ?>
                                             </td>
                                             <td>
-                                                <button class='btn btn-success' style='margin:0; background-color: #34B1AA;'>Details</button>
+                                                <button class='btn btn-success' id="<?= $value['id'] ?>" style='margin:0; background-color: #34B1AA;'>Details</button>
                                             </td>
                                         </tr>
                                     <?php } ?>
