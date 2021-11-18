@@ -46,7 +46,7 @@
 		<link rel="stylesheet" href="./css/responsive.css">
 		<link rel="stylesheet" href="./css/jquery.mCustomScrollbar.min.css">
 		<link rel="stylesheet" href="./css/owl.carousel.min.css">
-		<link rel="stylesheet" href="./admin/style.css">
+		<!-- <link rel="stylesheet" href="./admin/style.css"> -->
 		<!-- <link rel="icon" href="../../images/logo.png" type="image/png">
 		<link rel="stylesheet" href="../../css/bootstrap.min.css">
 		<link rel="stylesheet" href="../../css/style.css">
@@ -61,7 +61,7 @@
 		<script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="<SB-Mid-client-3OxJRhBsnTXSca5E>"></script>
 	</head>
 	<body class="main-layout">
-		<div class="collection_text">History Transaction</div>
+		<!-- <div class="collection_text">History Transaction</div> -->
 		<div class="contact_section">
 			<div class="container-fluid ram">
 				<div class="row">
@@ -81,7 +81,7 @@
 							</thead>
 							<tbody>
 							<?php
-								$item_details = array();
+								// $item_details = array();
 
 								foreach($order_details as $key => $value) {
 									$id_payment = $value['payment_id'];

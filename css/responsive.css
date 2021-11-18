@@ -19,7 +19,7 @@
 
 @media (max-width: 576px) {
     .logo {
-        padding-top: 6px;
+        padding-top: 7px;
         padding-bottom: 8px;
         text-align: center;
     }
@@ -55,6 +55,10 @@
 
     .nav-item.nav-link.profile {
         padding-right: 1rem!important;
+    }
+
+    .modal-login {
+        padding: 30px 1px;
     }
 }
 
@@ -92,6 +96,10 @@
     .nav-item.nav-link.profile {
         padding-right: 1rem!important;
         width: 80%;
+    }
+
+    .modal-login {
+        padding: 30px 16px;
     }
 }
 
@@ -151,6 +159,19 @@
 
     .navbar-nav {
         padding-top: 0;
+    }
+
+    .modal-login {
+        padding: 30px;
+        padding-top: 0;
+    }
+
+    .modal-login.left {
+        padding-left: 16px;
+    }
+
+    .modal-login.right {
+        padding-right: 16px;
     }
 }
 

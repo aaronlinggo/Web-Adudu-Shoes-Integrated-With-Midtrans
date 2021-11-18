@@ -2,11 +2,20 @@
     session_start();
     require_once("./controller/connection.php");
 
-    $stmt = $conn -> prepare("SELECT * FROM users");
-    $stmt -> execute();
-    $users = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
+    if(!isset($_SESSION['active'])) {
+        echo "<script>window.location = './login.php';</script>";
+    } else {
+        $stmt = $conn -> prepare("SELECT * FROM users");
+        $stmt -> execute();
+        $users = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
 
-    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if($_SERVER['REQUEST_METHOD'] == 'POST') {
+        }
+
+        $stmt = $conn -> prepare("SELECT * FROM users WHERE id_user = ?");
+        $stmt -> bind_param("i", $_SESSION['active']);
+        $stmt -> execute();
+        $activeUser = $stmt -> get_result() -> fetch_assoc();
     }
 ?>
 
@@ -20,39 +29,17 @@
         <div class="header_section">
             <?php require_once("./section/nav_section.php") ?>
         </div>
+        <div class="container h-auto">
+            <div class="h-100" style="border: 1px solid rgb(219, 222, 226); border-radius: 8px;">
+                <div class="w-100 flex" style="border-bottom: 1px solid rgb(219, 222, 226);">
+                    <div id="seeProfile" style="padding: 0 10px;">Your Profile</div>
+                    <div id="seeHistory" style="padding: 0 10px;">Transaction History</div>
+                </div>
+                <div id="inner-container" class="w-100 h-75"></div>
+            </div>
+        </div>
+
         <div class="container-fluid" id="history_list">
-            <!-- <div class="container flex-center flex-vstart flex-wrap h-auto">
-                <div class="col-lg-6 col-12 h-100" style="padding: 30px;">
-                    <h1>Sign In</h1>
-                    <form action="" method="POST">
-                        <div class="form-group">
-                            <input type="text" class="email-bt" placeholder="Username" name="username" id="username" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="email-bt" placeholder="Password" name="password" id="password" required>
-                        </div>
-                        <button class="main_bt" name="login">Sign In</button>
-                    </form>
-                </div>
-                <div class="col-lg-6 col-12 h-100" style="padding: 30px;">
-                    <h1>Sign Up</h1>
-                    <div>
-                        <div style="padding: 10px 0;">
-                            It's very easy. Just fill a simple registration form on the next page and you can enjoy more benefits from us:
-                        </div>
-                        <div class="flex">
-                            <ul>
-                                <li style="list-style-type: circle;">View your personal information</li>
-                                <li style="list-style-type: circle;">Track and check your order</li>
-                                <li style="list-style-type: circle;">Proceed with the checkout easily and faster too</li>
-                                <form action="" method="POST">
-                                    <button class="main_bt" name="register">Sign Up</button>
-                                </form>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
         </div>
         <?php require_once("./section/footer_section.php") ?>
         <?php require_once("./section/script_section.php") ?>
@@ -67,17 +54,41 @@
                     options.async = true;
                 });
 
+                function loadProfile() {
+                    $("#inner-container").html("");
+                    $("<div><?= json_encode($activeUser['id_user']) ?></div>").appendTo("#inner-container");
+                    $("<div><?= $activeUser['first_name'] ?></div>").appendTo("#inner-container");
+                    $("<div><?= $activeUser['last_name'] ?></div>").appendTo("#inner-container");
+                    $("<div><?= $activeUser['email'] ?></div>").appendTo("#inner-container");
+                    $("<div><?= $activeUser['nama'] ?></div>").appendTo("#inner-container");
+                    $("<div><?= $activeUser['tanggal_lahir'] ?></div>").appendTo("#inner-container");
+                    $("<div><?= $activeUser['username'] ?></div>").appendTo("#inner-container");
+                }
+
                 function loadHistory() {
+                    $("#inner-container").html("");
                     $.ajax({
                         method: "GET",
                         url: "./midtrans/index.php/transaction",
                         success: function(response) {
-                            $("#history_list").html(response);
+                            $("#inner-container").html(response);
+                            // $("#history_list").html(response);
                         }
                     });
                 }
 
-                loadHistory();
+                $("#seeProfile").click(function(e) { 
+                    e.preventDefault();
+                    loadProfile();
+                });
+
+                $("#seeHistory").click(function(e) { 
+                    e.preventDefault();
+                    loadHistory();
+                });
+
+                loadProfile();
+                // loadHistory();
             });
         </script>
     </body>
