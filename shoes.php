@@ -20,6 +20,7 @@
 	<head>
 		<title>Catalog | Adudu Shoes</title>
 		<?php require_once("./section/connection_head.php") ?>
+		<?php require_once("./section/script_section.php") ?>
 	</head>
 	<body class="main-layout">
 		<div class="header_section">
@@ -35,7 +36,6 @@
 			</div>
 		</div>
 		<?php require_once("./section/footer_section.php") ?>
-		<?php require_once("./section/script_section.php") ?>
 		<script type="text/javascript">
 			$(document).ready(function() {
 				$.ajax({

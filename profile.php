@@ -24,6 +24,8 @@
     <head>
         <title>Profile | Adudu Shoes</title>
         <?php require_once("./section/connection_head.php") ?>
+        <?php require_once("./section/script_section.php") ?>
+        <!-- <script src="./js/jquery-3.6.0.min.js"></script> -->
     </head>
     <body class="main-layout flex flex-column flex-between">
         <div class="header_section">
@@ -42,8 +44,7 @@
         <div class="container-fluid" id="history_list">
         </div>
         <?php require_once("./section/footer_section.php") ?>
-        <?php require_once("./section/script_section.php") ?>
-        <script src="./js/jquery-3.6.0.min.js"></script>
+        <?php //require_once("./section/script_section.php") ?>
         <script>
             $(document).ready(function() {
                 $.ajax({
@@ -54,41 +55,9 @@
                     options.async = true;
                 });
 
-                // function loadProfile() {
-                //     $("#inner-container").html("");
-
-                //     $.ajax({
-                //         method: "GET",
-                //         url: "./controller/get_profile.php",
-                //         success: function(response) {
-                //             $("#inner-container").html(response);
-                //         }
-                //     });
-
-                    // $("<div><?= json_encode($activeUser['id_user']) ?></div>").appendTo("#inner-container");
-                    // $("<div><?= $activeUser['first_name'] ?></div>").appendTo("#inner-container");
-                    // $("<div><?= $activeUser['last_name'] ?></div>").appendTo("#inner-container");
-                    // $("<div><?= $activeUser['email'] ?></div>").appendTo("#inner-container");
-                    // $("<div><?= $activeUser['nama'] ?></div>").appendTo("#inner-container");
-                    // $("<div><?= $activeUser['tanggal_lahir'] ?></div>").appendTo("#inner-container");
-                    // $("<div><?= $activeUser['username'] ?></div>").appendTo("#inner-container");
-                // }
-
-                // function loadHistory() {
-                //     $("#inner-container").html("");
-
-                //     $.ajax({
-                //         method: "GET",
-                //         url: "./midtrans/index.php/transaction",
-                //         success: function(response) {
-                //             $("#inner-container").html(response);
-                //         }
-                //     });
-                // }
-
                 function loadSection(url, data) {
                     $("#inner-container").html("");
-                    console.log(data);
+
                     $.ajax({
                         method: "GET",
                         url: url,
