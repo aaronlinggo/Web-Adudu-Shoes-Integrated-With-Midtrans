@@ -69,17 +69,17 @@ class Transaction extends CI_Controller {
     }
 
 	public function status($order_id) {
-		$host = 'localhost';
-		$user = 'root';
-		$password = '';
-		$database = 'db_adudu';
-		$port = '3306';
-		$conn = new mysqli($host, $user, $password, $database);
+		// $host = 'localhost';
+		// $user = 'root';
+		// $password = '';
+		// $database = 'db_adudu';
+		// $port = '3306';
+		// $conn = new mysqli($host, $user, $password, $database);
 
-		if($conn -> connect_errno) {
-			die("Gagal Connect: " . $conn -> connect_error);
-		}
-
+		// if($conn -> connect_errno) {
+		// 	die("Gagal Connect: " . $conn -> connect_error);
+		// }
+		require_once("../controller/connection.php");
 		$response = $this -> veritrans -> status($order_id);
 		$transaction_status = $response -> transaction_status;
 		$status_code = $response -> status_code;
