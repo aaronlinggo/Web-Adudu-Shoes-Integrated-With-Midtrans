@@ -67,7 +67,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="d-flex flex-row-reverse" style="padding: 0 1vw;">
-							<button class="btn btn-success"><a href="./transaction" style="text-decoration: none; color:inherit">Check for Updates!</a></button>
+							<button class="btn btn-success"><a href="./profile.php" style="text-decoration: none; color:inherit">Check for Updates!</a></button>
 						</div>
 						<table class="table table-hover dashboard_btn" style="text-align: center;">
 							<thead>
