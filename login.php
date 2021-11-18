@@ -56,7 +56,7 @@
         </div>
         <div class="container-fluid">
             <div class="container flex-center flex-vstart flex-wrap h-auto">
-                <div class="col-lg-6 col-12 h-100" style="padding: 30px;">
+                <div class="modal-login left col-lg-6 col-12 h-100">
                     <h1>Sign In</h1>
                     <form action="" method="POST">
                         <div class="form-group">
@@ -68,10 +68,10 @@
                         <button class="main_bt" name="login">Sign In</button>
                     </form>
                 </div>
-                <div class="col-lg-6 col-12 h-100" style="padding: 30px;">
+                <div class="modal-login right col-lg-6 col-12 h-100">
                     <h1>Sign Up</h1>
                     <div>
-                        <div style="padding: 10px 0;">
+                        <div style="padding: 10px 0; text-align: justify;">
                             It's very easy. Just fill a simple registration form on the next page and you can enjoy more benefits from us:
                         </div>
                         <div class="flex">

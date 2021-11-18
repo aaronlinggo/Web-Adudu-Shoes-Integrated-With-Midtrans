@@ -6,7 +6,7 @@ $password = '';
 $database = 'db_adudu';
 $port = '3306';
 $conn = new mysqli($host, $user, $password, $database);
-if ($conn->connect_errno) {
+if($conn->connect_errno) {
   die("gagal connect : " . $conn->connect_error);
 }
 
@@ -19,14 +19,13 @@ $stmt = $conn->prepare("SELECT * FROM cart_item WHERE user_id=$id_user and activ
 $stmt->execute();
 $cart_item = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  if (isset($_POST['delete'])) {
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
+  if(isset($_POST['delete'])) {
     $id_cart = $_POST['id_cart'];
     $result = $conn->query("DELETE FROM cart_item WHERE id_cart=$id_cart");
     header('Location: cart.php');
   }
 }
-
 ?>
 
 <html>
@@ -89,14 +88,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
                 <div class="medium-scale flex flex-vcenter flex-between">
                   <?php
-                  if (!isset($_SESSION['active'])) {
+                  if(!isset($_SESSION['active'])) {
                   ?>
                     <a class="role-out btn btn-outline-success fullheight" href="../../login.php">Sign In</a>
                     <a class="role-out btn btn-outline-danger fullheight" href="../../register.php">Sign Up</a>
                   <?php
                   } else {
                   ?>
-                    <a class="nav-item nav-link profile flex flex-hend" href="#">
+                    <a class="nav-item nav-link profile flex flex-hend" href="../../profile.php">
                       <img src="../../images/user_24px_black.png">
                     </a>
                     <a class="btn btn-outline-danger fullheight" href="../../logout.php">Sign Out</a>
@@ -144,7 +143,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $stmt = $conn->prepare("SELECT * FROM sepatu WHERE id_sepatu=$sepatu_id");
                     $stmt->execute();
                     $sepatu = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-                    if (strlen($sepatu[0]['nama_sepatu']) > 25)
+                    if(strlen($sepatu[0]['nama_sepatu']) > 25)
                       $nama_sepatu = substr($sepatu[0]['nama_sepatu'], 0, 25);
                     else {
                       $nama_sepatu = $sepatu[0]['nama_sepatu'];
@@ -239,9 +238,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $(this).one("touchmove", function(event) {
           var yMove = event.originalEvent.touches[0].pageY;
 
-          if (Math.floor(yClick - yMove) > 1) {
+          if(Math.floor(yClick - yMove) > 1) {
             $(".carousel").carousel('next');
-          } else if (Math.floor(yClick - yMove) < -1) {
+          } else if(Math.floor(yClick - yMove) < -1) {
             $(".carousel").carousel('prev');
           }
         });
