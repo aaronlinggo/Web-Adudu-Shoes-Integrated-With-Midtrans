@@ -10,6 +10,7 @@ deployment:
     - /bin/cp ajax.php $DEPLOYPATH
     - /bin/cp logout.php $DEPLOYPATH
     - /bin/cp register.php $DEPLOYPATH
+    - /bin/cp profile.php $DEPLOYPATH
     - /bin/cp shoes.php $DEPLOYPATH
     - /bin/cp -R admin $DEPLOYPATH
     - /bin/cp -R midtrans $DEPLOYPATH

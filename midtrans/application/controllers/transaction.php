@@ -26,17 +26,17 @@ class Transaction extends CI_Controller {
     }
 
     public function index() {
-		$host = 'localhost';
-		$user = 'root';
-		$password = '';
-		$database = 'db_adudu';
-		$port = '3306';
-		$conn = new mysqli($host, $user, $password, $database);
+		// $host = 'localhost';
+		// $user = 'root';
+		// $password = '';
+		// $database = 'db_adudu';
+		// $port = '3306';
+		// $conn = new mysqli($host, $user, $password, $database);
 
-		if($conn -> connect_errno) {
-			die("Gagal Connect: " . $conn -> connect_error);
-		}
-
+		// if($conn -> connect_errno) {
+		// 	die("Gagal Connect: " . $conn -> connect_error);
+		// }
+		require_once("../controller/connection.php");
 		$stmt = $conn -> prepare("SELECT * FROM payment");
 		$stmt -> execute();
 		$payment = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
