@@ -54,41 +54,65 @@
                     options.async = true;
                 });
 
-                function loadProfile() {
-                    $("#inner-container").html("");
-                    $("<div><?= json_encode($activeUser['id_user']) ?></div>").appendTo("#inner-container");
-                    $("<div><?= $activeUser['first_name'] ?></div>").appendTo("#inner-container");
-                    $("<div><?= $activeUser['last_name'] ?></div>").appendTo("#inner-container");
-                    $("<div><?= $activeUser['email'] ?></div>").appendTo("#inner-container");
-                    $("<div><?= $activeUser['nama'] ?></div>").appendTo("#inner-container");
-                    $("<div><?= $activeUser['tanggal_lahir'] ?></div>").appendTo("#inner-container");
-                    $("<div><?= $activeUser['username'] ?></div>").appendTo("#inner-container");
-                }
+                // function loadProfile() {
+                //     $("#inner-container").html("");
 
-                function loadHistory() {
+                //     $.ajax({
+                //         method: "GET",
+                //         url: "./controller/get_profile.php",
+                //         success: function(response) {
+                //             $("#inner-container").html(response);
+                //         }
+                //     });
+
+                    // $("<div><?= json_encode($activeUser['id_user']) ?></div>").appendTo("#inner-container");
+                    // $("<div><?= $activeUser['first_name'] ?></div>").appendTo("#inner-container");
+                    // $("<div><?= $activeUser['last_name'] ?></div>").appendTo("#inner-container");
+                    // $("<div><?= $activeUser['email'] ?></div>").appendTo("#inner-container");
+                    // $("<div><?= $activeUser['nama'] ?></div>").appendTo("#inner-container");
+                    // $("<div><?= $activeUser['tanggal_lahir'] ?></div>").appendTo("#inner-container");
+                    // $("<div><?= $activeUser['username'] ?></div>").appendTo("#inner-container");
+                // }
+
+                // function loadHistory() {
+                //     $("#inner-container").html("");
+
+                //     $.ajax({
+                //         method: "GET",
+                //         url: "./midtrans/index.php/transaction",
+                //         success: function(response) {
+                //             $("#inner-container").html(response);
+                //         }
+                //     });
+                // }
+
+                function loadSection(url, data) {
                     $("#inner-container").html("");
+                    console.log(data);
                     $.ajax({
                         method: "GET",
-                        url: "./midtrans/index.php/transaction",
+                        url: url,
+                        data: {
+                            origin: "profile",
+                            data: data
+                        },
                         success: function(response) {
                             $("#inner-container").html(response);
-                            // $("#history_list").html(response);
                         }
                     });
                 }
 
                 $("#seeProfile").click(function(e) { 
                     e.preventDefault();
-                    loadProfile();
+                    loadSection("./section/get_profile.php", <?= json_encode($activeUser) ?>);
                 });
 
                 $("#seeHistory").click(function(e) { 
                     e.preventDefault();
-                    loadHistory();
+                    loadSection("./midtrans/index.php/transaction", "");
                 });
 
-                loadProfile();
-                // loadHistory();
+                loadSection("./section/get_profile.php", <?= json_encode($activeUser) ?>);
             });
         </script>
     </body>
