@@ -23,7 +23,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
   if(isset($_POST['delete'])) {
     $id_cart = $_POST['id_cart'];
     $result = $conn->query("DELETE FROM cart_item WHERE id_cart=$id_cart");
-    header('Location: cart.php');
+    header('Location: snap');
   }
 }
 ?>
