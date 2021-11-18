@@ -36,7 +36,7 @@ class Transaction extends CI_Controller {
 		// if($conn -> connect_errno) {
 		// 	die("Gagal Connect: " . $conn -> connect_error);
 		// }
-		require_once("../controller/connection.php");
+		include("connection.php");
 		$stmt = $conn -> prepare("SELECT * FROM payment");
 		$stmt -> execute();
 		$payment = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
@@ -79,7 +79,7 @@ class Transaction extends CI_Controller {
 		// if($conn -> connect_errno) {
 		// 	die("Gagal Connect: " . $conn -> connect_error);
 		// }
-		require_once("../controller/connection.php");
+		include("connection.php");
 		$response = $this -> veritrans -> status($order_id);
 		$transaction_status = $response -> transaction_status;
 		$status_code = $response -> status_code;
