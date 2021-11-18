@@ -25,26 +25,32 @@
         <title>Profile | Adudu Shoes</title>
         <?php require_once("./section/connection_head.php") ?>
         <?php require_once("./section/script_section.php") ?>
-        <!-- <script src="./js/jquery-3.6.0.min.js"></script> -->
     </head>
     <body class="main-layout flex flex-column flex-between">
         <div class="header_section">
             <?php require_once("./section/nav_section.php") ?>
         </div>
-        <div class="container h-auto">
-            <div class="h-100" style="border: 1px solid rgb(219, 222, 226); border-radius: 8px;">
-                <div class="w-100 flex" style="border-bottom: 1px solid rgb(219, 222, 226);">
-                    <div id="seeProfile" style="padding: 0 10px;">Your Profile</div>
-                    <div id="seeHistory" style="padding: 0 10px;">Transaction History</div>
+        <!-- DESKTOP -->
+        <div class="container h-100 py-3">
+        <!-- <div class="container h-auto"> -->
+            <div class="h-100" style="padding: 0 16px;">
+                <div class="h-100 flex" style="border: 1px solid rgb(219, 222, 226); border-radius: 8px; padding: 20px;">
+                    <!-- <div class="w-100 flex" style="border-bottom: 1px solid rgb(219, 222, 226);">
+                        <div id="seeProfile" style="padding: 0 10px;">Your Profile</div>
+                        <div id="seeHistory" style="padding: 0 10px;">Transaction History</div>
+                    </div> -->
+                    <div class="h-100 flex-center" style="width: 35%; margin-right: 30px;">
+                        <div id="inner1" class="w-100 h-100" style="padding: 10px; border-radius: 8px; box-shadow: 0 1px 6px 0 rgba(49, 53, 59, 0.12);">
+                        </div>
+                    </div>
+                    <div id="inner2" class="h-100 flex" style="width: calc(65% - 30px); overflow-y: auto;">
+                    </div>
+                    <!-- <div class="w-100 h-100" style="padding: 10px; border-radius: 8px; box-shadow: 0 1px 6px 0 rgba(49, 53, 59, 0.12);">
+                    </div> -->
                 </div>
-                <div id="inner-container" class="w-100 h-75"></div>
             </div>
         </div>
-
-        <div class="container-fluid" id="history_list">
-        </div>
         <?php require_once("./section/footer_section.php") ?>
-        <?php //require_once("./section/script_section.php") ?>
         <script>
             $(document).ready(function() {
                 $.ajax({
@@ -55,8 +61,8 @@
                     options.async = true;
                 });
 
-                function loadSection(url, data) {
-                    $("#inner-container").html("");
+                function loadSection(url, data, obj) {
+                    $(obj).html("");
 
                     $.ajax({
                         method: "GET",
@@ -66,22 +72,24 @@
                             data: data
                         },
                         success: function(response) {
-                            $("#inner-container").html(response);
+                            $(obj).html(response);
                         }
                     });
                 }
 
                 $("#seeProfile").click(function(e) { 
                     e.preventDefault();
-                    loadSection("./section/get_profile.php", <?= json_encode($activeUser) ?>);
+                    loadSection("./section/get_profile.php", <?= json_encode($activeUser) ?>, "#inner1");
                 });
 
                 $("#seeHistory").click(function(e) { 
                     e.preventDefault();
-                    loadSection("./midtrans/index.php/transaction", "");
+                    loadSection("./midtrans/index.php/transaction", "", "#inner2");
                 });
 
-                loadSection("./section/get_profile.php", <?= json_encode($activeUser) ?>);
+                loadSection("./section/get_profile.php", <?= json_encode($activeUser) ?>, "#inner1");
+                loadSection("./midtrans/index.php/transaction", "", "#inner2");
+                // loadSection("./midtrans/index.php/transaction", "");
             });
         </script>
     </body>

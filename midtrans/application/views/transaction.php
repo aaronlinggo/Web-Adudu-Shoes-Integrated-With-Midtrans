@@ -1,5 +1,6 @@
 <?php
 	session_start();
+
 	$host = 'localhost';
 	$user = 'root';
 	$password = '';
@@ -11,7 +12,6 @@
 		die("Gagal Connect: " . $conn -> connect_error);
 	}
 
-	//var_dump($_SESSION);
 	$id_user = $_SESSION['active'];
 	$stmt = $conn -> prepare("SELECT * FROM users WHERE id_user = $id_user");
 	$stmt -> execute();
@@ -81,8 +81,6 @@
 							</thead>
 							<tbody>
 							<?php
-								// $item_details = array();
-
 								foreach($order_details as $key => $value) {
 									$id_payment = $value['payment_id'];
 									$stmt = $conn -> prepare("SELECT * FROM payment WHERE id = '$id_payment'");
