@@ -3,7 +3,7 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home/adudumas/public_html/
     - /bin/cp cart.php $DEPLOYPATH
-    - /bin/cp collection.php $DEPLOYPATH
+    - /bin/cp aboutus.php $DEPLOYPATH
     - /bin/cp detail_shoes.php $DEPLOYPATH
     - /bin/cp index.php $DEPLOYPATH
     - /bin/cp login.php $DEPLOYPATH
