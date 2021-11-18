@@ -133,7 +133,7 @@ $amount_total = $stmt->get_result()->fetch_assoc();
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
                                     <div class="card-title">Income</div>
-                                    <div class="welcome-text"><?= "Rp. " . number_format($amount_total['total'], 0, ',', '.') . ",-" ?></div>
+                                    <div class="welcome-text"><?= "Rp. " . number_format($amount_total['total'], 0, ',', '.') . ",-" ?><span class="fw-bold text-black">/Month</span></div>
     
                                 </div>
                                 <div>
