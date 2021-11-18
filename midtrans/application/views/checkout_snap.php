@@ -1,15 +1,15 @@
 <?php
 session_start();
-$host = 'localhost';
-$user = 'root';
-$password = '';
-$database = 'db_adudu';
-$port = '3306';
-$conn = new mysqli($host, $user, $password, $database);
-if($conn->connect_errno) {
-  die("gagal connect : " . $conn->connect_error);
-}
-
+// $host = 'localhost';
+// $user = 'root';
+// $password = '';
+// $database = 'db_adudu';
+// $port = '3306';
+// $conn = new mysqli($host, $user, $password, $database);
+// if($conn->connect_errno) {
+//   die("gagal connect : " . $conn->connect_error);
+// }
+require_once("../controllers/connection.php");
 $id_user = $_SESSION['active'];
 $stmt = $conn->prepare("SELECT * FROM users WHERE id_user=$id_user");
 $stmt->execute();
