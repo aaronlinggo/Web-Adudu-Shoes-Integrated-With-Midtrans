@@ -9,7 +9,7 @@ session_start();
 // if($conn->connect_errno) {
 //   die("gagal connect : " . $conn->connect_error);
 // }
-require_once("../controllers/connection.php");
+require_once("./application/controllers/connection.php");
 $id_user = $_SESSION['active'];
 $stmt = $conn->prepare("SELECT * FROM users WHERE id_user=$id_user");
 $stmt->execute();
