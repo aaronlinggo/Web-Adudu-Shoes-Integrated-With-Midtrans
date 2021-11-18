@@ -219,7 +219,7 @@ class Snap extends CI_Controller {
 
     	$this->data['finish'] = json_decode($this->input->post('result_data')); 
 		// $this->load->view('transaction');
-		header("Location: ../transaction");
+		header("Location: ../../../profile.php");
 
     }
 }
