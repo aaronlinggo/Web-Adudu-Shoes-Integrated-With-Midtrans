@@ -6,27 +6,34 @@
     $stmt -> execute();
     $users = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
 
+    if(isset($_SESSION['activeRoles'])) {
+        if($_SESSION['activeRoles'] == "admin") {
+            header("Location: ./admin/index.php");
+        } else if($_SESSION['activeRoles'] == "Customer") {
+            header("Location: ./");
+        }
+    }
+
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         if(isset($_POST['login'])) {
             $username = $_POST['username'];
             $password = $_POST['password'];
-
             $ada = false;
 
             foreach($users as $key => $value) {
                 if($username == $value['username']) {
                     if(md5($password) == $value['password']) {
-                        $_SESSION['active'] = $value['id_user'];
-
                         if($value['roles'] == "admin") {
+                            $_SESSION['active'] = $value['id_user'];
+                            $_SESSION['activeRoles'] = "admin";
                             header("Location: ./admin/index.php");
                         } else {
                             echo "<script>alert('Error Code 403: Forbidden!')</script>";
-                            echo "<script>window.location = './login.php'</script>";
+                            echo "<script>window.location = './'</script>";
                         }
                     } else {
                         echo "<script>alert('You entered wrong password!')</script>";
-                        echo "<script>window.location = './login.php'</script>";
+                            echo "<script>window.location = './cpanel.php'</script>";
                     }
 
                     $ada = true;
@@ -35,12 +42,8 @@
 
             if(!$ada) {
                 echo "<script>alert('Username is not found!')</script>";
-                echo "<script>window.location = './login.php'</script>";
+                echo "<script>window.location = './'</script>";
             }
-        }
-
-        if(isset($_POST['register'])) {
-            echo "<script>window.location = './register.php'</script>";
         }
     }
 ?>

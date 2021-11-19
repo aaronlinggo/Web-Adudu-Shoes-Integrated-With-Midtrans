@@ -37,10 +37,22 @@
                                     <a class="role-out btn btn-outline-danger fullheight" href="./register.php">Sign Up</a>
                                 <?php
                                 } else {
+                                    if(isset($_SESSION['activeRoles'])) {
+                                        if($_SESSION['activeRoles'] == "Customer") {
+                                        ?>
+                                            <a class="nav-item nav-link profile flex flex-hend" href="./profile.php">
+                                                <img src="./images/user_24px_black.png">
+                                            </a>
+                                        <?php
+                                        } else if($_SESSION['activeRoles'] == "admin") {
+                                        ?>
+                                            <a class="nav-item nav-link profile flex flex-hend" href="./admin/index.php">
+                                                <img src="./images/user_24px_black.png">
+                                            </a>
+                                        <?php
+                                        }
+                                    }
                                 ?>
-                                    <a class="nav-item nav-link profile flex flex-hend" href="./profile.php">
-                                        <img src="./images/user_24px_black.png">
-                                    </a>
                                     <a class="btn btn-outline-danger fullheight" href="./logout.php">Sign Out</a>
                                 <?php
                                 }
