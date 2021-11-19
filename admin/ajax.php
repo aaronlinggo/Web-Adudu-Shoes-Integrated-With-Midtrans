@@ -426,7 +426,7 @@
                         <a href="<?= $link ?>" target="_blank">
                             <button class="btn btn-info">Click me to Pay!</button>
                         </a>
-                        <a href="./transaction">
+                        <a href="./profile.php">
                             <button class="btn btn-success" style="color: white;">Already Paid!</button>
                         </a>
                     </td>
