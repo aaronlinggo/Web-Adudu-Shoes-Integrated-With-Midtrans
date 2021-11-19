@@ -51,6 +51,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="<SB-Mid-client-3OxJRhBsnTXSca5E>"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body class="main-layout">
@@ -126,7 +127,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <th>Action</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="updateQty">
               <?php $amount = 0;
               $item_details = array();
               foreach ($cart_item as $key => $value) {
@@ -161,7 +162,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                     ?>
                   </td>
                   <td><?= "Rp. " . number_format($value['price'], 0, ',', '.') . ",-" ?></td>
-                  <td><?= $value['qty'] ?></td>
+                  <td class="d-flex justify-content-center">
+                    <button class="btn btn-secondary" onclick="kurang(<?= $value['id_cart']?>, <?= $id_user ?>)">-</button>
+                    <input type="text" name="" id="" class="form-control" style="width: 35px;" value="<?= $value['qty'] ?>">
+                    <button class="btn btn-secondary" onclick="tambah(<?= $value['id_cart'] ?>, <?= $id_user ?>)">+</button>
+                  </td>
                   <td><?= "Rp. " . number_format(($value['price'] * $value['qty']), 0, ',', '.') . ",-" ?></td>
                   <td>
                     <div class="d-flex justify-content-center">
@@ -220,6 +225,38 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
   <script src="../../js/jquery.mCustomScrollbar.concat.min.js"></script>
   <!-- <script src="../../js/custom.js"></script> -->
   <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+  <script>
+    function tambah(id, id_user){
+      $.ajax({
+        type:"POST",
+        url:"../../controller/ajax.php",
+        data:{
+            'action':'tambah',
+            'id'    : id,
+            'id_user'    : id_user
+        },
+        success:function(response){
+            $("#updateQty").html("");
+            $("#updateQty").append(response);
+        }
+      });
+    }
+    function kurang(id, id_user){
+      $.ajax({
+        type:"POST",
+        url:"../../controller/ajax.php",
+        data:{
+            'action':'kurang',
+            'id'    : id,
+            'id_user'    : id_user
+        },
+        success:function(response){
+            $("#updateQty").html("");
+            $("#updateQty").append(response);
+        }
+      });
+    }
+  </script>
   <script>
     $(document).ready(function() {
       $(".fancybox").fancybox({
