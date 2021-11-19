@@ -8,7 +8,7 @@ $(document).ready(function() {
     });
 
     loadCatalog();
-    
+
     function loadCatalog(page, query) {
         $.ajax({
             method: "POST",
