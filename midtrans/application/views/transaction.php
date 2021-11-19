@@ -187,7 +187,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 							?>
 								<tr>
 									<td><?= ($key + 1) ?></td>
-									<td><?= $payment['order_id'] ?></td>
+									<td>#<?= $payment['order_id'] ?></td>
 									<td><?= "Rp. " . number_format($payment['gross_amount'], 0, ',', '.') . ",-" ?></td>
 									<td>
 										<?php

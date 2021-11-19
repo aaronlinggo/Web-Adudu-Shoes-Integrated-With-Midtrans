@@ -147,7 +147,7 @@ $payment = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                                     <?php foreach ($payment as $key => $value) { ?>
                                         <tr>
                                             <td><?= ($key+1) ?></td>
-                                            <td><?= $value['order_id'] ?></td>
+                                            <td>#<?= $value['order_id'] ?></td>
                                             <td><?= "Rp. " . number_format($value['gross_amount'], 0, ',', '.') . ",-" ?></td>
                                             <td>
                                                 <?php 
