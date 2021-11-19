@@ -19,8 +19,7 @@
 <!DOCTYPE html>
 <html lang="en-US">
     <head>
-        <!-- DYNAMIC NAME -->
-        <title>Detail | Adudu Shoes</title>
+        <title><?= $sepatu[0]['nama_sepatu'] ?> | Adudu Shoes</title>
         <?php require_once("./section/connection_head.php") ?>
         <?php require_once("./section/script_section.php") ?>
     </head>

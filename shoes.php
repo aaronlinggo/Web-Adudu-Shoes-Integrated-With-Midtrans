@@ -9,7 +9,6 @@
 	if($_SERVER['REQUEST_METHOD'] == 'POST') {
 		if(isset($_POST['details'])) {
 			$id_sepatu = $_POST['id_sepatu'];
-			// echo "<script>window.location = './detail_shoes.php?id_sepatu=$id_sepatu';</script>";
 			header("Location: detail_shoes.php?id_sepatu=$id_sepatu");
 		}
 	}
@@ -30,11 +29,7 @@
 			<div class="position-sticky p-3" style="top: 0; right: 0; z-index: 11;">
 				<div id="liveToast" class="toast fade hide" role="alert" aria-live="assertive" aria-atomic="true">
 					<div class="toast-header">
-						<!-- <svg class="bd-placeholder-img rounded me-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-							<rect width="100%" height="100%" fill="#007aff"></rect>
-						</svg> -->
 						<strong style="margin-right: auto;">Success</strong>
-						<!-- <small>11 mins ago</small> -->
 						<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
 					</div>
 					<div class="toast-body">
@@ -82,7 +77,7 @@
 				// $("#search_btn").click(function(e) {
 				// 	e.preventDefault();
 
-				// 	// REGEX OR QUERY GOES HERE THEN CALL THE AJAX
+				// 	// REGEX OR QUERY GOES HERE THEN CALL THE AJAX (OPTIONAL)
 				// });
 			});
 		</script>
