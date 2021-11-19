@@ -33,7 +33,7 @@
                                         if($value['transaction_status'] == "settlement") {
                                             echo "<button class='btn btn-success' style='cursor: default; margin:0; background-color: #34B1AA;'>Success</button>";
                                         } else if($value['transaction_status'] == "pending") {
-                                            echo "<button class='btn btn-secondary' style='cursor: default; margin:0; background-color: #d4e1ed;'>Pending</button>";
+                                            echo "<button class='btn btn-secondary' style='cursor: default; margin:0; background-color: #d4e1ed; color: black;'>Pending</button>";
                                         } else {
                                             echo "<button class='btn btn-danger' style='cursor: default; margin:0; background-color: #F95F53;'>Expired</button>";
                                         }
@@ -79,7 +79,7 @@
                                             if($value['transaction_status'] == "settlement") {
                                                 echo "<button class='btn btn-success' style='cursor: default; margin:0; background-color: #34B1AA;'>Success</button>";
                                             } else if($value['transaction_status'] == "pending") {
-                                                echo "<button class='btn btn-secondary' style='cursor: default; margin:0; background-color: #d4e1ed;'>Pending</button>";
+                                                echo "<button class='btn btn-secondary' style='cursor: default; margin:0; background-color: #d4e1ed; color: black;'>Pending</button>";
                                             } else {
                                                 echo "<button class='btn btn-danger' style='cursor: default; margin:0; background-color: #F95F53;'>Expired</button>";
                                             }
@@ -145,7 +145,7 @@
                                             echo "<button class='btn btn-success' style='cursor: default; margin:0; background-color: #34B1AA;'>Success</button>";
                                         }
                                         else if($value['transaction_status'] == "pending"){
-                                            echo "<button class='btn btn-secondary' style='cursor: default; margin:0; background-color: #d4e1ed;'>Pending</button>";
+                                            echo "<button class='btn btn-secondary' style='cursor: default; margin:0; background-color: #d4e1ed; color: black;'>Pending</button>";
                                         }
                                         else{
                                             echo "<button class='btn btn-danger' style='cursor: default; margin:0; background-color: #F95F53;'>Expired</button>";
@@ -198,7 +198,7 @@
                                         echo "<button class='btn btn-success' style='cursor: default; margin:0; background-color: #34B1AA;'>Success</button>";
                                     }
                                     else if($payment_details['transaction_status'] == "pending"){
-                                        echo "<button class='btn btn-secondary' style='cursor: default; margin:0; background-color: #d4e1ed;'>Pending</button>";
+                                        echo "<button class='btn btn-secondary' style='cursor: default; margin:0; background-color: #d4e1ed; color: black;'>Pending</button>";
                                     }
                                     else{
                                         echo "<button class='btn btn-danger' style='cursor: default; margin:0; background-color: #F95F53;'>Expired</button>";
@@ -280,7 +280,7 @@
                                     echo "<button class='btn btn-success' style='cursor: default; margin:0; background-color: #34B1AA;'>Success</button>";
                                 }
                                 else if($payment_details['transaction_status'] == "pending"){
-                                    echo "<button class='btn btn-secondary' style='cursor: default; margin:0; background-color: #d4e1ed;'>Pending</button>";
+                                    echo "<button class='btn btn-secondary' style='cursor: default; margin:0; background-color: #d4e1ed; color: black;'>Pending</button>";
                                 }
                                 else{
                                     echo "<button class='btn btn-danger' style='cursor: default; margin:0; background-color: #F95F53;'>Expired</button>";
@@ -369,7 +369,7 @@
                                     echo "<button class='btn btn-success' style='cursor: default; margin:0; background-color: #34B1AA;'>Success</button>";
                                 }
                                 else if($payment_details['transaction_status'] == "pending"){
-                                    echo "<button class='btn btn-secondary' style='cursor: default; margin:0; background-color: #d4e1ed;'>Pending</button>";
+                                    echo "<button class='btn btn-secondary' style='cursor: default; margin:0; background-color: #d4e1ed; color: black;'>Pending</button>";
                                 }
                                 else{
                                     echo "<button class='btn btn-danger' style='cursor: default; margin:0; background-color: #F95F53;'>Expired</button>";

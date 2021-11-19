@@ -80,7 +80,7 @@ class Snap extends CI_Controller {
         $custom_expiry = array(
             'start_time' => date("Y-m-d H:i:s O",$time),
             'unit' => 'minute', 
-            'duration'  => 2
+            'duration'  => 5
         );
         
         $transaction_data = array(
