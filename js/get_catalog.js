@@ -7,12 +7,10 @@ $(document).ready(function() {
         options.async = true;
     });
 
-    loadCatalog();
-
     function loadCatalog(page, query) {
         $.ajax({
             method: "POST",
-            url: "./ajax.php",
+            url: "./get_catalog.php",
             data: {
                 page: page,
                 query: query
@@ -22,6 +20,8 @@ $(document).ready(function() {
             }
         });
     }
+
+    loadCatalog();
 
     $(document).on('click', '.halaman', function(){
         $(window).scrollTop(0);
