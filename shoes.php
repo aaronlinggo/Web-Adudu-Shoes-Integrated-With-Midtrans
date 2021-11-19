@@ -12,31 +12,6 @@
 			// echo "<script>window.location = './detail_shoes.php?id_sepatu=$id_sepatu';</script>";
 			header("Location: detail_shoes.php?id_sepatu=$id_sepatu");
 		}
-
-		if(isset($_POST['addCart'])) {
-            // $id_user = $_SESSION['active'];
-            // $active = true;
-            // $qty = 1;
-            // $price = $sepatu[0]['harga_sepatu'];
-
-            // $stmt = $conn -> prepare("SELECT * FROM cart_item WHERE user_id = $id_user AND active = 1");
-            // $stmt -> execute();
-            // $checking = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
-
-            // $ada = false;
-
-            // foreach($checking as $key => $value) {
-            //     if($value['sepatu_id'] == $id_sepatu) {
-            //         $ada = true;
-            //     }
-            // }
-
-            // if(!$ada) {
-            //     $stmt = $conn -> prepare("INSERT INTO cart_item(user_id, sepatu_id, qty, price, active) VALUES(?,?,?,?,?)");
-            //     $stmt -> bind_param("iiiii", $id_user, $id_sepatu, $qty, $price, $active);
-            //     $result = $stmt -> execute();
-            // }
-        }
 	}
 ?>
 
@@ -51,12 +26,29 @@
 		<div class="header_section">
 			<?php require_once("./section/nav_section.php") ?>
 		</div>
-		<div class="collection_text">Shoes</div>
-		<div class="layout_padding gallery_section">
-			<div class="container">
-				<div id="catalog_row" class="row"></div>
-				<div class="buy_now_bt">
-					<button class="buy_text">Buy Now</button>
+		<div id="catalog" class="fullwidth h-auto flex flex-column" style="position: relative;">
+			<div class="position-sticky p-3" style="top: 0; right: 0; z-index: 11;">
+				<div id="liveToast" class="toast fade hide" role="alert" aria-live="assertive" aria-atomic="true">
+					<div class="toast-header">
+						<!-- <svg class="bd-placeholder-img rounded me-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+							<rect width="100%" height="100%" fill="#007aff"></rect>
+						</svg> -->
+						<strong style="margin-right: auto;">Success</strong>
+						<!-- <small>11 mins ago</small> -->
+						<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+					</div>
+					<div class="toast-body">
+						Your item has been added to cart.
+					</div>
+				</div>
+			</div>
+			<div class="collection_text">Shoes</div>
+			<div class="layout_padding gallery_section">
+				<div class="container">
+					<div id="catalog_row" class="row"></div>
+					<div class="buy_now_bt">
+						<button class="buy_text">Buy Now</button>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -86,6 +78,7 @@
 					// BELUM MULUS
 					$("#search_area").hide();
 				});
+
 				// $("#search_btn").click(function(e) {
 				// 	e.preventDefault();
 
@@ -94,5 +87,6 @@
 			});
 		</script>
 		<script type="text/javascript" src="./js/get_catalog.js"></script>
+		<script type="text/javascript" src="./js/add_cart.js"></script>
 	</body>
 </html>

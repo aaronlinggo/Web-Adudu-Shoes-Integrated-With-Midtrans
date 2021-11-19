@@ -1,4 +1,5 @@
 <?php
+    session_start();
 	require_once("./controller/connection.php");
 
     $pages = 1;
@@ -41,15 +42,24 @@
                         <div class="star_text flex-center flex-vend">
                             <div class="button_part">
                                 <form action="" method="POST">
-                                    <input type="hidden" name="id_sepatu" value='<?= $value['id_sepatu'] ?>'>
-                                    <button class="btn btn-success" style="border-radius: 4px;" name="details">Details</button>
+                                    <input type="hidden" name="id_sepatu" id="id_sepatu" value='<?= $value['id_sepatu'] ?>'>
+                                    <button class="btn btn-success" style="border-radius: 4px;" name="details" id="details">Details</button>
                                 </form>
-                                <button class="btn btn-success" style="border-radius: 4px;" name="addCart">Add to Cart</button>
+                                <?php
+                                    if(isset($_SESSION['active'])) {
+                                    ?>
+                                        <button class="btn btn-success" style="border-radius: 4px;" name="addCart" id="addCart" value='<?= $value['id_sepatu'] ?>' onclick="addCart(this)">Add to Cart</button>
+                                    <?php
+                                    } else {
+                                    ?>
+                                        <a href="./login.php" class="btn btn-success" style="border-radius: 4px;">Add to Cart</a>
+                                    <?php
+                                    }
+                                ?>
                             </div>
                             <div class="right_part" style="text-align: right;">
                                 <div><?= ($value['stock_sepatu'] > 0) ? "Stock Available" : "Out of Stock" ?></div>
                                 <div class="shoes_price">Rp. <span style="color: #ff4e5b;"><?= number_format($value['harga_sepatu'], 0, ',', '.') ?></span></div>
-                                <!-- <div class="shoes_price">Rp. <span style="color: #ff4e5b;"><?= number_format($value['harga_sepatu'], 0, ',', '.') . ",-" ?></span></div> -->
                             </div>
                         </div>
                     </div>

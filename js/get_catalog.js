@@ -21,8 +21,6 @@ $(document).ready(function() {
         });
     }
 
-    loadCatalog();
-
     $(document).on('click', '.halaman', function(){
         $(window).scrollTop(0);
         loadCatalog($(this).attr("id"));
@@ -34,4 +32,6 @@ $(document).ready(function() {
         loadCatalog(1, $("#search_bar").val());
         $("#search_bar").val("");
     });
+
+    loadCatalog();
 });
