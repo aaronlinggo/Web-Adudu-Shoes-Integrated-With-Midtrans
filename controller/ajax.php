@@ -99,8 +99,8 @@ else if ($action == "kurang") {
     $stmt->execute();
     $cart = $stmt->get_result()->fetch_assoc();
     $qty = ($cart['qty'] - 1);
-    if ($qty <= 0){
-        $qty = 0;
+    if ($qty <= 1){
+        $qty = 1;
     }
     $result = $conn->query("update cart_item set qty = '$qty' where id_cart = $id");
     $stmt = $conn->prepare("SELECT * FROM cart_item WHERE user_id=$id_user and active = 1");

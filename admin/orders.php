@@ -124,7 +124,7 @@ $payment = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                         <h4 class="card-title">List Order</h4>
                         <div class="dashboard_btn">
                             <label for="searchID">Order ID : </label>
-                            <input type="text" name="searchID" id="searchID" style="border: 1px solid lightgray; border-radius: 5px;">
+                            <input type="number" name="searchID" id="searchID" style="border: 1px solid lightgray; border-radius: 5px;">
                             <button class='btn btn-secondary' onclick="searchBtn()" style='margin:0; background-color: #d4e1ed;'>
                                 <svg class="bi me-2" width="10" height="10">
                                     <use xlink:href="#search" />
