@@ -12,13 +12,38 @@
 			// echo "<script>window.location = './detail_shoes.php?id_sepatu=$id_sepatu';</script>";
 			header("Location: detail_shoes.php?id_sepatu=$id_sepatu");
 		}
+
+		if(isset($_POST['addCart'])) {
+            // $id_user = $_SESSION['active'];
+            // $active = true;
+            // $qty = 1;
+            // $price = $sepatu[0]['harga_sepatu'];
+
+            // $stmt = $conn -> prepare("SELECT * FROM cart_item WHERE user_id = $id_user AND active = 1");
+            // $stmt -> execute();
+            // $checking = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
+
+            // $ada = false;
+
+            // foreach($checking as $key => $value) {
+            //     if($value['sepatu_id'] == $id_sepatu) {
+            //         $ada = true;
+            //     }
+            // }
+
+            // if(!$ada) {
+            //     $stmt = $conn -> prepare("INSERT INTO cart_item(user_id, sepatu_id, qty, price, active) VALUES(?,?,?,?,?)");
+            //     $stmt -> bind_param("iiiii", $id_user, $id_sepatu, $qty, $price, $active);
+            //     $result = $stmt -> execute();
+            // }
+        }
 	}
 ?>
 
 <!DOCTYPE html>
 <html lang="en-US">
 	<head>
-		<title>Catalog | Adudu Shoes</title>
+		<title>Shoes | Adudu Shoes</title>
 		<?php require_once("./section/connection_head.php") ?>
 		<?php require_once("./section/script_section.php") ?>
 	</head>
@@ -68,6 +93,6 @@
 				// });
 			});
 		</script>
-		<script type="text/javascript" src="./js/ajax.js"></script>
+		<script type="text/javascript" src="./js/get_catalog.js"></script>
 	</body>
 </html>

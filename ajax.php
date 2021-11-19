@@ -24,12 +24,12 @@
 
 	$stmt -> execute();
 	$sepatu = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
-
     // var_dump(count($sepatu));
 
     // NEED TO IMPLEMENT LAZY IMAGE OR USE SPINNER
     foreach($sepatu as $key => $value) {
         $lokasi = "./admin/" . $value['link_gambarsepatu'];
+        // var_dump($value);
         ?>
             <div class="col-sm-12 col-md-6 col-lg-4" style="margin: 15px 0;">
                 <div class="best_shoes flex-center flex-column flex-hend flex-between">
@@ -40,12 +40,14 @@
                         <div class="shoes_icon"><img src='<?= $lokasi ?>'></div>
                         <div class="star_text flex-center flex-vend">
                             <div class="button_part">
-                                <form action="" method="post">
+                                <form action="" method="POST">
                                     <input type="hidden" name="id_sepatu" value='<?= $value['id_sepatu'] ?>'>
                                     <button class="btn btn-success" style="border-radius: 4px;" name="details">Details</button>
                                 </form>
+                                <button class="btn btn-success" style="border-radius: 4px;" name="addCart">Add to Cart</button>
                             </div>
-                            <div class="right_part">
+                            <div class="right_part" style="text-align: right;">
+                                <div><?= ($value['stock_sepatu'] > 0) ? "Stock Available" : "Out of Stock" ?></div>
                                 <div class="shoes_price">Rp. <span style="color: #ff4e5b;"><?= number_format($value['harga_sepatu'], 0, ',', '.') . ",-" ?></span></div>
                             </div>
                         </div>
