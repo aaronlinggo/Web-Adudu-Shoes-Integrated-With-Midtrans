@@ -48,7 +48,8 @@
                             </div>
                             <div class="right_part" style="text-align: right;">
                                 <div><?= ($value['stock_sepatu'] > 0) ? "Stock Available" : "Out of Stock" ?></div>
-                                <div class="shoes_price">Rp. <span style="color: #ff4e5b;"><?= number_format($value['harga_sepatu'], 0, ',', '.') . ",-" ?></span></div>
+                                <div class="shoes_price">Rp. <span style="color: #ff4e5b;"><?= number_format($value['harga_sepatu'], 0, ',', '.') ?></span></div>
+                                <!-- <div class="shoes_price">Rp. <span style="color: #ff4e5b;"><?= number_format($value['harga_sepatu'], 0, ',', '.') . ",-" ?></span></div> -->
                             </div>
                         </div>
                     </div>
