@@ -9,6 +9,7 @@
         $stmt = $conn->prepare("SELECT * FROM users WHERE id_user=$id_user");
         $stmt->execute();
         $admin = $stmt->get_result()->fetch_assoc();
+
         if($admin['roles'] != "admin") {
             header('Location: ../index.php');
         }
@@ -110,7 +111,7 @@
                     </div>
                     <div class="ms-auto d-flex align-items-center">
                         <div class="nav-item dropdown d-none d-lg-block user-dropdown">
-                            <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link" id="UserDropdown" href="./" data-bs-toggle="dropdown" aria-expanded="false">
                                 <img class="img-xs rounded-circle" src="../images/user_24px_black.png" alt="Profile image">
                             </a>
                         </div>

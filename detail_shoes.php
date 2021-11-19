@@ -14,40 +14,12 @@
     } else {
         header('Location: shoes.php');
     }
-
-    // if($_SERVER['REQUEST_METHOD'] == 'POST') {
-    //     if(isset($_POST['addCart'])) {
-    //         $id_user = $_SESSION['active'];
-    //         $active = true;
-    //         $qty = 1;
-    //         $price = $sepatu[0]['harga_sepatu'];
-
-    //         $stmt = $conn -> prepare("SELECT * FROM cart_item WHERE user_id = $id_user AND active = 1");
-    //         $stmt -> execute();
-    //         $checking = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
-
-    //         $ada = false;
-
-    //         foreach($checking as $key => $value) {
-    //             if($value['sepatu_id'] == $id_sepatu) {
-    //                 $ada = true;
-    //             }
-    //         }
-
-    //         if(!$ada) {
-    //             $stmt = $conn -> prepare("INSERT INTO cart_item(user_id, sepatu_id, qty, price, active) VALUES(?,?,?,?,?)");
-    //             $stmt -> bind_param("iiiii", $id_user, $id_sepatu, $qty, $price, $active);
-    //             $result = $stmt -> execute();
-    //         }
-    //     }
-    // }
 ?>
 
 <!DOCTYPE html>
 <html lang="en-US">
     <head>
-        <!-- DYNAMIC NAME -->
-        <title>Detail | Adudu Shoes</title>
+        <title><?= $sepatu[0]['nama_sepatu'] ?> | Adudu Shoes</title>
         <?php require_once("./section/connection_head.php") ?>
         <?php require_once("./section/script_section.php") ?>
     </head>
@@ -59,11 +31,7 @@
 			<div class="position-sticky p-3" style="top: 0; right: 0; z-index: 11;">
 				<div id="liveToast" class="toast fade hide" role="alert" aria-live="assertive" aria-atomic="true">
 					<div class="toast-header">
-						<!-- <svg class="bd-placeholder-img rounded me-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-							<rect width="100%" height="100%" fill="#007aff"></rect>
-						</svg> -->
 						<strong style="margin-right: auto;">Success</strong>
-						<!-- <small>11 mins ago</small> -->
 						<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
 					</div>
 					<div class="toast-body">
@@ -102,26 +70,15 @@
                         <div class="shoes_price">Size UK <span><?= number_format($sepatu[0]['size_sepatu'], 0, ',', '.') ?></span></div>
                         <div>
                             <?php
-                                // if(isset($_SESSION['active'])) {
-                                //     echo "<form action='' method='POST'>";
-                                // }
-                            ?>
-                            <!-- <input type="hidden" name="id_sepatu" value="<?= $id_sepatu ?>">
-                            <a href='<?php
-                                if(!isset($_SESSION['active'])) {
-                                    echo "login.php";
-                                }
-                            ?>'> -->
-                            <button class="btn btn-dark" style="width: 100%;" name="addCart" id="addCart" <?php
                                 if(isset($_SESSION['active'])) {
-                                    echo "name='addCart'";
+                                ?>
+                                    <button class="btn btn-dark" style="border-radius: 4px; width: 100%;" name="addCart" id="addCart" value='<?= $id_sepatu ?>' onclick="addCart(this)">Add to Cart</button>
+                                <?php
+                                } else {
+                                ?>
+                                    <a href="./login.php" class="btn btn-dark" style="border-radius: 4px; width: 100%;">Add to Cart</a>
+                                <?php
                                 }
-                            ?> value='<?= $id_sepatu ?>' onclick="addCart(this)">Add to Cart</button>
-                            </a>
-                            <?php
-                                // if(isset($_SESSION['active'])) {
-                                //     echo "</form>";
-                                // }
                             ?>
                         </div>
                     </div>

@@ -16,7 +16,6 @@
         $stmt = $conn -> prepare("SELECT * FROM cart_item WHERE user_id = $id_user AND active = 1");
         $stmt -> execute();
         $checking = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
-
         $ada = false;
 
         foreach($checking as $key => $value) {

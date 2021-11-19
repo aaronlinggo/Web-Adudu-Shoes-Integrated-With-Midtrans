@@ -12,12 +12,8 @@
     $limit_start = ($pages - 1) * $limit;
 
     if(isset($_POST['query'])) {
-        // $query = "'%".strtolower($_POST['query'])."%'";
         $temp = $_POST['query'];
-        $query = "'%".$temp."%'";
-
         $stmt = $conn -> prepare("SELECT * FROM sepatu WHERE nama_sepatu LIKE '%".$temp."%' ORDER BY 1 DESC");
-        // $stmt -> bind_param("s", $temp);
     } else {
         $stmt = $conn -> prepare("SELECT * FROM sepatu ORDER BY 1 DESC LIMIT ?, ?");
         $stmt -> bind_param("ii", $limit_start, $limit);
