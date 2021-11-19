@@ -33,7 +33,7 @@
                 </div>
                 <div class="layout_padding d-flex flex-column align-items-center">
                     <div class="lorem_text">
-                        The adudu brand has a long history and deep-rooted connection with sport. Its broad and diverse portfolio in both the Sport Performance and Sport Inspired categories ranges from major global sports to regional grassroot events  and local sneaker culture. This has enabled adidas to transcend cultures and become one of the most recognized, credible, and iconic brands both on and off the field of play.
+                        The adudu brand has a long history and deep-rooted connection with sport. Its broad and diverse portfolio in both the Sport Performance and Sport Inspired categories ranges from major global sports to regional grassroot events  and local sneaker culture. This has enabled adudu to transcend cultures and become one of the most recognized, credible, and iconic brands both on and off the field of play.
                     </div>
                     <h2 class="mens_text" style="font-weight: 600; margin: 45px 0;">OUR PURPOSE</h2>
                     <div>
@@ -60,7 +60,7 @@
                         <img class="img-fluid" src="https://www.adidas-group.com/media/filer_public_thumbnails/filer_public/73/75/7375fc1d-b4cd-4171-9c33-f03de7296b59/05_08_2021_attitude.jpg__1028x0_q85_crop-smart_subsampling-2.jpg" alt="" data-src="/media/filer_public_thumbnails/filer_public/73/75/7375fc1d-b4cd-4171-9c33-f03de7296b59/05_08_2021_attitude.jpg__1028x0_q85_crop-smart_subsampling-2.jpg" data-controller="lazyLoader" data-modal-content="modal-871117" data-action="click->modalHandler#createModal">
                     </div>
                     <div class="lorem_text" style="margin: 40px 0;">
-                        At adidas, we are rebellious optimists driven by action, with a desire to shape a better future together. We see the world of sport and culture with possibility where others only see the impossible. ‘Impossible is Nothing’ is not a tagline for us. By being optimistic and knowing the power of sport, we see endless possibilities to apply this power and push all people forward with action.
+                        At adudas, we are rebellious optimists driven by action, with a desire to shape a better future together. We see the world of sport and culture with possibility where others only see the impossible. ‘Impossible is Nothing’ is not a tagline for us. By being optimistic and knowing the power of sport, we see endless possibilities to apply this power and push all people forward with action.
                     </div>
                 </div>
             </div>
@@ -70,7 +70,7 @@
                 <div class="col-lg-6 d-flex flex-column align-items-start" style="text-align: left; padding: 2% 5%;">
                     <div class="lorem_text" style="color: white; font-weight: 600; font-size: 1.3rem;">
                         FOLLOW US ON
-                        <img src="./images/GitHub_Logo_White.png" alt="" style="width: 65px;">
+                        <a href="https://github.com/aaronlinggo/Proyek-PW-Adudu.git" target="_blank"><img src="./images/GitHub_Logo_White.png" alt="" style="width: 65px;"></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -78,7 +78,28 @@
                         <div class="lorem_text" style="color: white; font-weight: normal; font-size: 1.1rem;">
                         Develop by :
                         <br>
-                        Aaron & Samuel
+                        <table>
+                            <tr>
+                                <td>Aaron</td>
+                                <td></td>
+                                <td></td>
+                                <td> - </td>
+                                <td></td>
+                                <td></td>
+                                <td>220116898</td>
+                                <td>&nbsp;<img alt="Image showing the new LinkedIn “in” bug (English language)." srcset="./images/linkedin.png"></td>
+                            </tr>
+                            <tr>
+                                <td>Samuel</td>
+                                <td></td>
+                                <td></td>
+                                <td> - </td>
+                                <td></td>
+                                <td></td>
+                                <td>220116928</td>
+                                <td>&nbsp;<img alt="Image showing the new LinkedIn “in” bug (English language)." srcset="./images/linkedin.png"></td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
