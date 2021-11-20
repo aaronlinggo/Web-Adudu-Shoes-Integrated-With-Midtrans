@@ -101,18 +101,17 @@ class Transaction extends CI_Controller {
 			foreach($od as $key => $value) {
 				if($value['status'] == 0) {
 					?>
-					<div class="col-sm-12 fixed-top">
-						<div class="alert fade alert-simple alert-success alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show">
-						<button type="button" class="close font__size-18" data-dismiss="alert">
-							<span aria-hidden="true">
-								<a>
-									<i class="fa fa-times greencross"></i>
-								</a>
-							</span>
-							<span class="sr-only">Close</span> 
-						</button>
-						<strong class="font__weight-semibold">Well done!</strong> Your Order #<?= $order_id ?> payment successfully</div>
-					</div>
+					<input type="hidden" name="" value="Your Order #<?= $order_id ?> payment successfully" id="order_id">
+					
+					<script>
+						$("#liveToast").children().last().html($("#order_id").val());
+						$("#liveToast").removeClass("hide");
+           				$("#liveToast").addClass("show");
+						notifTimer = setTimeout(() => {
+							$("#liveToast").removeClass("show");
+							$("#liveToast").addClass("hide");
+						}, 5000);
+					</script>
 					<?php
 					$stat = 1;
 					$id_od = $value['id_order_details'];
