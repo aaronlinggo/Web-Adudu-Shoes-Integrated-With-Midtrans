@@ -56,7 +56,7 @@
     </head>
     <body class="main-layout flex-center flex-between">
     <!-- <body class="main-layout flex flex-column flex-between"> -->
-        <!-- <div class="header_section">
+        <!-- <div class="header-section">
             <?php require_once("./section/nav_section.php") ?>
         </div> -->
         <div class="container-fluid">

@@ -57,6 +57,26 @@
         padding-right: 1rem!important;
     }
 
+    .layout-padding.about {
+        padding: 25px 0;
+    }
+
+    .about-header {
+        margin: 25px 0;
+    }
+
+    .about-section {
+        font-size: 26pt;
+        line-height: 42px;
+        margin: 25px 0;
+        margin-bottom: 15px;
+    }
+
+    .about-text {
+        font-size: 12pt;
+        margin: 25px 0;
+    }
+
     .modal-login {
         padding: 30px 1px;
     }
@@ -97,9 +117,33 @@
         padding-right: 1rem!important;
         width: 80%;
     }
+    
+    .layout-padding.about {
+        padding: 30px 0;
+    }
+
+    .about-header {
+        margin: 30px 0;
+    }
+
+    .about-section {
+        font-size: 28pt;
+        line-height: 42px;
+        margin: 30px 0;
+        margin-bottom: 20px;
+    }
+
+    .about-text {
+        font-size: 13pt;
+        margin: 30px 0;
+    }
 
     .modal-login {
         padding: 30px 16px;
+    }
+
+    .copyright .info-text {
+        font-size: 1.1rem;
     }
 }
 
@@ -122,6 +166,15 @@
 
     .nav-item.nav-link.profile {
         padding-right: 1rem!important;
+    }
+
+    .about-section {
+        font-size: 30pt;
+        line-height: 48px;
+    }
+
+    .copyright .info-text {
+        font-size: 1.2rem;
     }
 }
 
@@ -159,6 +212,27 @@
 
     .navbar-nav {
         padding-top: 0;
+    }
+
+    .layout-padding.about {
+        padding: 40px 0;
+    }
+
+    .about-header {
+        margin-top: 0;
+        margin-bottom: 100px;
+    }
+
+    .about-section {
+        font-size: 32pt;
+        line-height: 54px;
+        margin: 40px 0;
+        margin-bottom: 30px;
+    }
+
+    .about-text {
+        font-size: 14pt;
+        margin: 40px 0;
     }
 
     .modal-login {
@@ -205,5 +279,14 @@
 
     #navbarNavAltMarkup {
         padding-left: 8rem;
+    }
+
+    .about-section {
+        font-size: 34pt;
+        line-height: 60px;
+    }
+
+    .copyright .info-text {
+        font-size: 1.3rem;
     }
 }

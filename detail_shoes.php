@@ -24,10 +24,10 @@
         <?php require_once("./section/script_section.php") ?>
     </head>
     <body class="main-layout">
-        <div class="header_section">
+        <div class="header-section">
             <?php require_once("./section/nav_section.php") ?>
         </div>
-        <div class="layout_padding contact_section" style="padding-top: 20px;">
+        <div class="layout-padding contact_section" style="padding-top: 20px;">
 			<div class="position-sticky p-3" style="top: 0; right: 0; z-index: 11;">
 				<div id="liveToast" class="toast fade hide" role="alert" aria-live="assertive" aria-atomic="true">
 					<div class="toast-header">
