@@ -241,7 +241,15 @@ button {
     height: 100%;
 }
 
-.header_section {
+.font-bold {
+    font-weight: 600;
+}
+
+.layout-padding {
+    padding: 80px 0;
+}
+
+.header-section {
     background-color: #ecedef;
     background-repeat: no-repeat;
     background-size: 100%;
@@ -312,15 +320,62 @@ button {
     user-select: none;
 }
 
+.about-img {
+    max-height: 100%;
+}
+
+.about-section, .about-text {
+    color: #000!important;
+}
+
+/* lorem text */
+.about-text {
+    font-weight: 400;
+    text-align: justify;
+}
+
+.copyright {
+    background-color: #000;
+    color: #ffffff;
+    /* display: flex; */
+    font-family: Poppins;
+    font-size: 12pt;
+    padding: 0 5%;
+    text-align: center;
+    width: 100%;
+}
+
+.copyright-padding {
+    padding: 16px 0;
+}
+
+.copyright-border {
+    background-color: #fff;
+    height: 1px;
+}
+
+.copyright .info-text {
+    color: #fff;
+    /* font-size: 1.1rem; */
+    font-weight: 400;
+}
+
+.copyright a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.copyright a:hover {
+    text-decoration: underline!important;
+}
+
+
+
 
 
 .badge {
     color: #000!important;
     line-height: normal;
-}
-
-.layout_padding {
-    padding: 80px 0;
 }
 
 .banner_taital {
@@ -350,6 +405,7 @@ button {
     font-size: 13pt;
     font-weight: 400;
     margin-left: 0px;
+    text-align: justify;
     width: 100%;
 }
 
@@ -697,31 +753,12 @@ button {
     height: auto;
 }
 
-.copyright {
-    float: left;
-    background-color: #000;
-    color: #ffffff;
-    font-family: Poppins;
-    font-size: 12pt;
-    padding: 10px 0px;
-    text-align: center;
-    width: 100%;
-}
-
-.copyright a {
-    color: #ffffff;
-}
-
-.copyright a:hover {
-    color: #000;
-}
-
 .collection_section_2 {
     float: left;
     width: 100%;
 }
 
-.about-img {
+/* .about-img {
     float: left;
     background-color: #ffffff;
     box-shadow: 0px 0px 10px 0px;
@@ -730,7 +767,7 @@ button {
     position: relative;
     width: 100%;
     z-index: 1;
-}
+} */
 
 .new_bt {
     float: left;
@@ -769,7 +806,7 @@ button {
     width: 100%;
 }
 
-.about-img2 {
+/* .about-img2 {
     float: left;
     background-image: url(../images/about-img2.png);
     box-shadow: 0px 0px 10px 0px;
@@ -777,7 +814,7 @@ button {
     margin-left: -50px;
     width: 100%;
     height: auto;
-}
+} */
 
 .shoes-img2 {
     float: left;

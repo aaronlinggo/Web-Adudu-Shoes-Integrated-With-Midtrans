@@ -14,7 +14,7 @@
 		<?php require_once("./section/connection_head.php") ?>
 	</head>
 	<body class="main-layout">
-		<div class="header_section">
+		<div class="header-section">
 			<?php require_once("./section/nav_section.php") ?>
 			<div class="banner_section">
 				<div class="container-fluid">
@@ -53,7 +53,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="layout_padding collection_section">
+		<div class="layout-padding collection_section">
 			<div class="container">
 				<!-- <h1 class="new_text">
 					<strong>New Collection</strong>
@@ -111,7 +111,7 @@
 				<p class="consectetur_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit natus suscipit velit hic? Sit, aliquid nihil natus ipsa, quae at sapiente veritatis quasi neque non veniam dolor omnis, ducimus accusantium?</p>
 			</div>
 		</div>
-		<div class="collectipn_section_3 layuot_padding">
+		<div class="collectipn_section_3 layout-padding">
 			<div class="container">
 				<div class="racing_shoes">
 					<div class="row">

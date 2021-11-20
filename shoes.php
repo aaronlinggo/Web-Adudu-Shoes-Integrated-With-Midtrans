@@ -22,7 +22,7 @@
 		<?php require_once("./section/script_section.php") ?>
 	</head>
 	<body class="main-layout">
-		<div class="header_section">
+		<div class="header-section">
 			<?php require_once("./section/nav_section.php") ?>
 		</div>
 		<div id="catalog" class="fullwidth h-auto flex flex-column" style="position: relative;">
@@ -38,7 +38,7 @@
 				</div>
 			</div>
 			<div class="collection_text">Shoes</div>
-			<div class="layout_padding gallery_section">
+			<div class="layout-padding gallery_section">
 				<div class="container">
 					<div id="catalog_row" class="row"></div>
 					<div class="buy_now_bt">
