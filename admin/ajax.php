@@ -116,7 +116,8 @@
             <?php
             }
         }
-    } else if($action == "viewAll") {
+    } 
+    else if($action == "viewAll") {
         $stmt = $conn -> prepare("SELECT * FROM payment");
         $result = $stmt -> execute();
         $payment = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
@@ -162,7 +163,149 @@
                 </tbody>
             </table>
         <?php
-    } else if($action == "showDetail") {
+    } 
+    else if($action == "success") {
+        $stmt = $conn -> prepare("SELECT * FROM payment where transaction_status = 'settlement'");
+        $result = $stmt -> execute();
+        $payment = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
+        ?>
+            <table class="table table-hover" style="text-align: center;">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Order ID</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody class="dashboard_btn">
+                    <?php
+                        foreach($payment as $key => $value) {
+                        ?>
+                            <tr>
+                                <td><?= ($key+1) ?></td>
+                                <td><?= $value['order_id'] ?></td>
+                                <td><?= "Rp. " . number_format($value['gross_amount'], 0, ',', '.') . ",-" ?></td>
+                                <td>
+                                    <?php 
+                                        if($value['transaction_status'] == "settlement"){
+                                            echo "<button class='btn btn-success' style='cursor: default; margin:0; background-color: #34B1AA;'>Success</button>";
+                                        }
+                                        else if($value['transaction_status'] == "pending"){
+                                            echo "<button class='btn btn-secondary' style='cursor: default; margin:0; background-color: #d4e1ed; color: black;'>Pending</button>";
+                                        }
+                                        else{
+                                            echo "<button class='btn btn-danger' style='cursor: default; margin:0; background-color: #F95F53;'>Expired</button>";
+                                        }
+                                    ?>
+                                </td>
+                                <td>
+                                    <button class='btn btn-success' id="<?= $value['id'] ?>" onclick="showDetail(this)" style='margin:0; background-color: #34B1AA;'>Details</button>
+                                </td>
+                            </tr>
+                        <?php
+                        }
+                    ?>
+                </tbody>
+            </table>
+        <?php
+    } 
+    else if($action == "pending") {
+        $stmt = $conn -> prepare("SELECT * FROM payment where transaction_status = 'pending'");
+        $result = $stmt -> execute();
+        $payment = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
+        ?>
+            <table class="table table-hover" style="text-align: center;">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Order ID</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody class="dashboard_btn">
+                    <?php
+                        foreach($payment as $key => $value) {
+                        ?>
+                            <tr>
+                                <td><?= ($key+1) ?></td>
+                                <td><?= $value['order_id'] ?></td>
+                                <td><?= "Rp. " . number_format($value['gross_amount'], 0, ',', '.') . ",-" ?></td>
+                                <td>
+                                    <?php 
+                                        if($value['transaction_status'] == "settlement"){
+                                            echo "<button class='btn btn-success' style='cursor: default; margin:0; background-color: #34B1AA;'>Success</button>";
+                                        }
+                                        else if($value['transaction_status'] == "pending"){
+                                            echo "<button class='btn btn-secondary' style='cursor: default; margin:0; background-color: #d4e1ed; color: black;'>Pending</button>";
+                                        }
+                                        else{
+                                            echo "<button class='btn btn-danger' style='cursor: default; margin:0; background-color: #F95F53;'>Expired</button>";
+                                        }
+                                    ?>
+                                </td>
+                                <td>
+                                    <button class='btn btn-success' id="<?= $value['id'] ?>" onclick="showDetail(this)" style='margin:0; background-color: #34B1AA;'>Details</button>
+                                </td>
+                            </tr>
+                        <?php
+                        }
+                    ?>
+                </tbody>
+            </table>
+        <?php
+    } 
+    else if($action == "expire") {
+        $stmt = $conn -> prepare("SELECT * FROM payment where transaction_status = 'expire'");
+        $result = $stmt -> execute();
+        $payment = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
+        ?>
+            <table class="table table-hover" style="text-align: center;">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Order ID</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody class="dashboard_btn">
+                    <?php
+                        foreach($payment as $key => $value) {
+                        ?>
+                            <tr>
+                                <td><?= ($key+1) ?></td>
+                                <td><?= $value['order_id'] ?></td>
+                                <td><?= "Rp. " . number_format($value['gross_amount'], 0, ',', '.') . ",-" ?></td>
+                                <td>
+                                    <?php 
+                                        if($value['transaction_status'] == "settlement"){
+                                            echo "<button class='btn btn-success' style='cursor: default; margin:0; background-color: #34B1AA;'>Success</button>";
+                                        }
+                                        else if($value['transaction_status'] == "pending"){
+                                            echo "<button class='btn btn-secondary' style='cursor: default; margin:0; background-color: #d4e1ed; color: black;'>Pending</button>";
+                                        }
+                                        else{
+                                            echo "<button class='btn btn-danger' style='cursor: default; margin:0; background-color: #F95F53;'>Expired</button>";
+                                        }
+                                    ?>
+                                </td>
+                                <td>
+                                    <button class='btn btn-success' id="<?= $value['id'] ?>" onclick="showDetail(this)" style='margin:0; background-color: #34B1AA;'>Details</button>
+                                </td>
+                            </tr>
+                        <?php
+                        }
+                    ?>
+                </tbody>
+            </table>
+        <?php
+    } 
+    else if($action == "showDetail") {
         $id_payment = $_REQUEST["id_payment"];
 
         $stmt = $conn -> prepare("SELECT * FROM payment where id = $id_payment");

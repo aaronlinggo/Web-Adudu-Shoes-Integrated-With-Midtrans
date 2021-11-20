@@ -15,9 +15,25 @@ if (!isset($_SESSION['active'])) {
     }
 }
 
-$stmt = $conn->prepare("SELECT * FROM payment");
+$stmt = $conn->prepare("SELECT * FROM users WHERE roles='Customer'");
 $stmt->execute();
-$payment = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+$users = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
+$stmt = $conn->prepare("SELECT * FROM payment where transaction_status = 'settlement'");
+$stmt->execute();
+$payment_success = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
+$stmt = $conn->prepare("SELECT * FROM payment where transaction_status = 'pending'");
+$stmt->execute();
+$payment_pending = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
+$stmt = $conn->prepare("SELECT * FROM payment where transaction_status = 'expire'");
+$stmt->execute();
+$payment_expire = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
+$stmt = $conn->prepare("SELECT sum(gross_amount) as 'total' FROM payment where transaction_status = 'settlement'");
+$stmt->execute();
+$amount_total = $stmt->get_result()->fetch_assoc();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,7 +79,7 @@ $payment = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                                 </a>
                             </li>
                             <li>
-                                <a href="./orders.php" class="nav-link link-dark active">
+                                <a href="./orders.php" class="nav-link link-dark">
                                     <svg class="bi me-2" width="16" height="16">
                                         <use xlink:href="#cart" />
                                     </svg>
@@ -76,14 +92,6 @@ $payment = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                                         <use xlink:href="#grid" />
                                     </svg>
                                     Products
-                                </a>
-                            </li>
-                            <li>
-                                <a href="./report.php" class="nav-link link-dark">
-                                    <svg class="bi me-2" width="16" height="16">
-                                        <use xlink:href="#chat-quote-fill" />
-                                    </svg>
-                                    Report
                                 </a>
                             </li>
                         </ul>
@@ -119,6 +127,40 @@ $payment = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                 </div>
             </div>
             <div class="navbar-menu-wrapper">
+                <div class="d-flex">
+                    <div class="card" style="width: 100%;">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <div class="card-title">Income</div>
+                                    <div class="welcome-text"><?= "Rp. " . number_format($amount_total['total'], 0, ',', '.') . ",-" ?><span class="fw-bold text-black">/Month</span></div>
+    
+                                </div>
+                                <div>
+                                    <svg class="bi me-2" width="60" height="60">
+                                        <use xlink:href="#wallet" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="card">
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNavAltMarkup" style="padding-left: 0;">
+                            <div class="navbar-nav">
+                                <div class="nav-item nav-link" onclick="success()" style="font-size: 14px; cursor: pointer;">Success(<?= count($payment_success) ?>)</div>
+                                <div class="nav-item nav-link" onclick="pending()" style="font-size: 14px; cursor: pointer;">Pending(<?= count($payment_pending) ?>)</div>
+                                <div class="nav-item nav-link" onclick="expire()" style="font-size: 14px; cursor: pointer;">Expired(<?= count($payment_expire) ?>)</div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <br>
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">List Order</h4>
@@ -144,7 +186,7 @@ $payment = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                                     </tr>
                                 </thead>
                                 <tbody class="dashboard_btn">
-                                    <?php foreach ($payment as $key => $value) { ?>
+                                    <?php foreach ($payment_success as $key => $value) { ?>
                                         <tr>
                                             <td><?= ($key+1) ?></td>
                                             <td>#<?= $value['order_id'] ?></td>
@@ -197,6 +239,45 @@ $payment = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     <script src="../js/custom.js"></script>
     <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
     <script>
+        function success(){
+            $.ajax({
+                type:"post",
+                url:"./ajax.php",
+                data:{
+                    'action':'success'
+                },
+                success:function(response){
+                    $("#tableUpdate").html("");
+                    $("#tableUpdate").html(response);
+                }
+            });
+        }
+        function pending(){
+            $.ajax({
+                type:"post",
+                url:"./ajax.php",
+                data:{
+                    'action':'pending'
+                },
+                success:function(response){
+                    $("#tableUpdate").html("");
+                    $("#tableUpdate").html(response);
+                }
+            });
+        }
+        function expire(){
+            $.ajax({
+                type:"post",
+                url:"./ajax.php",
+                data:{
+                    'action':'expire'
+                },
+                success:function(response){
+                    $("#tableUpdate").html("");
+                    $("#tableUpdate").html(response);
+                }
+            });
+        }
         function searchBtn(){
             var order_id = $("#searchID").val();
             $.ajax({

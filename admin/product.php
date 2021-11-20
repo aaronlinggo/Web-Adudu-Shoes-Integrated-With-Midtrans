@@ -143,14 +143,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     Products
                                 </a>
                             </li>
-                            <li>
-                                <a href="./report.php" class="nav-link link-dark">
-                                    <svg class="bi me-2" width="16" height="16">
-                                        <use xlink:href="#chat-quote-fill" />
-                                    </svg>
-                                    Report
-                                </a>
-                            </li>
                         </ul>
                     </div>
                 </div>
