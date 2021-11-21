@@ -334,6 +334,44 @@ button {
     text-align: justify;
 }
 
+.detail {
+    flex-grow: 1;
+    /* position: relative; */
+}
+
+.detail-back {
+    position: absolute;
+    top: 31px;
+    left: 31px;
+    /* right: 30px; */
+    /* padding: 30px; */
+    z-index: 11;
+}
+
+/* .detail-back .btn {
+    width: 10vw;
+} */
+
+.detail .img-container {
+    background-color: #ecedef;
+    width: 60%;
+}
+
+.detail-img {
+    background-color: #ecedef;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80%;
+    -webkit-transform: scaleX(-1);
+    -ms-transform: scaleX(-1);
+    transform: scaleX(-1);
+    height: 65%;
+}
+
+.img-container:hover > .detail-img {
+    background-size: 90%;
+}
+
 .copyright {
     background-color: #000;
     color: #ffffff;

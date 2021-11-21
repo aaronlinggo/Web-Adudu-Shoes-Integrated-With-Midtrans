@@ -15,6 +15,10 @@
     .role-out {
         margin-top: 10px;
     }
+
+    .detail-back .btn {
+        width: 26vw!important;
+    }
 }
 
 @media (max-width: 576px) {
@@ -63,6 +67,11 @@
 
     .about-header {
         margin: 25px 0;
+    }
+
+    .detail-back .btn {
+        margin-left: 1px;
+        width: 24vw;
     }
 
     .about-section {
@@ -133,6 +142,11 @@
         margin-bottom: 20px;
     }
 
+    .detail-back .btn {
+        margin-left: 1px;
+        width: 18vw;
+    }
+
     .about-text {
         font-size: 13pt;
         margin: 30px 0;
@@ -173,6 +187,10 @@
         line-height: 48px;
     }
 
+    .detail-back .btn {
+        width: 14vw;
+    }
+
     .copyright .info-text {
         font-size: 1.2rem;
     }
@@ -185,6 +203,10 @@
 
     .btn {
         font-size: 0.9rem;
+    }
+
+    .header-inner {
+        max-width: 1920px;
     }
 
     .top-logo {
@@ -235,6 +257,11 @@
         margin: 40px 0;
     }
 
+    .detail-back .btn {
+        margin-left: 0;
+        width: 12vw;
+    }
+
     .modal-login {
         padding: 30px;
         padding-top: 0;
@@ -278,12 +305,16 @@
     }
 
     #navbarNavAltMarkup {
-        padding-left: 8rem;
+        padding-left: 7rem;
     }
 
     .about-section {
         font-size: 34pt;
         line-height: 60px;
+    }
+
+    .detail-back .btn {
+        width: 10vw;
     }
 
     .copyright .info-text {

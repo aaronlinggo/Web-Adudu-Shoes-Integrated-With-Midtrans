@@ -24,11 +24,34 @@
         <?php require_once("./section/script_section.php") ?>
     </head>
     <body class="main-layout">
-        <div class="header-section">
-            <?php require_once("./section/nav_section.php") ?>
+        <div style="height: 100vh; display: flex; flex-flow: column;">
+            <div class="header-section">
+                <?php require_once("./section/nav_section.php") ?>
+            </div>
+            <div style="width: 100%; height: 1px; background-color: lightgray;"></div>
+            <div class="detail flex">
+                <?php
+                    $lokasi = "url('./admin/" . $sepatu[0]['link_gambarsepatu'] . "');";
+                ?>
+                <div class="img-container h-100 flex-center flex-vend" style="position: relative;">
+                    <div class="detail-back">
+                        <a href="./shoes.php" style="margin-right: 4px;">
+                            <button class="btn btn-dark">Back</button>
+                        </a>
+                    </div>
+                    <div class="detail-img w-100" style="<?= "background-image: " . $lokasi ?>"></div>
+                </div>
+                <div style="width: 40%; position: relative;">
+                    <h1><?= $sepatu[0]['sub_desc'] ?></h1>
+                    <div class="desc">
+                        <p><?= $sepatu[0]['desc_sepatu'] ?></p>
+                    </div>
+                </div>
+            </div>
         </div>
+
         <div class="layout-padding contact_section" style="padding-top: 20px;">
-			<div class="position-sticky p-3" style="top: 0; right: 0; z-index: 11;">
+			<!-- <div class="position-sticky p-3" style="top: 0; right: 0; z-index: 11;">
 				<div id="liveToast" class="toast fade hide" role="alert" aria-live="assertive" aria-atomic="true">
 					<div class="toast-header">
 						<strong style="margin-right: auto;">Success</strong>
@@ -38,7 +61,8 @@
 						Your item has been added to cart.
 					</div>
 				</div>
-			</div>
+			</div> -->
+
             <div class="container-fluid ram">
                 <div><a href="shoes.php"><button class="btn btn-dark" style="width: 10vw;">Back</button></a></div>
                 <div class="row">
@@ -85,7 +109,7 @@
                 </div>
             </div>
         </div>
-        <?php require_once("./section/footer_section.php") ?>
+        <?php //require_once("./section/footer_section.php") ?>
 		<script type="text/javascript" src="./js/add_cart.js"></script>
     </body>
 </html>
