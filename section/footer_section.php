@@ -1,5 +1,5 @@
 <!-- <div class="copyright">2021 All Rights Reserved | <a href="./">Adudu Shoes</a></div> -->
-
+<div style="clear: both;"></div>
 <div class="copyright">
     <div class="copyright-padding fullwidth flex" style="flex-wrap: wrap;">
         <div class="col-sm-6 d-flex flex-column align-items-start p-0" style="text-align: left;">

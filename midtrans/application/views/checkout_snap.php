@@ -34,7 +34,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
   <title>Cart | Adudu Shoes</title>
   <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="<SB-Mid-client-3OxJRhBsnTXSca5E>"></script>
   <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
-  <meta http-equiv="X-UA-Compatible" charset="UTF-8" content="IE=edge">
+  <!-- <meta http-equiv="X-UA-Compatible" charset="UTF-8" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
   <meta name="keywords" content="">
@@ -51,7 +51,22 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="<SB-Mid-client-3OxJRhBsnTXSca5E>"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+  <meta http-equiv="X-UA-Compatible" charset="UTF-8" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+  <meta name="author" content="">
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <link rel="icon" href="../../images/logo.png" type="image/png">
+  <link rel="stylesheet" href="../../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+  <link rel="stylesheet" href="../../css/jquery.mCustomScrollbar.min.css">
+  <link rel="stylesheet" href="../../css/owl.carousel.min.css">
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+  
 </head>
 
 <body class="main-layout">
@@ -207,7 +222,39 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
       </div>
     </div>
   </div>
-  <div class="copyright">2021 All Rights Reserved | <a href="./">Adudu Shoes</a></div>
+  <!-- <div class="copyright">2021 All Rights Reserved | <a href="./">Adudu Shoes</a></div> -->
+  <div style="clear: both;"></div>
+  <div class="copyright">
+      <div class="copyright-padding fullwidth flex" style="flex-wrap: wrap;">
+          <div class="col-sm-6 d-flex flex-column align-items-start p-0" style="text-align: left;">
+              <div class="info-text font-bold">
+                  FOLLOW US ON
+                  <a href="https://github.com/aaronlinggo/Proyek-PW-Adudu.git" target="_blank"><img src="../../images/GitHub_Logo_White.png" alt="" style="width: 65px;"></a><br><br>
+              </div>
+          </div>
+          <div class="col-sm-6 d-flex flex-column align-items-start p-0" style="text-align: left;">
+              <div class="info-text" style="font-weight: normal;">
+                  Developed by :<br>
+                  <table>
+                      <tr class="align-middle">
+                          <td>Aaron</td>
+                          <td>&nbsp;&nbsp;-&nbsp;&nbsp;</td>
+                          <td>220116898</td>
+                          <td>&nbsp;&nbsp;<a href="#" target="_blank"><img srcset="../../images/linkedin.png" alt="" style="padding-bottom: 1px; max-height: 34px;"></a></td>
+                      </tr>
+                      <tr class="align-middle">
+                          <td>Samuel</td>
+                          <td>&nbsp;&nbsp;-&nbsp;&nbsp;</td>
+                          <td>220116928</td>
+                          <td>&nbsp;&nbsp;<a href="#" target="_blank"><img srcset="../../images/linkedin.png" alt="" style="padding-bottom: 1px; max-height: 34px;"></a></td>
+                      </tr>
+                  </table>
+              </div>
+          </div>
+      </div>
+      <div class="copyright-border fullwidth"></div>
+      <div class="copyright-padding fullwidth">2021 &copy; All Rights Reserved | <a href="./">Adudu Shoes</a></div>
+  </div>
 
 
   <form id="payment-form" method="post" action="./snap/finish">
@@ -217,13 +264,45 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     <input type="hidden" id="userid" name="userid" value='<?= $u['id_user'] ?>'>
     <input type="hidden" name="result_data" id="result-data" value=""></div>
   </form>
-  <!-- <script src="../../js/jquery.min.js"></script> -->
+  <!-- <script src="./js/jquery.min.js"></script> -->
+  <script src="../../js/jquery-3.6.0.min.js"></script>
   <script src="../../js/popper.min.js"></script>
   <script src="../../js/bootstrap.bundle.min.js"></script>
-  <script src="../../js/jquery-3.0.0.min.js"></script>
-  <!-- <script src="../../js/plugin.js"></script> -->
+  <!-- <script src="./js/jquery-3.0.0.min.js"></script> -->
   <script src="../../js/jquery.mCustomScrollbar.concat.min.js"></script>
-  <!-- <script src="../../js/custom.js"></script> -->
+  <!-- <script src="./js/plugin.js"></script>
+  <script src="./js/custom.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+  <script>
+      $(document).ready(function() {
+          $(".fancybox").fancybox({
+              openEffect: "none",
+              closeEffect: "none"
+          });
+
+          $('#myCarousel').carousel({
+              interval: false
+          });
+
+          $("#myCarousel").on("touchstart", function(event) {
+              var yClick = event.originalEvent.touches[0].pageY;
+
+              $(this).one("touchmove", function(event) {
+                  var yMove = event.originalEvent.touches[0].pageY;
+
+                  if(Math.floor(yClick - yMove) > 1) {
+                      $(".carousel").carousel('next');
+                  } else if(Math.floor(yClick - yMove) < -1) {
+                      $(".carousel").carousel('prev');
+                  }
+              });
+
+              $(".carousel").on("touchend", function() {
+                  $(this).off("touchmove");
+              });
+          });
+      });
+  </script>
   <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
   <script>
     function tambah(id, id_user){
@@ -256,37 +335,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
       });
     }
-  </script>
-  <script>
-    $(document).ready(function() {
-      $(".fancybox").fancybox({
-        openEffect: "none",
-        closeEffect: "none"
-      });
-
-      $('#myCarousel').carousel({
-        interval: false
-      });
-
-      // Scroll slides on android swipes
-      $("#myCarousel").on("touchstart", function(event) {
-        var yClick = event.originalEvent.touches[0].pageY;
-
-        $(this).one("touchmove", function(event) {
-          var yMove = event.originalEvent.touches[0].pageY;
-
-          if(Math.floor(yClick - yMove) > 1) {
-            $(".carousel").carousel('next');
-          } else if(Math.floor(yClick - yMove) < -1) {
-            $(".carousel").carousel('prev');
-          }
-        });
-
-        $(".carousel").on("touchend", function() {
-          $(this).off("touchmove");
-        });
-      });
-    });
   </script>
   <script type="text/javascript">
     $('#pay-button').click(function(event) {
