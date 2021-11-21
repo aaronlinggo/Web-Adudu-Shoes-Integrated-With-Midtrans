@@ -61,6 +61,7 @@
                 </div>
             </div>
         </div>
+        <br>
         <?php require_once("./section/footer_section.php") ?>
         <script>
             $(document).ready(function() {
