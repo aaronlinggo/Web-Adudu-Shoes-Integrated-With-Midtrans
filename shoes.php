@@ -40,6 +40,10 @@
 			<div class="collection_text">Shoes</div>
 			<div class="layout-padding gallery_section">
 				<div class="container">
+					<div id="search_area" style="position: absolute; top: 80px; left: 30px; display: block;" class="flex">
+						<input type="text" name="search_bar" id="search_bar">
+						<button name="search_btn" id="search_btn" style="margin-left: 10px;">Search</button>
+					</div>
 					<div id="catalog_row" class="row"></div>
 					<div class="buy_now_bt">
 						<button class="buy_text">Buy Now</button>
@@ -71,7 +75,7 @@
 					e.stopPropagation();
 
 					// BELUM MULUS
-					$("#search_area").hide();
+					// $("#search_area").hide();
 				});
 
 				// $("#search_btn").click(function(e) {

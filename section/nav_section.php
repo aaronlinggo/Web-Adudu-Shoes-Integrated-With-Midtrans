@@ -20,10 +20,10 @@
                             <a class="nav-item nav-link nav-android-menu last" href='<?= (!isset($_SESSION['active'])) ? "./login.php" : "./midtrans/index.php/snap" ?>'>Cart</a>
                             <div id="search_icon" class="nav-item nav-link last flex-center" style="cursor: pointer; position: relative;">
                                 <img id="search_img" src="./images/search_icon_black.png">
-                                <div id="search_area" style="position: absolute; top: 80px; left: 30px; display: none;" class="flex">
+                                <!-- <div id="search_area" style="position: absolute; top: 80px; left: 30px; display: none;" class="flex">
                                     <input type="text" name="search_bar" id="search_bar">
                                     <button name="search_btn" id="search_btn" style="margin-left: 10px;">Search</button>
-                                </div>
+                                </div> -->
                             </div>
                             <a class="nav-item nav-link last flex-center" href='<?= (!isset($_SESSION['active'])) ? "./login.php" : "./midtrans/index.php/snap" ?>' style="position: relative;">
                                 <img src="./images/shop_icon_black_2.png">
