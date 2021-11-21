@@ -7,16 +7,13 @@ $(document).ready(function() {
         options.async = true;
     });
 
-    // $(document).on('click', '.halaman', function(){
+    // $(document).on('click', '.page-item', function() {
     //     $(window).scrollTop(0);
-    //     loadCatalog($(this).attr("id"));
     // });
 
     $("#search_btn").click(function(e) {
-        // e.preventDefault();
-        // $("#search_area").css({ display: "none" });
+        e.preventDefault();
         loadCatalog(1, true);
-        // $("#search_bar").val("");
     });
 
     loadCatalog(1, false);
@@ -26,7 +23,6 @@ function loadCatalog(page, search) {
     $.ajax({
         method: "POST",
         url: "./get_search.php",
-        // url: "./get_catalog.php",
         data: {
             page: page,
             query: $("#search_bar").val(),
@@ -39,7 +35,6 @@ function loadCatalog(page, search) {
             }
         },
         success: function(response) {
-            // $("#catalog_row").html(response);
             $("#catalog_row").html(response.hasil);
         }
     });
