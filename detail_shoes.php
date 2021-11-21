@@ -23,17 +23,17 @@
         <?php require_once("./section/connection_head.php") ?>
         <?php require_once("./section/script_section.php") ?>
     </head>
-    <body class="main-layout">
+    <body id="body" class="main-layout">
         <div style="height: 100vh; display: flex; flex-flow: column;">
             <div class="header-section">
                 <?php require_once("./section/nav_section.php") ?>
             </div>
             <div style="width: 100%; height: 1px; background-color: lightgray;"></div>
-            <div class="detail flex">
+            <div class="detail flex" style="overflow: hidden;">
                 <?php
                     $lokasi = "url('./admin/" . $sepatu[0]['link_gambarsepatu'] . "');";
                 ?>
-                <div class="img-container h-100 flex-center flex-vend" style="position: relative;">
+                <div class="img-container h-100 flex-center flex-vend">
                     <div class="detail-back">
                         <a href="./shoes.php" style="margin-right: 4px;">
                             <button class="btn btn-dark">Back</button>
@@ -41,75 +41,32 @@
                     </div>
                     <div class="detail-img w-100" style="<?= "background-image: " . $lokasi ?>"></div>
                 </div>
-                <div style="width: 40%; position: relative;">
-                    <h1><?= $sepatu[0]['sub_desc'] ?></h1>
-                    <div class="desc">
-                        <p><?= $sepatu[0]['desc_sepatu'] ?></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="layout-padding contact_section" style="padding-top: 20px;">
-			<!-- <div class="position-sticky p-3" style="top: 0; right: 0; z-index: 11;">
-				<div id="liveToast" class="toast fade hide" role="alert" aria-live="assertive" aria-atomic="true">
-					<div class="toast-header">
-						<strong style="margin-right: auto;">Success</strong>
-						<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-					</div>
-					<div class="toast-body">
-						Your item has been added to cart.
-					</div>
-				</div>
-			</div> -->
-
-            <div class="container-fluid ram">
-                <div><a href="shoes.php"><button class="btn btn-dark" style="width: 10vw;">Back</button></a></div>
-                <div class="row">
-                    <div class="col-lg-8 col-md-6 col-sm-12" style="border-right: 1px solid black;">
-                        <?php $lokasi = "./admin/" . $sepatu[0]['link_gambarsepatu']; ?>
-                        <!-- sub_desc dibagian atas
-                                desc_sepatu dibawah
-                        -->
-                        <div style="overflow: hidden; height: 50vw;">
-                            <img src="<?= $lokasi ?>" class="img-fluid" alt="" style="width: 100vw; margin-bottom: -15vw; margin-top: -15vw;">
-                            <!-- Hover -->
-                            <!-- <div class="container-fluid">
-                                    <h1><?= $sepatu[0]['sub_desc'] ?></h1>
-                                    <div class="desc">
-                                        <p><?= $sepatu[0]['desc_sepatu'] ?></p>
-                                    </div>
-                                </div> -->
-                        </div>
-                        <div class="container-fluid">
-                            <h1><?= $sepatu[0]['sub_desc'] ?></h1>
-                            <div class="desc">
-                                <p><?= $sepatu[0]['desc_sepatu'] ?></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12">
-                        <div style="border: 3px solid black; padding: 10px 10px; width: 100%; color: black; text-align: left; font-weight: bold; font-size: 32px;"><i><?= $sepatu[0]['nama_sepatu'] ?><i></div>
-                        <div class="shoes_price">Price Rp. <span style="color: #ff4e5b;"><?= number_format($sepatu[0]['harga_sepatu'], 0, ',', '.') . ",-" ?></span></div>
-                        <div class="shoes_price">Size UK <span><?= number_format($sepatu[0]['size_sepatu'], 0, ',', '.') ?></span></div>
-                        <div>
-                            <?php
-                                if(isset($_SESSION['active'])) {
-                                ?>
-                                    <button class="btn btn-dark" style="border-radius: 4px; width: 100%;" name="addCart" id="addCart" value='<?= $id_sepatu ?>' onclick="addCart(this)">Add to Cart</button>
-                                <?php
-                                } else {
-                                ?>
-                                    <a href="./login.php" class="btn btn-dark" style="border-radius: 4px; width: 100%;">Add to Cart</a>
-                                <?php
-                                }
+                <!-- <div id="mboh" style="width: 40%; padding: 40px; max-height: 100%;"> -->
+                <div id="mboh" style="width: 40%; padding: 40px; max-height: 100%; overflow-y: auto;">
+                    <h1 style="font-style: italic;"><?= $sepatu[0]['nama_sepatu'] ?></h1>
+                    <h1>Price: Rp. <span style="color: #ff4e5b;"><?= number_format($sepatu[0]['harga_sepatu'], 0, ',', '.') ?></span></h1>
+                    <h1>Size: UK <span><?= number_format($sepatu[0]['size_sepatu'], 0, ',', '.') ?></span></h1>
+                    <div>
+                        <?php
+                            if(isset($_SESSION['active'])) {
                             ?>
-                        </div>
+                                <button class="btn btn-dark" style="border-radius: 4px; width: 100%;" name="addCart" id="addCart" value='<?= $id_sepatu ?>' onclick="addCart(this)">Add to Cart</button>
+                            <?php
+                            } else {
+                            ?>
+                                <a href="./login.php" class="btn btn-dark" style="border-radius: 4px; width: 100%;">Add to Cart</a>
+                            <?php
+                            }
+                        ?>
+                    </div>
+                    <h1><?= $sepatu[0]['sub_desc'] ?></h1>
+                    <div class="desc" style="overflow-y: auto;">
+                        <p><?= $sepatu[0]['desc_sepatu'] . "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat, odit quasi! Non minus incidunt impedit. Ipsa incidunt, quo reprehenderit accusamus ipsam commodi assumenda odio, aliquam ratione esse, suscipit repudiandae perspiciatis eaque officiis voluptatibus numquam. Commodi necessitatibus doloremque illo odio omnis totam accusamus voluptatibus quod esse fugit numquam, labore voluptatum facilis, cupiditate excepturi ea nostrum. Quo natus ratione ipsam ad reiciendis minus doloremque, alias, officiis rerum nobis consequuntur perferendis, eius incidunt tempora inventore illum iste nulla nesciunt error pariatur. Unde rem doloremque, delectus neque nulla distinctio odit sequi sit quia quam earum. Iusto fugiat itaque porro modi ab suscipit vel nostrum." ?></p>
                     </div>
                 </div>
             </div>
         </div>
-        <?php //require_once("./section/footer_section.php") ?>
+        <?php require_once("./section/footer_section.php") ?>
 		<script type="text/javascript" src="./js/add_cart.js"></script>
     </body>
 </html>

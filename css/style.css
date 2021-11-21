@@ -336,24 +336,19 @@ button {
 
 .detail {
     flex-grow: 1;
-    /* position: relative; */
+    position: relative;
 }
 
 .detail-back {
     position: absolute;
     top: 31px;
     left: 31px;
-    /* right: 30px; */
-    /* padding: 30px; */
     z-index: 11;
 }
 
-/* .detail-back .btn {
-    width: 10vw;
-} */
-
 .detail .img-container {
     background-color: #ecedef;
+    position: relative;
     width: 60%;
 }
 
@@ -365,11 +360,20 @@ button {
     -webkit-transform: scaleX(-1);
     -ms-transform: scaleX(-1);
     transform: scaleX(-1);
-    height: 65%;
+    height: 75%;
 }
 
 .img-container:hover > .detail-img {
-    background-size: 90%;
+    background-size: 85%;
+}
+
+#body::-webkit-scrollbar {
+    display: none;
+}
+
+#body {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 .copyright {
