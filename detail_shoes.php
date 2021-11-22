@@ -75,12 +75,12 @@
                                 <tr class="align-middle" style="font-size: 30px;">
                                     <td class="d-flex justify-content-center">
                                         <span>Qty: </span>
-                                        <button class="btn btn-secondary">-</button>
+                                        <!-- <button class="btn btn-secondary">-</button>
                                         <input type="text" name="" id="" class="form-control" style="width: 35px;" value="1">
-                                        <button class="btn btn-secondary">+</button>
-                                        <!-- <button class="btn btn-secondary" onclick="kurang(<?= $value['id_cart'] ?>, <?= $id_user ?>)">-</button>
-                                        <input type="text" name="" id="" class="form-control" style="width: 35px;" value="<?= $value['qty'] ?>">
-                                        <button class="btn btn-secondary" onclick="tambah(<?= $value['id_cart'] ?>, <?= $id_user ?>)">+</button> -->
+                                        <button class="btn btn-secondary">+</button> -->
+                                        <button class="btn btn-secondary" onclick="kurang()">-</button>
+                                        <input type="text" name="jumlahqty" id="jumlahqty" class="form-control" style="width: 35px;" value="1">
+                                        <button class="btn btn-secondary" onclick="tambah()">+</button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -90,7 +90,7 @@
                         <?php
                             if(isset($_SESSION['active'])) {
                             ?>
-                                <button class="btn btn-dark w-100" name="addCart" id="addCart" value='<?= $id_sepatu ?>' onclick="addCart(this)">Add to Cart</button>
+                                <button class="btn btn-dark w-100" name="addCart" id="addCart" value='<?= $id_sepatu ?>' onclick="addCart(this, 1)">Add to Cart</button>
                             <?php
                             } else {
                             ?>
@@ -111,5 +111,26 @@
         </div>
         <?php require_once("./section/footer_section.php") ?>
 		<script type="text/javascript" src="./js/add_cart.js"></script>
+        <script>
+			function tambah() {
+				document.getElementById("jumlahqty").value++;
+				document.getElementById("addCart").setAttribute("onclick", "addCart(this, " + document.getElementById("jumlahqty").value +")");
+
+                if (document.getElementById("jumlahqty").value >= 9){
+                    document.getElementById("jumlahqty").value = 9;
+                    document.getElementById("addCart").setAttribute("onclick", "addCart(this, " + document.getElementById("jumlahqty").value +")");
+                }
+			}
+
+			function kurang() {
+				document.getElementById("jumlahqty").value--;
+                document.getElementById("addCart").setAttribute("onclick", "addCart(this, " + document.getElementById("jumlahqty").value +")");
+
+                if (document.getElementById("jumlahqty").value <= 1){
+                    document.getElementById("jumlahqty").value = 1;
+                    document.getElementById("addCart").setAttribute("onclick", "addCart(this, " + document.getElementById("jumlahqty").value +")");
+                }
+			}
+		</script>
     </body>
 </html>

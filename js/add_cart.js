@@ -10,7 +10,7 @@ $(document).ready(function() {
     });
 });
 
-function addCart(obj) {
+function addCart(obj, qty) {
     let id_sepatu = $(obj).attr("value");
 
     $.ajax({
@@ -18,6 +18,7 @@ function addCart(obj) {
         url: "./update_cart.php",
         data: {
             id_sepatu: id_sepatu,
+            qty : qty
         },
         success: function() {
             clearTimeout(notifTimer);
