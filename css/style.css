@@ -254,8 +254,16 @@ button {
     background-repeat: no-repeat;
     background-size: 100%;
     padding: 15px 0px;
+    position: sticky;
+    top: 0;
     width: 100%;
     height: auto;
+    z-index: 999;
+}
+
+.navbar.navbar-expand-lg.navbar-light {
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .nav-android-menu.last {
@@ -341,8 +349,8 @@ button {
 
 .detail-back {
     position: absolute;
-    top: 31px;
-    left: 31px;
+    top: 40px;
+    left: 40px;
     z-index: 11;
 }
 
@@ -367,14 +375,14 @@ button {
     background-size: 85%;
 }
 
-#body::-webkit-scrollbar {
+/* #body::-webkit-scrollbar {
     display: none;
 }
 
 #body {
     -ms-overflow-style: none;
     scrollbar-width: none;
-}
+} */
 
 .copyright {
     background-color: #000;

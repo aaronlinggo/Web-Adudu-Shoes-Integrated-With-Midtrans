@@ -39,7 +39,7 @@
 			</div>
 			<div class="collection_text">Shoes</div>
 			<div class="layout-padding gallery_section">
-				<div class="container">
+				<div class="container" style="padding: 0 31px;">
 					<div id="search_area" style="position: absolute; top: 80px; left: 30px; display: block;" class="flex">
 						<input type="text" name="search_bar" id="search_bar">
 						<button name="search_btn" id="search_btn" style="margin-left: 10px;">Search</button>

@@ -23,7 +23,7 @@
         <?php require_once("./section/connection_head.php") ?>
         <?php require_once("./section/script_section.php") ?>
     </head>
-    <body id="body" class="main-layout">
+    <body class="main-layout">
         <div style="height: 100vh; display: flex; flex-flow: column;">
             <div class="header-section">
                 <?php require_once("./section/nav_section.php") ?>
@@ -41,16 +41,56 @@
                     </div>
                     <div class="detail-img w-100" style="<?= "background-image: " . $lokasi ?>"></div>
                 </div>
-                <!-- <div id="mboh" style="width: 40%; padding: 40px; max-height: 100%;"> -->
-                <div id="mboh" style="width: 40%; padding: 40px; max-height: 100%; overflow-y: auto;">
-                    <h1 style="font-style: italic;"><?= $sepatu[0]['nama_sepatu'] ?></h1>
-                    <h1>Price: Rp. <span style="color: #ff4e5b;"><?= number_format($sepatu[0]['harga_sepatu'], 0, ',', '.') ?></span></h1>
-                    <h1>Size: UK <span><?= number_format($sepatu[0]['size_sepatu'], 0, ',', '.') ?></span></h1>
-                    <div>
+                <div class="flex-center flex-column flex-between" style="width: 40%; padding: 40px; height: 100%; max-height: 100%;">
+                    <!-- <div class="position-sticky p-3" style="top: 0; right: 0; z-index: 11;">
+                        <div id="liveToast" class="toast fade hide" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="toast-header">
+                                <strong style="margin-right: auto;">Success</strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                            </div>
+                            <div class="toast-body">
+                                Your item has been added to cart.
+                            </div>
+                        </div>
+                    </div> -->
+                    <h1 class="w-100" style="font-style: italic; line-height: 48px; font-size: 36px;"><?= $sepatu[0]['nama_sepatu'] ?></h1>
+                    <div class="w-100">
+                        <table>
+                            <tbody>
+                                <tr class="align-middle" style="font-size: 30px;">
+                                    <!-- <td style="color: #0f0d10;">Price&nbsp;&nbsp;&nbsp;</td>
+                                    <td style="color: #0f0d10;">:&nbsp;</td> -->
+                                    <td style="color: #0f0d10;">Rp. <span style="color: #ff4e5b;"><?= number_format($sepatu[0]['harga_sepatu'], 0, ',', '.') ?></span></td>
+                                </tr>
+                                <tr class="align-middle" style="font-size: 30px;">
+                                    <!-- <td style="color: #0f0d10;">Size&nbsp;&nbsp;&nbsp;</td>
+                                    <td style="color: #0f0d10;">:&nbsp;</td> -->
+                                    <td style="color: #0f0d10;">UK <?= number_format($sepatu[0]['size_sepatu'], 0, ',', '.') ?></td>
+                                </tr>
+                                <tr class="align-middle" style="font-size: 30px;">
+                                    <!-- <td style="color: #0f0d10;">Stock&nbsp;&nbsp;&nbsp;</td>
+                                    <td style="color: #0f0d10;">:&nbsp;</td> -->
+                                    <td style="color: #0f0d10;"><?= number_format($sepatu[0]['stock_sepatu'], 0, ',', '.') ?></td>
+                                </tr>
+                                <tr class="align-middle" style="font-size: 30px;">
+                                    <td class="d-flex justify-content-center">
+                                        <span>Qty: </span>
+                                        <button class="btn btn-secondary">-</button>
+                                        <input type="text" name="" id="" class="form-control" style="width: 35px;" value="1">
+                                        <button class="btn btn-secondary">+</button>
+                                        <!-- <button class="btn btn-secondary" onclick="kurang(<?= $value['id_cart'] ?>, <?= $id_user ?>)">-</button>
+                                        <input type="text" name="" id="" class="form-control" style="width: 35px;" value="<?= $value['qty'] ?>">
+                                        <button class="btn btn-secondary" onclick="tambah(<?= $value['id_cart'] ?>, <?= $id_user ?>)">+</button> -->
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="w-100">
                         <?php
                             if(isset($_SESSION['active'])) {
                             ?>
-                                <button class="btn btn-dark" style="border-radius: 4px; width: 100%;" name="addCart" id="addCart" value='<?= $id_sepatu ?>' onclick="addCart(this)">Add to Cart</button>
+                                <button class="btn btn-dark w-100" name="addCart" id="addCart" value='<?= $id_sepatu ?>' onclick="addCart(this)">Add to Cart</button>
                             <?php
                             } else {
                             ?>
@@ -59,11 +99,14 @@
                             }
                         ?>
                     </div>
-                    <h1><?= $sepatu[0]['sub_desc'] ?></h1>
-                    <div class="desc" style="overflow-y: auto;">
-                        <p><?= $sepatu[0]['desc_sepatu'] . "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat, odit quasi! Non minus incidunt impedit. Ipsa incidunt, quo reprehenderit accusamus ipsam commodi assumenda odio, aliquam ratione esse, suscipit repudiandae perspiciatis eaque officiis voluptatibus numquam. Commodi necessitatibus doloremque illo odio omnis totam accusamus voluptatibus quod esse fugit numquam, labore voluptatum facilis, cupiditate excepturi ea nostrum. Quo natus ratione ipsam ad reiciendis minus doloremque, alias, officiis rerum nobis consequuntur perferendis, eius incidunt tempora inventore illum iste nulla nesciunt error pariatur. Unde rem doloremque, delectus neque nulla distinctio odit sequi sit quia quam earum. Iusto fugiat itaque porro modi ab suscipit vel nostrum." ?></p>
-                    </div>
                 </div>
+            </div>
+        </div>
+        <div style="width: 100%; height: 1px; background-color: lightgray;"></div>
+        <div style="margin: 60px;">
+            <h1 style="padding-bottom: 20px; text-align: left;"><?= $sepatu[0]['sub_desc'] ?></h1>
+            <div class="desc">
+                <p style="margin: 0; text-align: left;"><?= $sepatu[0]['desc_sepatu'] ?></p>
             </div>
         </div>
         <?php require_once("./section/footer_section.php") ?>

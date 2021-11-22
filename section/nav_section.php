@@ -1,6 +1,6 @@
 <div class="header-inner container">
     <div class="row flex-row" style="position: relative;">
-        <div class="col-sm-12">
+        <div class="landing-padding col-sm-12">
             <nav class="navbar navbar-expand-lg navbar-light bg-light flex flex-hend flex-between fullheight">
                 <div class="logo">
                     <a href="./index.php" class="flex flex-hstart">

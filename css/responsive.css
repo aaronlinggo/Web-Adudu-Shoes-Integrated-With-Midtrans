@@ -57,6 +57,10 @@
         width: 47.5%;
     }
 
+    .landing-padding {
+        padding: 0 40px!important;
+    }
+
     .nav-item.nav-link.profile {
         padding-right: 1rem!important;
     }
@@ -120,6 +124,10 @@
     .role-out {
         margin-left: 1px;
         width: 47.5%;
+    }
+
+    .landing-padding {
+        padding: 0 30px!important;
     }
 
     .nav-item.nav-link.profile {
@@ -219,6 +227,10 @@
         height: 100%;
     }
 
+    .landing-padding {
+        padding: 0 40px!important;
+    }
+
     .navbar-light .navbar-nav .nav-link {
         font-size: 14pt;
     }
@@ -242,7 +254,7 @@
 
     .about-header {
         margin-top: 0;
-        margin-bottom: 100px;
+        margin-bottom: 200px;
     }
 
     .about-section {

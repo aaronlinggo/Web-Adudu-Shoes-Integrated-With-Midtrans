@@ -14,7 +14,7 @@
 		<?php require_once("./section/connection_head.php") ?>
 	</head>
 	<body class="main-layout">
-		<div class="header-section">
+		<div class="header-section" style="position: relative;">
 			<?php require_once("./section/nav_section.php") ?>
 			<div class="banner_section">
 				<div class="container-fluid">
