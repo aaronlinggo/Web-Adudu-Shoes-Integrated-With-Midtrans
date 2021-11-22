@@ -85,7 +85,6 @@ class Transaction extends CI_Controller {
 		$status_code = $response -> status_code;
 		$status_message = $response -> status_message;
 
-		$update = $conn -> query("update payment set transaction_status = '$transaction_status', status_code = '$status_code', status_message = '$status_message' where order_id = '$order_id'");
 
 		if($transaction_status == "settlement") {
 			$stmt = $conn -> prepare("SELECT id FROM payment WHERE order_id = '$order_id'");
@@ -137,6 +136,54 @@ class Transaction extends CI_Controller {
 				}
 			}
 		}
+		else if ($transaction_status == "expire"){
+			$stmt = $conn -> prepare("SELECT * FROM payment WHERE order_id = '$order_id'");
+			$stmt -> execute();
+			$p = $stmt -> get_result() -> fetch_assoc();
+			if ($p['transaction_status'] == "pending"){
+				$id_payment = $p['id'];
+		
+				$stmt = $conn -> prepare("SELECT * FROM order_details WHERE payment_id = '$id_payment'");
+				$stmt -> execute();
+				$od = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
+	
+				foreach($od as $key => $value) {
+					if($value['status'] == 0) {
+						?>
+						<input type="hidden" name="" value="Your Order #<?= $order_id ?> payment has been Expired" id="order_id">
+						
+						<script>
+							$("#liveToast").children().last().html($("#order_id").val());
+							$("#liveToast").removeClass("hide");
+							   $("#liveToast").addClass("show");
+							notifTimer = setTimeout(() => {
+								$("#liveToast").removeClass("show");
+								$("#liveToast").addClass("hide");
+							}, 5000);
+						</script>
+						<?php
+						$order_id_temp = $value['id_order_details'];
+						$stmt = $conn->prepare("SELECT * FROM order_items WHERE order_id='$order_id_temp'");
+						$stmt->execute();
+						$order_items = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+						foreach($order_items as $k => $v){
+							$sepatu_id= $v['sepatu_id'];
+							$stmt = $conn->prepare("SELECT * FROM sepatu WHERE id_sepatu='$sepatu_id'");
+							$stmt->execute();
+							$sepatu = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+							
+							foreach($sepatu as $kt => $vt){
+								$stock_sepatu = $vt['stock_sepatu']+$v['qty'];
+								$id_sepatu = $vt['id_sepatu'];
+								$update_stock = $conn->query("update sepatu set stock_sepatu = '$stock_sepatu' where id_sepatu='$id_sepatu'");
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		$update = $conn -> query("update payment set transaction_status = '$transaction_status', status_code = '$status_code', status_message = '$status_message' where order_id = '$order_id'");
 	}
 
 	public function cancel($order_id) {

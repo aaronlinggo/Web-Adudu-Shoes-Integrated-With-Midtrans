@@ -80,7 +80,7 @@ class Snap extends CI_Controller {
         $custom_expiry = array(
             'start_time' => date("Y-m-d H:i:s O",$time),
             'unit' => 'minute', 
-            'duration'  => 5
+            'duration'  => 1
         );
         
         $transaction_data = array(
@@ -187,7 +187,7 @@ class Snap extends CI_Controller {
 		$stmt->bind_param("iiii", $userid, $lastid, $result->gross_amount, $stat);
 		$return = $stmt->execute();
 
-		$lastid = mysqli_insert_id($conn);
+		$lastid = (int)mysqli_insert_id($conn);
 
 		$stmt = $conn->prepare("SELECT * FROM cart_item WHERE user_id=$userid and active = 1");
 		$stmt->execute();
@@ -200,9 +200,30 @@ class Snap extends CI_Controller {
 		$_SESSION['active'] = $active;
 
 		foreach($cart_item as $key => $value){
+			$totalqty = (int)$value['qty'];
+			$id_sepatu = (int)$value['sepatu_id'];
+			echo $totalqty . " / " . $id_sepatu . " - " . $lastid . "<br>";
 			$stmt = $conn->prepare("INSERT INTO order_items(order_id, sepatu_id, qty) VALUES(?,?,?)");
-			$stmt->bind_param("iii", $lastid, $value['sepatu_id'], $value['qty']);
+			echo "<pre>";
+			var_dump(mysqli_error($conn));
+			echo "</pre>";
+			$stmt->bind_param("iii", $lastid, $id_sepatu, $totalqty);
+			$hasil = $stmt -> execute();
+
+			$stmt = $conn->prepare("SELECT * FROM sepatu WHERE id_sepatu=$id_sepatu");
 			$return = $stmt->execute();
+			$sepatuStock = $stmt->get_result()->fetch_assoc();
+			var_dump($tes);
+			$stocksepatu = $sepatuStock['stock_sepatu'] - $totalqty;
+
+			if ($stocksepatu <= 0){
+				$stocksepatu = 0;
+			}
+
+			$updatesepatu = $conn->query("update sepatu set stock_sepatu = $stocksepatu where id_sepatu = $id_sepatu");
+			// $return = $stmt->execute();
+			var_dump($return);
+			echo "<br>";
 			$active = 0;
 			$id_cart = $value['id_cart'];
 			$update = $conn->query("update cart_item set active = '$active' where id_cart='$id_cart'");

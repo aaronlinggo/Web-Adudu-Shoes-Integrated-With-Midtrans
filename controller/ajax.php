@@ -8,7 +8,19 @@ if ($action == "tambah") {
     $stmt = $conn->prepare("SELECT * FROM cart_item WHERE id_cart=$id");
     $stmt->execute();
     $cart = $stmt->get_result()->fetch_assoc();
+
+    $id_sepatu = $cart['sepatu_id'];
+
+    $stmt = $conn->prepare("SELECT * FROM sepatu WHERE id_sepatu=$id_sepatu");
+    $stmt->execute();
+    $sepatu = $stmt->get_result()->fetch_assoc();
+
     $qty = ($cart['qty'] + 1);
+
+    if ($sepatu['stock_sepatu'] - $qty <= 0){
+        $qty = $sepatu['stock_sepatu'];
+    }
+
     if ($qty >= 9){
         $qty = 9;
     }
@@ -98,7 +110,9 @@ else if ($action == "kurang") {
     $stmt = $conn->prepare("SELECT * FROM cart_item WHERE id_cart=$id");
     $stmt->execute();
     $cart = $stmt->get_result()->fetch_assoc();
+
     $qty = ($cart['qty'] - 1);
+    
     if ($qty <= 1){
         $qty = 1;
     }

@@ -70,7 +70,10 @@
                                 <tr class="align-middle" style="font-size: 30px;">
                                     <!-- <td style="color: #0f0d10;">Stock&nbsp;&nbsp;&nbsp;</td>
                                     <td style="color: #0f0d10;">:&nbsp;</td> -->
-                                    <td style="color: #0f0d10;"><?= number_format($sepatu[0]['stock_sepatu'], 0, ',', '.') ?></td>
+                                    <td style="color: #0f0d10;">
+                                        Stock Available : <?= $sepatu[0]['stock_sepatu'] ?>
+                                        <input type="hidden" name="" id="jumlahstock" value="<?= $sepatu[0]['stock_sepatu'] ?>">
+                                    </td>
                                 </tr>
                                 <tr class="align-middle" style="font-size: 30px;">
                                     <td class="d-flex justify-content-center">
@@ -115,7 +118,10 @@
 			function tambah() {
 				document.getElementById("jumlahqty").value++;
 				document.getElementById("addCart").setAttribute("onclick", "addCart(this, " + document.getElementById("jumlahqty").value +")");
-
+                
+                if (document.getElementById("jumlahstock").value - document.getElementById("jumlahqty").value <= 0){
+                    document.getElementById("jumlahqty").value = document.getElementById("jumlahstock").value;
+                }
                 if (document.getElementById("jumlahqty").value >= 9){
                     document.getElementById("jumlahqty").value = 9;
                     document.getElementById("addCart").setAttribute("onclick", "addCart(this, " + document.getElementById("jumlahqty").value +")");

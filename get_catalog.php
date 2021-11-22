@@ -50,7 +50,7 @@
                                 <?php
                                     if(isset($_SESSION['active'])) {
                                     ?>
-                                        <button class="btn btn-success" style="border-radius: 4px;" name="addCart" id="addCart" value='<?= $value['id_sepatu'] ?>' onclick="addCart(this)">Add to Cart</button>
+                                        <button class="btn btn-success" style="border-radius: 4px;" name="addCart" id="addCart" value='<?= $value['id_sepatu'] ?>' onclick="addCart(this, 1)">Add to Cart</button>
                                     <?php
                                     } else {
                                     ?>
