@@ -16,6 +16,25 @@
         margin-top: 10px;
     }
 
+    .catalog-img {
+        max-width: 90%!important;
+        max-height: 90%!important;
+    }
+
+    .catalog-btn-container {
+        flex-flow: column;
+        margin-top: 15px!important;
+    }
+
+    .catalog-btn {
+        margin: 5px 0!important;
+        width: 100%!important;
+    }
+
+    .catalog-btn.empty-margin {
+        margin-bottom: 0!important;
+    }
+
     .detail-back .btn {
         width: 26vw!important;
     }
@@ -57,25 +76,44 @@
         width: 47.5%;
     }
 
+    .nav-item.nav-link.profile {
+        padding-right: 1rem!important;
+    }
+
     .landing-padding {
         padding: 0 40px!important;
     }
 
-    .nav-item.nav-link.profile {
-        padding-right: 1rem!important;
+    .landing-padding.about {
+        padding-left: 41px!important;
     }
 
     .layout-padding.about {
         padding: 25px 0;
     }
 
-    .about-header {
-        margin: 25px 0;
+    .catalog-item {
+        font-size: 15pt;
+        margin: 15px 0;
+        line-height: 30px;
     }
 
+    .catalog-img {
+        max-width: 70%;
+        max-height: 70%;
+    }
+
+    .catalog-btn {
+        width: 50%;
+    }
+    
     .detail-back .btn {
         margin-left: 1px;
         width: 24vw;
+    }
+
+    .about-header {
+        margin: 25px 0;
     }
 
     .about-section {
@@ -126,15 +164,19 @@
         width: 47.5%;
     }
 
-    .landing-padding {
-        padding: 0 30px!important;
-    }
-
     .nav-item.nav-link.profile {
         padding-right: 1rem!important;
         width: 80%;
     }
-    
+
+    .landing-padding {
+        padding: 0 30px!important;
+    }
+
+    .landing-padding.about {
+        padding-left: 31px!important;
+    }
+
     .layout-padding.about {
         padding: 30px 0;
     }
@@ -158,6 +200,21 @@
     .about-text {
         font-size: 13pt;
         margin: 30px 0;
+    }
+
+    .catalog-item {
+        font-size: 16pt;
+        margin: 15px;
+        line-height: 32px;
+    }
+
+    .catalog-img {
+        max-width: 75%;
+        max-height: 75%;
+    }
+
+    .catalog-btn {
+        width: 50%;
     }
 
     .modal-login {
@@ -195,6 +252,16 @@
         line-height: 48px;
     }
 
+    .catalog-item {
+        font-size: 14pt;
+        line-height: 28px;
+    }
+
+    .catalog-img {
+        max-width: 80%;
+        max-height: 80%;
+    }
+
     .detail-back .btn {
         width: 14vw;
     }
@@ -227,10 +294,6 @@
         height: 100%;
     }
 
-    .landing-padding {
-        padding: 0 40px!important;
-    }
-
     .navbar-light .navbar-nav .nav-link {
         font-size: 14pt;
     }
@@ -246,6 +309,14 @@
 
     .navbar-nav {
         padding-top: 0;
+    }
+
+    .landing-padding {
+        padding: 0 40px!important;
+    }
+
+    .landing-padding.about {
+        padding-left: 40px!important;
     }
 
     .layout-padding.about {
@@ -267,6 +338,16 @@
     .about-text {
         font-size: 14pt;
         margin: 40px 0;
+    }
+
+    .catalog-item {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .catalog-img {
+        max-width: 85%;
+        max-height: 85%;
     }
 
     .detail-back .btn {
@@ -323,6 +404,11 @@
     .about-section {
         font-size: 34pt;
         line-height: 60px;
+    }
+
+    .catalog-img {
+        max-width: 90%;
+        max-height: 90%;
     }
 
     .detail-back .btn {

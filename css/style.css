@@ -245,6 +245,10 @@ button {
     font-weight: 600;
 }
 
+.border-radius-small {
+    border-radius: 4px;
+}
+
 .layout-padding {
     padding: 80px 0;
 }
@@ -340,6 +344,42 @@ button {
 .about-text {
     font-weight: 400;
     text-align: justify;
+}
+
+.catalog-card {
+    flex-grow: 1;
+    margin: 15px 0;
+    height: auto;
+}
+
+.catalog-card .inner {
+    background-color: #ecedef;
+    border-radius: 8px;
+    /* box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.2); */
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+}
+
+.catalog-item {
+    color: #000;
+    font-weight: 400;
+    text-align: center;
+}
+
+.catalog-img-placeholder {
+    min-height: 200px;
+    text-align: center;
+}
+
+.catalog-btn-container {
+    margin-top: 20px;
+}
+
+.catalog-price {
+    color: #0f0d10;
+    font-size: 15pt;
+    text-align: right;
 }
 
 .detail {
@@ -671,56 +711,6 @@ button {
     float: left;
     width: 100%;
     height: auto;
-}
-
-.best_shoes {
-    background-color: #ecedef;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    padding: 25px;
-    width: 100%;
-    height: 100%;
-}
-
-.best_text {
-    color: #000;
-    font-size: 14pt;
-    margin-left: 0px;
-    margin-right: 0px;
-    text-align: center;
-    width: 100%;
-}
-
-.shoes_icon {
-    float: left;
-    width: 100%;
-    min-height: 220px;
-    text-align: center;
-}
-
-.star_text {
-    float: left;
-    width: 100%;
-}
-
-.right_part {
-    float: left;
-    /* WHICH ONE??? */
-    width: 100%;
-    width: 80%;
-    align-items: center;
-}
-
-.button_part {
-    align-items: center;
-}
-
-.shoes_price {
-    float: left;
-    color: #0f0d10;
-    font-size: 18pt;
-    text-align: right;
-    width: 100%;
 }
 
 .buy_now_bt {

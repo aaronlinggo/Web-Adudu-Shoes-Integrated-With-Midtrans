@@ -19,15 +19,15 @@
             <?php require_once("./section/nav_section.php") ?>
         </div>
         <div class="py-0">
-            <div class="container" style="padding: 0 31px;">
-                <div class="row">
-                    <div class="col-lg-4 d-flex align-items-end">
+            <div class="container landing-padding about">
+                <div class="row w-100" style="margin: 0 auto;">
+                    <div class="col-lg-4 d-flex align-items-end px-0">
                         <div class="about-header">
                         <div class="about-text m-0">ABOUT</div>
                             <h1 class="about-section m-0 font-bold">PROFILE</h1>
                         </div>
                     </div>
-                    <div class="col-lg-8">
+                    <div class="col-lg-8 px-0">
                         <img class="img-fluid about-img" data-controller="lazyLoader" alt="" src="https://www.adidas-group.com/media/filer_public_thumbnails/filer_public/66/69/66693d7c-bc7b-4681-abd3-921644732c5c/18_02_2021_profile.jpg__800x900_q85_crop-smart_subject_location-2055%2C1037_subsampling-2.jpg" data-src="/media/filer_public_thumbnails/filer_public/66/69/66693d7c-bc7b-4681-abd3-921644732c5c/18_02_2021_profile.jpg__800x900_q85_crop-smart_subject_location-2055%2C1037_subsampling-2.jpg">
                     </div>
                 </div>

@@ -28,40 +28,36 @@
         $get_total = $sql -> get_result() -> fetch_assoc();
     }
 
-    // NEED TO IMPLEMENT LAZY IMAGE OR USE SPINNER
     foreach($sepatu as $key => $value) {
         $lokasi = "./admin/" . $value['link_gambarsepatu'];
         ?>
-            <div class="col-sm-12 col-md-6 col-lg-4" style="margin: 15px 0;">
-                <div class="best_shoes flex-center flex-column flex-hend flex-between">
+            <div class="flex catalog-card col-sm-12 col-md-6 col-lg-4">
+                <div class="inner flex-center flex-column flex-hend flex-between">
                     <div>
-                        <p class="best_text"><?= $value['nama_sepatu'] ?></p>
+                        <p class="catalog-item"><?= $value['nama_sepatu'] ?></p>
                     </div>
                     <div>
-                        <div class="shoes_icon">
-                            <img src='<?= $lokasi ?>' alt="">
+                        <div class="catalog-img-placeholder w-100">
+                            <img class="catalog-img" src='<?= $lokasi ?>' alt="">
                         </div>
-                        <div class="star_text flex-center flex-vend">
-                            <div class="button_part">
-                                <form action="" method="POST">
-                                    <input type="hidden" name="id_sepatu" id="id_sepatu" value='<?= $value['id_sepatu'] ?>'>
-                                    <button class="btn btn-success" style="border-radius: 4px;" name="details" id="details">Details</button>
-                                </form>
+                        <div class="w-100 flex-center flex-column flex-vend">
+                            <div class="align-items-center w-100">
+                                <div class="flex-center flex-hstart w-100" style="font-size: 16px;"><?= ($value['stock_sepatu'] > 0) ? "Stock Available" : "Out of Stock" ?></div>
+                                <div class="catalog-price flex-center flex-hstart w-100">Rp.&nbsp;<span style="color: #ff4e5b;"><?= number_format($value['harga_sepatu'], 0, ',', '.') ?></span></div>
+                            </div>
+                            <div class="catalog-btn-container align-items-center w-100 flex-center">
+                                <a href='<?= "./detail_shoes.php?id_sepatu=" . $value['id_sepatu'] ?>' class="btn btn-dark border-radius-small catalog-btn" style="margin-right: 5px;">Details</a>
                                 <?php
                                     if(isset($_SESSION['active'])) {
                                     ?>
-                                        <button class="btn btn-success" style="border-radius: 4px;" name="addCart" id="addCart" value='<?= $value['id_sepatu'] ?>' onclick="addCart(this, 1)">Add to Cart</button>
+                                        <button class="btn btn-dark border-radius-small catalog-btn empty-margin" name="addCart" id="addCart" value='<?= $value['id_sepatu'] ?>' onclick="addCart(this, 1)" style="margin-left: 5px;">Add to Cart</button>
                                     <?php
                                     } else {
                                     ?>
-                                        <a href="./login.php" class="btn btn-success" style="border-radius: 4px;">Add to Cart</a>
+                                        <a href="./login.php" class="btn btn-dark border-radius-small catalog-btn empty-margin" style="margin-left: 5px;">Add to Cart</a>
                                     <?php
                                     }
                                 ?>
-                            </div>
-                            <div class="right_part" style="text-align: right;">
-                                <div><?= ($value['stock_sepatu'] > 0) ? "Stock Available" : "Out of Stock" ?></div>
-                                <div class="shoes_price">Rp. <span style="color: #ff4e5b;"><?= number_format($value['harga_sepatu'], 0, ',', '.') ?></span></div>
                             </div>
                         </div>
                     </div>
@@ -93,7 +89,7 @@
                     }
 
                     $total_pages = ceil($get_total['total'] / $limit);
-                    $total_numb = 3; // Set how many link number before and after active page
+                    $total_numb = 3;
                     $start_numb = ($pages > $total_numb) ? $pages - $total_numb : 1;
                     $end_numb = ($pages < ($total_pages - $total_numb)) ? $pages + $total_numb : $total_pages;
 
