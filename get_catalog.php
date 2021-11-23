@@ -5,25 +5,34 @@
     $pages = (isset($_POST['page'])) ? $_POST['page'] : 1;
     $limit = 18;
     $limit_start = ($pages - 1) * $limit;
+    $isPopular = false;
 
     if(isset($_POST['sort']) && $_POST['sort'] != "") {
         if($_POST['sort'] == "popular") {
-            // sort dari pembelian terbanyak
-            $sort = "id_sepatu ASC";
+            $isPopular = true;
         } else if($_POST['sort'] == "newest") {
             $sort = "id_sepatu ASC";
         } else if($_POST['sort'] == "oldest") {
             $sort = "id_sepatu DESC";
         }
+        // else if($_POST['sort'] == "price_asc") {
+        //     $sort = "id_sepatu DESC";
+        // } else if($_POST['sort'] == "price_desc") {
+        //     $sort = "id_sepatu DESC";
+        // }
     } else {
-        // auto popular
-        $sort = "id_sepatu ASC";
+        $isPopular = true;
     }
 
     if(isset($_POST['search']) && filter_var($_POST['search'], FILTER_VALIDATE_BOOLEAN) == true) {
         $cmd = '%' . mysqli_real_escape_string($conn, $query) . '%';
 
-        $sql = $conn -> prepare("SELECT * FROM sepatu WHERE nama_sepatu LIKE '%" . $cmd . "%' ORDER BY " . $sort . " LIMIT ?, ?");
+        if($isPopular) {
+            $sql = $conn -> prepare("SELECT s.*, SUM(o.qty) FROM sepatu s LEFT JOIN order_items o ON s.id_sepatu = o.sepatu_id WHERE nama_sepatu LIKE '%" . $cmd . "%' GROUP BY s.id_sepatu ORDER BY SUM(o.qty) DESC, s.id_sepatu ASC LIMIT ?, ?");
+        } else {
+            $sql = $conn -> prepare("SELECT * FROM sepatu WHERE nama_sepatu LIKE '%" . $cmd . "%' ORDER BY " . $sort . " LIMIT ?, ?");
+        }
+
         $sql -> bind_param("ii", $limit_start, $limit);
         $sql -> execute();
         $sepatu = $sql -> get_result() -> fetch_all(MYSQLI_ASSOC);
@@ -32,7 +41,12 @@
         $sql -> execute();
         $get_total = $sql -> get_result() -> fetch_assoc();
     } else {
-        $sql = $conn -> prepare("SELECT * FROM sepatu ORDER BY " . $sort . " LIMIT ?, ?");
+        if($isPopular) {
+            $sql = $conn -> prepare("SELECT s.*, SUM(o.qty) FROM sepatu s LEFT JOIN order_items o ON s.id_sepatu = o.sepatu_id GROUP BY s.id_sepatu ORDER BY SUM(o.qty) DESC, s.id_sepatu ASC LIMIT ?, ?");
+        } else {
+            $sql = $conn -> prepare("SELECT * FROM sepatu ORDER BY " . $sort . " LIMIT ?, ?");
+        }
+
         $sql -> bind_param("ii", $limit_start, $limit);
         $sql -> execute();
         $sepatu = $sql -> get_result() -> fetch_all(MYSQLI_ASSOC);

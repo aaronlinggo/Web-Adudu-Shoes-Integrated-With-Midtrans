@@ -78,10 +78,8 @@
 				// });
 
 				if(<?= json_encode((isset($_REQUEST['keyword'])) ? $_REQUEST['keyword'] : "") ?> != "") {
-					console.log("ATAS");
 					loadCatalog(1, true);
 				} else {
-					console.log("BAWAH");
 					loadCatalog(1, false);
 				}
 
@@ -106,18 +104,12 @@
 				let query = <?= json_encode((isset($_REQUEST['keyword'])) ? $_REQUEST['keyword'] : "") ?>;
 				let sort = <?= json_encode((isset($_REQUEST['sort'])) ? $_REQUEST['sort'] : "") ?>;
 
-				if(query != "") {
-					$("#search_bar").val(query);
-				}
-				console.log(query);
-
 				$.ajax({
 					method: "POST",
 					url: "./get_search.php",
 					data: {
 						page: page,
 						query: query,
-						// query: $("#search_bar").val(),
 						search: search,
 						sort: sort
 					},
@@ -159,6 +151,12 @@
 				e.preventDefault();
 				callOnSort("oldest");
 			});
+
+// 			document.getElementsByTagName('select')[0].onchange = function() {
+//   var index = this.selectedIndex;
+//   var inputText = this.children[index].innerHTML.trim();
+//   console.log(inputText);
+// }
 
 			// $(function() {
 			// 	$(".lazy").Lazy({
