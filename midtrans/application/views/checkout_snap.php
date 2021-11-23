@@ -203,12 +203,12 @@
 											<div class="d-flex justify-content-center">
 												<div style="margin-right: 1vh;">
 													<a href="../../<?= "detail_shoes.php?id_sepatu=" . $value['sepatu_id'] ?>">
-														<button class="btn btn-success">Details</button>
+														<button class="btn btn-success" style='margin:0; background-color: #34B1AA;'>Details</button>
 													</a>
 												</div>
 												<form action="" method="post">
 													<input type="hidden" name="id_cart" value="<?= $value['id_cart'] ?>">
-													<button class="btn btn-danger" name="delete">Delete</button>
+													<button class="btn btn-danger" name="delete" style="margin: 0; background-color: #F95F53;">Delete</button>
 												</form>
 											</div>
 										</td>

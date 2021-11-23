@@ -5,7 +5,9 @@
 ?>
 
 <div>
-    <div class="text-center lorem_text bg-light card" style="background-color: #c4c4c7 !important;">User ID: <?= $_REQUEST['data']['id_user'] ?></div>
+    <div class="text-center lorem_text bg-light card" style="background-color: #c4c4c7 !important;">
+        User ID: <?= $_REQUEST['data']['id_user'] ?>
+    </div>
     <div>
         <div class="lorem_text font-weight-bold">Nama</div>
         <?= $_REQUEST['data']['nama'] ?>
