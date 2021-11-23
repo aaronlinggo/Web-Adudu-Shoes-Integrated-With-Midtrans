@@ -26,7 +26,7 @@
 									<h1 class="banner_text">New Shoes Model</h1>
 									<h1 class="mens_text">
 										<?php
-											$stmt = $conn -> prepare("SELECT * FROM sepatu ORDER BY id_sepatu DESC LIMIT 1");
+											$stmt = $conn -> prepare("SELECT * FROM sepatu ORDER BY id_sepatu ASC LIMIT 1");
 											$stmt -> execute();
 											$lastShoes = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
 										?>
