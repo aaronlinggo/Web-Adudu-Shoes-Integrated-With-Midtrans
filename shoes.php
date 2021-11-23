@@ -42,14 +42,16 @@
 			<div class="layout-padding gallery_section">
 				<div class="container landing-padding about">
 					<div class="w-100 col-sm-12 flex-center flex-between" style="height: 50px; padding: 0; border: 1px solid black; border-radius: 8px;">
-						<h4 style="padding: 0;">Urutkan: </h4>
-						<div id="popular" style="padding: 10px;">Popular</div>
-						<div id="newest" style="padding: 10px;">Newest</div>
-						<div id="oldest" style="padding: 10px;">Oldest</div>
-						<select name="price" id="price">
-							<option value="DESC">High -> Low</option>
-							<option value="ASC">Low -> High</option>
-						</select>
+						<div class="flex-center">
+							<h4 style="padding: 0;">Urutkan: </h4>
+							<div id="popular" style="padding: 10px;">Popular</div>
+							<div id="newest" style="padding: 10px;">Newest</div>
+							<div id="oldest" style="padding: 10px;">Oldest</div>
+							<select name="price" id="price">
+								<option value="DESC">High -> Low</option>
+								<option value="ASC">Low -> High</option>
+							</select>
+						</div>
 						<form action="" method="POST" autocomplete="off" class="flex-center" style="height: 100px;">
 							<div id="search_area" class="flex w-100">
 								<input type="text" name="search_bar" id="search_bar" required>
