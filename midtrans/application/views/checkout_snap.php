@@ -238,6 +238,13 @@
 				</div>
 			</div>
 		</div>
+		<form id="payment-form" method="post" action="./snap/finish">
+			<!-- <form id="payment-form" method="post" action="<?= site_url() ?>/transaction"> -->
+			<!-- <form id="payment-form" method="post" action="./transaction"> -->
+			<input type="hidden" name="result_type" id="result-type" value=""></div>
+			<input type="hidden" id="userid" name="userid" value='<?= $u['id_user'] ?>'>
+			<input type="hidden" name="result_data" id="result-data" value=""></div>
+		</form>
 		<div style="clear: both;"></div>
 		<div class="copyright">
 			<div class="copyright-padding fullwidth flex" style="flex-wrap: wrap;">
@@ -270,13 +277,6 @@
 			<div class="copyright-border fullwidth"></div>
 			<div class="copyright-padding fullwidth">2021 &copy; All Rights Reserved | <a href="./">Adudu Shoes</a></div>
 		</div>
-		<form id="payment-form" method="post" action="./snap/finish">
-			<!-- <form id="payment-form" method="post" action="<?= site_url() ?>/transaction"> -->
-			<!-- <form id="payment-form" method="post" action="./transaction"> -->
-			<input type="hidden" name="result_type" id="result-type" value=""></div>
-			<input type="hidden" id="userid" name="userid" value='<?= $u['id_user'] ?>'>
-			<input type="hidden" name="result_data" id="result-data" value=""></div>
-		</form>
 		<!-- <script src="./js/jquery.min.js"></script> -->
 		<script src="../../js/jquery-3.6.0.min.js"></script>
 		<script src="../../js/popper.min.js"></script>
