@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	<link rel="stylesheet" href="./css/responsive.css">
 	<link rel="stylesheet" href="./css/jquery.mCustomScrollbar.min.css">
 	<link rel="stylesheet" href="./css/owl.carousel.min.css">
-	<link rel="stylesheet" href="./admin/style.css">
+	<!-- <link rel="stylesheet" href="./admin/style.css"> -->
 	<!-- <link rel="icon" href="../../images/logo.png" type="image/png">
 		<link rel="stylesheet" href="../../css/bootstrap.min.css">
 		<link rel="stylesheet" href="../../css/style.css">
