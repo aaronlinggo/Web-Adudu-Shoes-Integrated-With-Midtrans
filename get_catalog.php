@@ -17,7 +17,7 @@
         }
     } else {
         // auto popular
-            $sort = "id_sepatu ASC";
+        $sort = "id_sepatu ASC";
     }
 
     if(isset($_POST['search']) && filter_var($_POST['search'], FILTER_VALIDATE_BOOLEAN) == true) {
