@@ -187,34 +187,32 @@
 														'name' => $nama_sepatu
 													);
 
-													array_push($item_details, $item1_details);
-													echo $sepatu[0]['nama_sepatu'];
-												?>
-											</td>
-											<td><?= "Rp. " . number_format($value['price'], 0, ',', '.') . ",-" ?></td>
-											<td class="d-flex justify-content-center">
-												<button class="btn btn-secondary" onclick="kurang(<?= $value['id_cart'] ?>, <?= $id_user ?>)">-</button>
-												<input type="text" name="" id="" class="form-control" style="width: 35px;" value="<?= $value['qty'] ?>">
-												<button class="btn btn-secondary" onclick="tambah(<?= $value['id_cart'] ?>, <?= $id_user ?>)">+</button>
-											</td>
-											<td><?= "Rp. " . number_format(($value['price'] * $value['qty']), 0, ',', '.') . ",-" ?></td>
-											<td>
-												<div class="d-flex justify-content-center">
-													<div style="margin-right: 1vh;">
-														<a href="../../<?= "detail_shoes.php?id_sepatu=" . $value['sepatu_id'] ?>">
-															<button class="btn btn-success">Details</button>
-														</a>
-													</div>
-													<form action="" method="post">
-														<input type="hidden" name="id_cart" value="<?= $value['id_cart'] ?>">
-														<button class="btn btn-danger" name="delete">Delete</button>
-													</form>
+												array_push($item_details, $item1_details);
+												echo $sepatu[0]['nama_sepatu'];
+											?>
+										</td>
+										<td><?= "Rp. " . number_format($value['price'], 0, ',', '.') . ",-" ?></td>
+										<td class="d-flex justify-content-center">
+											<button class="btn btn-secondary" onclick="kurang(<?= $value['id_cart'] ?>, <?= $id_user ?>)">-</button>
+											<input type="text" name="" id="" class="form-control" style="width: 35px;" value="<?= $value['qty'] ?>">
+											<button class="btn btn-secondary" onclick="tambah(<?= $value['id_cart'] ?>, <?= $id_user ?>)">+</button>
+										</td>
+										<td><?= "Rp. " . number_format(($value['price'] * $value['qty']), 0, ',', '.') . ",-" ?></td>
+										<td>
+											<div class="d-flex justify-content-center">
+												<div style="margin-right: 1vh;">
+													<a href="../../<?= "detail_shoes.php?id_sepatu=" . $value['sepatu_id'] ?>">
+														<button class="btn btn-success" style='margin:0; background-color: #34B1AA;'>Details</button>
+													</a>
 												</div>
-											</td>
-										</tr>
-									<?php
-								}
-								?>
+												<form action="" method="post">
+													<input type="hidden" name="id_cart" value="<?= $value['id_cart'] ?>">
+													<button class="btn btn-danger" name="delete" style="margin: 0; background-color: #F95F53;">Delete</button>
+												</form>
+											</div>
+										</td>
+									</tr>
+								<?php  } ?>
 								<tr class="bg-secondary text-white align-self-center">
 									<td colspan="4">
 										<div style="float: right;">
