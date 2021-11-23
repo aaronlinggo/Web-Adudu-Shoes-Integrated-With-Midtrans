@@ -28,6 +28,17 @@
             <div class="header-section">
                 <?php require_once("./section/nav_section.php") ?>
             </div>
+            <div class="position-sticky p-3" style="top: 0; right: 0; z-index: 99999;">
+                <div id="liveToast" class="toast fade hide" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        <strong style="margin-right: auto;">Success</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        Your item has been added to cart.
+                    </div>
+                </div>
+            </div>
             <div style="width: 100%; height: 1px; background-color: lightgray;"></div>
             <div class="detail flex" style="overflow: hidden;">
                 <?php
@@ -42,17 +53,6 @@
                     <div class="detail-img w-100" style="<?= "background-image: " . $lokasi ?>"></div>
                 </div>
                 <div class="flex-center flex-column flex-between" style="width: 40%; padding: 40px; height: 100%; max-height: 100%;">
-                    <div class="position-sticky p-3" style="top: 0; right: 0; z-index: 11;">
-                        <div id="liveToast" class="toast fade hide" role="alert" aria-live="assertive" aria-atomic="true">
-                            <div class="toast-header">
-                                <strong style="margin-right: auto;">Success</strong>
-                                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                            </div>
-                            <div class="toast-body">
-                                Your item has been added to cart.
-                            </div>
-                        </div>
-                    </div>
                     <h1 class="w-100" style="font-style: italic; line-height: 48px; font-size: 36px;"><?= $sepatu[0]['nama_sepatu'] ?></h1>
                     <div class="w-100">
                         <table>
