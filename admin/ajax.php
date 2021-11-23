@@ -138,7 +138,7 @@
                         ?>
                             <tr>
                                 <td><?= ($key+1) ?></td>
-                                <td><?= $value['order_id'] ?></td>
+                                <td>#<?= $value['order_id'] ?></td>
                                 <td><?= "Rp. " . number_format($value['gross_amount'], 0, ',', '.') . ",-" ?></td>
                                 <td>
                                     <?php 
@@ -185,7 +185,7 @@
                         ?>
                             <tr>
                                 <td><?= ($key+1) ?></td>
-                                <td><?= $value['order_id'] ?></td>
+                                <td>#<?= $value['order_id'] ?></td>
                                 <td><?= "Rp. " . number_format($value['gross_amount'], 0, ',', '.') . ",-" ?></td>
                                 <td>
                                     <?php 
@@ -232,7 +232,7 @@
                         ?>
                             <tr>
                                 <td><?= ($key+1) ?></td>
-                                <td><?= $value['order_id'] ?></td>
+                                <td>#<?= $value['order_id'] ?></td>
                                 <td><?= "Rp. " . number_format($value['gross_amount'], 0, ',', '.') . ",-" ?></td>
                                 <td>
                                     <?php 
@@ -279,7 +279,7 @@
                         ?>
                             <tr>
                                 <td><?= ($key+1) ?></td>
-                                <td><?= $value['order_id'] ?></td>
+                                <td>#<?= $value['order_id'] ?></td>
                                 <td><?= "Rp. " . number_format($value['gross_amount'], 0, ',', '.') . ",-" ?></td>
                                 <td>
                                     <?php 
