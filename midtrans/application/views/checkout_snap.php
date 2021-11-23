@@ -94,7 +94,7 @@
 										<div id="search_icon" class="nav-item nav-link last flex-center" style="cursor: pointer; position: relative;">
 											<img id="search_img" src="../../images/search_icon_black.png">
 										</div>
-										<a class="nav-item nav-link last flex-center" href='<?= (!isset($_SESSION['active'])) ? "../../login.php" : "./midtrans/index.php/snap" ?>' style="position: relative;">
+										<a class="nav-item nav-link last flex-center" href='<?= (!isset($_SESSION['active'])) ? "../../login.php" : "./snap" ?>' style="position: relative;">
 											<img src="../../images/shop_icon_black_2.png">
 										</a>
 									</div>
