@@ -19,7 +19,7 @@
 			<?php require_once("./section/nav_section.php") ?>
 		</div>
 		<div id="catalog" class="fullwidth h-auto flex flex-column" style="position: relative;">
-			<div class="position-sticky p-3" style="top: 0; right: 0; z-index: 11;">
+			<div class="position-sticky p-3" style="top: 0; right: 0; z-index: 99999;">
 				<div id="liveToast" class="toast fade hide" role="alert" aria-live="assertive" aria-atomic="true">
 					<div class="toast-header">
 						<strong style="margin-right: auto;">Success</strong>

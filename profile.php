@@ -31,19 +31,19 @@
             <?php require_once("./section/nav_section.php") ?>
         </div>
         <!-- DESKTOP -->
-        <div class="container h-100 py-3" style="position: relative;">
-        <!-- <div class="container h-auto"> -->
-            <div class="position-sticky p-3" style="top: 0; right: 0; z-index: 11;">
-                <div id="liveToast" class="toast fade hide" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-header">
-                        <strong style="margin-right: auto;">Well Done!</strong>
-                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                    </div>
-                    <div class="toast-body">
-                        Your item has been added to cart.
-                    </div>
+        <div class="position-sticky p-3" style="top: 0; right: 0; z-index: 99999;">
+            <div id="liveToast" class="toast fade hide" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <strong style="margin-right: auto;">Well Done!</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    Your item has been added to cart.
                 </div>
             </div>
+        </div>
+        <div class="container h-100 py-3" style="position: relative;">
+        <!-- <div class="container h-auto"> -->
             <div class="h-100" style="padding: 0 16px;">
                 <div class="h-100 flex" style="border: 1px solid rgb(219, 222, 226); border-radius: 8px; padding: 20px;">
                     <!-- <div class="w-100 flex" style="border-bottom: 1px solid rgb(219, 222, 226);">
