@@ -6,10 +6,24 @@
     $limit = 18;
     $limit_start = ($pages - 1) * $limit;
 
-    if(isset($_POST['search']) && $_POST['search'] == true) {
+    if(isset($_POST['sort']) && $_POST['sort'] != "") {
+        if($_POST['sort'] == "popular") {
+            // sort dari pembelian terbanyak
+            $sort = "id_sepatu ASC";
+        } else if($_POST['sort'] == "newest") {
+            $sort = "id_sepatu ASC";
+        } else if($_POST['sort'] == "oldest") {
+            $sort = "id_sepatu DESC";
+        }
+    } else {
+        // auto popular
+            $sort = "id_sepatu ASC";
+    }
+
+    if(isset($_POST['search']) && filter_var($_POST['search'], FILTER_VALIDATE_BOOLEAN) == true) {
         $cmd = '%' . mysqli_real_escape_string($conn, $query) . '%';
 
-        $sql = $conn -> prepare("SELECT * FROM sepatu WHERE nama_sepatu LIKE '%" . $cmd . "%' ORDER BY 1 DESC LIMIT ?, ?");
+        $sql = $conn -> prepare("SELECT * FROM sepatu WHERE nama_sepatu LIKE '%" . $cmd . "%' ORDER BY " . $sort . " LIMIT ?, ?");
         $sql -> bind_param("ii", $limit_start, $limit);
         $sql -> execute();
         $sepatu = $sql -> get_result() -> fetch_all(MYSQLI_ASSOC);
@@ -18,7 +32,7 @@
         $sql -> execute();
         $get_total = $sql -> get_result() -> fetch_assoc();
     } else {
-        $sql = $conn -> prepare("SELECT * FROM sepatu ORDER BY 1 DESC LIMIT ?, ?");
+        $sql = $conn -> prepare("SELECT * FROM sepatu ORDER BY " . $sort . " LIMIT ?, ?");
         $sql -> bind_param("ii", $limit_start, $limit);
         $sql -> execute();
         $sepatu = $sql -> get_result() -> fetch_all(MYSQLI_ASSOC);
@@ -67,7 +81,7 @@
     }
 ?>
 
-<nav class="mb-5">
+<nav class="w-100 col-sm-12">
     <?php
         $count = $get_total['total'];
 

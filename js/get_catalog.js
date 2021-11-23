@@ -11,10 +11,10 @@ $(document).ready(function() {
     //     $(window).scrollTop(0);
     // });
 
-    $("#search_btn").click(function(e) {
-        e.preventDefault();
-        loadCatalog(1, true);
-    });
+    // $("#search_btn").click(function(e) {
+    //     e.preventDefault();
+    //     loadCatalog(1, true);
+    // });
 
     loadCatalog(1, false);
 });
