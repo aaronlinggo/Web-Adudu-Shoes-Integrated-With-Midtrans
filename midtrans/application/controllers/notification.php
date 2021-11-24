@@ -37,8 +37,6 @@ class Notification extends CI_Controller {
 
 		$order_id = $result['order_id'];
 
-		
-
 		if ($result['status_code'] == 200){
 			$data = [
 				'status_code' => $result['status_code'],
@@ -46,7 +44,7 @@ class Notification extends CI_Controller {
 			];
 			$this->db->update('payment', $data, array('order_id'=>$order_id));
 		}
-		else if ($result['status_code'] == 407){
+		else if ($result['status_code'] == 202){
 			$data = [
 				'status_code' => $result['status_code'],
 				'transaction_status' => "expire"
