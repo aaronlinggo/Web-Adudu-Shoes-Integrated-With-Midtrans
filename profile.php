@@ -25,6 +25,7 @@
         <title>Profile | Adudu Shoes</title>
         <?php require_once("./section/connection_head.php") ?>
         <?php require_once("./section/script_section.php") ?>
+        <link rel="stylesheet" href="./css/profile.css">
     </head>
     <body class="main-layout flex flex-column flex-between" style="position: relative;">
         <div class="header-section">

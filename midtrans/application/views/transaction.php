@@ -69,9 +69,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		<div class="container-fluid ram">
 			<div class="row">
 				<div class="col-md-12">
-					<div class="d-flex flex-row-reverse" style="padding: 0 1vw;">
-						<button class="btn btn-success"><a href="./profile.php" style="text-decoration: none; color:inherit">Check for Updates!</a></button>
+					<div class="d-flex flex-row-reverse dashboard_btn" style="padding: 0 1vw;">
+						<button class="btn btn-success" style='margin:0; background-color: #34B1AA;'><a href="./profile.php" style="text-decoration: none; color:inherit">Check for Updates!</a></button>
 					</div>
+					<br>
 					<table class="table table-hover dashboard_btn" style="text-align: center;">
 						<thead>
 							<tr>
