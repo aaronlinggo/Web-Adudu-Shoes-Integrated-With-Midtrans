@@ -147,25 +147,23 @@ class Snap extends CI_Controller {
 		// 	$permata_va_number = '-';
 		// }
 
-		// $data = [
-		// 	'status_code' => $result->status_code,
-		// 	'status_message' => $result->status_message,
-		// 	'transaction_id' => $result->transaction_id,
-		// 	'order_id' => $result->order_id,
-		// 	'gross_amount' => $result->gross_amount,
-		// 	'payment_type' => $result->payment_type,
-		// 	'transaction_time' => $result->transaction_time,
-		// 	'transaction_status' => $result->transaction_status,
-		// 	'fraud_status' => $result->fraud_status,
-		// 	'pdf_url' => $result->pdf_url,
-		// 	'finish_redirect_url' => $result->finish_redirect_url,
-		// 	'permata_va_number' => $permata_va_number,
-		// 	'bank' => $bank,
-		// 	'va_number' => $va_number,
-		// 	'bill_key' => $bill_key,
-		// 	'biller_code' => $biller_code,
-		// 	'bca_va_number' => $bca_va_number,
-		// ];
+		$data = [
+			'status_code' => $result->status_code,
+			'status_message' => $result->status_message,
+			'transaction_id' => $result->transaction_id,
+			'order_id' => $result->order_id,
+			'gross_amount' => $result->gross_amount,
+			'payment_type' => $result->payment_type,
+			'transaction_time' => $result->transaction_time,
+			'transaction_status' => $result->transaction_status,
+			'bank' => $bank,
+			'va_number' => $va_number,
+			'fraud_status' => $result->fraud_status,
+			'pdf_url' => $result->pdf_url,
+			'finish_redirect_url' => $result->finish_redirect_url,
+			'bill_key' => $bill_key,
+			'biller_code' => $biller_code,
+		];
 		// $host = 'localhost';
 		// $user = 'root';
 		// $password = '';
@@ -175,13 +173,17 @@ class Snap extends CI_Controller {
 		// if ($conn->connect_errno) {
 		// 	die("gagal connect : " . $conn->connect_error);
 		// }
+		$simpan = $this->db->insert('payment', $data);
 		require_once("../controller/connection.php");
-		$stmt = $conn->prepare("INSERT INTO payment(status_code, status_message, transaction_id, order_id, gross_amount, payment_type, transaction_time, transaction_status, bank, va_number, fraud_status, pdf_url, finish_redirect_url, bill_key, biller_code) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-		$stmt->bind_param("sssssssssssssss", $result->status_code, $result->status_message, $result->transaction_id, $result->order_id, $result->gross_amount, $result->payment_type, $result->transaction_time, $result->transaction_status, $bank, $va_number, $result->fraud_status, $result->pdf_url, $result->finish_redirect_url, $bill_key, $biller_code);
-		$return = $stmt->execute();
+		// $stmt = $conn->prepare("INSERT INTO payment(status_code, status_message, transaction_id, order_id, gross_amount, payment_type, transaction_time, transaction_status, bank, va_number, fraud_status, pdf_url, finish_redirect_url, bill_key, biller_code) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+		// $stmt->bind_param("sssssssssssssss", $result->status_code, $result->status_message, $result->transaction_id, $result->order_id, $result->gross_amount, $result->payment_type, $result->transaction_time, $result->transaction_status, $bank, $va_number, $result->fraud_status, $result->pdf_url, $result->finish_redirect_url, $bill_key, $biller_code);
+		// $return = $stmt->execute();
 		
-		
-		$lastid = mysqli_insert_id($conn);
+		$stmt = $conn->prepare("SELECT * FROM payment");
+		$stmt->execute();
+		$payment_temp = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
+		$lastid = $payment_temp[count($payment_temp)-1]['id'];
 		$stat = 0;
 		$stmt = $conn->prepare("INSERT INTO order_details(user_id, payment_id, total, status) VALUES(?,?,?,?)");
 		$stmt->bind_param("iiii", $userid, $lastid, $result->gross_amount, $stat);
