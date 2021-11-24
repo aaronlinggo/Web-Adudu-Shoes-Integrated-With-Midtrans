@@ -28,13 +28,13 @@
         <link rel="stylesheet" href="./css/profile.css">
     </head>
     <body class="main-layout flex flex-column flex-between" style="position: relative;">
-        <div class="header-section">
+        <div id="header" class="header-section">
             <?php require_once("./section/nav_section.php") ?>
         </div>
         <div id="notifPopup" class="position-sticky" style="display: none;">
             <div id="liveToast" class="toast fade hide" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="toast-header">
-                    <strong style="margin-right: auto;">Success</strong>
+                    <strong style="margin-right: auto;">Well Done!</strong>
                     <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
                 <div class="toast-body">Your transaction is complete.</div>
