@@ -38,7 +38,8 @@ class Notification extends CI_Controller {
 		$order_id = $result['order_id'];
 
 		$data = [
-			'status_code' => $result['status_code']
+			'status_code' => $result['status_code'],
+			'transaction_status' => $result['transaction_status']
 		];
 
 		if ($result['status_code'] == 200){

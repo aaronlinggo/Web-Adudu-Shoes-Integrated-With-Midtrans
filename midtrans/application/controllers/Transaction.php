@@ -36,15 +36,15 @@ class Transaction extends CI_Controller {
 		// if($conn -> connect_errno) {
 		// 	die("Gagal Connect: " . $conn -> connect_error);
 		// }
-		include("connection.php");
+		// include("connection.php");
 
-		$stmt = $conn -> prepare("SELECT * FROM payment");
-		$stmt -> execute();
-		$payment = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
+		// $stmt = $conn -> prepare("SELECT * FROM payment");
+		// $stmt -> execute();
+		// $payment = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
 
-		foreach($payment as $key => $value) {
-			$this -> status($value['order_id']);
-		}
+		// foreach($payment as $key => $value) {
+		// 	$this -> status($value['order_id']);
+		// }
 
     	$this -> load -> view('transaction');
     }
