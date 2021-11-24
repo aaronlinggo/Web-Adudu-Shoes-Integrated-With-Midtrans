@@ -95,7 +95,7 @@
                             <input type="text" name="" id="" class="form-control" style="width: 35px;" value="1">
                             <button class="btn btn-secondary">+</button> -->
                             <button class="btn btn-secondary" onclick="kurang()">-</button>
-                            <input type="text" name="jumlahqty" id="jumlahqty" class="form-control" style="width: 35px;" value="1">
+                            <input type="text" name="jumlahqty" id="jumlahqty" class="form-control" style="width: 35px;" value="1" readonly>
                             <button class="btn btn-secondary" onclick="tambah()">+</button>
                         </div>
                     </div>
