@@ -34,7 +34,7 @@
         <div id="notifPopup" class="position-sticky" style="display: none;">
             <div id="liveToast" class="toast fade hide" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="toast-header">
-                    <strong style="margin-right: auto;">Well Done!</strong>
+                    <strong style="margin-right: auto;">Payment Notification</strong>
                     <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
                 <div class="toast-body">Your transaction is complete.</div>

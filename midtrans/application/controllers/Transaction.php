@@ -37,6 +37,7 @@ class Transaction extends CI_Controller {
 		// 	die("Gagal Connect: " . $conn -> connect_error);
 		// }
 		include("connection.php");
+
 		$stmt = $conn -> prepare("SELECT * FROM payment");
 		$stmt -> execute();
 		$payment = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
@@ -80,11 +81,11 @@ class Transaction extends CI_Controller {
 		// 	die("Gagal Connect: " . $conn -> connect_error);
 		// }
 		include("connection.php");
+
 		$response = $this -> veritrans -> status($order_id);
 		$transaction_status = $response -> transaction_status;
 		$status_code = $response -> status_code;
 		$status_message = $response -> status_message;
-
 
 		if($transaction_status == "settlement") {
 			$stmt = $conn -> prepare("SELECT id FROM payment WHERE order_id = '$order_id'");
@@ -100,22 +101,26 @@ class Transaction extends CI_Controller {
 			foreach($od as $key => $value) {
 				if($value['status'] == 0) {
 					?>
-					<input type="hidden" name="" value="Your Order #<?= $order_id ?> payment successfully" id="order_id">
-					
+					<input type="hidden" name="" value="Your order #<?= $order_id ?> payment is successful!" id="order_id">
 					<script>
 						let notifTimer;
+						let calcHeaderHeight = $("#header").height() + 30;
 
 						$(document).ready(function() {
-							$(".btn-close").click(function(e) { 
+							$(".btn-close").click(function(e) {
 								e.preventDefault();
 								clearTimeout(notifTimer);
 
 								$("#liveToast").removeClass("show");
 								$("#liveToast").addClass("hide");
+
+								setTimeout(() => {
+									$("#notifPopup").removeAttr("style");
+									$("#notifPopup").css({ "display": "none" });
+								}, 250);
 							});
 						});
 
-						let calcHeaderHeight = $("#header").height() + 30;
 						$("#liveToast").children().last().html($("#order_id").val());
 						$("#notifPopup").removeAttr("style");
 						$("#notifPopup").css({
@@ -149,29 +154,31 @@ class Transaction extends CI_Controller {
 
 					//update pengurangan stock sepatu
 					$order_id_temp = $value['id_order_details'];
-					$stmt = $conn->prepare("SELECT * FROM order_items WHERE order_id='$order_id_temp'");
-					$stmt->execute();
-					$order_items = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-					foreach($order_items as $k => $v){
-						$sepatu_id= $v['sepatu_id'];
-						$stmt = $conn->prepare("SELECT * FROM sepatu WHERE id_sepatu='$sepatu_id'");
-						$stmt->execute();
-						$sepatu = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-						
-						foreach($sepatu as $kt => $vt){
-							$stock_sepatu = $vt['stock_sepatu']-$v['qty'];
+					$stmt = $conn -> prepare("SELECT * FROM order_items WHERE order_id = '$order_id_temp'");
+					$stmt -> execute();
+					$order_items = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
+
+					foreach($order_items as $k => $v) {
+						$sepatu_id = $v['sepatu_id'];
+						$stmt = $conn -> prepare("SELECT * FROM sepatu WHERE id_sepatu = '$sepatu_id'");
+						$stmt -> execute();
+						$sepatu = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
+
+						foreach($sepatu as $kt => $vt) {
+							$stock_sepatu = $vt['stock_sepatu'] - $v['qty'];
 							$id_sepatu = $vt['id_sepatu'];
-							$update_stock = $conn->query("update sepatu set stock_sepatu = '$stock_sepatu' where id_sepatu='$id_sepatu'");
+							$update_stock = $conn -> query("update sepatu set stock_sepatu = '$stock_sepatu' where id_sepatu = '$id_sepatu'");
 						}
 					}
 				}
 			}
 		}
-		else if ($transaction_status == "expire"){
+		else if($transaction_status == "expire") {
 			$stmt = $conn -> prepare("SELECT * FROM payment WHERE order_id = '$order_id'");
 			$stmt -> execute();
 			$p = $stmt -> get_result() -> fetch_assoc();
-			if ($p['transaction_status'] == "pending"){
+
+			if($p['transaction_status'] == "pending") {
 				$id_payment = $p['id'];
 		
 				$stmt = $conn -> prepare("SELECT * FROM order_details WHERE payment_id = '$id_payment'");
@@ -181,39 +188,57 @@ class Transaction extends CI_Controller {
 				foreach($od as $key => $value) {
 					if($value['status'] == 0) {
 						?>
-						<input type="hidden" name="" value="Your Order #<?= $order_id ?> payment has been Expired" id="order_id">
-						
+						<input type="hidden" name="" value="Your order #<?= $order_id ?> payment has been expired!" id="order_id">						
 						<script>
 							$("#liveToast").children().last().html($("#order_id").val());
-							$("#liveToast").removeClass("hide");
-							   $("#liveToast").addClass("show");
+							$("#notifPopup").removeAttr("style");
+							$("#notifPopup").css({
+								"display": "block",
+								"top": calcHeaderHeight,
+								"right": "0",
+								"z-index": "99999"
+							});
+
+							clearTimeout(notifTimer);
+
+							setTimeout(() => {
+								$("#liveToast").removeClass("hide");
+								$("#liveToast").addClass("show");
+							}, 250);
+
 							notifTimer = setTimeout(() => {
 								$("#liveToast").removeClass("show");
 								$("#liveToast").addClass("hide");
+
+								setTimeout(() => {
+									$("#notifPopup").removeAttr("style");
+									$("#notifPopup").css({ "display": "none" });
+								}, 250);
 							}, 5000);
 						</script>
 						<?php
 						$order_id_temp = $value['id_order_details'];
-						$stmt = $conn->prepare("SELECT * FROM order_items WHERE order_id='$order_id_temp'");
-						$stmt->execute();
-						$order_items = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-						foreach($order_items as $k => $v){
-							$sepatu_id= $v['sepatu_id'];
-							$stmt = $conn->prepare("SELECT * FROM sepatu WHERE id_sepatu='$sepatu_id'");
-							$stmt->execute();
-							$sepatu = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-							
-							foreach($sepatu as $kt => $vt){
-								$stock_sepatu = $vt['stock_sepatu']+$v['qty'];
+						$stmt = $conn -> prepare("SELECT * FROM order_items WHERE order_id = '$order_id_temp'");
+						$stmt -> execute();
+						$order_items = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
+
+						foreach($order_items as $k => $v) {
+							$sepatu_id = $v['sepatu_id'];
+							$stmt = $conn -> prepare("SELECT * FROM sepatu WHERE id_sepatu = '$sepatu_id'");
+							$stmt -> execute();
+							$sepatu = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
+
+							foreach($sepatu as $kt => $vt) {
+								$stock_sepatu = $vt['stock_sepatu'] + $v['qty'];
 								$id_sepatu = $vt['id_sepatu'];
-								$update_stock = $conn->query("update sepatu set stock_sepatu = '$stock_sepatu' where id_sepatu='$id_sepatu'");
+								$update_stock = $conn -> query("update sepatu set stock_sepatu = '$stock_sepatu' where id_sepatu = '$id_sepatu'");
 							}
 						}
 					}
 				}
 			}
 		}
-		
+
 		$update = $conn -> query("update payment set transaction_status = '$transaction_status', status_code = '$status_code', status_message = '$status_message' where order_id = '$order_id'");
 	}
 

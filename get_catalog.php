@@ -11,13 +11,13 @@
         if($_POST['sort'] == "popular") {
             $isPopular = true;
         } else if($_POST['sort'] == "newest") {
-            $sort = "id_sepatu ASC";
-        } else if($_POST['sort'] == "oldest") {
             $sort = "id_sepatu DESC";
+        } else if($_POST['sort'] == "oldest") {
+            $sort = "id_sepatu ASC";
         } else if($_POST['sort'] == "price-asc") {
-            $sort = "harga_sepatu ASC, id_sepatu ASC";
+            $sort = "harga_sepatu ASC, id_sepatu DESC";
         } else if($_POST['sort'] == "price-desc") {
-            $sort = "harga_sepatu DESC, id_sepatu ASC";
+            $sort = "harga_sepatu DESC, id_sepatu DESC";
         }
     } else {
         $isPopular = true;
@@ -27,7 +27,7 @@
         $cmd = '%' . mysqli_real_escape_string($conn, $query) . '%';
 
         if($isPopular) {
-            $sql = $conn -> prepare("SELECT s.*, SUM(o.qty) FROM sepatu s LEFT JOIN order_items o ON s.id_sepatu = o.sepatu_id WHERE nama_sepatu LIKE '%" . $cmd . "%' GROUP BY s.id_sepatu ORDER BY SUM(o.qty) DESC, s.id_sepatu ASC LIMIT ?, ?");
+            $sql = $conn -> prepare("SELECT s.*, SUM(o.qty) FROM sepatu s LEFT JOIN order_items o ON s.id_sepatu = o.sepatu_id WHERE nama_sepatu LIKE '%" . $cmd . "%' GROUP BY s.id_sepatu ORDER BY SUM(o.qty) DESC, s.id_sepatu DESC LIMIT ?, ?");
         } else {
             $sql = $conn -> prepare("SELECT * FROM sepatu WHERE nama_sepatu LIKE '%" . $cmd . "%' ORDER BY " . $sort . " LIMIT ?, ?");
         }
@@ -41,7 +41,7 @@
         $get_total = $sql -> get_result() -> fetch_assoc();
     } else {
         if($isPopular) {
-            $sql = $conn -> prepare("SELECT s.*, SUM(o.qty) FROM sepatu s LEFT JOIN order_items o ON s.id_sepatu = o.sepatu_id GROUP BY s.id_sepatu ORDER BY SUM(o.qty) DESC, s.id_sepatu ASC LIMIT ?, ?");
+            $sql = $conn -> prepare("SELECT s.*, SUM(o.qty) FROM sepatu s LEFT JOIN order_items o ON s.id_sepatu = o.sepatu_id GROUP BY s.id_sepatu ORDER BY SUM(o.qty) DESC, s.id_sepatu DESC LIMIT ?, ?");
         } else {
             $sql = $conn -> prepare("SELECT * FROM sepatu ORDER BY " . $sort . " LIMIT ?, ?");
         }

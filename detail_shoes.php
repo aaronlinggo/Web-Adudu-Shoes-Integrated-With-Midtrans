@@ -12,7 +12,7 @@
         $stmt -> execute();
         $sepatu = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
     } else {
-        header('Location: shoes.php');
+        header('Location: ./shoes.php');
     }
 ?>
 
@@ -51,26 +51,50 @@
                     <div class="detail-img w-100" style="<?= "background-image: " . $lokasi ?>"></div>
                 </div>
                 <div class="flex-center flex-column flex-between" style="width: 40%; padding: 40px; height: 100%; max-height: 100%;">
-                    <h1 class="w-100" style="font-style: italic; line-height: 48px; font-size: 36px;"><?= $sepatu[0]['nama_sepatu'] ?></h1>
+                    <div>
+                        <h1 class="w-100" style="font-style: italic; line-height: 36px; font-size: 24px;"><?= $sepatu[0]['nama_sepatu'] ?></h1>
+                        <div class="flex">
+                            <h4 class="w-100" style="line-height: 36px; font-size: 24px;">
+                                Rp. <span style="color: #ff4e5b;"><?= number_format($sepatu[0]['harga_sepatu'], 0, ',', '.') ?></span>
+                            </h4>
+                            <h4 class="w-100" style="line-height: 36px; font-size: 24px;">
+                                Available in Size <?= number_format($sepatu[0]['size_sepatu'], 0, ',', '.') ?> (UK)
+                            </h4>
+                        </div>
+                        <div>
+                            Stock Available : <?= $sepatu[0]['stock_sepatu'] ?>
+                            <input type="hidden" name="" id="jumlahstock" value="<?= $sepatu[0]['stock_sepatu'] ?>">
+                        </div>
+                        <div>
+                            <?php
+                                $stmt = $conn -> prepare("SELECT COUNT(*) AS total FROM order_items WHERE sepatu_id = ?");
+                                $stmt -> bind_param("i", $sepatu[0]['id_sepatu']);
+                                $stmt -> execute();
+                                $count = $stmt -> get_result() -> fetch_assoc();
+                            ?>
+                            <?= $count['total'] ?> people buy this item
+                            <!-- <?= var_dump($count) ?> people buy this item -->
+                            <!-- <?= var_dump($sepatu[0]['id_sepatu']) ?> people buy this item -->
+                        </div>
+                    </div>
                     <div class="w-100">
                         <table>
                             <tbody>
                                 <tr class="align-middle" style="font-size: 30px;">
                                     <!-- <td style="color: #0f0d10;">Price&nbsp;&nbsp;&nbsp;</td>
                                     <td style="color: #0f0d10;">:&nbsp;</td> -->
-                                    <td style="color: #0f0d10;">Rp. <span style="color: #ff4e5b;"><?= number_format($sepatu[0]['harga_sepatu'], 0, ',', '.') ?></span></td>
+                                    <td style="color: #0f0d10;"></td>
                                 </tr>
                                 <tr class="align-middle" style="font-size: 30px;">
                                     <!-- <td style="color: #0f0d10;">Size&nbsp;&nbsp;&nbsp;</td>
                                     <td style="color: #0f0d10;">:&nbsp;</td> -->
-                                    <td style="color: #0f0d10;">UK <?= number_format($sepatu[0]['size_sepatu'], 0, ',', '.') ?></td>
+                                    <td style="color: #0f0d10;"></td>
                                 </tr>
                                 <tr class="align-middle" style="font-size: 30px;">
                                     <!-- <td style="color: #0f0d10;">Stock&nbsp;&nbsp;&nbsp;</td>
                                     <td style="color: #0f0d10;">:&nbsp;</td> -->
                                     <td style="color: #0f0d10;">
-                                        Stock Available : <?= $sepatu[0]['stock_sepatu'] ?>
-                                        <input type="hidden" name="" id="jumlahstock" value="<?= $sepatu[0]['stock_sepatu'] ?>">
+                                        
                                     </td>
                                 </tr>
                                 <tr class="align-middle" style="font-size: 30px;">
@@ -107,7 +131,7 @@
         <div style="margin: 60px;">
             <h1 style="padding-bottom: 20px; text-align: left;"><?= $sepatu[0]['sub_desc'] ?></h1>
             <div class="desc">
-                <p style="margin: 0; text-align: left;"><?= $sepatu[0]['desc_sepatu'] ?></p>
+                <p style="margin: 0; text-align: left;"><?= $sepatu[0]['desc_sepatu'] ?>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod maxime nesciunt ipsa magnam, eaque obcaecati commodi consectetur ad cupiditate quidem perferendis. Earum architecto corrupti, dolorem quis error repellat modi voluptatem esse praesentium reiciendis, dolores quod? Magni laudantium quibusdam minus recusandae optio, id cupiditate ut ea eligendi, quia voluptatem ipsum unde voluptatibus maxime consectetur. Inventore fugit temporibus alias qui, eligendi esse natus quasi blanditiis reprehenderit enim beatae illo tenetur, quibusdam officia. Optio porro animi libero molestiae asperiores, tenetur non sequi omnis reiciendis doloribus dicta commodi ad assumenda minima provident. Ex blanditiis temporibus aperiam vel necessitatibus quaerat molestias saepe, accusantium ducimus ad!</p>
             </div>
         </div>
         <?php require_once("./section/footer_section.php") ?>

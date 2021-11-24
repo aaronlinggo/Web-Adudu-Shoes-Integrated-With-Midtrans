@@ -76,8 +76,11 @@ INSERT INTO `cart_item` (`id_cart`, `user_id`, `sepatu_id`, `qty`, `price`, `act
 (57, 4, 59, 4, 2560000, 0),
 (58, 4, 59, 4, 2560000, 0),
 (59, 4, 60, 2, 1400000, 0),
-(64, 4, 60, 2, 1400000, 1),
-(65, 4, 53, 1, 900000, 1);
+(66, 6, 59, 2, 2800000, 0),
+(67, 6, 59, 2, 2800000, 0),
+(73, 6, 53, 1, 900000, 0),
+(74, 6, 60, 1, 3200000, 0),
+(75, 6, 55, 1, 2800000, 0);
 
 DROP TABLE IF EXISTS `order_details`;
 CREATE TABLE `order_details` (
@@ -127,7 +130,13 @@ INSERT INTO `order_details` (`id_order_details`, `user_id`, `payment_id`, `total
 (36, 4, 36, 5120000, 0),
 (37, 4, 37, 14200000, 0),
 (38, 4, 38, 7680000, 0),
-(39, 4, 39, 4200000, 1);
+(39, 4, 39, 4200000, 1),
+(40, 6, 40, 2800000, 1),
+(41, 6, 41, 2800000, 1),
+(42, 6, 42, 900000, 1),
+(43, 6, 43, 3200000, 1),
+(44, 6, 44, 2800000, 1),
+(45, 6, 45, 2800000, 0);
 
 DROP TABLE IF EXISTS `order_items`;
 CREATE TABLE `order_items` (
@@ -188,7 +197,12 @@ INSERT INTO `order_items` (`id_order_item`, `order_id`, `sepatu_id`, `qty`) VALU
 (48, 37, 60, 1),
 (49, 37, 59, 5),
 (50, 38, 59, 3),
-(51, 39, 60, 3);
+(51, 39, 60, 3),
+(52, 40, 59, 1),
+(53, 41, 59, 1),
+(54, 42, 53, 1),
+(55, 43, 60, 1),
+(56, 44, 55, 1);
 
 DROP TABLE IF EXISTS `payment`;
 CREATE TABLE `payment` (
@@ -249,7 +263,13 @@ INSERT INTO `payment` (`id`, `status_code`, `status_message`, `transaction_id`, 
 (36, '407', 'Success, transaction is found', 'cf969304-f900-4bd2-9923-27624d8ee1f3', '255790629', '5120000.00', 'bank_transfer', '2021-11-22 20:02:57', 'expire', 'bca', '66703948736', 'accept', 'https://app.sandbox.midtrans.com/snap/v1/transactions/851ee254-601e-4558-a876-290a2352dd27/pdf', 'http://example.com?order_id=255790629&status_code=201&transaction_status=pending', '-', '-'),
 (37, '407', 'Success, transaction is found', '0f7083a7-a942-446d-b3f9-677acd0a2079', '389545399', '14200000.00', 'bank_transfer', '2021-11-22 20:16:58', 'expire', 'bca', '66703632741', 'accept', 'https://app.sandbox.midtrans.com/snap/v1/transactions/d21e3248-954f-4f4f-b7c8-a733ee2ce328/pdf', 'http://example.com?order_id=389545399&status_code=201&transaction_status=pending', '-', '-'),
 (38, '407', 'Success, transaction is found', '5389f0ba-3b31-4b6b-a166-477c31d0214a', '1360254882', '7680000.00', 'bank_transfer', '2021-11-22 20:20:42', 'expire', 'bca', '66703767828', 'accept', 'https://app.sandbox.midtrans.com/snap/v1/transactions/b7460983-0ddc-44b8-913f-902564f5ac7d/pdf', 'http://example.com?order_id=1360254882&status_code=201&transaction_status=pending', '-', '-'),
-(39, '200', 'Success, transaction is found', '1ed2ed49-8c18-48dd-bf3e-e825d7864a7e', '191768305', '4200000.00', 'bank_transfer', '2021-11-23 10:49:44', 'settlement', 'bca', '66703153200', 'accept', 'https://app.sandbox.midtrans.com/snap/v1/transactions/533f59ed-a740-40cc-8eee-bab80fdc2bd6/pdf', 'http://example.com?order_id=191768305&status_code=201&transaction_status=pending', '-', '-');
+(39, '200', 'Success, transaction is found', '1ed2ed49-8c18-48dd-bf3e-e825d7864a7e', '191768305', '4200000.00', 'bank_transfer', '2021-11-23 10:49:44', 'settlement', 'bca', '66703153200', 'accept', 'https://app.sandbox.midtrans.com/snap/v1/transactions/533f59ed-a740-40cc-8eee-bab80fdc2bd6/pdf', 'http://example.com?order_id=191768305&status_code=201&transaction_status=pending', '-', '-'),
+(40, '200', 'Success, transaction is found', '3fa3b8d1-b92b-4d4c-9eff-43f6e3e70486', '109294950', '2800000.00', 'bank_transfer', '2021-11-24 17:00:17', 'settlement', 'bca', '66703917778', 'accept', 'https://app.sandbox.midtrans.com/snap/v1/transactions/03f8a65d-584d-4304-9950-e0e7f6fbd0f4/pdf', 'http://example.com?order_id=109294950&status_code=201&transaction_status=pending', '-', '-'),
+(41, '200', 'Success, transaction is found', '32675d5e-b471-444b-9591-e2abab7567b5', '1249239529', '2800000.00', 'bank_transfer', '2021-11-24 17:03:05', 'settlement', 'bca', '66703501805', 'accept', 'https://app.sandbox.midtrans.com/snap/v1/transactions/6c6db179-436d-4117-9f35-4aa6b73399bc/pdf', 'http://example.com?order_id=1249239529&status_code=201&transaction_status=pending', '-', '-'),
+(42, '200', 'Success, transaction is found', '7e973b45-7492-4437-85ac-d38789486a66', '1775298110', '900000.00', 'bank_transfer', '2021-11-24 19:29:21', 'settlement', 'bca', '66703298749', 'accept', 'https://app.sandbox.midtrans.com/snap/v1/transactions/b015e556-6ce6-4aac-b883-04919cac3b91/pdf', 'http://example.com?order_id=1775298110&status_code=201&transaction_status=pending', '-', '-'),
+(43, '200', 'Success, transaction is found', 'a0e0c9f0-a5d6-4b61-b9db-94c9389ee216', '2009331453', '3200000.00', 'bank_transfer', '2021-11-24 19:31:20', 'settlement', 'bca', '66703152718', 'accept', 'https://app.sandbox.midtrans.com/snap/v1/transactions/c117d92e-cb49-431a-8014-1e1e44b110ac/pdf', 'http://example.com?order_id=2009331453&status_code=201&transaction_status=pending', '-', '-'),
+(44, '200', 'Success, transaction is found', 'fd67f1a4-c399-4b7b-a16d-013084327cdf', '2052163503', '2800000.00', 'bank_transfer', '2021-11-24 19:34:50', 'settlement', 'bca', '66703154095', 'accept', 'https://app.sandbox.midtrans.com/snap/v1/transactions/522d7653-07d2-476a-ba33-8673d9203b83/pdf', 'http://example.com?order_id=2052163503&status_code=201&transaction_status=pending', '-', '-'),
+(45, '201', 'Transaksi sedang diproses', '45235106-e708-4d41-8c84-56e89e44049d', '1176548919', '2800000.00', 'bank_transfer', '2021-11-24 19:26:24', 'pending', 'bca', '66703864623', 'accept', 'https://app.sandbox.midtrans.com/snap/v1/transactions/0d294f7f-3c4c-435b-aa27-1e11a2b16a87/pdf', 'http://example.com?order_id=1176548919&status_code=201&transaction_status=pending', '-', '-');
 
 DROP TABLE IF EXISTS `sepatu`;
 CREATE TABLE `sepatu` (
@@ -264,8 +284,8 @@ CREATE TABLE `sepatu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `sepatu` (`id_sepatu`, `nama_sepatu`, `harga_sepatu`, `sub_desc`, `desc_sepatu`, `size_sepatu`, `stock_sepatu`, `link_gambarsepatu`) VALUES
-(1, 'ADIDAS ULTRABOOST X LEGO COLORS SHOES (1 PAIR PER CUSTOMER)', 2560000, 'HIGH-PERFORMANCE RUNNING SHOES MADE IN PARTNERSHIP WITH THE LEGO GROUP.', 'Running is your time to play. And if you couldn\'t tell by the pops of colour and LEGO® bricks inspired design, these adidas running shoes created with the LEGO Group are all about play. Play, and comfort. Because nothing needs to get in the way of a good time. A plush Boost midsole takes care of the cushioning, and the Continental™ Better Rubber outsole balances fast moves with steady grounding.', 12, 33, 'list_products/59.jpg'),
-(2, 'SEPATU HARDEN VOL. 5 FUTURENATURAL TOKYO', 1400000, 'PRODUK TERKINI DARI ADIDAS BASKETBALL DAN JAMES HARDEN.', 'Harden Vol. 5 dari adidas Basketball memiliki fit dan penguncian revolusioner untuk bergerak bebas dengan maksimal saat berada di lapangan basket, terinspirasi kecepatan dan kemampuan James Harden yang tak tertandingi untuk mengubah arah saat mendribel bola. Teknologi Futurenatural memperkenalkan sistem fit baru dan konstruksi tanpa jahitan untuk menghasilkan kontrol yang optimal. Kombinasi midsole Boost dan keunggulan Lightstrike yang ringan menghasilkan kenyamanan dan stabilitas yang dibutuhkan salah satu pencetak skor paling dinamis dalam pertandingan untuk selalu mendominasi panggung terbesar dunia. Produk ini dibuat dengan konten hasil daur ulang sebagai bagian dari ambisi kami untuk mengurangi pencemaran limbah plastik. 20% dari material yang digunakan dalam upper dibuat dengan minimum 50% konten hasil daur ulang.', 11, 78, 'list_products/60.jpg'),
+(1, 'SEPATU BOLA COPA SENSE.1 FIRM GROUND', 2800000, 'SEPATU BERBAHAN KULIT UNTUK SENTUHAN YANG SELEMBUT SUTRA.', 'Beberapa pemain menarik perhatian. Tapi yang benar-benar hebat tak seperti itu, memecah kebisingan dengan sentuhan yang paling ringan. Fokus pada insting sepak bolamu dengan adidas Copa Sense. Foam Sensepoda mengisi setiap celah di bagian tumit sepatu bola untuk lapangan padat ini, yang membuatmu menyatu dengan upper berbahan K-leather yang lembut. Di bagian luar, tambahan bantalan Touchpods dan Softstuds membuatmu tetap fokus pada permainan.', 13, 51, 'list_products/1.jpg'),
+(2, 'SEPATU ULTRABOOST 21', 3200000, 'TINGKATKAN LEVEL LARIMU DENGAN SEPATU ULTRABOOST 21 INI.', 'Prototipe demi prototipe. Inovasi demi inovasi. Pengujian demi pengujian. Bersama-sama dengan kami dalam mewujudkan harmonisasi terbaik dalam hal berat, bantalan, dan responsitivitas. Ultraboost 21. Sambut pengembalian energi yang luar biasa.', 11, 45, 'list_products/2.jpg'),
 (3, 'SEPATU FUTSAL PREDATOR FREAK.3 INDOOR', 1200000, 'SEPATU FUTSAL LOW-CUT YANG MEMBANTUMU MENGONTROL PERMAINAN DI LAPANGAN DENGAN PERMUKAAN DATAR.', 'Di luar dinding ini, sulit untuk membuat dirimu terdengar. Namun di lapangan, kamu menjadi pengendali. Bebaskan kepribadian unikmu dengan adidas Predator. Sepatu futsal ini memiliki upper berbahan mesh lembut yang dilengkapi lapisan untuk membantumu mendominasi permainan dengan nyaman. Desain low-cut membuat sepatu ini mudah untuk dipakai dan dilepas. Ekspansi lebar elemen Demonscale dengan proses cetak 3D mencengkeram bola untuk membuatmu tetap fokus.', 11, 30, 'list_products/3.jpg'),
 (4, 'SEPATU ULTRABOOST DNA GUARD', 3200000, 'SEPATU RUNNING YANG DILENGKAPI BANTALAN, INSULASI SERTA AKSEN REFLEKTIF.', 'Cuaca mendung berarti suasana jalanan menjadi sedikit lebih tenang. Pakai sepatu running adidas ini dan maksimalkan keunggulanmu. COLD.RDY membuatmu tetap nyaman dengan teknologi insulasi sehingga kamu tetap merasa hangat dalam suhu yang rendah — karena suhu yang menurun tidak berarti mengganggu rutinitasmu. Ketika kamu memacu diri, upper adidas Primeknit yang fleksibel beradaptasi dengan perubahan bentuk kaki dan bantalan Boost membuat kakimu terasa nyaman.', 11, 100, 'list_products/4.jpg'),
 (5, 'GAMEMODE TURF BOOTS', 1200000, 'SOFT SYNTHETIC BOOTS IN MAN UTD COLOURS.', 'Every court is a platform. Every cage a stage. Where some players picture hard work, others see opportunity. The choice is yours. Express your beautiful game in adidas Gamemode. These football boots have a HybridTouch upper for a lightweight feel and soft touch. The universal fit and EVA cushioning add comfort. Underneath, a lugged outsole helps you display your skills on artificial turf. Up top, Manchester United\'s colours and badge show you stand with your club.', 12, 43, 'list_products/5.jpg'),
@@ -322,8 +342,8 @@ INSERT INTO `sepatu` (`id_sepatu`, `nama_sepatu`, `harga_sepatu`, `sub_desc`, `d
 (56, 'SEPATU TENIS GAMECOURT', 850000, 'SEPATU YANG NYAMAN UNTUK MENDOMINASI PERMAINAN DI LAPANGAN.', 'Tingkatkan permainan tanpa meninggalkan zona nyamanmu. Upper dari bahan breathable mesh pada sepatu tenis adidas GameCourt ini membuat kakimu tetap terasa sejuk. Material TPU yang suportif membantu menyesuaikan dengan bentuk kaki untuk menghasilkan fit yang nyaman dan penguncian yang pas. Midsole Cloudfoam membuat setiap langkah terasa lembut saat intensitas meningkat.', 12, 39, 'list_products/56.jpg'),
 (57, 'SEPATU ADIZERO ADIOS 5', 2200000, 'SEPATU RUNNING RINGAN YANG DIDESAIN UNTUK MEMAKSIMALKAN KECEPATAN.', 'Capai rekor pribadi yang baru dan tinggalkan para pesaingmu. Lakukan hal tersebut dengan sepatu running adidas ini. Didesain khusus untuk kecepatan, sesuai untukmu. Upper ultraringan beradaptasi dengan kaki untuk menghasilkan sensasi breathable yang nyaman. Bantalan Lightstrike dan Boost mengombinasikan sensasi pengembalian energi yang elastis. Siap untuk half-marathon? Kini, kamu siap.', 13, 78, 'list_products/57.jpg'),
 (58, 'SEPATU GOLF SPIKELESS CODECHAOS 21 PRIMEBLUE', 2700000, 'SEPATU GOLF SPIKELESS UNTUK KENYAMANAN DAN TOPANGAN YANG MENINGKATKAN KEPERCAYAAN DIRI.', 'Hadirkan karakter disruptif di lapangan golf. Sepatu Golf Spikeless adidas Codechaos BOA® 21 Primeblue ini menghadirkan kenyamanan tinggi dan energi dalam permainanmu. Upper dari bahan rajut mesh waterproof dengan overlay suportif menawarkan performa ringan dengan tampilan yang unik. Boost di sepanjang bagian bawah memberikan energi seharian di lapangan golf, sedangkan outsole Adiwear spikeless dengan daya cengkeram yang kuat memberikan traksi dan stabilitas setingkat tur golf.', 11, 31, 'list_products/58.jpg'),
-(59, 'SEPATU BOLA COPA SENSE.1 FIRM GROUND', 2800000, 'SEPATU BERBAHAN KULIT UNTUK SENTUHAN YANG SELEMBUT SUTRA.', 'Beberapa pemain menarik perhatian. Tapi yang benar-benar hebat tak seperti itu, memecah kebisingan dengan sentuhan yang paling ringan. Fokus pada insting sepak bolamu dengan adidas Copa Sense. Foam Sensepoda mengisi setiap celah di bagian tumit sepatu bola untuk lapangan padat ini, yang membuatmu menyatu dengan upper berbahan K-leather yang lembut. Di bagian luar, tambahan bantalan Touchpods dan Softstuds membuatmu tetap fokus pada permainan.', 13, 51, 'list_products/1.jpg'),
-(60, 'SEPATU ULTRABOOST 21', 3200000, 'TINGKATKAN LEVEL LARIMU DENGAN SEPATU ULTRABOOST 21 INI.', 'Prototipe demi prototipe. Inovasi demi inovasi. Pengujian demi pengujian. Bersama-sama dengan kami dalam mewujudkan harmonisasi terbaik dalam hal berat, bantalan, dan responsitivitas. Ultraboost 21. Sambut pengembalian energi yang luar biasa.', 11, 45, 'list_products/2.jpg');
+(59, 'ADIDAS ULTRABOOST X LEGO COLORS SHOES (1 PAIR PER CUSTOMER)', 2560000, 'HIGH-PERFORMANCE RUNNING SHOES MADE IN PARTNERSHIP WITH THE LEGO GROUP.', 'Running is your time to play. And if you couldn\'t tell by the pops of colour and LEGO® bricks inspired design, these adidas running shoes created with the LEGO Group are all about play. Play, and comfort. Because nothing needs to get in the way of a good time. A plush Boost midsole takes care of the cushioning, and the Continental™ Better Rubber outsole balances fast moves with steady grounding.', 12, 33, 'list_products/59.jpg'),
+(60, 'SEPATU HARDEN VOL. 5 FUTURENATURAL TOKYO', 1400000, 'PRODUK TERKINI DARI ADIDAS BASKETBALL DAN JAMES HARDEN.', 'Harden Vol. 5 dari adidas Basketball memiliki fit dan penguncian revolusioner untuk bergerak bebas dengan maksimal saat berada di lapangan basket, terinspirasi kecepatan dan kemampuan James Harden yang tak tertandingi untuk mengubah arah saat mendribel bola. Teknologi Futurenatural memperkenalkan sistem fit baru dan konstruksi tanpa jahitan untuk menghasilkan kontrol yang optimal. Kombinasi midsole Boost dan keunggulan Lightstrike yang ringan menghasilkan kenyamanan dan stabilitas yang dibutuhkan salah satu pencetak skor paling dinamis dalam pertandingan untuk selalu mendominasi panggung terbesar dunia. Produk ini dibuat dengan konten hasil daur ulang sebagai bagian dari ambisi kami untuk mengurangi pencemaran limbah plastik. 20% dari material yang digunakan dalam upper dibuat dengan minimum 50% konten hasil daur ulang.', 11, 78, 'list_products/60.jpg');
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
@@ -369,16 +389,16 @@ ALTER TABLE `users`
 
 
 ALTER TABLE `cart_item`
-  MODIFY `id_cart` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id_cart` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 ALTER TABLE `order_details`
-  MODIFY `id_order_details` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id_order_details` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 ALTER TABLE `order_items`
-  MODIFY `id_order_item` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id_order_item` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 ALTER TABLE `payment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 ALTER TABLE `sepatu`
   MODIFY `id_sepatu` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
