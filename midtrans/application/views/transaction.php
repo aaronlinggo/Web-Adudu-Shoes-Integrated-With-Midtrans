@@ -18,7 +18,7 @@ $stmt = $conn->prepare("SELECT * FROM users WHERE id_user = $id_user");
 $stmt->execute();
 $u = $stmt->get_result()->fetch_assoc();
 
-$stmt = $conn->prepare("SELECT * FROM order_details WHERE user_id = $id_user");
+$stmt = $conn->prepare("SELECT * FROM order_details WHERE user_id = $id_user ORDER BY id_order_details DESC");
 $stmt->execute();
 $order_details = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
