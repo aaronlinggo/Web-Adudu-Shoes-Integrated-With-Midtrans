@@ -126,104 +126,97 @@
 			</div>
 		</div>
 		<div class="fullwidth h-auto flex flex-column" style="flex-grow: 1;">
-			<div class="collection_text">Cart</div>
-			<div class="layout_padding contact_section">
-				<div class="container-fluid ram">
-					<div class="row">
-						<div class="col-md-12">
-							<table class="table table-hover" style="text-align: center;">
-								<thead>
-									<tr>
-										<th>No.</th>
-										<th>Shoes Name</th>
-										<th>Price</th>
-										<th>Quantity</th>
-										<th>Subtotal</th>
-										<th>Action</th>
-									</tr>
-								</thead>
-								<tbody id="updateQty">
-									<?php $amount = 0;
-									$item_details = array();
-									foreach ($cart_item as $key => $value) {
-										$amount += ($value['price'] * $value['qty']);
-									?>
-										<tr>
-											<td><?= ($key + 1) ?>
-											</td>
-											<td>
-												<?php
-												$sepatu_id = $value['sepatu_id'];
+			<div class="container landing-padding about h-auto flex-center catalog-main">
+				<h1 class="title about-section m-0 mt-4 mt-sm-5 p-0 pt-3 pt-sm-2 font-bold" style="text-align: center;">SHOPPING CART</h1>
+			</div>
+			<div class="layout-padding about mb-5">
+				<div id="checkout-container" class="container landing-padding about h-auto flex-center flex-vstart">
+					<div class="flex flex-column" style="width: 100%; min-height: 100px; padding: 5px; padding-left: 0;">
+						<?php
+							$amount = 0;
+							$item_details = array();
 
-												$stmt = $conn->prepare("SELECT * FROM sepatu WHERE id_sepatu=$sepatu_id");
-												$stmt->execute();
-												$sepatu = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-												if(strlen($sepatu[0]['nama_sepatu']) > 25)
-													$nama_sepatu = substr($sepatu[0]['nama_sepatu'], 0, 25);
-												else {
-													$nama_sepatu = $sepatu[0]['nama_sepatu'];
-												}
-												$item1_details = array(
-													'id' => $sepatu_id,
-													'price' => $value['price'],
-													'quantity' => $value['qty'],
-													'name' => $nama_sepatu
-												);
+							foreach($cart_item as $key => $value) {
+								$amount += ($value['price'] * $value['qty']);
+								?>
+									<div class="flex flex-column border-radius-medium p-3" style="border: 1px solid #000; background-color: #fff; min-height: 100px; margin: 5px; margin-left: 0;">
+										<?php
+											$sepatu_id = $value['sepatu_id'];
 
-												array_push($item_details, $item1_details);
+											$stmt = $conn -> prepare("SELECT * FROM sepatu WHERE id_sepatu = $sepatu_id");
+											$stmt -> execute();
+											$sepatu = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
 
-												echo $sepatu[0]['nama_sepatu'];
-												?>
-											</td>
-											<td><?= "Rp. " . number_format($value['price'], 0, ',', '.') . ",-" ?></td>
-											<td class="d-flex justify-content-center">
-												<button class="btn btn-secondary" onclick="kurang(<?= $value['id_cart'] ?>, <?= $id_user ?>)">-</button>
-												<input type="text" name="" id="totqty" class="form-control" style="width: 35px;" value="<?= $value['qty'] ?>" readonly>
-												<button class="btn btn-secondary" onclick="tambah(<?= $value['id_cart'] ?>, <?= $id_user ?>)">+</button>
-											</td>
-											<td><?= "Rp. " . number_format(($value['price'] * $value['qty']), 0, ',', '.') . ",-" ?></td>
-											<td>
-												<div class="d-flex justify-content-center">
-													<div style="margin-right: 1vh;">
-														<a href="../../<?= "detail_shoes.php?id_sepatu=" . $value['sepatu_id'] ?>">
-															<button class="btn btn-success">Details</button>
-														</a>
-													</div>
-													<form action="" method="post">
-														<input type="hidden" name="id_cart" value="<?= $value['id_cart'] ?>">
-														<button class="btn btn-danger" name="delete">Delete</button>
-													</form>
+											if(strlen($sepatu[0]['nama_sepatu']) > 25) {
+												$nama_sepatu = substr($sepatu[0]['nama_sepatu'], 0, 25);
+											} else {
+												$nama_sepatu = $sepatu[0]['nama_sepatu'];
+											}
+
+											$item1_details = array(
+												'id' => $sepatu_id,
+												'price' => $value['price'],
+												'quantity' => $value['qty'],
+												'name' => $nama_sepatu
+											);
+											array_push($item_details, $item1_details);
+										?>
+										<div class="flex-center flex-vstart w-100">
+											<img src='../../admin/<?= $sepatu[0]['link_gambarsepatu'] ?>' alt="" class="border-radius-medium" width="80px" height="80px">
+											<div class="flex-center flex-vstart flex-column w-100 pl-3">
+												<div style="font-size: 16px;">
+													<?= $sepatu[0]['nama_sepatu'] ?>
 												</div>
-											</td>
-										</tr>
-									<?php  } ?>
-									<tr class="bg-secondary text-white align-self-center">
-										<td colspan="4">
-											<div style="float: right;">
-												Subtotal :
+												<div>
+													Price: <?= "Rp. " . number_format($value['price'], 0, ',', '.') ?>
+												</div>
 											</div>
-										</td>
-										<td>
-											<?= "Rp. " . number_format($amount, 0, ',', '.') . ",-" ?>
-										</td>
-										<td>
-											<form style="margin: 0;">
-												<input type="hidden" id="user" name="user" value='<?= json_encode($u) ?>'>
-												<input type="hidden" id="cart_item" name="cart_item" value='<?= json_encode($item_details) ?>'>
-												<input type="hidden" id="amount" name="amount" value='<?= $amount ?>'>
-												<button class="btn btn-success" id="pay-button" name="payment">Payment</button>
+										</div>
+										<span>
+											Subtotal: <?= "Rp. " . number_format(($value['price'] * $value['qty']), 0, ',', '.') ?>
+										</span>
+										<div class="d-flex justify-content-center">
+											<div style="margin-right: 1vh;">
+												<a href="../../<?= "detail_shoes.php?id_sepatu=" . $value['sepatu_id'] ?>">
+													<button class="btn btn-success">Details</button>
+												</a>
+											</div>
+											<form action="" method="post">
+												<input type="hidden" name="id_cart" value="<?= $value['id_cart'] ?>">
+												<button class="btn btn-danger" name="delete">Delete</button>
 											</form>
-										</td>
-									</tr>
-								</tbody>
-							</table>
+										</div>
+										<div class="flex-center flex-hend">
+											<button style="margin: 0 5px; padding: 0; width: 30px; height: 30px; border-radius: 50%;" class="btn btn-secondary" onclick="kurang(<?= $value['id_cart'] ?>, <?= $id_user ?>)">-</button>
+											<input type="text" name="" id="totqty" style="width: 35px; margin: 0 5px; text-align: center; border: 0;" value="<?= $value['qty'] ?>" readonly>
+											<button style="margin: 0 5px; padding: 0; width: 30px; height: 30px; border-radius: 50%;" class="btn btn-secondary" onclick="tambah(<?= $value['id_cart'] ?>, <?= $id_user ?>)">+</button>
+										</div>
+									</div>
+								<?php
+							}
+						?>
+					</div>
+					<div class="flex" style="width: 320px; flex-shrink: 0; padding: 5px 0;">
+						<div class="border-radius-medium" style="width: inherit; border: 1px solid #000; padding: 16px; position: fixed; margin: 5px 0;">
+							<span style="color: #000;">Summary</span>
+							<div>
+								Total Harga: <?= "Rp. " . number_format($amount, 0, ',', '.') ?>
+							</div>
+							<div>
+								<form style="margin: 0;">
+									<input type="hidden" id="user" name="user" value='<?= json_encode($u) ?>'>
+									<input type="hidden" id="cart_item" name="cart_item" value='<?= json_encode($item_details) ?>'>
+									<input type="hidden" id="amount" name="amount" value='<?= $amount ?>'>
+									<button class="btn btn-success" id="pay-button" name="payment">Payment</button>
+								</form>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<form id="payment-form" method="post" action="./snap/finish">
-				<!-- <form id="payment-form" method="post" action="<?= site_url() ?>/transaction"> -->
-				<!-- <form id="payment-form" method="post" action="./transaction"> -->
+			<form id="payment-form" method="post" action="./snap/finish" style="display: none;">
+			<!-- <form id="payment-form" method="post" action="<?= site_url() ?>/transaction"> -->
+			<!-- <form id="payment-form" method="post" action="./transaction"> -->
 				<input type="hidden" name="result_type" id="result-type" value="">
 				<input type="hidden" id="userid" name="userid" value='<?= $u['id_user'] ?>'>
 				<input type="hidden" name="result_data" id="result-data" value=""></div>
