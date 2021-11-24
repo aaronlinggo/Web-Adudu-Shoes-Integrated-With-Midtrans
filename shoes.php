@@ -41,23 +41,60 @@
 			<!-- <div class="collection_text">Shoes</div> -->
 			<div class="layout-padding gallery_section">
 				<div class="container landing-padding about">
-					<div class="w-100 col-sm-12 flex-center flex-between" style="height: 50px; padding: 0; border: 1px solid black; border-radius: 8px;">
-						<div class="flex-center">
-							<h4 style="padding: 0;">Urutkan: </h4>
-							<div id="popular" style="padding: 10px;">Popular</div>
-							<div id="newest" style="padding: 10px;">Newest</div>
-							<div id="oldest" style="padding: 10px;">Oldest</div>
-							<select name="price" id="price">
-								<option value="DESC">High -> Low</option>
-								<option value="ASC">Low -> High</option>
-							</select>
-						</div>
-						<form action="" method="POST" autocomplete="off" class="flex-center" style="height: 100px;">
-							<div id="search_area" class="flex w-100">
-								<input type="text" name="search_bar" id="search_bar" required>
-								<button name="search_btn" id="search_btn" style="margin-left: 10px;">Search</button>
+					<div class="query-box w-100 col-sm-12 flex-center flex-wrap flex-between border-radius-medium">
+						<div class="inner col-lg-8 col-sm-12 flex flex-hstart flex-vcenter" style="padding: 0;">
+							<div class="h-100 flex-center flex-hstart" style="font-size: 12pt;">
+								<div class="filter-label align-middle" style="color: #000;">Sort By</div>
+								<?php
+									if(isset($_REQUEST['sort']) && $_REQUEST['sort'] == "popular") {
+									?>
+										<div id="popular" class="filter-button btn btn-success border-radius-small align-middle" style="background-color: rgba(0, 0, 0, 0.15); color: #000;">Popular</div>
+									<?php
+									} else {
+									?>
+										<div id="popular" class="filter-button btn btn-dark border-radius-small align-middle">Popular</div>
+									<?php
+									}
+								?>
+								<?php
+									if(isset($_REQUEST['sort']) && $_REQUEST['sort'] == "newest") {
+									?>
+										<div id="newest" class="filter-button btn btn-success border-radius-small align-middle" style="background-color: rgba(0, 0, 0, 0.15); color: #000;">Newest</div>
+									<?php
+									} else {
+									?>
+										<div id="newest" class="filter-button btn btn-dark border-radius-small align-middle">Newest</div>
+									<?php
+									}
+								?>
+								<?php
+									if(isset($_REQUEST['sort']) && $_REQUEST['sort'] == "oldest") {
+									?>
+										<div id="oldest" class="filter-button btn btn-success border-radius-small align-middle" style="background-color: rgba(0, 0, 0, 0.15); color: #000;">Oldest</div>
+									<?php
+									} else {
+									?>
+										<div id="oldest" class="filter-button btn btn-dark border-radius-small align-middle">Oldest</div>
+									<?php
+									}
+								?>
+								<div class="flex-center h-100">
+									<select name="price" id="price" class="h-100">
+										<option disabled selected hidden>Price</option>
+										<option value="price-desc">High -> Low</option>
+										<option value="price-asc">Low -> High</option>
+									</select>
+								</div>
 							</div>
-						</form>
+						</div>
+						<div class="inner col-lg-4 col-sm-12 flex flex-hend flex-vcenter" style="padding: 0;">
+							<form action="" method="POST" autocomplete="off" class="flex-center flex-hend">
+								<!-- <div id="search_area" class="flex w-100"> -->
+									<input type="text" name="search_bar" id="search_bar" required>
+									<button name="search_btn" id="search_btn" style="margin-left: 10px;">Search</button>
+								<!-- </div> -->
+							</form>
+						</div>
 					</div>
 					<div id="catalog_row" class="row"></div>
 				</div>
@@ -154,11 +191,9 @@
 				callOnSort("oldest");
 			});
 
-// 			document.getElementsByTagName('select')[0].onchange = function() {
-//   var index = this.selectedIndex;
-//   var inputText = this.children[index].innerHTML.trim();
-//   console.log(inputText);
-// }
+			$("#price").on("change", function() {
+				callOnSort(this.value);
+			});
 
 			// $(function() {
 			// 	$(".lazy").Lazy({

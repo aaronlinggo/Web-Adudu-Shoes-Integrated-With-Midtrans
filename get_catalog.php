@@ -14,12 +14,11 @@
             $sort = "id_sepatu ASC";
         } else if($_POST['sort'] == "oldest") {
             $sort = "id_sepatu DESC";
+        } else if($_POST['sort'] == "price-asc") {
+            $sort = "harga_sepatu ASC, id_sepatu ASC";
+        } else if($_POST['sort'] == "price-desc") {
+            $sort = "harga_sepatu DESC, id_sepatu ASC";
         }
-        // else if($_POST['sort'] == "price_asc") {
-        //     $sort = "id_sepatu DESC";
-        // } else if($_POST['sort'] == "price_desc") {
-        //     $sort = "id_sepatu DESC";
-        // }
     } else {
         $isPopular = true;
     }
@@ -60,7 +59,7 @@
         $lokasi = "./admin/" . $value['link_gambarsepatu'];
         ?>
             <div class="flex catalog-card col-sm-12 col-md-6 col-lg-4">
-                <div class="inner flex-center flex-column flex-hend flex-between">
+                <div class="inner flex-center flex-column flex-hend flex-between border-radius-medium">
                     <div>
                         <p class="catalog-item"><?= $value['nama_sepatu'] ?></p>
                     </div>

@@ -28,7 +28,8 @@
                         $ada = false;
 
                         foreach($users as $key => $value) {
-                            if($value['username'] == $username || $value['email'] == $email) {
+                            // Prevent user from entering email address as username
+                            if($value['username'] == $username || $value['email'] == $username || $value['email'] == $email) {
                                 $ada = true;
                             }
                         }
@@ -75,52 +76,63 @@
         <div class="header-section">
             <?php require_once("./section/nav_section.php") ?>
         </div>
-        <div class="container-fluid">
-            <div class="container flex-center flex-vstart flex-wrap h-auto">
-                <div class="col-lg-6 col-12 h-100" style="padding: 30px;">
-                    <h1>Sign Up</h1>
+        <div class="login-container container h-auto">
+            <div class="landing-padding about flex-center flex-vstart flex-wrap h-auto">
+                <div class="modal-login left col-lg-6 col-12">
+                    <h1 class="title left">SIGN UP</h1>
                     <form action="" method="POST">
                         <div class="form-group flex flex-between">
                             <div style="width: 47.5%">
-                                <input type="text" class="email-bt" placeholder="First Name" name="first_name" id="name" required>
+                                <input type="text" class="login-input form-info border-radius-small" placeholder="First Name" name="first_name" id="name" required>
                             </div>
                             <div style="width: 47.5%;">
-                                <input type="text" class="email-bt" placeholder="Last Name" name="last_name" id="name" required>
+                                <input type="text" class="login-input form-info border-radius-small" placeholder="Last Name" name="last_name" id="name" required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <input type="date" class="email-bt" name="date" id="date" required>
+                            <input type="text" class="login-input form-info border-radius-small" name="date" id="date" required placeholder="Date of Birth" onfocus="(this.type='date')" onblur="if(this.value==''){this.type='text'}">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="email-bt" placeholder="Username" name="username" id="username" required>
+                            <input type="text" class="login-input form-info border-radius-small" placeholder="Username" name="username" id="username" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" class="email-bt" placeholder="Email" name="email" id="email" required>
+                            <input type="email" class="login-input form-info border-radius-small" placeholder="Email" name="email" id="email" required>
                         </div>
                         <div class="form-group">
-                            <input type="password" class="email-bt" placeholder="Password" name="pass" id="pass" required>
+                            <input type="password" class="login-input form-info border-radius-small" placeholder="Password" name="pass" id="pass" required>
                         </div>
                         <div class="form-group">
-                            <input type="password" class="email-bt" placeholder="Confirm Password" name="cpass" id="cpass" required>
+                            <input type="password" class="login-input form-info border-radius-small" placeholder="Confirm Password" name="cpass" id="cpass" required>
                         </div>
-                        <button class="main_bt" name="register">Sign Up</button>
+                        <button class="login-btn form-info btn btn-dark" name="register">Sign Up</button>
                     </form>
                 </div>
-                <div class="col-lg-6 col-12 h-100" style="padding: 30px;">
-                    <h1>Sign In</h1>
-                    <div>
-                        <div style="padding: 10px 0;">
+                <div class="modal-login right col-lg-6 col-12">
+                    <h1 class="title">SIGN IN</h1>
+                    <div class="form-info">
+                        <div style="padding-bottom: 10px; text-align: justify;">
                             Already have an account? Sign in to experience more benefits from us:
                         </div>
-                        <div class="flex">
-                            <ul>
-                                <li style="list-style-type: circle;">View your personal information</li>
-                                <li style="list-style-type: circle;">Track and check your order</li>
-                                <li style="list-style-type: circle;">Proceed with the checkout easily and faster too</li>
-                                <form action="" method="POST">
-                                    <button class="main_bt" name="login">Sign In</button>
-                                </form>
-                            </ul>
+                        <div class="flex flex-column">
+                            <table class="form-group">
+                                <tbody>
+                                    <tr class="flex flex-vstart">
+                                        <td>&check;&nbsp;&nbsp;&nbsp;</td>
+                                        <td>View your personal information</td>
+                                    </tr>
+                                    <tr class="flex flex-vstart">
+                                        <td>&check;&nbsp;&nbsp;&nbsp;</td>
+                                        <td>Track and check your order</td>
+                                    </tr>
+                                    <tr class="flex flex-vstart">
+                                        <td>&check;&nbsp;&nbsp;&nbsp;</td>
+                                        <td>Proceed with the checkout easily and faster too</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <form action="" method="POST">
+                                <button class="login-btn form-info btn btn-dark" name="login">Sign In</button>
+                            </form>
                         </div>
                     </div>
                 </div>

@@ -51,53 +51,29 @@
 <!DOCTYPE html>
 <html lang="en-US">
     <head>
-        <title>Sign In | Adudu Shoes</title>
+        <title>cPanel | Adudu Shoes</title>
         <?php require_once("./section/connection_head.php") ?>
     </head>
-    <body class="main-layout flex-center flex-between">
-    <!-- <body class="main-layout flex flex-column flex-between"> -->
-        <!-- <div class="header-section">
-            <?php require_once("./section/nav_section.php") ?>
-        </div> -->
+    <body id="cpanel" class="main-layout flex-center flex-between">
         <div class="container-fluid">
             <div class="container flex-center flex-hstart flex-column flex-wrap h-auto">
-                <div style="font-size: 7vh; text-align: center; padding-bottom: 50px;">
-                    CPANEL ADUDU (EDISI NAMBAH GARA2 LUKMAN)
-                    <!-- <img src="GAMBAR" alt=""> -->
+                <div class="w-100 flex-center cpanel-logo-container">
+                    <img class="cpanel-logo" src="./images/cpanel-logo-2.svg" alt="">
                 </div>
-                <div class="modal-login left col-lg-6 col-12 h-100">
-                    <h1>Sign In</h1>
+                <div class="modal-login left col-lg-6 col-12" style="padding: 0;">
+                    <h1 class="title left">SIGN IN</h1>
                     <form action="" method="POST">
                         <div class="form-group">
-                            <input type="text" class="email-bt" placeholder="Username" name="username" id="username" required>
+                            <input type="text" class="login-input form-info border-radius-small" placeholder="Username" name="username" id="username" required>
                         </div>
                         <div class="form-group">
-                            <input type="password" class="email-bt" placeholder="Password" name="password" id="password" required>
+                            <input type="password" class="login-input form-info border-radius-small" placeholder="Password" name="password" id="password" required>
                         </div>
-                        <button class="main_bt" name="login">Sign In</button>
+                        <button class="login-btn form-info btn btn-dark" name="login">Sign In</button>
                     </form>
                 </div>
-                <!-- <div class="modal-login right col-lg-6 col-12 h-100">
-                    <h1>Sign Up</h1>
-                    <div>
-                        <div style="padding: 10px 0; text-align: justify;">
-                            It's very easy. Just fill a simple registration form on the next page and you can enjoy more benefits from us:
-                        </div>
-                        <div class="flex">
-                            <ul>
-                                <li style="list-style-type: circle;">View your personal information</li>
-                                <li style="list-style-type: circle;">Track and check your order</li>
-                                <li style="list-style-type: circle;">Proceed with the checkout easily and faster too</li>
-                                <form action="" method="POST">
-                                    <button class="main_bt" name="register">Sign Up</button>
-                                </form>
-                            </ul>
-                        </div>
-                    </div>
-                </div> -->
             </div>
         </div>
-        <?php //require_once("./section/footer_section.php") ?>
         <?php require_once("./section/script_section.php") ?>
     </body>
 </html>

@@ -38,6 +38,14 @@
     .detail-back .btn {
         width: 26vw!important;
     }
+
+    .modal-login .title {
+        font-size: 24px!important;
+    }
+
+    .modal-login .form-info {
+        font-size: 15px!important;
+    }
 }
 
 @media (max-width: 576px) {
@@ -128,8 +136,36 @@
         margin: 25px 0;
     }
 
+    .login-container {
+        padding: 0!important;
+    }
+
     .modal-login {
-        padding: 30px 1px;
+        padding: 30px 0;
+    }
+
+    .modal-login .title {
+        font-size: 26px;
+    }
+
+    .modal-login .title.left {
+        padding-bottom: 15px;
+    }
+
+    .modal-login .form-info {
+        font-size: 16px;
+    }
+
+    #cpanel .modal-login .form-info {
+        font-size: 18px!important;
+    }
+
+    .cpanel-logo-container {
+        padding-bottom: 15vh;
+    }
+
+    .cpanel-logo {
+        width: 180px;
     }
 }
 
@@ -192,14 +228,19 @@
         margin-bottom: 20px;
     }
 
-    .detail-back .btn {
-        margin-left: 1px;
-        width: 18vw;
-    }
-
     .about-text {
         font-size: 13pt;
         margin: 30px 0;
+    }
+
+    .query-box {
+        margin: 15px 0;
+        padding: 10px 20px;
+        height: 120px;
+    }
+
+    .query-box .inner {
+        height: 46px;
     }
 
     .catalog-item {
@@ -217,8 +258,41 @@
         width: 50%;
     }
 
+    .detail-back .btn {
+        margin-left: 1px;
+        width: 18vw;
+    }
+
+    .login-container {
+        padding: 0!important;
+    }
+
     .modal-login {
-        padding: 30px 16px;
+        padding: 30px 0;
+    }
+
+    .modal-login .title {
+        font-size: 28px;
+    }
+
+    .modal-login .title.left {
+        padding-bottom: 15px;
+    }
+
+    .modal-login .form-info {
+        font-size: 16px;
+    }
+
+    #cpanel .modal-login .form-info {
+        font-size: 18px;
+    }
+
+    .cpanel-logo-container {
+        padding-bottom: 12.5vh;
+    }
+
+    .cpanel-logo {
+        width: 200px;
     }
 
     .copyright .info-text {
@@ -340,6 +414,16 @@
         margin: 40px 0;
     }
 
+    .query-box {
+        margin: 15px 0;
+        padding: 0 20px;
+        height: 60px;
+    }
+
+    .query-box .inner {
+        height: 56px;
+    }
+
     .catalog-item {
         margin-left: 0;
         margin-right: 0;
@@ -355,17 +439,29 @@
         width: 12vw;
     }
 
+    .login-container {
+        display: flex;
+        align-items: center;
+    }
+
+    .login-container .landing-padding {
+        padding-bottom: 30px!important;
+    }
+
     .modal-login {
         padding: 30px;
-        padding-top: 0;
+    }
+
+    .modal-login .title.left {
+        padding-bottom: 18px;
     }
 
     .modal-login.left {
-        padding-left: 16px;
+        padding-left: 0;
     }
 
     .modal-login.right {
-        padding-right: 16px;
+        padding-right: 0;
     }
 }
 

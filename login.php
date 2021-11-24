@@ -63,35 +63,46 @@
         <div class="header-section">
             <?php require_once("./section/nav_section.php") ?>
         </div>
-        <div class="container-fluid">
-            <div class="container flex-center flex-vstart flex-wrap h-auto">
-                <div class="modal-login left col-lg-6 col-12 h-100">
-                    <h1>Sign In</h1>
+        <div class="login-container container h-auto">
+            <div class="landing-padding about flex-center flex-vstart flex-wrap h-auto">
+                <div class="modal-login left col-lg-6 col-12">
+                    <h1 class="title left">SIGN IN</h1>
                     <form action="" method="POST">
                         <div class="form-group">
-                            <input type="text" class="email-bt" placeholder="Username" name="username" id="username" required>
+                            <input type="text" class="login-input form-info border-radius-small" placeholder="Username" name="username" id="username" required>
                         </div>
                         <div class="form-group">
-                            <input type="password" class="email-bt" placeholder="Password" name="password" id="password" required>
+                            <input type="password" class="login-input form-info border-radius-small" placeholder="Password" name="password" id="password" required>
                         </div>
-                        <button class="main_bt" name="login">Sign In</button>
+                        <button class="login-btn form-info btn btn-dark" name="login">Sign In</button>
                     </form>
                 </div>
-                <div class="modal-login right col-lg-6 col-12 h-100">
-                    <h1>Sign Up</h1>
-                    <div>
-                        <div style="padding: 10px 0; text-align: justify;">
+                <div class="modal-login right col-lg-6 col-12">
+                    <h1 class="title">SIGN UP</h1>
+                    <div class="form-info">
+                        <div style="padding-bottom: 10px; text-align: justify;">
                             It's very easy. Just fill a simple registration form on the next page and you can enjoy more benefits from us:
                         </div>
-                        <div class="flex">
-                            <ul>
-                                <li style="list-style-type: circle;">View your personal information</li>
-                                <li style="list-style-type: circle;">Track and check your order</li>
-                                <li style="list-style-type: circle;">Proceed with the checkout easily and faster too</li>
-                                <form action="" method="POST">
-                                    <button class="main_bt" name="register">Sign Up</button>
-                                </form>
-                            </ul>
+                        <div class="flex flex-column">
+                            <table class="form-group">
+                                <tbody>
+                                    <tr class="flex flex-vstart">
+                                        <td>&check;&nbsp;&nbsp;&nbsp;</td>
+                                        <td>View your personal information</td>
+                                    </tr>
+                                    <tr class="flex flex-vstart">
+                                        <td>&check;&nbsp;&nbsp;&nbsp;</td>
+                                        <td>Track and check your order</td>
+                                    </tr>
+                                    <tr class="flex flex-vstart">
+                                        <td>&check;&nbsp;&nbsp;&nbsp;</td>
+                                        <td>Proceed with the checkout easily and faster too</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <form action="" method="POST">
+                                <button class="login-btn form-info btn btn-dark" name="register">Sign Up</button>
+                            </form>
                         </div>
                     </div>
                 </div>
