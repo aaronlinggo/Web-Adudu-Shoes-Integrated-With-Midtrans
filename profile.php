@@ -40,6 +40,81 @@
                 <div class="toast-body">Your transaction is complete.</div>
             </div>
         </div>
+        <?php
+            if (isset($_SESSION['notif'])){
+                if ($_SESSION['notif']['status'] == 'success'){
+                ?>
+                <div id="notifPopup" class="position-sticky" style="display: none;">
+                    <div id="liveToast" class="toast fade hide" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="toast-header">
+                            <strong style="margin-right: auto;">Payment Notification</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                        <div class="toast-body">Your #<?= $_SESSION['notif']['order_id'] ?> transaction is complete.</div>
+                    </div>
+                </div>
+                <?php
+                }
+                else{
+                ?>
+                <div id="notifPopup" class="position-sticky" style="display: none;">
+                    <div id="liveToast" class="toast fade hide" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="toast-header">
+                            <strong style="margin-right: auto;">Payment Notification</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                        <div class="toast-body">Your #<?= $_SESSION['notif']['order_id'] ?> transaction is not complete.</div>
+                    </div>
+                </div>
+                <?php
+                }
+                ?>
+                <script>
+                    let notifTimer;
+                    let calcHeaderHeight = $("#header").height() + 30;
+
+                    $(document).ready(function() {
+                        $(".btn-close").click(function(e) {
+                            e.preventDefault();
+                            clearTimeout(notifTimer);
+
+                            $("#liveToast").removeClass("show");
+                            $("#liveToast").addClass("hide");
+
+                            setTimeout(() => {
+                                $("#notifPopup").removeAttr("style");
+                                $("#notifPopup").css({ "display": "none" });
+                            }, 250);
+                        });
+                    });
+                    $("#notifPopup").removeAttr("style");
+                    $("#notifPopup").css({
+                        "display": "block",
+                        "top": calcHeaderHeight,
+                        "right": "0",
+                        "z-index": "99999"
+                    });
+
+                    clearTimeout(notifTimer);
+
+                    setTimeout(() => {
+                        $("#liveToast").removeClass("hide");
+                        $("#liveToast").addClass("show");
+                    }, 250);
+
+                    notifTimer = setTimeout(() => {
+                        $("#liveToast").removeClass("show");
+                        $("#liveToast").addClass("hide");
+
+                        setTimeout(() => {
+                            $("#notifPopup").removeAttr("style");
+                            $("#notifPopup").css({ "display": "none" });
+                        }, 250);
+                    }, 5000);
+                </script>
+                <?php
+            }
+        ?>
         <div class="container h-auto position-relative landing-padding about" style="min-height: 100%;">
             <div class="h-100 py-3">
                 <div class="h-100 flex" style="border: 1px solid rgb(219, 222, 226); border-radius: 8px; padding: 20px; overflow-y: hidden;">
