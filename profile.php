@@ -31,17 +31,15 @@
         <div class="header-section">
             <?php require_once("./section/nav_section.php") ?>
         </div>
-        <!-- <div class="position-sticky p-3" style="display: none; top: 0; right: 0; z-index: 99999;">
+        <div id="notifPopup" class="position-sticky" style="display: none;">
             <div id="liveToast" class="toast fade hide" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="toast-header">
-                    <strong style="margin-right: auto;">Well Done!</strong>
+                    <strong style="margin-right: auto;">Success</strong>
                     <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
-                <div class="toast-body">
-                    Your item has been added to cart.
-                </div>
+                <div class="toast-body">Your transaction is complete.</div>
             </div>
-        </div> -->
+        </div>
         <div class="container h-auto position-relative landing-padding about" style="min-height: 100%;">
             <div class="h-100 py-3">
                 <div class="h-100 flex" style="border: 1px solid rgb(219, 222, 226); border-radius: 8px; padding: 20px; overflow-y: hidden;">
@@ -66,7 +64,6 @@
 
                 function loadSection(url, data, obj) {
                     $(obj).html("");
-
                     $.ajax({
                         method: "GET",
                         url: url,

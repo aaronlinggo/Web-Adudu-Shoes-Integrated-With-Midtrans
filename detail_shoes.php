@@ -28,17 +28,15 @@
             <div class="header-section">
                 <?php require_once("./section/nav_section.php") ?>
             </div>
-            <div class="position-sticky p-3" style="top: 0; right: 0; z-index: 99999;">
-                <div id="liveToast" class="toast fade hide" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-header">
-                        <strong style="margin-right: auto;">Success</strong>
-                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                    </div>
-                    <div class="toast-body">
-                        Your item has been added to cart.
-                    </div>
-                </div>
-            </div>
+			<div id="notifPopup" class="position-sticky" style="display: none;">
+				<div id="liveToast" class="toast fade hide" role="alert" aria-live="assertive" aria-atomic="true">
+					<div class="toast-header">
+						<strong style="margin-right: auto;">Success</strong>
+						<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+					</div>
+					<div class="toast-body">Your item has been added to cart.</div>
+				</div>
+			</div>
             <div style="width: 100%; height: 1px; background-color: lightgray;"></div>
             <div class="detail flex" style="overflow: hidden;">
                 <?php

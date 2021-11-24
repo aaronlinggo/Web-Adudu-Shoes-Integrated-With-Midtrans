@@ -12,6 +12,7 @@ $(document).ready(function() {
 
 function addCart(obj, qty) {
     let id_sepatu = $(obj).attr("value");
+    let calcHeaderHeight = $("#header").height() + 30;
 
     $.ajax({
         method: "POST",
@@ -21,14 +22,29 @@ function addCart(obj, qty) {
             qty : qty
         },
         success: function() {
+            $("#notifPopup").removeAttr("style");
+            $("#notifPopup").css({
+                "display": "block",
+                "top": calcHeaderHeight,
+                "right": "0",
+                "z-index": "99999"
+            });
+
             clearTimeout(notifTimer);
 
-            $("#liveToast").removeClass("hide");
-            $("#liveToast").addClass("show");
+            setTimeout(() => {
+                $("#liveToast").removeClass("hide");
+                $("#liveToast").addClass("show");
+            }, 250);
 
             notifTimer = setTimeout(() => {
                 $("#liveToast").removeClass("show");
                 $("#liveToast").addClass("hide");
+
+                setTimeout(() => {
+                    $("#notifPopup").removeAttr("style");
+                    $("#notifPopup").css({ "display": "none" });
+                }, 250);
             }, 5000);
         }
     });

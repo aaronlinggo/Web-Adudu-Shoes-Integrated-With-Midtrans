@@ -25,11 +25,11 @@
 		<?php require_once("./section/script_section.php") ?>
 	</head>
 	<body class="main-layout flex flex-column">
-		<div class="header-section segment">
+		<div id="header" class="header-section segment">
 			<?php require_once("./section/nav_section.php") ?>
 		</div>
-		<div id="catalog" class="fullwidth h-auto flex flex-column" style="flex-grow: 1;">
-			<!-- <div class="position-sticky p-3" style="top: 0; right: 0; z-index: 99999;">
+		<div id="catalog" class="fullwidth h-auto flex flex-column">
+			<div id="notifPopup" class="position-sticky" style="display: none;">
 				<div id="liveToast" class="toast fade hide" role="alert" aria-live="assertive" aria-atomic="true">
 					<div class="toast-header">
 						<strong style="margin-right: auto;">Success</strong>
@@ -37,8 +37,7 @@
 					</div>
 					<div class="toast-body">Your item has been added to cart.</div>
 				</div>
-			</div> -->
-			<!-- <div class="collection_text">Shoes</div> -->
+			</div>
 			<div class="container landing-padding about h-auto flex-center catalog-main">
 				<h1 class="title about-section m-0 mt-4 mt-sm-5 p-0 pt-3 pt-sm-2 font-bold" style="text-align: center;">SHOES CATALOG</h1>
 			</div>
@@ -255,7 +254,6 @@
 		</script>
 		<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.10/jquery.lazy.min.js"></script>
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.10/jquery.lazy.plugins.min.js"></script> -->
-		<!-- <script type="text/javascript" src="./js/get_catalog.js"></script> -->
 		<script type="text/javascript" src="./js/add_cart.js"></script>
 	</body>
 </html>

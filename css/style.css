@@ -301,7 +301,7 @@ button {
     position: absolute;
     top: 15px;
     right: 15px;
-    width: 350px;
+    width: 280px;
     max-width: 100%;
 }
 
@@ -356,6 +356,10 @@ button {
 .about-text {
     font-weight: 400;
     text-align: justify;
+}
+
+#catalog {
+    flex-grow: 1;
 }
 
 .catalog-main {
