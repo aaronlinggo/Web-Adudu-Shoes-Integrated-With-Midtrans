@@ -1,11 +1,12 @@
-<!-- <div class="copyright">2021 All Rights Reserved | <a href="./">Adudu Shoes</a></div> -->
-<div style="clear: both;"></div>
-<div class="copyright">
+<div class="copyright w-100">
     <div class="copyright-padding fullwidth flex" style="flex-wrap: wrap;">
         <div class="col-sm-6 d-flex flex-column align-items-start p-0" style="text-align: left;">
             <div class="info-text font-bold">
-                FOLLOW US ON
-                <a href="https://github.com/aaronlinggo/Proyek-PW-Adudu.git" target="_blank"><img src="./images/GitHub_Logo_White.png" alt="" style="width: 65px;"></a><br><br>
+                <div class="flex flex-vcenter">
+                    <span style="margin-right: 5px;">FOLLOW US ON</span>
+                    <a href="https://github.com/aaronlinggo/Proyek-PW-Adudu.git" target="_blank"><img src="./images/GitHub_Logo_White.png" alt="" class="flex flex-vcenter" style="width: 65px;"></a>
+                </div>
+                <br>
             </div>
         </div>
         <div class="col-sm-6 d-flex flex-column align-items-start p-0" style="text-align: left;">

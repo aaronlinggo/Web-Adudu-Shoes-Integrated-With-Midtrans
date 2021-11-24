@@ -485,13 +485,12 @@ button {
 
 .copyright {
     background-color: #000;
-    color: #ffffff;
-    /* display: flex; */
+    clear: both;
+    color: #fff!important;
     font-family: Poppins;
     font-size: 12pt;
     padding: 0 5%;
     text-align: center;
-    width: 100%;
 }
 
 .copyright-padding {
@@ -504,8 +503,7 @@ button {
 }
 
 .copyright .info-text {
-    color: #fff;
-    /* font-size: 1.1rem; */
+    color: #fff!important;
     font-weight: 400;
 }
 
