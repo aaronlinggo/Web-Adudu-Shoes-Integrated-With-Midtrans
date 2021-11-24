@@ -7,6 +7,11 @@ $(document).ready(function() {
 
         $("#liveToast").removeClass("show");
         $("#liveToast").addClass("hide");
+
+        setTimeout(() => {
+            $("#notifPopup").removeAttr("style");
+            $("#notifPopup").css({ "display": "none" });
+        }, 250);
     });
 });
 

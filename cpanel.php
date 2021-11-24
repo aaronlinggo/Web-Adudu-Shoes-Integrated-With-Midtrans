@@ -26,6 +26,7 @@
                         if($value['roles'] == "admin") {
                             $_SESSION['active'] = $value['id_user'];
                             $_SESSION['activeRoles'] = "admin";
+
                             header("Location: ./admin/index.php");
                         } else {
                             echo "<script>alert('Error Code 403: Forbidden!')</script>";
@@ -33,7 +34,7 @@
                         }
                     } else {
                         echo "<script>alert('You entered wrong password!')</script>";
-                            echo "<script>window.location = './cpanel.php'</script>";
+                        echo "<script>window.location = './cpanel.php'</script>";
                     }
 
                     $ada = true;

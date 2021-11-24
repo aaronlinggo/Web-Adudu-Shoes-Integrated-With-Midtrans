@@ -2,7 +2,7 @@
 	session_start();
 	require_once("./controller/connection.php");
 
-	$stmt = $conn -> prepare("SELECT * FROM sepatu ORDER BY 1 DESC");
+	$stmt = $conn -> prepare("SELECT * FROM sepatu ORDER BY 1 ASC");
 	$stmt -> execute();
 	$sepatu = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
 
@@ -163,22 +163,6 @@
 				} else {
 					loadCatalog(1, false);
 				}
-
-				// var win = $(window);
-				// function lazyload() {
-				// 	$(function() {
-				// 		$(".lazy").Lazy({
-				// 			scrollDirection: "vertical",
-				// 			effect: "fadeIn",
-				// 			visibleOnly: true,
-				// 			onError: function(element) {
-				// 				console.log("Error when loading " + element.data("src"));
-				// 			}
-				// 		});
-				// 	});
-				// }
-				// win.on('resize scroll', lazyload);
-				// lazyload();
 			});
 
 			function loadCatalog(page, search) {
@@ -236,24 +220,7 @@
 			$("#price").on("change", function() {
 				callOnSort(this.value);
 			});
-
-			// $(function() {
-			// 	$(".lazy").Lazy({
-			// 		scrollDirection: "vertical",
-			// 		effect: "fadeIn",
-			// 		effectTime: "fast",
-			// 		threshold: 0,
-			// 		visibleOnly: true,
-			// 		onError: function(element) {
-			// 			console.log("Error when loading " + element.data("src"));
-			// 		}
-			// 	});
-			// });
-			// $(window).on("load", function() {
-			// });
 		</script>
-		<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.10/jquery.lazy.min.js"></script>
-		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.10/jquery.lazy.plugins.min.js"></script> -->
 		<script type="text/javascript" src="./js/add_cart.js"></script>
 	</body>
 </html>

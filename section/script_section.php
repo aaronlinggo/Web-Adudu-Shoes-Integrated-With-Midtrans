@@ -1,37 +1,15 @@
-<!-- <script src="./js/jquery.min.js"></script> -->
 <script src="./js/jquery-3.6.0.min.js"></script>
 <script src="./js/popper.min.js"></script>
 <script src="./js/bootstrap.bundle.min.js"></script>
-<!-- <script src="./js/jquery-3.0.0.min.js"></script> -->
 <script src="./js/jquery.mCustomScrollbar.concat.min.js"></script>
-<!-- <script src="./js/jquery.lazy.min.js"></script> -->
-<!-- <script src="./js/plugin.js"></script>
-<script src="./js/custom.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
 <script>
     $(document).ready(function() {
-        // $(function() {
-        //     $(".lazy").Lazy({
-        //         scrollDirection: "vertical",
-        //         effect: "fadeIn",
-        //         visibleOnly: true,
-        //         onError: function(element) {
-        //             console.log("Error when loading " + element.data("src"));
-        //         }
-        //     });
-        // });
-
         $("#search_img").click(function(e) { 
             e.preventDefault();
 
             window.location = "./shoes.php?input-search=true";
         });
-
-        // $("#search_text_mirror").click(function(e) { 
-        //     e.preventDefault();
-
-        //     window.location = "";
-        // });
 
         $(".fancybox").fancybox({
             openEffect: "none",

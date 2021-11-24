@@ -73,7 +73,7 @@
         <?php require_once("./section/connection_head.php") ?>
     </head>
     <body class="main-layout flex flex-column flex-between">
-        <div class="header-section">
+        <div class="header-section segment">
             <?php require_once("./section/nav_section.php") ?>
         </div>
         <div class="login-container container h-auto">

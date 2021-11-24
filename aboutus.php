@@ -2,9 +2,9 @@
 	session_start();
 	require_once("./controller/connection.php");
 
-	$stmt = $conn->prepare("SELECT * FROM sepatu");
-	$stmt->execute();
-	$sepatu = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+	$stmt = $conn -> prepare("SELECT * FROM sepatu");
+	$stmt -> execute();
+	$sepatu = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
