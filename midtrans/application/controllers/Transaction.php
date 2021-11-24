@@ -190,6 +190,24 @@ class Transaction extends CI_Controller {
 						?>
 						<input type="hidden" name="" value="Your order #<?= $order_id ?> payment has been expired!" id="order_id">						
 						<script>
+							let notifTimer;
+							let calcHeaderHeight = $("#header").height() + 30;
+
+							$(document).ready(function() {
+								$(".btn-close").click(function(e) {
+									e.preventDefault();
+									clearTimeout(notifTimer);
+
+									$("#liveToast").removeClass("show");
+									$("#liveToast").addClass("hide");
+
+									setTimeout(() => {
+										$("#notifPopup").removeAttr("style");
+										$("#notifPopup").css({ "display": "none" });
+									}, 250);
+								});
+							});
+
 							$("#liveToast").children().last().html($("#order_id").val());
 							$("#notifPopup").removeAttr("style");
 							$("#notifPopup").css({
