@@ -19,9 +19,9 @@
         $stmt -> execute();
         $activeUser = $stmt -> get_result() -> fetch_assoc();
 
-        $stmt = $conn->prepare("SELECT * FROM notification_handler WHERE user_id = $id_user and active = 1 LIMIT 1");
+        $stmt = $conn->prepare("SELECT * FROM notification_handler WHERE id_user = $id_user and active = 1 ORDER BY ID DESC");
         $stmt->execute();
-        $notification_handler = $stmt->get_result()->fetch_assoc();
+        $notification_handler = $stmt->get_result()->fetch_assoc() ?? [];
     }
 ?>
 
@@ -49,9 +49,6 @@
                         <div class="toast-body">Your #<?= $notification_handler['order_id'] ?> transaction is <?php if ($notification_handler['status'] == 'expire') { echo "not"; } ?> complete.</div>
                     </div>
                 </div>
-                <?php
-                }
-                ?>
                 <script>
                     let notifTimer;
                     let calcHeaderHeight = $("#header").height() + 30;
@@ -96,7 +93,6 @@
                     }, 5000);
                 </script>
                 <?php
-                unset($_SESSION['notif']);
             }
         ?>
         <div class="container h-auto position-relative landing-padding about" style="min-height: 100%;">

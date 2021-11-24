@@ -60,9 +60,11 @@ class Notification extends CI_Controller {
 			$od = $stmt->get_result()->fetch_assoc();
 
 			$id_user = $od['user_id'];
-
+			
+            $active = 1;
+            
 			$stmt = $conn->prepare("INSERT INTO notification_handler(status, order_id, id_user, active) VALUES(?,?,?,?)");
-			$stmt->bind_param("siii", $result['status_code'], $order_id, $id_user, 1);
+			$stmt->bind_param("siii", $result['status_code'], $order_id, $id_user, $active);
 			$return = $stmt->execute();
 		}
 		else if ($result['status_code'] == 202){
@@ -88,9 +90,11 @@ class Notification extends CI_Controller {
 			$od = $stmt->get_result()->fetch_assoc();
 
 			$id_user = $od['user_id'];
-
+			
+            $active = 1;
+            
 			$stmt = $conn->prepare("INSERT INTO notification_handler(status, order_id, id_user, active) VALUES(?,?,?,?)");
-			$stmt->bind_param("siii", $result['status_code'], $order_id, $id_user, 1);
+			$stmt->bind_param("siii", $result['status_code'], $order_id, $id_user, $active);
 			$return = $stmt->execute();
 		}
 
