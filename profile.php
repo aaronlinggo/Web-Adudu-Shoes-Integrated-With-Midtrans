@@ -9,6 +9,8 @@
         $stmt -> execute();
         $users = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
 
+        $id_user = $_SESSION['active'];
+
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
@@ -16,6 +18,10 @@
         $stmt -> bind_param("i", $_SESSION['active']);
         $stmt -> execute();
         $activeUser = $stmt -> get_result() -> fetch_assoc();
+
+        $stmt = $conn->prepare("SELECT * FROM notification_handler WHERE user_id = $id_user and active = 1 LIMIT 1");
+        $stmt->execute();
+        $notification_handler = $stmt->get_result()->fetch_assoc();
     }
 ?>
 
@@ -32,8 +38,7 @@
             <?php require_once("./section/nav_section.php") ?>
         </div>
         <?php
-            if (isset($_SESSION['notif'])){
-                if ($_SESSION['notif']['status'] == 'success'){
+            if (isset($notification_handler)){
                 ?>
                 <div id="notifPopup" class="position-sticky" style="display: none;">
                     <div id="liveToast" class="toast fade hide" role="alert" aria-live="assertive" aria-atomic="true">
@@ -41,20 +46,7 @@
                             <strong style="margin-right: auto;">Payment Notification</strong>
                             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                         </div>
-                        <div class="toast-body">Your #<?= $_SESSION['notif']['order_id'] ?> transaction is complete.</div>
-                    </div>
-                </div>
-                <?php
-                }
-                else{
-                ?>
-                <div id="notifPopup" class="position-sticky" style="display: none;">
-                    <div id="liveToast" class="toast fade hide" role="alert" aria-live="assertive" aria-atomic="true">
-                        <div class="toast-header">
-                            <strong style="margin-right: auto;">Payment Notification</strong>
-                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                        </div>
-                        <div class="toast-body">Your #<?= $_SESSION['notif']['order_id'] ?> transaction is not complete.</div>
+                        <div class="toast-body">Your #<?= $notification_handler['order_id'] ?> transaction is <?php if ($notification_handler['status'] == 'expire') { echo "not"; } ?> complete.</div>
                     </div>
                 </div>
                 <?php
