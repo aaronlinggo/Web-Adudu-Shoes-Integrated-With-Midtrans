@@ -205,7 +205,7 @@
 										<td><?= "Rp. " . number_format($value['price'], 0, ',', '.') . ",-" ?></td>
 										<td class="d-flex justify-content-center">
 											<button class="btn btn-secondary" onclick="kurang(<?= $value['id_cart'] ?>, <?= $id_user ?>)">-</button>
-											<input type="text" name="" id="totqty" class="form-control" style="width: 35px;" value="<?= $value['qty'] ?>" readonly>
+											<input type="text" name="totqty" id="totqty" class="form-control" style="width: 35px;" value="<?= $value['qty'] ?>" readonly>
 											<button class="btn btn-secondary" onclick="tambah(<?= $value['id_cart'] ?>, <?= $id_user ?>)">+</button>
 										</td>
 										<td>
