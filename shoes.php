@@ -24,11 +24,11 @@
 		<?php require_once("./section/connection_head.php") ?>
 		<?php require_once("./section/script_section.php") ?>
 	</head>
-	<body class="main-layout">
+	<body class="main-layout flex flex-column">
 		<div class="header-section">
 			<?php require_once("./section/nav_section.php") ?>
 		</div>
-		<div id="catalog" class="fullwidth h-auto flex flex-column" style="position: relative;">
+		<div id="catalog" class="fullwidth h-auto flex flex-column" style="flex-grow: 1;">
 			<!-- <div class="position-sticky p-3" style="top: 0; right: 0; z-index: 99999;">
 				<div id="liveToast" class="toast fade hide" role="alert" aria-live="assertive" aria-atomic="true">
 					<div class="toast-header">
@@ -82,31 +82,31 @@
 									<?php
 										if(isset($_REQUEST['sort']) && ($_REQUEST['sort'] == "price-desc" || $_REQUEST['sort'] == "price-asc")) {
 										?>
-											<select name="price" id="price" class="filter-control outer-btn border-radius-small btn btn-dark" style="background-color: rgba(0, 0, 0, 0.15); color: #000;">
+											<select name="price" id="price" class="filter-control outer-btn border-radius-small align-middle btn btn-dark" style="background-color: rgba(0, 0, 0, 0.15); color: #000;">
 										<?php
 										} else {
 										?>
-											<select name="price" id="price" class="filter-control outer-btn border-radius-small btn btn-dark">
+											<select name="price" id="price" class="filter-control outer-btn border-radius-small align-middle btn btn-dark">
 										<?php
 										}
 									?>
 										<?php
 											if(isset($_REQUEST['sort']) && $_REQUEST['sort'] == "price-desc") {
 											?>
-												<option disabled selected hidden>Price: High to Low</option>
+												<option class="align-middle" disabled selected hidden>Price: High to Low</option>
 											<?php
 											} else if(isset($_REQUEST['sort']) && $_REQUEST['sort'] == "price-asc") {
 											?>
-												<option disabled selected hidden>Price: Low to High</option>
+												<option class="align-middle" disabled selected hidden>Price: Low to High</option>
 											<?php
 											} else {
 											?>
-												<option disabled selected hidden>Price</option>
+												<option class="align-middle" disabled selected hidden>Price</option>
 											<?php
 											}
 										?>
-										<option style="text-align: left;" value="price-desc">Price: High to Low</option>
-										<option style="text-align: left;" value="price-asc">Price: Low to High</option>
+										<option class="align-middle" style="text-align: left;" value="price-desc">Price: High to Low</option>
+										<option class="align-middle" style="text-align: left;" value="price-asc">Price: Low to High</option>
 									</select>
 								</div>
 							</div>

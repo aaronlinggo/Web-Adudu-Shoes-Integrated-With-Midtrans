@@ -95,7 +95,7 @@
         }
     } else {
     ?>
-        <div class="w-100 flex-center col-sm-12 py-5" style="font-size: 18pt;">Sorry we didn't find anything.</div>
+        <div class="w-100 flex-center col-sm-12 py-5" style="font-size: 18pt; text-align: center;">Sorry we didn't find anything.</div>
     <?php
     }
 ?>
