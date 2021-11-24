@@ -6,6 +6,7 @@ deployment:
     - /bin/cp cpanel.php $DEPLOYPATH
     - /bin/cp detail_shoes.php $DEPLOYPATH
     - /bin/cp get_catalog.php $DEPLOYPATH
+    - /bin/cp get_search.php $DEPLOYPATH
     - /bin/cp index.php $DEPLOYPATH
     - /bin/cp login.php $DEPLOYPATH
     - /bin/cp logout.php $DEPLOYPATH
