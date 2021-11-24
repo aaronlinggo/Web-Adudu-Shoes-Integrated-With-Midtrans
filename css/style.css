@@ -561,6 +561,10 @@ button {
     font-weight: 400;
 }
 
+.copyright td {
+    color: #fff!important;
+}
+
 .copyright a {
     color: #fff;
     text-decoration: none;
