@@ -15,7 +15,7 @@
 		<?php require_once("./section/script_section.php") ?>
     </head>
     <body class="main-layout">
-        <div class="header-section">
+        <div class="header-section segment">
             <?php require_once("./section/nav_section.php") ?>
         </div>
         <div class="py-0">

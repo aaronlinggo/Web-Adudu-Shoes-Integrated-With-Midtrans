@@ -273,6 +273,10 @@ button {
     z-index: 999;
 }
 
+.header-section.segment {
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.2);
+}
+
 .navbar.navbar-expand-lg.navbar-light {
     padding-left: 0;
     padding-right: 0;
@@ -354,12 +358,13 @@ button {
     text-align: justify;
 }
 
+.catalog-main {
+    font-size: 32pt;
+}
+
 .query-box {
     background-color: #ecedef;
     box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.2);
-    /* margin: 15px 0;
-    padding: 0 20px;
-    height: 60px; */
 }
 
 .query-box .inner,
@@ -386,9 +391,23 @@ button {
     padding: 6px 12px;
 }
 
+.query-box .inner::-webkit-scrollbar {
+    display: none;
+}
+
+/* .query-box .inner-container {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+} */
+
+#search_bar {
+    border: 1px solid #000;
+    flex-grow: 1;
+    padding: 10px;
+}
+
 .catalog-card {
     flex-grow: 1;
-    margin: 15px 0;
     height: auto;
 }
 
@@ -419,6 +438,30 @@ button {
     color: #0f0d10;
     font-size: 15pt;
     text-align: right;
+}
+
+.catalog-card, .catalog-nav-page {
+    margin: 15px 0;
+}
+
+.page-item {
+    margin: 0 5px;
+    padding: 0;
+    min-width: 40px;
+    min-height: 40px;
+}
+
+.page-item.move-forward {
+    min-width: 70px;
+}
+
+.filter-control.active, .page-item.active {
+    background-color: rgba(0, 0, 0, 0.15)!important;
+    color: #000!important;
+}
+
+.page-item a {
+    color: #000;
 }
 
 .detail {
@@ -491,25 +534,13 @@ button {
     text-align: center;
 }
 
-.query-box .inner::-webkit-scrollbar {
-/* #body::-webkit-scrollbar { */
-    display: none;
-}
-
-/* #body, .query-box .inner-container {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-} */
-
 .copyright {
     background-color: #000;
     clear: both;
     color: #fff!important;
     font-family: Poppins;
     font-size: 12pt;
-    /* margin-top: -200px; */
     padding: 0 5%;
-    /* position: relative; */
     text-align: center;
 }
 
@@ -782,12 +813,6 @@ button {
     margin-top: 28px;
     width: 50%;
     height: 50px;
-}
-
-.gallery_section {
-    float: left;
-    width: 100%;
-    height: auto;
 }
 
 .buy_now_bt {

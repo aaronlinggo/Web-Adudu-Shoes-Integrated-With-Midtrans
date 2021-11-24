@@ -25,7 +25,7 @@
 		<?php require_once("./section/script_section.php") ?>
 	</head>
 	<body class="main-layout flex flex-column">
-		<div class="header-section">
+		<div class="header-section segment">
 			<?php require_once("./section/nav_section.php") ?>
 		</div>
 		<div id="catalog" class="fullwidth h-auto flex flex-column" style="flex-grow: 1;">
@@ -39,8 +39,11 @@
 				</div>
 			</div> -->
 			<!-- <div class="collection_text">Shoes</div> -->
-			<div class="layout-padding gallery_section">
-				<div class="container landing-padding about">
+			<div class="container landing-padding about h-auto flex-center catalog-main">
+				<h1 class="title about-section m-0 mt-4 mt-sm-5 p-0 pt-3 pt-sm-2 font-bold" style="text-align: center;">SHOES CATALOG</h1>
+			</div>
+			<div class="layout-padding about">
+				<div class="container landing-padding about h-auto">
 					<div class="query-box w-100 col-sm-12 flex-center flex-wrap-reverse flex-between border-radius-medium">
 						<div class="inner col-lg-8 col-md-12 col-sm-12 flex flex-hstart flex-vcenter" style="overflow-x: auto; overflow-y: hidden; -ms-overflow-style: none; scrollbar-width: none;">
 							<div class="inner-container col-md-12 h-100 flex-center flex-hstart">
@@ -48,7 +51,7 @@
 								<?php
 									if(isset($_REQUEST['sort']) && $_REQUEST['sort'] == "popular") {
 									?>
-										<div id="popular" class="col-md-2 filter-button filter-control btn btn-success border-radius-small align-middle" style="background-color: rgba(0, 0, 0, 0.15); color: #000;">Popular</div>
+										<div id="popular" class="col-md-2 filter-button filter-control active btn border-radius-small align-middle">Popular</div>
 									<?php
 									} else {
 									?>
@@ -59,7 +62,7 @@
 								<?php
 									if(isset($_REQUEST['sort']) && $_REQUEST['sort'] == "newest") {
 									?>
-										<div id="newest" class="col-md-2 filter-button filter-control btn btn-success border-radius-small align-middle" style="background-color: rgba(0, 0, 0, 0.15); color: #000;">Newest</div>
+										<div id="newest" class="col-md-2 filter-button filter-control active btn border-radius-small align-middle">Newest</div>
 									<?php
 									} else {
 									?>
@@ -70,7 +73,7 @@
 								<?php
 									if(isset($_REQUEST['sort']) && $_REQUEST['sort'] == "oldest") {
 									?>
-										<div id="oldest" class="col-md-2 filter-button filter-control btn btn-success border-radius-small align-middle" style="background-color: rgba(0, 0, 0, 0.15); color: #000;">Oldest</div>
+										<div id="oldest" class="col-md-2 filter-button filter-control active btn border-radius-small align-middle">Oldest</div>
 									<?php
 									} else {
 									?>
@@ -82,7 +85,7 @@
 									<?php
 										if(isset($_REQUEST['sort']) && ($_REQUEST['sort'] == "price-desc" || $_REQUEST['sort'] == "price-asc")) {
 										?>
-											<select name="price" id="price" class="filter-control outer-btn border-radius-small align-middle btn btn-dark" style="background-color: rgba(0, 0, 0, 0.15); color: #000;">
+											<select name="price" id="price" class="filter-control active outer-btn border-radius-small align-middle btn">
 										<?php
 										} else {
 										?>
@@ -116,15 +119,21 @@
 								<?php
 									if(isset($_REQUEST['input-search']) && $_REQUEST['input-search'] == "true") {
 									?>
-										<input type="text" name="search_bar" id="search_bar" class="filter-control outer-textbox border-radius-small" style="border: 1px solid #000; flex-grow: 1;" placeholder="Search" autofocus required>
+										<input type="text" name="search_bar" id="search_bar" class="filter-control outer-textbox border-radius-small" placeholder="Search" autofocus required>
 									<?php
 									} else {
 									?>
-										<input type="text" name="search_bar" id="search_bar" class="filter-control outer-textbox border-radius-small" style="border: 1px solid #000; flex-grow: 1;" placeholder="Search" required>
+										<input type="text" name="search_bar" id="search_bar" class="filter-control outer-textbox border-radius-small" placeholder="Search" required>
 									<?php
 									}
 								?>
-								<button name="search_btn" id="search_btn" class="filter-button filter-control btn btn-dark border-radius-small align-middle" style="margin-right: 0;">Search</button>
+								<button name="search_btn" id="search_btn" class="filter-button filter-control btn btn-dark border-radius-small flex-center" style="margin-right: 0;">
+									<svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" focusable="false" width="20px" height="20px">
+										<g>
+											<path fill="#ffffff" d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+										</g>
+									</svg>
+								</button>
 								<button name="search_btn" id="search_btn_clone" class="filter-button filter-control btn btn-dark border-radius-small flex-center" style="display: none; margin-right: 0;">
 									<svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" focusable="false" width="20px" height="20px">
 										<g>
@@ -149,11 +158,6 @@
 				$.ajaxPrefilter(function(options, originalOptions, jqXHR) {
 					options.async = true;
 				});
-
-				// $("#search_img").click(function(e) {
-				// 	e.preventDefault();
-				// 	e.stopPropagation();
-				// });
 
 				if(<?= json_encode((isset($_REQUEST['keyword'])) ? $_REQUEST['keyword'] : "") ?> != "") {
 					loadCatalog(1, true);

@@ -47,6 +47,14 @@
         display: flex!important;
     }
 
+    .page-item.move-forward {
+        display: none!important;
+    }
+
+    .page-item.move-forward-small {
+        display: flex!important;
+    }
+
     .detail-back .btn {
         width: 26vw!important;
     }
