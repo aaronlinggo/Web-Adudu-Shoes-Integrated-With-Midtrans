@@ -13,7 +13,7 @@
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav flex flex-row flex-between flex-vcenter fullwidth">
                         <div class="medium-scale flex flex-between">
-                            <a class="nav-item nav-link nav-android-menu" href="./index.php">Home</a>
+                            <a class="nav-item nav-link nav-android-menu" href="./">Home</a>
                             <a class="nav-item nav-link nav-android-menu" href="./aboutus.php">About</a>
                             <a class="nav-item nav-link nav-android-menu" href="./shoes.php">Shoes</a>
                             <a class="nav-item nav-link nav-android-menu last" href="./shoes.php?input-search=true">Search</a>

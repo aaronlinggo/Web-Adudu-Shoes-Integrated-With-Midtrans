@@ -5,7 +5,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
 <script>
     $(document).ready(function() {
-        $("#search_img").click(function(e) { 
+        $("#search_icon").click(function(e) { 
             e.preventDefault();
 
             window.location = "./shoes.php?input-search=true";
