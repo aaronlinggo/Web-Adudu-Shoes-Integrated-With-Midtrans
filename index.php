@@ -162,7 +162,7 @@ $sepatu = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 											<div class="col-md-3 mb-3">
 												<div class="card">
 													<img class="img-fluid" alt="100%x280" src="<?= "./admin/" . $sepatu[$randomIndex]['link_gambarsepatu'] ?>">
-													<div class="card-body h-100">
+													<div class="card-body">
 														<h4 class="card-title"><?= $sepatu[$randomIndex]['nama_sepatu'] ?></h4>
 														<p class="card-text" style="color: #ed2540;"><strong>Rp. <span style="color: #0a0506"><?= number_format($sepatu[$randomIndex]['harga_sepatu'], 0, ',', '.') ?></span></strong></p>
 														<a href="./detail_shoes.php?id_sepatu=<?= $sepatu[$randomIndex]['id_sepatu'] ?>"><button class="btn btn-dark border-radius-small catalog-btn empty-margin w-100" name="addCart" id="addCart" style="margin-left: 5px;">Buy Now</button></a>
