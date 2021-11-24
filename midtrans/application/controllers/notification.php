@@ -43,10 +43,27 @@ class Notification extends CI_Controller {
 				'transaction_status' => "settlement"
 			];
 			$this->db->update('payment', $data, array('order_id'=>$order_id));
-			$_SESSION['notif'] = [
-				'status' => 'success',
-				'order_id' => $order_id
-			];
+			// $_SESSION['notif'] = [
+			// 	'status' => 'success',
+			// 	'order_id' => $order_id
+			// ];
+			require_once("../controller/connection.php");
+
+			$stmt = $conn->prepare("SELECT * FROM payment WHERE order_id=$order_id");
+			$stmt->execute();
+			$payment = $stmt->get_result()->fetch_assoc();
+
+			$id_payment = $payment['id'];
+
+			$stmt = $conn->prepare("SELECT * FROM order_details WHERE payment_id=$id_payment");
+			$stmt->execute();
+			$od = $stmt->get_result()->fetch_assoc();
+
+			$id_user = $od['user_id'];
+
+			$stmt = $conn->prepare("INSERT INTO notification_handler(status, order_id, id_user, active) VALUES(?,?,?,?)");
+			$stmt->bind_param("siii", $result['status_code'], $order_id, $id_user, 1);
+			$return = $stmt->execute();
 		}
 		else if ($result['status_code'] == 202){
 			$data = [
@@ -54,10 +71,27 @@ class Notification extends CI_Controller {
 				'transaction_status' => "expire"
 			];
 			$this->db->update('payment', $data, array('order_id'=>$order_id));
-			$_SESSION['notif'] = [
-				'status' => 'expired',
-				'order_id' => $order_id
-			];
+			// $_SESSION['notif'] = [
+			// 	'status' => 'expired',
+			// 	'order_id' => $order_id
+			// ];
+			require_once("../controller/connection.php");
+
+			$stmt = $conn->prepare("SELECT * FROM payment WHERE order_id=$order_id");
+			$stmt->execute();
+			$payment = $stmt->get_result()->fetch_assoc();
+
+			$id_payment = $payment['id'];
+
+			$stmt = $conn->prepare("SELECT * FROM order_details WHERE payment_id=$id_payment");
+			$stmt->execute();
+			$od = $stmt->get_result()->fetch_assoc();
+
+			$id_user = $od['user_id'];
+
+			$stmt = $conn->prepare("INSERT INTO notification_handler(status, order_id, id_user, active) VALUES(?,?,?,?)");
+			$stmt->bind_param("siii", $result['status_code'], $order_id, $id_user, 1);
+			$return = $stmt->execute();
 		}
 
 		// if($result){
