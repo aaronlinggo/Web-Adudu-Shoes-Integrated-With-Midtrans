@@ -51,13 +51,13 @@
                     <div class="detail-img w-100" style="<?= "background-image: " . $lokasi ?>"></div>
                 </div>
                 <div class="flex-center flex-column flex-between" style="width: 40%; padding: 40px; height: 100%; max-height: 100%;">
-                    <div>
+                    <div class="w-100">
                         <h1 class="w-100" style="font-style: italic; line-height: 36px; font-size: 24px;"><?= $sepatu[0]['nama_sepatu'] ?></h1>
                         <div class="flex">
-                            <h4 class="w-100" style="line-height: 36px; font-size: 24px;">
+                            <h4 style="line-height: 36px; font-size: 20px;">
                                 Rp. <span style="color: #ff4e5b;"><?= number_format($sepatu[0]['harga_sepatu'], 0, ',', '.') ?></span>
                             </h4>
-                            <h4 class="w-100" style="line-height: 36px; font-size: 24px;">
+                            <h4 style="line-height: 36px; font-size: 20px; padding-left: 15px;">
                                 Available in Size <?= number_format($sepatu[0]['size_sepatu'], 0, ',', '.') ?> (UK)
                             </h4>
                         </div>
@@ -68,46 +68,36 @@
                                 $stmt -> execute();
                                 $count = $stmt -> get_result() -> fetch_assoc();
                             ?>
-                            <?= $count['total'] ?> of this item has been sold
+                            <?= $count['total'] ?> of this item has been sold.
                         </div>
                         <div>
-                            And the stock is still available. Buy now! Stock Available : <?= $sepatu[0]['stock_sepatu'] ?>
+                            <?php
+                                if($sepatu[0]['stock_sepatu'] <= 0) {
+                                ?>
+                                    <span>And now we're out of stock. Please check again later!</span>
+                                <?php
+                                } else if($sepatu[0]['stock_sepatu'] <= 5) {
+                                ?>
+                                    <span>The stock is very low. Grab yours now before it's sold out!</span>
+                                <?php
+                                } else {
+                                ?>
+                                    <span>The stock is still available. Come grab yours now!</span>
+                                <?php
+                                }
+                            ?>
+                            Stock Available : <?= $sepatu[0]['stock_sepatu'] ?>
                             <input type="hidden" name="" id="jumlahstock" value="<?= $sepatu[0]['stock_sepatu'] ?>">
                         </div>
-                    </div>
-                    <div class="w-100">
-                        <table>
-                            <tbody>
-                                <tr class="align-middle" style="font-size: 30px;">
-                                    <!-- <td style="color: #0f0d10;">Price&nbsp;&nbsp;&nbsp;</td>
-                                    <td style="color: #0f0d10;">:&nbsp;</td> -->
-                                    <td style="color: #0f0d10;"></td>
-                                </tr>
-                                <tr class="align-middle" style="font-size: 30px;">
-                                    <!-- <td style="color: #0f0d10;">Size&nbsp;&nbsp;&nbsp;</td>
-                                    <td style="color: #0f0d10;">:&nbsp;</td> -->
-                                    <td style="color: #0f0d10;"></td>
-                                </tr>
-                                <tr class="align-middle" style="font-size: 30px;">
-                                    <!-- <td style="color: #0f0d10;">Stock&nbsp;&nbsp;&nbsp;</td>
-                                    <td style="color: #0f0d10;">:&nbsp;</td> -->
-                                    <td style="color: #0f0d10;">
-                                        
-                                    </td>
-                                </tr>
-                                <tr class="align-middle" style="font-size: 30px;">
-                                    <td class="d-flex justify-content-center">
-                                        <span>Qty: </span>
-                                        <!-- <button class="btn btn-secondary">-</button>
-                                        <input type="text" name="" id="" class="form-control" style="width: 35px;" value="1">
-                                        <button class="btn btn-secondary">+</button> -->
-                                        <button class="btn btn-secondary" onclick="kurang()">-</button>
-                                        <input type="text" name="jumlahqty" id="jumlahqty" class="form-control" style="width: 35px;" value="1">
-                                        <button class="btn btn-secondary" onclick="tambah()">+</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="d-flex justify-content-center">
+                            <span>Qty: </span>
+                            <!-- <button class="btn btn-secondary">-</button>
+                            <input type="text" name="" id="" class="form-control" style="width: 35px;" value="1">
+                            <button class="btn btn-secondary">+</button> -->
+                            <button class="btn btn-secondary" onclick="kurang()">-</button>
+                            <input type="text" name="jumlahqty" id="jumlahqty" class="form-control" style="width: 35px;" value="1">
+                            <button class="btn btn-secondary" onclick="tambah()">+</button>
+                        </div>
                     </div>
                     <div class="w-100">
                         <?php
