@@ -26,12 +26,11 @@
         <?php require_once("./section/connection_head.php") ?>
         <?php require_once("./section/script_section.php") ?>
     </head>
-    <body class="main-layout flex flex-column flex-between">
+    <body class="main-layout flex flex-column flex-between" style="position: relative;">
         <div class="header-section">
             <?php require_once("./section/nav_section.php") ?>
         </div>
-        <!-- DESKTOP -->
-        <div class="position-sticky p-3" style="top: 0; right: 0; z-index: 99999;">
+        <!-- <div class="position-sticky p-3" style="display: none; top: 0; right: 0; z-index: 99999;">
             <div id="liveToast" class="toast fade hide" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="toast-header">
                     <strong style="margin-right: auto;">Well Done!</strong>
@@ -41,27 +40,18 @@
                     Your item has been added to cart.
                 </div>
             </div>
-        </div>
-        <div class="container h-100 py-3" style="position: relative;">
-        <!-- <div class="container h-auto"> -->
-            <div class="h-100" style="padding: 0 16px;">
-                <div class="h-100 flex" style="border: 1px solid rgb(219, 222, 226); border-radius: 8px; padding: 20px;">
-                    <!-- <div class="w-100 flex" style="border-bottom: 1px solid rgb(219, 222, 226);">
-                        <div id="seeProfile" style="padding: 0 10px;">Your Profile</div>
-                        <div id="seeHistory" style="padding: 0 10px;">Transaction History</div>
-                    </div> -->
-                    <div class="h-100 flex-center" style="width: 35%; margin-right: 30px;">
-                        <div id="inner1" class="w-100 h-100" style="padding: 10px; border-radius: 8px; box-shadow: 0 1px 6px 0 rgba(49, 53, 59, 0.12);">
-                        </div>
+        </div> -->
+        <div class="container h-auto position-relative landing-padding about" style="min-height: 100%;">
+            <div class="h-100 py-3">
+                <div class="h-100 flex" style="border: 1px solid rgb(219, 222, 226); border-radius: 8px; padding: 20px; overflow-y: hidden;">
+                    <div class="col-lg-4 h-auto flex-center flex-vstart" style="padding: 0; position: relative;">
+                        <div id="inner1" class="w-100 h-auto" style="padding: 10px; border-radius: 8px; box-shadow: 0 1px 6px 0 rgba(49, 53, 59, 0.12); position: sticky; top: 0;"></div>
                     </div>
-                    <div id="inner2" class="h-100 flex" style="width: calc(65% - 30px); overflow-y: auto;">
+                    <div id="inner2" class="h-100 flex col-lg-8" style="max-height: 100%; overflow-y: auto;">
                     </div>
-                    <!-- <div class="w-100 h-100" style="padding: 10px; border-radius: 8px; box-shadow: 0 1px 6px 0 rgba(49, 53, 59, 0.12);">
-                    </div> -->
                 </div>
             </div>
         </div>
-        <br>
         <?php require_once("./section/footer_section.php") ?>
         <script>
             $(document).ready(function() {
@@ -101,7 +91,6 @@
 
                 loadSection("./section/get_profile.php", <?= json_encode($activeUser) ?>, "#inner1");
                 loadSection("./midtrans/index.php/transaction", "", "#inner2");
-                // loadSection("./midtrans/index.php/transaction", "");
             });
         </script>
     </body>

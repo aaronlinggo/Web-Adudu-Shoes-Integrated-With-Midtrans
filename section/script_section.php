@@ -21,6 +21,18 @@
         //     });
         // });
 
+        $("#search_img").click(function(e) { 
+            e.preventDefault();
+
+            window.location = "./shoes.php?input-search=true";
+        });
+
+        // $("#search_text_mirror").click(function(e) { 
+        //     e.preventDefault();
+
+        //     window.location = "";
+        // });
+
         $(".fancybox").fancybox({
             openEffect: "none",
             closeEffect: "none"

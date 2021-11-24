@@ -29,7 +29,7 @@
 			<?php require_once("./section/nav_section.php") ?>
 		</div>
 		<div id="catalog" class="fullwidth h-auto flex flex-column" style="position: relative;">
-			<div class="position-sticky p-3" style="top: 0; right: 0; z-index: 99999;">
+			<!-- <div class="position-sticky p-3" style="top: 0; right: 0; z-index: 99999;">
 				<div id="liveToast" class="toast fade hide" role="alert" aria-live="assertive" aria-atomic="true">
 					<div class="toast-header">
 						<strong style="margin-right: auto;">Success</strong>
@@ -37,62 +37,101 @@
 					</div>
 					<div class="toast-body">Your item has been added to cart.</div>
 				</div>
-			</div>
+			</div> -->
 			<!-- <div class="collection_text">Shoes</div> -->
 			<div class="layout-padding gallery_section">
 				<div class="container landing-padding about">
-					<div class="query-box w-100 col-sm-12 flex-center flex-wrap flex-between border-radius-medium">
-						<div class="inner col-lg-8 col-sm-12 flex flex-hstart flex-vcenter" style="padding: 0;">
-							<div class="h-100 flex-center flex-hstart" style="font-size: 12pt;">
-								<div class="filter-label align-middle" style="color: #000;">Sort By</div>
+					<div class="query-box w-100 col-sm-12 flex-center flex-wrap-reverse flex-between border-radius-medium">
+						<div class="inner col-lg-8 col-md-12 col-sm-12 flex flex-hstart flex-vcenter" style="overflow-x: auto; overflow-y: hidden; -ms-overflow-style: none; scrollbar-width: none;">
+							<div class="inner-container col-md-12 h-100 flex-center flex-hstart">
+								<div class="filter-label flex-center flex-hstart h-100" style="color: #000; min-width: 80px;">Sort By</div>
 								<?php
 									if(isset($_REQUEST['sort']) && $_REQUEST['sort'] == "popular") {
 									?>
-										<div id="popular" class="filter-button btn btn-success border-radius-small align-middle" style="background-color: rgba(0, 0, 0, 0.15); color: #000;">Popular</div>
+										<div id="popular" class="col-md-2 filter-button filter-control btn btn-success border-radius-small align-middle" style="background-color: rgba(0, 0, 0, 0.15); color: #000;">Popular</div>
 									<?php
 									} else {
 									?>
-										<div id="popular" class="filter-button btn btn-dark border-radius-small align-middle">Popular</div>
+										<div id="popular" class="col-md-2 filter-button filter-control btn btn-dark border-radius-small align-middle">Popular</div>
 									<?php
 									}
 								?>
 								<?php
 									if(isset($_REQUEST['sort']) && $_REQUEST['sort'] == "newest") {
 									?>
-										<div id="newest" class="filter-button btn btn-success border-radius-small align-middle" style="background-color: rgba(0, 0, 0, 0.15); color: #000;">Newest</div>
+										<div id="newest" class="col-md-2 filter-button filter-control btn btn-success border-radius-small align-middle" style="background-color: rgba(0, 0, 0, 0.15); color: #000;">Newest</div>
 									<?php
 									} else {
 									?>
-										<div id="newest" class="filter-button btn btn-dark border-radius-small align-middle">Newest</div>
+										<div id="newest" class="col-md-2 filter-button filter-control btn btn-dark border-radius-small align-middle">Newest</div>
 									<?php
 									}
 								?>
 								<?php
 									if(isset($_REQUEST['sort']) && $_REQUEST['sort'] == "oldest") {
 									?>
-										<div id="oldest" class="filter-button btn btn-success border-radius-small align-middle" style="background-color: rgba(0, 0, 0, 0.15); color: #000;">Oldest</div>
+										<div id="oldest" class="col-md-2 filter-button filter-control btn btn-success border-radius-small align-middle" style="background-color: rgba(0, 0, 0, 0.15); color: #000;">Oldest</div>
 									<?php
 									} else {
 									?>
-										<div id="oldest" class="filter-button btn btn-dark border-radius-small align-middle">Oldest</div>
+										<div id="oldest" class="col-md-2 filter-button filter-control btn btn-dark border-radius-small align-middle">Oldest</div>
 									<?php
 									}
 								?>
 								<div class="flex-center h-100">
-									<select name="price" id="price" class="h-100">
-										<option disabled selected hidden>Price</option>
-										<option value="price-desc">High -> Low</option>
-										<option value="price-asc">Low -> High</option>
+									<?php
+										if(isset($_REQUEST['sort']) && ($_REQUEST['sort'] == "price-desc" || $_REQUEST['sort'] == "price-asc")) {
+										?>
+											<select name="price" id="price" class="filter-control outer-btn border-radius-small btn btn-dark" style="background-color: rgba(0, 0, 0, 0.15); color: #000;">
+										<?php
+										} else {
+										?>
+											<select name="price" id="price" class="filter-control outer-btn border-radius-small btn btn-dark">
+										<?php
+										}
+									?>
+										<?php
+											if(isset($_REQUEST['sort']) && $_REQUEST['sort'] == "price-desc") {
+											?>
+												<option disabled selected hidden>Price: High to Low</option>
+											<?php
+											} else if(isset($_REQUEST['sort']) && $_REQUEST['sort'] == "price-asc") {
+											?>
+												<option disabled selected hidden>Price: Low to High</option>
+											<?php
+											} else {
+											?>
+												<option disabled selected hidden>Price</option>
+											<?php
+											}
+										?>
+										<option style="text-align: left;" value="price-desc">Price: High to Low</option>
+										<option style="text-align: left;" value="price-asc">Price: Low to High</option>
 									</select>
 								</div>
 							</div>
 						</div>
-						<div class="inner col-lg-4 col-sm-12 flex flex-hend flex-vcenter" style="padding: 0;">
-							<form action="" method="POST" autocomplete="off" class="flex-center flex-hend">
-								<!-- <div id="search_area" class="flex w-100"> -->
-									<input type="text" name="search_bar" id="search_bar" required>
-									<button name="search_btn" id="search_btn" style="margin-left: 10px;">Search</button>
-								<!-- </div> -->
+						<div class="inner col-lg-4 col-md-12 col-sm-12 flex flex-hend flex-vcenter" style="padding: 0;">
+							<form action="" method="POST" autocomplete="off" class="col-lg-11 col-md-12 p-0 flex-center flex-hend">
+								<?php
+									if(isset($_REQUEST['input-search']) && $_REQUEST['input-search'] == "true") {
+									?>
+										<input type="text" name="search_bar" id="search_bar" class="filter-control outer-textbox border-radius-small" style="border: 1px solid #000; flex-grow: 1;" placeholder="Search" autofocus required>
+									<?php
+									} else {
+									?>
+										<input type="text" name="search_bar" id="search_bar" class="filter-control outer-textbox border-radius-small" style="border: 1px solid #000; flex-grow: 1;" placeholder="Search" required>
+									<?php
+									}
+								?>
+								<button name="search_btn" id="search_btn" class="filter-button filter-control btn btn-dark border-radius-small align-middle" style="margin-right: 0;">Search</button>
+								<button name="search_btn" id="search_btn_clone" class="filter-button filter-control btn btn-dark border-radius-small flex-center" style="display: none; margin-right: 0;">
+									<svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" focusable="false" width="20px" height="20px">
+										<g>
+											<path fill="#ffffff" d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+										</g>
+									</svg>
+								</button>
 							</form>
 						</div>
 					</div>

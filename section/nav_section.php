@@ -16,7 +16,7 @@
                             <a class="nav-item nav-link nav-android-menu" href="./index.php">Home</a>
                             <a class="nav-item nav-link nav-android-menu" href="./aboutus.php">About</a>
                             <a class="nav-item nav-link nav-android-menu" href="./shoes.php">Shoes</a>
-                            <a class="nav-item nav-link nav-android-menu last" href="#">Search</a>
+                            <a class="nav-item nav-link nav-android-menu last" href="./shoes.php?input-search=true">Search</a>
                             <a class="nav-item nav-link nav-android-menu last" href='<?= (!isset($_SESSION['active'])) ? "./login.php" : "./midtrans/index.php/snap" ?>'>Cart</a>
                             <div id="search_icon" class="nav-item nav-link last flex-center" style="cursor: pointer; position: relative;">
                                 <img id="search_img" src="./images/search_icon_black.png">

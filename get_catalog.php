@@ -55,42 +55,48 @@
         $get_total = $sql -> get_result() -> fetch_assoc();
     }
 
-    foreach($sepatu as $key => $value) {
-        $lokasi = "./admin/" . $value['link_gambarsepatu'];
-        ?>
-            <div class="flex catalog-card col-sm-12 col-md-6 col-lg-4">
-                <div class="inner flex-center flex-column flex-hend flex-between border-radius-medium">
-                    <div>
-                        <p class="catalog-item"><?= $value['nama_sepatu'] ?></p>
-                    </div>
-                    <div>
-                        <div class="catalog-img-placeholder w-100">
-                            <img class="catalog-img" src='<?= $lokasi ?>' alt="">
+    if(count($sepatu) > 0) {
+        foreach($sepatu as $key => $value) {
+            $lokasi = "./admin/" . $value['link_gambarsepatu'];
+            ?>
+                <div class="flex catalog-card col-sm-12 col-md-6 col-lg-4">
+                    <div class="inner flex-center flex-column flex-hend flex-between border-radius-medium">
+                        <div>
+                            <p class="catalog-item"><?= $value['nama_sepatu'] ?></p>
                         </div>
-                        <div class="w-100 flex-center flex-column flex-vend">
-                            <div class="align-items-center w-100">
-                                <div class="flex-center flex-hstart w-100" style="font-size: 16px;"><?= ($value['stock_sepatu'] > 0) ? "Stock Available" : "Out of Stock" ?></div>
-                                <div class="catalog-price flex-center flex-hstart w-100">Rp.&nbsp;<span style="color: #ff4e5b;"><?= number_format($value['harga_sepatu'], 0, ',', '.') ?></span></div>
+                        <div>
+                            <div class="catalog-img-placeholder w-100">
+                                <img class="catalog-img" src='<?= $lokasi ?>' alt="">
                             </div>
-                            <div class="catalog-btn-container align-items-center w-100 flex-center">
-                                <a href='<?= "./detail_shoes.php?id_sepatu=" . $value['id_sepatu'] ?>' class="btn btn-dark border-radius-small catalog-btn" style="margin-right: 5px;">Details</a>
-                                <?php
-                                    if(isset($_SESSION['active'])) {
-                                    ?>
-                                        <button class="btn btn-dark border-radius-small catalog-btn empty-margin" name="addCart" id="addCart" value='<?= $value['id_sepatu'] ?>' onclick="addCart(this, 1)" style="margin-left: 5px;">Add to Cart</button>
+                            <div class="w-100 flex-center flex-column flex-vend">
+                                <div class="align-items-center w-100">
+                                    <div class="flex-center flex-hstart w-100" style="font-size: 16px;"><?= ($value['stock_sepatu'] > 0) ? "Stock Available" : "Out of Stock" ?></div>
+                                    <div class="catalog-price flex-center flex-hstart w-100">Rp.&nbsp;<span style="color: #ff4e5b;"><?= number_format($value['harga_sepatu'], 0, ',', '.') ?></span></div>
+                                </div>
+                                <div class="catalog-btn-container align-items-center w-100 flex-center">
+                                    <a href='<?= "./detail_shoes.php?id_sepatu=" . $value['id_sepatu'] ?>' class="btn btn-dark border-radius-small catalog-btn" style="margin-right: 5px;">Details</a>
                                     <?php
-                                    } else {
+                                        if(isset($_SESSION['active'])) {
+                                        ?>
+                                            <button class="btn btn-dark border-radius-small catalog-btn empty-margin" name="addCart" id="addCart" value='<?= $value['id_sepatu'] ?>' onclick="addCart(this, 1)" style="margin-left: 5px;">Add to Cart</button>
+                                        <?php
+                                        } else {
+                                        ?>
+                                            <a href="./login.php" class="btn btn-dark border-radius-small catalog-btn empty-margin" style="margin-left: 5px;">Add to Cart</a>
+                                        <?php
+                                        }
                                     ?>
-                                        <a href="./login.php" class="btn btn-dark border-radius-small catalog-btn empty-margin" style="margin-left: 5px;">Add to Cart</a>
-                                    <?php
-                                    }
-                                ?>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        <?php
+            <?php
+        }
+    } else {
+    ?>
+        <div class="w-100 flex-center col-sm-12 py-5" style="font-size: 18pt;">Sorry we didn't find anything.</div>
+    <?php
     }
 ?>
 

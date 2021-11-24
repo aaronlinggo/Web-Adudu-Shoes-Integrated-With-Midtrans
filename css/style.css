@@ -195,6 +195,10 @@ button {
     flex-wrap: wrap;
 }
 
+.flex-wrap-reverse {
+    flex-wrap: wrap-reverse;
+}
+
 .flex-around {
     justify-content: space-around;
 }
@@ -358,14 +362,27 @@ button {
     height: 60px; */
 }
 
+.query-box .inner,
+.query-box .inner .inner-container {
+    padding: 0;
+}
+
+.query-box .inner .inner-container {
+    font-size: 12pt;
+}
+
 .query-box .filter-label {
     padding-right: 16px;
+}
+
+.query-box .filter-control {
+    height: 36px!important;
+    margin: 8px 4px;
 }
 
 .query-box .filter-button {
     border: 0;
     color: #fff;
-    margin: 8px 4px;
     padding: 6px 12px;
 }
 
@@ -474,11 +491,12 @@ button {
     text-align: center;
 }
 
-/* #body::-webkit-scrollbar {
+.query-box .inner::-webkit-scrollbar {
+/* #body::-webkit-scrollbar { */
     display: none;
 }
 
-#body {
+/* #body, .query-box .inner-container {
     -ms-overflow-style: none;
     scrollbar-width: none;
 } */
@@ -489,7 +507,9 @@ button {
     color: #fff!important;
     font-family: Poppins;
     font-size: 12pt;
+    /* margin-top: -200px; */
     padding: 0 5%;
+    /* position: relative; */
     text-align: center;
 }
 
