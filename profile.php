@@ -113,6 +113,7 @@
                     }, 5000);
                 </script>
                 <?php
+                unset($_SESSION['notif']);
             }
         ?>
         <div class="container h-auto position-relative landing-padding about" style="min-height: 100%;">
