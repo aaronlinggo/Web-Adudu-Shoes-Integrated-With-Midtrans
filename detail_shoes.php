@@ -62,19 +62,17 @@
                             </h4>
                         </div>
                         <div>
-                            Stock Available : <?= $sepatu[0]['stock_sepatu'] ?>
-                            <input type="hidden" name="" id="jumlahstock" value="<?= $sepatu[0]['stock_sepatu'] ?>">
-                        </div>
-                        <div>
                             <?php
-                                $stmt = $conn -> prepare("SELECT COUNT(*) AS total FROM order_items WHERE sepatu_id = ?");
+                                $stmt = $conn -> prepare("SELECT SUM(qty) AS total FROM order_items WHERE sepatu_id = ?");
                                 $stmt -> bind_param("i", $sepatu[0]['id_sepatu']);
                                 $stmt -> execute();
                                 $count = $stmt -> get_result() -> fetch_assoc();
                             ?>
-                            <?= $count['total'] ?> people buy this item
-                            <!-- <?= var_dump($count) ?> people buy this item -->
-                            <!-- <?= var_dump($sepatu[0]['id_sepatu']) ?> people buy this item -->
+                            <?= $count['total'] ?> of this item has been sold
+                        </div>
+                        <div>
+                            And the stock is still available. Buy now! Stock Available : <?= $sepatu[0]['stock_sepatu'] ?>
+                            <input type="hidden" name="" id="jumlahstock" value="<?= $sepatu[0]['stock_sepatu'] ?>">
                         </div>
                     </div>
                     <div class="w-100">

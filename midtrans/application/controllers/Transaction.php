@@ -91,9 +91,9 @@ class Transaction extends CI_Controller {
 			$stmt = $conn -> prepare("SELECT id FROM payment WHERE order_id = '$order_id'");
 			$stmt -> execute();
 			$p = $stmt -> get_result() -> fetch_assoc();
-	
+
 			$id_payment = $p['id'];
-	
+
 			$stmt = $conn -> prepare("SELECT * FROM order_details WHERE payment_id = '$id_payment'");
 			$stmt -> execute();
 			$od = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
@@ -180,11 +180,11 @@ class Transaction extends CI_Controller {
 
 			if($p['transaction_status'] == "pending") {
 				$id_payment = $p['id'];
-		
+
 				$stmt = $conn -> prepare("SELECT * FROM order_details WHERE payment_id = '$id_payment'");
 				$stmt -> execute();
 				$od = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
-	
+
 				foreach($od as $key => $value) {
 					if($value['status'] == 0) {
 						?>
