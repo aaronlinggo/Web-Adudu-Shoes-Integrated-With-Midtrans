@@ -180,7 +180,7 @@
 											for ($j=0; $j < 4; $j++) { 
 												?>
 													<div class="col-lg-3 col-md-6 mb-3">
-														<div class="card" style="height: 500px;">
+														<div class="card multi_item">
 															<img class="img-fluid" alt="100%x280" src="<?= "./admin/" . $sepatu[$randomIndex]['link_gambarsepatu'] ?>">
 															<div class="card-body d-flex flex-column justify-content-between">
 																<h4 class="card-title"><?= $sepatu[$randomIndex]['nama_sepatu'] ?></h4>
