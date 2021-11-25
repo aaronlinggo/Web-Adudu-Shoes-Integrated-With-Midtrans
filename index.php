@@ -42,7 +42,7 @@
 									<?php
 										$subdesc = $lastShoes[0]['sub_desc'];
 									?>
-									<p class="lorem_text"><?= $subdesc ?></p>
+									<p class="about-text"><?= $subdesc ?></p>
 									<a href="./detail_shoes.php?id_sepatu=<?= $lastShoes[0]['id_sepatu'] ?>"><button class="buy_bt">Buy Now</button></a>
 									<a href="./shoes.php"><button class="more_bt">See More</button></a>
 								</div>
