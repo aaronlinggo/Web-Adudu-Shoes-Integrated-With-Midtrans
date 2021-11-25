@@ -171,150 +171,33 @@
 							<div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
 								<div class="carousel-inner">
 									<div class="row">
-										<div class="carousel-item active">
-											<div class="row d-flex flex-wrap">
-												<div class="col-lg-3 col-md-6 mb-3">
-													<div class="card" style="height: 500px;">
-														<img class="img-fluid" alt="100%x280" src="<?= "./admin/" . $sepatu[$randomIndex]['link_gambarsepatu'] ?>">
-														<div class="card-body">
-															<h4 class="card-title"><?= $sepatu[$randomIndex]['nama_sepatu'] ?></h4>
-															<p class="card-text" style="color: #ed2540;"><strong>Rp. <span style="color: #0a0506"><?= number_format($sepatu[$randomIndex]['harga_sepatu'], 0, ',', '.') ?></span></strong></p>
-															<a href="./detail_shoes.php?id_sepatu=<?= $sepatu[$randomIndex]['id_sepatu'] ?>" class="align-self-end"><button class="btn btn-dark border-radius-small catalog-btn empty-margin w-100" name="addCart" id="addCart" style="margin-left: 5px;">Buy Now</button></a>
+										<?php 
+										for ($i=0; $i < 4; $i++) { 
+											?>
+											<div class="carousel-item <?php if ($i == 0) { echo "active"; } ?>">
+												<div class="row d-flex flex-wrap">
+											<?php
+											for ($j=0; $j < 4; $j++) { 
+												?>
+													<div class="col-lg-3 col-md-6 mb-3">
+														<div class="card" style="height: 500px;">
+															<img class="img-fluid" alt="100%x280" src="<?= "./admin/" . $sepatu[$randomIndex]['link_gambarsepatu'] ?>">
+															<div class="card-body">
+																<h4 class="card-title"><?= $sepatu[$randomIndex]['nama_sepatu'] ?></h4>
+																<p class="card-text" style="color: #ed2540;"><strong>Rp. <span style="color: #0a0506"><?= number_format($sepatu[$randomIndex]['harga_sepatu'], 0, ',', '.') ?></span></strong></p>
+																<a href="./detail_shoes.php?id_sepatu=<?= $sepatu[$randomIndex]['id_sepatu'] ?>" class="align-self-end"><button class="btn btn-dark border-radius-small catalog-btn empty-margin w-100" name="addCart" id="addCart" style="margin-left: 5px;">Buy Now</button></a>
+															</div>
+															<?php $randomIndex++ ?>
 														</div>
-														<?php $randomIndex++ ?>
 													</div>
-												</div>
-												<div class="col-lg-3 col-md-6 mb-3">
-													<div class="card" style="height: 500px;">
-														<img class="img-fluid" alt="100%x280" src="<?= "./admin/" . $sepatu[$randomIndex]['link_gambarsepatu'] ?>">
-														<div class="card-body">
-															<h4 class="card-title"><?= $sepatu[$randomIndex]['nama_sepatu'] ?></h4>
-															<p class="card-text" style="color: #ed2540;"><strong>Rp. <span style="color: #0a0506"><?= number_format($sepatu[$randomIndex]['harga_sepatu'], 0, ',', '.') ?></span></strong></p>
-															<a href="./detail_shoes.php?id_sepatu=<?= $sepatu[$randomIndex]['id_sepatu'] ?>" class="align-self-end"><button class="btn btn-dark border-radius-small catalog-btn empty-margin w-100" name="addCart" id="addCart" style="margin-left: 5px;">Buy Now</button></a>
-														</div>
-														<?php $randomIndex++ ?>
-													</div>
-												</div>
-												<div class="col-lg-3 col-md-6 mb-3">
-													<div class="card" style="height: 500px;">
-														<img class="img-fluid" alt="100%x280" src="<?= "./admin/" . $sepatu[$randomIndex]['link_gambarsepatu'] ?>">
-														<div class="card-body">
-															<h4 class="card-title"><?= $sepatu[$randomIndex]['nama_sepatu'] ?></h4>
-															<p class="card-text" style="color: #ed2540;"><strong>Rp. <span style="color: #0a0506"><?= number_format($sepatu[$randomIndex]['harga_sepatu'], 0, ',', '.') ?></span></strong></p>
-															<a href="./detail_shoes.php?id_sepatu=<?= $sepatu[$randomIndex]['id_sepatu'] ?>" class="align-self-end"><button class="btn btn-dark border-radius-small catalog-btn empty-margin w-100" name="addCart" id="addCart" style="margin-left: 5px;">Buy Now</button></a>
-														</div>
-														<?php $randomIndex++ ?>
-													</div>
-												</div>
-												<div class="col-lg-3 col-md-6 mb-3">
-													<div class="card" style="height: 500px;">
-														<img class="img-fluid" alt="100%x280" src="<?= "./admin/" . $sepatu[$randomIndex]['link_gambarsepatu'] ?>">
-														<div class="card-body">
-															<h4 class="card-title"><?= $sepatu[$randomIndex]['nama_sepatu'] ?></h4>
-															<p class="card-text" style="color: #ed2540;"><strong>Rp. <span style="color: #0a0506"><?= number_format($sepatu[$randomIndex]['harga_sepatu'], 0, ',', '.') ?></span></strong></p>
-															<a href="./detail_shoes.php?id_sepatu=<?= $sepatu[$randomIndex]['id_sepatu'] ?>" class="align-self-end"><button class="btn btn-dark border-radius-small catalog-btn empty-margin w-100" name="addCart" id="addCart" style="margin-left: 5px;">Buy Now</button></a>
-														</div>
-														<?php $randomIndex++ ?>
-													</div>
+												<?php
+											}
+											?>
 												</div>
 											</div>
-										</div>
-										<div class="carousel-item">
-											<div class="row d-flex flex-wrap">
-												<div class="col-lg-3 col-md-6 mb-3">
-													<div class="card" style="height: 500px;">
-														<img class="img-fluid" alt="100%x280" src="<?= "./admin/" . $sepatu[$randomIndex]['link_gambarsepatu'] ?>">
-														<div class="card-body">
-															<h4 class="card-title"><?= $sepatu[$randomIndex]['nama_sepatu'] ?></h4>
-															<p class="card-text" style="color: #ed2540;"><strong>Rp. <span style="color: #0a0506"><?= number_format($sepatu[$randomIndex]['harga_sepatu'], 0, ',', '.') ?></span></strong></p>
-															<a href="./detail_shoes.php?id_sepatu=<?= $sepatu[$randomIndex]['id_sepatu'] ?>" class="align-self-end"><button class="btn btn-dark border-radius-small catalog-btn empty-margin w-100" name="addCart" id="addCart" style="margin-left: 5px;">Buy Now</button></a>
-														</div>
-														<?php $randomIndex++ ?>
-													</div>
-												</div>
-												<div class="col-lg-3 col-md-6 mb-3">
-													<div class="card" style="height: 500px;">
-														<img class="img-fluid" alt="100%x280" src="<?= "./admin/" . $sepatu[$randomIndex]['link_gambarsepatu'] ?>">
-														<div class="card-body">
-															<h4 class="card-title"><?= $sepatu[$randomIndex]['nama_sepatu'] ?></h4>
-															<p class="card-text" style="color: #ed2540;"><strong>Rp. <span style="color: #0a0506"><?= number_format($sepatu[$randomIndex]['harga_sepatu'], 0, ',', '.') ?></span></strong></p>
-															<a href="./detail_shoes.php?id_sepatu=<?= $sepatu[$randomIndex]['id_sepatu'] ?>" class="align-self-end"><button class="btn btn-dark border-radius-small catalog-btn empty-margin w-100" name="addCart" id="addCart" style="margin-left: 5px;">Buy Now</button></a>
-														</div>
-														<?php $randomIndex++ ?>
-													</div>
-												</div>
-												<div class="col-lg-3 col-md-6 mb-3">
-													<div class="card" style="height: 500px;">
-														<img class="img-fluid" alt="100%x280" src="<?= "./admin/" . $sepatu[$randomIndex]['link_gambarsepatu'] ?>">
-														<div class="card-body">
-															<h4 class="card-title"><?= $sepatu[$randomIndex]['nama_sepatu'] ?></h4>
-															<p class="card-text" style="color: #ed2540;"><strong>Rp. <span style="color: #0a0506"><?= number_format($sepatu[$randomIndex]['harga_sepatu'], 0, ',', '.') ?></span></strong></p>
-															<a href="./detail_shoes.php?id_sepatu=<?= $sepatu[$randomIndex]['id_sepatu'] ?>" class="align-self-end"><button class="btn btn-dark border-radius-small catalog-btn empty-margin w-100" name="addCart" id="addCart" style="margin-left: 5px;">Buy Now</button></a>
-														</div>
-														<?php $randomIndex++ ?>
-													</div>
-												</div>
-												<div class="col-lg-3 col-md-6 mb-3">
-													<div class="card" style="height: 500px;">
-														<img class="img-fluid" alt="100%x280" src="<?= "./admin/" . $sepatu[$randomIndex]['link_gambarsepatu'] ?>">
-														<div class="card-body">
-															<h4 class="card-title"><?= $sepatu[$randomIndex]['nama_sepatu'] ?></h4>
-															<p class="card-text" style="color: #ed2540;"><strong>Rp. <span style="color: #0a0506"><?= number_format($sepatu[$randomIndex]['harga_sepatu'], 0, ',', '.') ?></span></strong></p>
-															<a href="./detail_shoes.php?id_sepatu=<?= $sepatu[$randomIndex]['id_sepatu'] ?>" class="align-self-end"><button class="btn btn-dark border-radius-small catalog-btn empty-margin w-100" name="addCart" id="addCart" style="margin-left: 5px;">Buy Now</button></a>
-														</div>
-														<?php $randomIndex++ ?>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="carousel-item">
-											<div class="row d-flex flex-wrap">
-												<div class="col-lg-3 col-md-6 mb-3">
-													<div class="card" style="height: 500px;">
-														<img class="img-fluid" alt="100%x280" src="<?= "./admin/" . $sepatu[$randomIndex]['link_gambarsepatu'] ?>">
-														<div class="card-body">
-															<h4 class="card-title"><?= $sepatu[$randomIndex]['nama_sepatu'] ?></h4>
-															<p class="card-text" style="color: #ed2540;"><strong>Rp. <span style="color: #0a0506"><?= number_format($sepatu[$randomIndex]['harga_sepatu'], 0, ',', '.') ?></span></strong></p>
-															<a href="./detail_shoes.php?id_sepatu=<?= $sepatu[$randomIndex]['id_sepatu'] ?>" class="align-self-end"><button class="btn btn-dark border-radius-small catalog-btn empty-margin w-100" name="addCart" id="addCart" style="margin-left: 5px;">Buy Now</button></a>
-														</div>
-														<?php $randomIndex++ ?>
-													</div>
-												</div>
-												<div class="col-lg-3 col-md-6 mb-3">
-													<div class="card" style="height: 500px;">
-														<img class="img-fluid" alt="100%x280" src="<?= "./admin/" . $sepatu[$randomIndex]['link_gambarsepatu'] ?>">
-														<div class="card-body">
-															<h4 class="card-title"><?= $sepatu[$randomIndex]['nama_sepatu'] ?></h4>
-															<p class="card-text" style="color: #ed2540;"><strong>Rp. <span style="color: #0a0506"><?= number_format($sepatu[$randomIndex]['harga_sepatu'], 0, ',', '.') ?></span></strong></p>
-															<a href="./detail_shoes.php?id_sepatu=<?= $sepatu[$randomIndex]['id_sepatu'] ?>" class="align-self-end"><button class="btn btn-dark border-radius-small catalog-btn empty-margin w-100" name="addCart" id="addCart" style="margin-left: 5px;">Buy Now</button></a>
-														</div>
-														<?php $randomIndex++ ?>
-													</div>
-												</div>
-												<div class="col-lg-3 col-md-6 mb-3">
-													<div class="card" style="height: 500px;">
-														<img class="img-fluid" alt="100%x280" src="<?= "./admin/" . $sepatu[$randomIndex]['link_gambarsepatu'] ?>">
-														<div class="card-body">
-															<h4 class="card-title"><?= $sepatu[$randomIndex]['nama_sepatu'] ?></h4>
-															<p class="card-text" style="color: #ed2540;"><strong>Rp. <span style="color: #0a0506"><?= number_format($sepatu[$randomIndex]['harga_sepatu'], 0, ',', '.') ?></span></strong></p>
-															<a href="./detail_shoes.php?id_sepatu=<?= $sepatu[$randomIndex]['id_sepatu'] ?>" class="align-self-end"><button class="btn btn-dark border-radius-small catalog-btn empty-margin w-100" name="addCart" id="addCart" style="margin-left: 5px;">Buy Now</button></a>
-														</div>
-														<?php $randomIndex++ ?>
-													</div>
-												</div>
-												<div class="col-lg-3 col-md-6 mb-3">
-													<div class="card" style="height: 500px;">
-														<img class="img-fluid" alt="100%x280" src="<?= "./admin/" . $sepatu[$randomIndex]['link_gambarsepatu'] ?>">
-														<div class="card-body">
-															<h4 class="card-title"><?= $sepatu[$randomIndex]['nama_sepatu'] ?></h4>
-															<p class="card-text" style="color: #ed2540;"><strong>Rp. <span style="color: #0a0506"><?= number_format($sepatu[$randomIndex]['harga_sepatu'], 0, ',', '.') ?></span></strong></p>
-															<a href="./detail_shoes.php?id_sepatu=<?= $sepatu[$randomIndex]['id_sepatu'] ?>" class="align-self-end"><button class="btn btn-dark border-radius-small catalog-btn empty-margin w-100" name="addCart" id="addCart" style="margin-left: 5px;">Buy Now</button></a>
-														</div>
-														<?php $randomIndex++ ?>
-													</div>
-												</div>
-											</div>
-										</div>
+											<?php
+										}
+										?>
 									</div>
 								</div>
 							</div>
