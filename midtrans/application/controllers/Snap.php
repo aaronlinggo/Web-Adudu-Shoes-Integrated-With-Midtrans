@@ -102,9 +102,9 @@ class Snap extends CI_Controller {
     {
 		$result = json_decode($this->input->post('result_data')); 
 		$userid = $this->input->post('userid'); 
-		echo "<pre>";
-		print_r($result);
-		echo "</pre>";	
+		// echo "<pre>";
+		// print_r($result);
+		// echo "</pre>";	
 		if (isset($result->va_numbers[0]->bank)){
 			$bank = $result->va_numbers[0]->bank;
 		}
