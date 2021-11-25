@@ -61,6 +61,7 @@
 			</div>
 		</div>
 		<?php
+		if (isset($notification_handler)){
             if (count($notification_handler)>0){
                 ?>
                 <div id="notifPopup" class="position-sticky" style="display: none;">
@@ -120,6 +121,7 @@
                 $temp_active = 0;
                 $result = $conn -> query("update notification_handler set active = $temp_active where id = $id_notif");
             }
+		}
         ?>
 		<div class="collection_section">
 			<div class="container">

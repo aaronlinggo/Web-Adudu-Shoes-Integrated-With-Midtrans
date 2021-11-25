@@ -37,64 +37,66 @@
 		</div>
 		<div id="catalog" class="fullwidth h-auto flex flex-column">
 			<?php
-				if (count($notification_handler)>0){
-					?>
-					<div id="notifPopup1" class="position-sticky" style="display: none;">
-						<div id="liveToast1" class="toast fade hide" role="alert" aria-live="assertive" aria-atomic="true">
-							<div class="toast-header">
-								<strong style="margin-right: auto;">Payment Notification</strong>
-								<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+				if (isset($notification_handler)){
+					if (count($notification_handler)>0){
+						?>
+						<div id="notifPopup" class="position-sticky" style="display: none;">
+							<div id="liveToast" class="toast fade hide" role="alert" aria-live="assertive" aria-atomic="true">
+								<div class="toast-header">
+									<strong style="margin-right: auto;">Payment Notification</strong>
+									<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+								</div>
+								<div class="toast-body">Your #<?= $notification_handler['order_id'] ?> transaction is <?php if ($notification_handler['status'] == 'expire') { echo "not"; } ?> complete.</div>
 							</div>
-							<div class="toast-body">Your #<?= $notification_handler['order_id'] ?> transaction is <?php if ($notification_handler['status'] == 'expire') { echo "not"; } ?> complete.</div>
 						</div>
-					</div>
-					<script>
-						let notifTimer;
-						let calcHeaderHeight = $("#header").height() + 30;
-
-						$(document).ready(function() {
-							$(".btn-close").click(function(e) {
-								e.preventDefault();
-								clearTimeout(notifTimer);
-
-								$("#liveToast1").removeClass("show");
-								$("#liveToast1").addClass("hide");
-
-								setTimeout(() => {
-									$("#notifPopup1").removeAttr("style");
-									$("#notifPopup1").css({ "display": "none" });
-								}, 250);
+						<script>
+							let notifTimer;
+							let calcHeaderHeight = $("#header").height() + 30;
+		
+							$(document).ready(function() {
+								$(".btn-close").click(function(e) {
+									e.preventDefault();
+									clearTimeout(notifTimer);
+		
+									$("#liveToast").removeClass("show");
+									$("#liveToast").addClass("hide");
+		
+									setTimeout(() => {
+										$("#notifPopup").removeAttr("style");
+										$("#notifPopup").css({ "display": "none" });
+									}, 250);
+								});
 							});
-						});
-						$("#notifPopup1").removeAttr("style");
-						$("#notifPopup1").css({
-							"display": "block",
-							"top": calcHeaderHeight,
-							"right": "0",
-							"z-index": "99999"
-						});
-
-						clearTimeout(notifTimer);
-
-						setTimeout(() => {
-							$("#liveToast1").removeClass("hide");
-							$("#liveToast1").addClass("show");
-						}, 250);
-
-						notifTimer = setTimeout(() => {
-							$("#liveToast1").removeClass("show");
-							$("#liveToast1").addClass("hide");
-
+							$("#notifPopup").removeAttr("style");
+							$("#notifPopup").css({
+								"display": "block",
+								"top": calcHeaderHeight,
+								"right": "0",
+								"z-index": "99999"
+							});
+		
+							clearTimeout(notifTimer);
+		
 							setTimeout(() => {
-								$("#notifPopup1").removeAttr("style");
-								$("#notifPopup1").css({ "display": "none" });
+								$("#liveToast").removeClass("hide");
+								$("#liveToast").addClass("show");
 							}, 250);
-						}, 5000);
-					</script>
-					<?php
-					$id_notif = $notification_handler['id'];
-					$temp_active = 0;
-					$result = $conn -> query("update notification_handler set active = $temp_active where id = $id_notif");
+		
+							notifTimer = setTimeout(() => {
+								$("#liveToast").removeClass("show");
+								$("#liveToast").addClass("hide");
+		
+								setTimeout(() => {
+									$("#notifPopup").removeAttr("style");
+									$("#notifPopup").css({ "display": "none" });
+								}, 250);
+							}, 5000);
+						</script>
+						<?php
+						$id_notif = $notification_handler['id'];
+						$temp_active = 0;
+						$result = $conn -> query("update notification_handler set active = $temp_active where id = $id_notif");
+					}
 				}
 			?>
 			<div id="notifPopup" class="position-sticky" style="display: none;">
