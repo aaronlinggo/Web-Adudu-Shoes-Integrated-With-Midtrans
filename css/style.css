@@ -394,11 +394,13 @@ button {
     padding: 6px 12px;
 }
 
-.query-box .inner::-webkit-scrollbar, .profile-info::-webkit-scrollbar {
+.query-box .inner::-webkit-scrollbar,
+.profile-info::-webkit-scrollbar {
     display: none;
 }
 
-.query-box .inner, .profile-info {
+.query-box .inner,
+.profile-info {
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
@@ -508,7 +510,7 @@ button {
 }
 
 .detail-sec-row {
-    font-size: 18px!important;
+    font-size: 18px !important;
     line-height: 36px;
     padding: 0;
 }
@@ -535,7 +537,8 @@ button {
     margin-top: 5px;
 }
 
-#cart-box .qty, #detail-page .qty {
+#cart-box .qty,
+#detail-page .qty {
     border-radius: 50%;
     margin: 0 4px;
     padding: 0;
@@ -688,10 +691,6 @@ button {
     background: #555;
 }
 
-
-
-
-
 .banner_taital {
     margin-top: 85px;
     width: 100%;
@@ -742,77 +741,6 @@ button {
     margin-left: 25px;
 }
 
-/* MUNGKIN GA PERLU */
-/* .carousel-inner,
-.carousel,
-.carousel-item,
-.container,
-.fill {
-    width: 100%;
-    height: 100%;
-    background-position: center center;
-    background-size: cover;
-}
-
-.carousel-inner>.carousel-item.carousel-item-next,
-.carousel-inner>.carousel-item.active.carousel-item-right {
-    -webkit-transform: translate3d(0, 100%, 0);
-    -moz-transform: translate3d(0, 100%, 0);
-    -ms-transform: translate3d(0, 100%, 0);
-    -o-transform: translate3d(0, 100%, 0);
-    transform: translate3d(0, 100%, 0);
-    top: 0;
-}
-
-.carousel-inner>.carousel-item.carousel-item-prev,
-.carousel-inner>.carousel-item.active.carousel-item-left {
-    -webkit-transform: translate3d(0, -100%, 0);
-    -moz-transform: translate3d(0, -100%, 0);
-    -ms-transform: translate3d(0, -100%, 0);
-    -o-transform: translate3d(0, -100%, 0);
-    transform: translate3d(0, -100%, 0);
-    top: 0;
-}
-
-.carousel-inner>.carousel-item.next.carousel-item-left,
-.carousel-inner>.carousel-item.carousel-item-prev.carousel-item-right,
-.carousel-inner>.carousel-item.active {
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-    top: 0;
-}
-
-.carousel-indicators {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: auto;
-    right: -84px;
-    margin: auto;
-    width: auto;
-    height: 20px;
-    -webkit-transform: rotate(90deg);
-    -moz-transform: rotate(90deg);
-    -ms-transform: rotate(90deg);
-    -o-transform: rotate(90deg);
-    transform: rotate(90deg);
-}
-
-.carousel-indicators li {
-    border: 1px solid #00a199;
-    display: block;
-    margin-bottom: 5px;
-}
-
-.carousel-indicators li.active {
-    background: #00a199;
-    margin-bottom: 5px;
-} */
-/* MUNGKIN GA PERLU */
-
 .collection_section {
     float: left;
     padding-bottom: 0px;
@@ -835,26 +763,6 @@ button {
     padding-bottom: 30px;
     width: 100%;
 }
-
-/* MUNGKIN GA PERLU */
-.star_icon {
-    width: 25%;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.star_icon ul {
-    margin: 0px;
-    padding: 0px;
-}
-
-.star_icon li {
-    float: left;
-    padding-right: 10px;
-    padding-bottom: 25px;
-}
-
-/* MUNGKIN GA PERLU */
 
 .shoes_img {
     float: left;
