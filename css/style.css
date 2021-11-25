@@ -36,7 +36,6 @@ html {
 }
 
 body {
-    /* KASIH FULLSIZE */
     color: #666;
     font-family: Poppins;
     font-size: 14px;
@@ -498,6 +497,49 @@ button {
 
 .img-container:hover > .detail-img {
     background-size: 85%;
+}
+
+.placeholder-msg {
+    color: #28a745;
+    font-size: 18px;
+    font-weight: 500;
+    margin: 5px 0;
+    margin-top: 15px;
+}
+
+.cart-card {
+    background-color: #fff;
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.2);
+}
+
+.cart-img {
+    margin-top: 5px;
+}
+
+#cart-box .qty {
+    border-radius: 50%;
+    margin: 0 4px;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+}
+
+.cart-textbox {
+    border: 0;
+    text-align: center;
+    width: 35px;
+}
+
+#payment-box {
+    flex-shrink: 0;
+    padding: 5px 0;
+}
+
+#payment-box .payment-inner {
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.2);
+    margin: 5px 0;
+    padding: 16px;
+    width: inherit;
 }
 
 .login-container {

@@ -125,13 +125,14 @@
 				</div>
 			</div>
 		</div>
-		<div class="fullwidth h-auto flex flex-column" style="flex-grow: 1;">
+		<div id="cart-box" class="fullwidth h-auto flex flex-column" style="flex-grow: 1;">
 			<div class="container landing-padding about h-auto flex-center catalog-main">
 				<h1 class="title about-section m-0 mt-4 mt-sm-5 p-0 pt-3 pt-sm-2 font-bold" style="text-align: center;">SHOPPING CART</h1>
 			</div>
 			<div class="layout-padding about mb-5">
+				<div class="placeholder-msg flex-center">Scroll to the bottom to pay</div>
 				<div id="checkout-container" class="container landing-padding about h-auto flex-center flex-vstart">
-					<div class="flex flex-column" style="width: 100%; min-height: 100px; padding: 5px; padding-left: 0;">
+					<div class="inner flex flex-column w-100">
 						<?php
 							$amount = 0;
 							$item_details = array();
@@ -139,7 +140,7 @@
 							foreach($cart_item as $key => $value) {
 								$amount += ($value['price'] * $value['qty']);
 								?>
-									<div class="flex flex-column border-radius-medium p-3" style="border: 1px solid #000; background-color: #fff; min-height: 100px; margin: 5px; margin-left: 0;">
+									<div class="cart-card flex flex-column border-radius-medium p-3">
 										<?php
 											$sepatu_id = $value['sepatu_id'];
 
@@ -162,52 +163,58 @@
 											array_push($item_details, $item1_details);
 										?>
 										<div class="flex-center flex-vstart w-100">
-											<img src='../../admin/<?= $sepatu[0]['link_gambarsepatu'] ?>' alt="" class="border-radius-medium" width="80px" height="80px">
-											<div class="flex-center flex-vstart flex-column w-100 pl-3">
-												<div style="font-size: 16px;">
+											<img src='../../admin/<?= $sepatu[0]['link_gambarsepatu'] ?>' alt="" class="cart-img border-radius-medium" width="80px" height="80px">
+											<div class="cart-info flex-center flex-vstart flex-column w-100">
+												<div class="payment-text flex flex-vcenter" style="font-weight: 600;">
 													<?= $sepatu[0]['nama_sepatu'] ?>
 												</div>
-												<div>
-													Price: <?= "Rp. " . number_format($value['price'], 0, ',', '.') ?>
+												<div class="payment-text flex flex-vcenter">
+													Rp.&nbsp;<span style="color: #ff4e5b;"><?= number_format($value['price'], 0, ',', '.') ?>
 												</div>
 											</div>
 										</div>
-										<span>
-											Subtotal: <?= "Rp. " . number_format(($value['price'] * $value['qty']), 0, ',', '.') ?>
-										</span>
-										<div class="d-flex justify-content-center">
-											<div style="margin-right: 1vh;">
-												<a href="../../<?= "detail_shoes.php?id_sepatu=" . $value['sepatu_id'] ?>">
-													<button class="btn btn-success">Details</button>
-												</a>
+										<div class="flex-center flex-hend flex-wrap-reverse" style="padding-top: 36px;">
+											<div class="cart-control flex-center">
+												<div class="margin-right left">
+													<a href="../../<?= "detail_shoes.php?id_sepatu=" . $value['sepatu_id'] ?>">
+														<button class="btn btn-dark">Details</button>
+													</a>
+												</div>
+												<form action="" method="POST" class="margin-right right">
+													<input type="hidden" name="id_cart" value="<?= $value['id_cart'] ?>">
+													<button class="btn btn-danger" name="delete">Delete</button>
+												</form>
 											</div>
-											<form action="" method="post">
-												<input type="hidden" name="id_cart" value="<?= $value['id_cart'] ?>">
-												<button class="btn btn-danger" name="delete">Delete</button>
-											</form>
-										</div>
-										<div class="flex-center flex-hend">
-											<button style="margin: 0 5px; padding: 0; width: 30px; height: 30px; border-radius: 50%;" class="btn btn-secondary" onclick="kurang(<?= $value['id_cart'] ?>, <?= $id_user ?>)">-</button>
-											<input type="text" name="" id="totqty" style="width: 35px; margin: 0 5px; text-align: center; border: 0;" value="<?= $value['qty'] ?>" readonly>
-											<button style="margin: 0 5px; padding: 0; width: 30px; height: 30px; border-radius: 50%;" class="btn btn-secondary" onclick="tambah(<?= $value['id_cart'] ?>, <?= $id_user ?>)">+</button>
+											<div class="cart-control-bottom flex-center">
+												<div class="child-container subtotal flex-center">
+													<span class="flex-center" style="font-weight: 600; margin: 0 8px;">
+														Subtotal: Rp.&nbsp;<span style="color: #ff4e5b;"><?= number_format(($value['price'] * $value['qty']), 0, ',', '.') ?></span>
+													</span>
+												</div>
+												<div class="child-container flex-center">
+													<button class="qty btn btn-secondary" onclick="kurang(<?= $value['id_cart'] ?>, <?= $id_user ?>)">-</button>
+													<input type="text" name="totqty" id="totqty" class="cart-textbox" value="<?= $value['qty'] ?>" readonly>
+													<button class="qty btn btn-secondary" onclick="tambah(<?= $value['id_cart'] ?>, <?= $id_user ?>)">+</button>
+												</div>
+											</div>
 										</div>
 									</div>
 								<?php
 							}
 						?>
 					</div>
-					<div class="flex" style="width: 320px; flex-shrink: 0; padding: 5px 0;">
-						<div class="border-radius-medium" style="width: inherit; border: 1px solid #000; padding: 16px; position: fixed; margin: 5px 0;">
-							<span style="color: #000;">Summary</span>
-							<div>
-								Total Harga: <?= "Rp. " . number_format($amount, 0, ',', '.') ?>
+					<div id="payment-box" class="flex">
+						<div class="payment-inner border-radius-medium">
+							<div class="payment-text flex-center flex-between pb-3">
+								<span>Total Harga:</span>
+								<span><?= "Rp. " . number_format($amount, 0, ',', '.') ?></span>
 							</div>
-							<div>
+							<div class="w-100">
 								<form style="margin: 0;">
 									<input type="hidden" id="user" name="user" value='<?= json_encode($u) ?>'>
 									<input type="hidden" id="cart_item" name="cart_item" value='<?= json_encode($item_details) ?>'>
 									<input type="hidden" id="amount" name="amount" value='<?= $amount ?>'>
-									<button class="btn btn-success" id="pay-button" name="payment">Payment</button>
+									<button class="btn btn-success w-100" id="pay-button" name="payment">Pay</button>
 								</form>
 							</div>
 						</div>
