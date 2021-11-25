@@ -23,7 +23,7 @@
 	<body class="main-layout">
 		<div id="header" class="header-section" style="position: relative;">
 			<?php require_once("./section/nav_section.php") ?>
-			<div class="banner_section">
+			<div class="banner_section layout-padding about">
 				<div class="container-fluid">
 					<div class="container-fluid">
 						<div class="carousel-inner flex flex-wrap row">
