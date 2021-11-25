@@ -137,69 +137,75 @@
 							$amount = 0;
 							$item_details = array();
 
-							foreach($cart_item as $key => $value) {
-								$amount += ($value['price'] * $value['qty']);
-								?>
-									<div class="cart-card flex flex-column border-radius-medium p-3">
-										<?php
-											$sepatu_id = $value['sepatu_id'];
-
-											$stmt = $conn -> prepare("SELECT * FROM sepatu WHERE id_sepatu = $sepatu_id");
-											$stmt -> execute();
-											$sepatu = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
-
-											if(strlen($sepatu[0]['nama_sepatu']) > 25) {
-												$nama_sepatu = substr($sepatu[0]['nama_sepatu'], 0, 25);
-											} else {
-												$nama_sepatu = $sepatu[0]['nama_sepatu'];
-											}
-
-											$item1_details = array(
-												'id' => $sepatu_id,
-												'price' => $value['price'],
-												'quantity' => $value['qty'],
-												'name' => $nama_sepatu
-											);
-											array_push($item_details, $item1_details);
-										?>
-										<div class="flex-center flex-vstart w-100">
-											<img src='../../admin/<?= $sepatu[0]['link_gambarsepatu'] ?>' alt="" class="cart-img border-radius-medium" width="80px" height="80px">
-											<div class="cart-info flex-center flex-vstart flex-column w-100">
-												<div class="payment-text flex flex-vcenter" style="font-weight: 600;">
-													<?= $sepatu[0]['nama_sepatu'] ?>
+							if(count($cart_item) <= 0) {
+							?>
+								<div class="w-100 flex-center col-sm-12 py-4" style="font-size: 16pt; text-align: center;">Your cart is empty. Fill it with our awesome shoes!</div>
+							<?php
+							} else {
+								foreach($cart_item as $key => $value) {
+									$amount += ($value['price'] * $value['qty']);
+									?>
+										<div class="cart-card flex flex-column border-radius-medium p-3">
+											<?php
+												$sepatu_id = $value['sepatu_id'];
+	
+												$stmt = $conn -> prepare("SELECT * FROM sepatu WHERE id_sepatu = $sepatu_id");
+												$stmt -> execute();
+												$sepatu = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
+	
+												if(strlen($sepatu[0]['nama_sepatu']) > 25) {
+													$nama_sepatu = substr($sepatu[0]['nama_sepatu'], 0, 25);
+												} else {
+													$nama_sepatu = $sepatu[0]['nama_sepatu'];
+												}
+	
+												$item1_details = array(
+													'id' => $sepatu_id,
+													'price' => $value['price'],
+													'quantity' => $value['qty'],
+													'name' => $nama_sepatu
+												);
+												array_push($item_details, $item1_details);
+											?>
+											<div class="flex-center flex-vstart w-100">
+												<img src='../../admin/<?= $sepatu[0]['link_gambarsepatu'] ?>' alt="" class="cart-img border-radius-medium" width="80px" height="80px">
+												<div class="cart-info flex-center flex-vstart flex-column w-100">
+													<div class="payment-text flex flex-vcenter" style="font-weight: 600;">
+														<?= $sepatu[0]['nama_sepatu'] ?>
+													</div>
+													<div class="payment-text flex flex-vcenter">
+														Rp.&nbsp;<span style="color: #ff4e5b;"><?= number_format($value['price'], 0, ',', '.') ?>
+													</div>
 												</div>
-												<div class="payment-text flex flex-vcenter">
-													Rp.&nbsp;<span style="color: #ff4e5b;"><?= number_format($value['price'], 0, ',', '.') ?>
+											</div>
+											<div class="flex-center flex-hend flex-wrap-reverse" style="padding-top: 36px;">
+												<div class="cart-control flex-center">
+													<div class="margin-right left">
+														<a href="../../<?= "detail_shoes.php?id_sepatu=" . $value['sepatu_id'] ?>">
+															<button class="btn btn-dark">Details</button>
+														</a>
+													</div>
+													<form action="" method="POST" class="margin-right right">
+														<input type="hidden" name="id_cart" value="<?= $value['id_cart'] ?>">
+														<button class="btn btn-danger" name="delete">Delete</button>
+													</form>
+												</div>
+												<div class="cart-control-bottom flex-center">
+													<div class="child-container subtotal flex-center">
+														<span class="flex-center" style="font-weight: 600; margin: 0 8px;">
+															Subtotal: Rp.&nbsp;<span style="color: #ff4e5b;"><?= number_format(($value['price'] * $value['qty']), 0, ',', '.') ?></span>
+														</span>
+													</div>
+													<div class="child-container flex-center">
+														<button class="qty btn btn-secondary" onclick="kurang(<?= $value['id_cart'] ?>, <?= $id_user ?>)">-</button>
+														<input type="text" name="totqty" id="totqty" class="cart-textbox" value="<?= $value['qty'] ?>" readonly>
+														<button class="qty btn btn-secondary" onclick="tambah(<?= $value['id_cart'] ?>, <?= $id_user ?>)">+</button>
+													</div>
 												</div>
 											</div>
 										</div>
-										<div class="flex-center flex-hend flex-wrap-reverse" style="padding-top: 36px;">
-											<div class="cart-control flex-center">
-												<div class="margin-right left">
-													<a href="../../<?= "detail_shoes.php?id_sepatu=" . $value['sepatu_id'] ?>">
-														<button class="btn btn-dark">Details</button>
-													</a>
-												</div>
-												<form action="" method="POST" class="margin-right right">
-													<input type="hidden" name="id_cart" value="<?= $value['id_cart'] ?>">
-													<button class="btn btn-danger" name="delete">Delete</button>
-												</form>
-											</div>
-											<div class="cart-control-bottom flex-center">
-												<div class="child-container subtotal flex-center">
-													<span class="flex-center" style="font-weight: 600; margin: 0 8px;">
-														Subtotal: Rp.&nbsp;<span style="color: #ff4e5b;"><?= number_format(($value['price'] * $value['qty']), 0, ',', '.') ?></span>
-													</span>
-												</div>
-												<div class="child-container flex-center">
-													<button class="qty btn btn-secondary" onclick="kurang(<?= $value['id_cart'] ?>, <?= $id_user ?>)">-</button>
-													<input type="text" name="totqty" id="totqty" class="cart-textbox" value="<?= $value['qty'] ?>" readonly>
-													<button class="qty btn btn-secondary" onclick="tambah(<?= $value['id_cart'] ?>, <?= $id_user ?>)">+</button>
-												</div>
-											</div>
-										</div>
-									</div>
-								<?php
+									<?php
+								}
 							}
 						?>
 					</div>
