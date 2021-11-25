@@ -22,177 +22,174 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 
 <html lang="en-US">
-
-<head>
-	<script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="<SB-Mid-client-3OxJRhBsnTXSca5E>"></script>
-	<meta http-equiv="X-UA-Compatible" charset="UTF-8" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="viewport" content="initial-scale=1, maximum-scale=1">
-	<meta name="author" content="">
-	<meta name="keywords" content="">
-	<meta name="description" content="">
-	<link rel="icon" href="./images/logo.png" type="image/png">
-	<link rel="stylesheet" href="./css/bootstrap.min.css">
-	<link rel="stylesheet" href="./css/style.css">
-	<link rel="stylesheet" href="./css/responsive.css">
-	<link rel="stylesheet" href="./css/jquery.mCustomScrollbar.min.css">
-	<link rel="stylesheet" href="./css/owl.carousel.min.css">
-	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
-	<script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="<SB-Mid-client-3OxJRhBsnTXSca5E>"></script>
-</head>
-
-<body class="main-layout">
-	<div class="contact_section">
-		<div class="container-fluid ram">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="d-flex flex-row-reverse dashboard_btn" style="padding: 0 1vw;">
-						<button class="btn btn-success" style='margin:0; background-color: #34B1AA;'><a href="./profile.php" style="text-decoration: none; color:inherit">Check for Updates!</a></button>
-					</div>
-					<br>
-					<table class="table table-hover dashboard_btn" style="text-align: center;">
-						<thead>
-							<tr>
-								<th>No.</th>
-								<th>Order ID</th>
-								<th>Subtotal</th>
-								<th>Status</th>
-								<th>See Order</th>
-							</tr>
-						</thead>
-						<tbody>
-							<?php
-							foreach ($order_details as $key => $value) {
-								$id_payment = $value['payment_id'];
-								$stmt = $conn->prepare("SELECT * FROM payment WHERE id = '$id_payment'");
-								$stmt->execute();
-								$payment = $stmt->get_result()->fetch_assoc();
-							?>
+	<head>
+		<script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="<SB-Mid-client-3OxJRhBsnTXSca5E>"></script>
+		<meta http-equiv="X-UA-Compatible" charset="UTF-8" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+		<meta name="author" content="">
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<link rel="icon" href="./images/logo.png" type="image/png">
+		<link rel="stylesheet" href="./css/bootstrap.min.css">
+		<link rel="stylesheet" href="./css/style.css">
+		<link rel="stylesheet" href="./css/responsive.css">
+		<link rel="stylesheet" href="./css/jquery.mCustomScrollbar.min.css">
+		<link rel="stylesheet" href="./css/owl.carousel.min.css">
+		<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+		<script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="<SB-Mid-client-3OxJRhBsnTXSca5E>"></script>
+	</head>
+	<body class="main-layout">
+		<div class="contact_section">
+			<div class="container-fluid ram">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="d-flex flex-row-reverse dashboard_btn" style="padding: 0 1vw;">
+							<button class="btn btn-success" style='margin:0; background-color: #34B1AA;'><a href="./profile.php" style="text-decoration: none; color:inherit">Check for Updates!</a></button>
+						</div>
+						<br>
+						<table class="table table-hover dashboard_btn" style="text-align: center;">
+							<thead>
 								<tr>
-									<td><?= ($key + 1) ?></td>
-									<td>#<?= $payment['order_id'] ?></td>
-									<td><?= "Rp. " . number_format($payment['gross_amount'], 0, ',', '.') . ",-" ?></td>
-									<td>
-										<?php
-										if ($payment['transaction_status'] == "settlement") {
-										?>
-											<button class="btn btn-success" style="margin: 0; cursor: default; color: white;">Done</button>
-										<?php
-										} else if ($payment['transaction_status'] == "expire") {
-										?>
-											<button class="btn btn-danger" style="margin: 0; cursor: default; background-color: #F95F53;">Expired</button>
-										<?php
-										} else {
-										?>
-											<button class="btn btn-success" id="<?= $payment['id'] ?>" onclick="payNow(this)" style="margin: 0; color: white;">Pay!</button>
-										<?php
-										}
-										?>
-									</td>
-									<td>
-										<button class='btn btn-info' id="<?= $payment['id'] ?>" onclick="showDetail(this)" style='margin:0; background-color: #34B1AA;'>Details</button>
-									</td>
+									<th>No.</th>
+									<th>Order ID</th>
+									<th>Subtotal</th>
+									<th>Status</th>
+									<th>See Order</th>
 								</tr>
-							<?php
-							}
-							?>
-						</tbody>
-					</table>
+							</thead>
+							<tbody>
+								<?php
+								foreach ($order_details as $key => $value) {
+									$id_payment = $value['payment_id'];
+									$stmt = $conn->prepare("SELECT * FROM payment WHERE id = '$id_payment'");
+									$stmt->execute();
+									$payment = $stmt->get_result()->fetch_assoc();
+								?>
+									<tr>
+										<td><?= ($key + 1) ?></td>
+										<td>#<?= $payment['order_id'] ?></td>
+										<td><?= "Rp. " . number_format($payment['gross_amount'], 0, ',', '.') . ",-" ?></td>
+										<td>
+											<?php
+											if ($payment['transaction_status'] == "settlement") {
+											?>
+												<button class="btn btn-success" style="margin: 0; cursor: default; color: white;">Done</button>
+											<?php
+											} else if ($payment['transaction_status'] == "expire") {
+											?>
+												<button class="btn btn-danger" style="margin: 0; cursor: default; background-color: #F95F53;">Expired</button>
+											<?php
+											} else {
+											?>
+												<button class="btn btn-success" id="<?= $payment['id'] ?>" onclick="payNow(this)" style="margin: 0; color: white;">Pay!</button>
+											<?php
+											}
+											?>
+										</td>
+										<td>
+											<button class='btn btn-info' id="<?= $payment['id'] ?>" onclick="showDetail(this)" style='margin:0; background-color: #34B1AA;'>Details</button>
+										</td>
+									</tr>
+								<?php
+								}
+								?>
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<form action="<?= site_url() ?>/transaction" method="POST" id="frm">
-		<button id="updatepage" style="display: none;">Klik</button>
-	</form>
-	<div id="editModal" class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" style="font-size: 1.5em; margin: 0;">&times;</button>
-					<h4 class="modal-title">Order Detail</h4>
+		<form action="<?= site_url() ?>/transaction" method="POST" id="frm">
+			<button id="updatepage" style="display: none;">Klik</button>
+		</form>
+		<div id="editModal" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" style="font-size: 1.5em; margin: 0;">&times;</button>
+						<h4 class="modal-title">Order Detail</h4>
+					</div>
+					<div class="modal-body" id="form_edit"></div>
 				</div>
-				<div class="modal-body" id="form_edit"></div>
 			</div>
 		</div>
-	</div>
-	<script>
-		function showDetail(obj) {
-			var id_payment = $(obj).attr("id");
-			$.ajax({
-				type: "post",
-				url: "admin/ajax.php",
-				// url: ".../../../../admin/ajax.php",
-				data: {
-					'action': 'showDetail_user',
-					'id_payment': id_payment
-				},
-				success: function(data) {
-					$('#form_edit').html(data);
-					$('#editModal').modal('show');
-				}
-			});
-		}
-
-		function payNow(obj) {
-			var id_payment = $(obj).attr("id");
-			$.ajax({
-				type: "post",
-				url: "./admin/ajax.php",
-				// url: ".../../../../admin/ajax.php",
-				data: {
-					'action': 'payNow',
-					'id_payment': id_payment
-				},
-				success: function(data) {
-					$('#form_edit').html(data);
-					$('#editModal').modal('show');
-				}
-			});
-		}
-
-		$(document).ready(function() {
-			$(document).on('click', '.close', function() {
-				$('#editModal').modal('hide');
-			});
-		});
-	</script>
-	<script src="./js/jquery.min.js"></script>
-	<script src="./js/popper.min.js"></script>
-	<script src="./js/bootstrap.bundle.min.js"></script>
-	<script src="./js/jquery.mCustomScrollbar.concat.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
-	<script>
-		$(document).ready(function() {
-			$(".fancybox").fancybox({
-				openEffect: "none",
-				closeEffect: "none"
-			});
-
-			$('#myCarousel').carousel({
-				interval: false
-			});
-
-			$("#myCarousel").on("touchstart", function(event) {
-				var yClick = event.originalEvent.touches[0].pageY;
-
-				$(this).one("touchmove", function(event) {
-					var yMove = event.originalEvent.touches[0].pageY;
-
-					if (Math.floor(yClick - yMove) > 1) {
-						$(".carousel").carousel('next');
-					} else if (Math.floor(yClick - yMove) < -1) {
-						$(".carousel").carousel('prev');
+		<script>
+			function showDetail(obj) {
+				var id_payment = $(obj).attr("id");
+				$.ajax({
+					type: "post",
+					url: "admin/ajax.php",
+					// url: ".../../../../admin/ajax.php",
+					data: {
+						'action': 'showDetail_user',
+						'id_payment': id_payment
+					},
+					success: function(data) {
+						$('#form_edit').html(data);
+						$('#editModal').modal('show');
 					}
 				});
+			}
 
-				$(".carousel").on("touchend", function() {
-					$(this).off("touchmove");
+			function payNow(obj) {
+				var id_payment = $(obj).attr("id");
+				$.ajax({
+					type: "post",
+					url: "./admin/ajax.php",
+					// url: ".../../../../admin/ajax.php",
+					data: {
+						'action': 'payNow',
+						'id_payment': id_payment
+					},
+					success: function(data) {
+						$('#form_edit').html(data);
+						$('#editModal').modal('show');
+					}
+				});
+			}
+
+			$(document).ready(function() {
+				$(document).on('click', '.close', function() {
+					$('#editModal').modal('hide');
 				});
 			});
-		});
-	</script>
-</body>
+		</script>
+		<script src="./js/jquery.min.js"></script>
+		<script src="./js/popper.min.js"></script>
+		<script src="./js/bootstrap.bundle.min.js"></script>
+		<script src="./js/jquery.mCustomScrollbar.concat.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				$(".fancybox").fancybox({
+					openEffect: "none",
+					closeEffect: "none"
+				});
 
+				$('#myCarousel').carousel({
+					interval: false
+				});
+
+				$("#myCarousel").on("touchstart", function(event) {
+					var yClick = event.originalEvent.touches[0].pageY;
+
+					$(this).one("touchmove", function(event) {
+						var yMove = event.originalEvent.touches[0].pageY;
+
+						if (Math.floor(yClick - yMove) > 1) {
+							$(".carousel").carousel('next');
+						} else if (Math.floor(yClick - yMove) < -1) {
+							$(".carousel").carousel('prev');
+						}
+					});
+
+					$(".carousel").on("touchend", function() {
+						$(this).off("touchmove");
+					});
+				});
+			});
+		</script>
+	</body>
 </html>

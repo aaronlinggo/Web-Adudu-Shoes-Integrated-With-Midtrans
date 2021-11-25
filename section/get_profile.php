@@ -9,8 +9,14 @@
         User ID: <?= $_REQUEST['data']['id_user'] ?>
     </div>
     <div>
-        <div class="about_text font-weight-bold">Nama</div>
+        <div class="about_text font-weight-bold">Full Name</div>
         <?= $_REQUEST['data']['nama'] ?>
+    </div>
+    <div>
+        <div class="about_text font-weight-bold">First Name</div>
+        <?= $_REQUEST['data']['first_name'] ?>
+        <div class="about_text font-weight-bold">Last Name</div>
+        <?= $_REQUEST['data']['last_name'] ?>
     </div>
     <div>
         <div class="about_text font-weight-bold">Username</div>
@@ -21,7 +27,7 @@
         <?= $_REQUEST['data']['email'] ?>
     </div>
     <div>
-        <div class="about_text font-weight-bold">Tanggal Lahir</div>
+        <div class="about_text font-weight-bold">Date of Birth</div>
         <?= $_REQUEST['data']['tanggal_lahir'] ?>
     </div>
 </div>
