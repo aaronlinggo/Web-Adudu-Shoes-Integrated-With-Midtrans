@@ -1,17 +1,6 @@
 <?php
 	session_start();
 
-	// $host = 'localhost';
-	// $user = 'root';
-	// $password = '';
-	// $database = 'db_adudu';
-	// $port = '3306';
-	// $conn = new mysqli($host, $user, $password, $database);
-
-	// if($conn->connect_errno) {
-	//   die("Gagal Connect: " . $conn->connect_error);
-	// }
-
 	require_once("./application/controllers/connection.php");
 
 	$id_user = $_SESSION['active'];
@@ -30,6 +19,10 @@
 			header('Location: snap');
 		}
 	}
+
+	$stmt = $conn->prepare("SELECT * FROM notification_handler WHERE id_user = $id_user and active = 1 ORDER BY ID DESC");
+	$stmt->execute();
+	$notification_handler = $stmt->get_result()->fetch_assoc() ?? [];
 ?>
 
 <html lang="en-US">
@@ -52,7 +45,7 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
 	</head>
 	<body class="main-layout flex flex-column">
-		<div class="header-section segment">
+		<div id="header" class="header-section segment">
 			<div class="header-inner container">
 				<div class="row flex-row" style="position: relative;">
 					<div class="landing-padding col-sm-12">
@@ -125,6 +118,67 @@
 				</div>
 			</div>
 		</div>
+		<?php
+            if (count($notification_handler)>0){
+                ?>
+                <div id="notifPopup" class="position-sticky" style="display: none;">
+                    <div id="liveToast" class="toast fade hide" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="toast-header">
+                            <strong style="margin-right: auto;">Payment Notification</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                        <div class="toast-body">Your #<?= $notification_handler['order_id'] ?> transaction is <?php if ($notification_handler['status'] == 'expire') { echo "not"; } ?> complete.</div>
+                    </div>
+                </div>
+                <script>
+                    let notifTimer;
+                    let calcHeaderHeight = $("#header").height() + 30;
+
+                    $(document).ready(function() {
+                        $(".btn-close").click(function(e) {
+                            e.preventDefault();
+                            clearTimeout(notifTimer);
+
+                            $("#liveToast").removeClass("show");
+                            $("#liveToast").addClass("hide");
+
+                            setTimeout(() => {
+                                $("#notifPopup").removeAttr("style");
+                                $("#notifPopup").css({ "display": "none" });
+                            }, 250);
+                        });
+                    });
+                    $("#notifPopup").removeAttr("style");
+                    $("#notifPopup").css({
+                        "display": "block",
+                        "top": calcHeaderHeight,
+                        "right": "0",
+                        "z-index": "99999"
+                    });
+
+                    clearTimeout(notifTimer);
+
+                    setTimeout(() => {
+                        $("#liveToast").removeClass("hide");
+                        $("#liveToast").addClass("show");
+                    }, 250);
+
+                    notifTimer = setTimeout(() => {
+                        $("#liveToast").removeClass("show");
+                        $("#liveToast").addClass("hide");
+
+                        setTimeout(() => {
+                            $("#notifPopup").removeAttr("style");
+                            $("#notifPopup").css({ "display": "none" });
+                        }, 250);
+                    }, 5000);
+                </script>
+                <?php
+                $id_notif = $notification_handler['id'];
+                $temp_active = 0;
+                $result = $conn -> query("update notification_handler set active = $temp_active where id = $id_notif");
+            }
+        ?>
 		<div id="cart-box" class="fullwidth h-auto flex flex-column" style="flex-grow: 1;">
 			<div class="container landing-padding about h-auto flex-center catalog-main">
 				<h1 class="title about-section m-0 mt-4 mt-sm-5 p-0 pt-3 pt-sm-2 font-bold" style="text-align: center;">SHOPPING CART</h1>
