@@ -5,6 +5,14 @@
 	$stmt = $conn -> prepare("SELECT * FROM sepatu");
 	$stmt -> execute();
 	$sepatu = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
+
+    if (isset($_SESSION['active'])){
+        $id_user = $_SESSION['active'];
+        $stmt = $conn->prepare("SELECT * FROM notification_handler WHERE id_user = $id_user and active = 1 ORDER BY ID DESC");
+        $stmt->execute();
+        $notification_handler = $stmt->get_result()->fetch_assoc() ?? [];
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -15,9 +23,70 @@
 		<?php require_once("./section/script_section.php") ?>
     </head>
     <body class="main-layout">
-        <div class="header-section segment">
+        <div id="header" class="header-section segment">
             <?php require_once("./section/nav_section.php") ?>
         </div>
+        <?php
+            if (count($notification_handler)>0){
+                ?>
+                <div id="notifPopup" class="position-sticky" style="display: none;">
+                    <div id="liveToast" class="toast fade hide" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="toast-header">
+                            <strong style="margin-right: auto;">Payment Notification</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                        <div class="toast-body">Your #<?= $notification_handler['order_id'] ?> transaction is <?php if ($notification_handler['status'] == 'expire') { echo "not"; } ?> complete.</div>
+                    </div>
+                </div>
+                <script>
+                    let notifTimer;
+                    let calcHeaderHeight = $("#header").height() + 30;
+
+                    $(document).ready(function() {
+                        $(".btn-close").click(function(e) {
+                            e.preventDefault();
+                            clearTimeout(notifTimer);
+
+                            $("#liveToast").removeClass("show");
+                            $("#liveToast").addClass("hide");
+
+                            setTimeout(() => {
+                                $("#notifPopup").removeAttr("style");
+                                $("#notifPopup").css({ "display": "none" });
+                            }, 250);
+                        });
+                    });
+                    $("#notifPopup").removeAttr("style");
+                    $("#notifPopup").css({
+                        "display": "block",
+                        "top": calcHeaderHeight,
+                        "right": "0",
+                        "z-index": "99999"
+                    });
+
+                    clearTimeout(notifTimer);
+
+                    setTimeout(() => {
+                        $("#liveToast").removeClass("hide");
+                        $("#liveToast").addClass("show");
+                    }, 250);
+
+                    notifTimer = setTimeout(() => {
+                        $("#liveToast").removeClass("show");
+                        $("#liveToast").addClass("hide");
+
+                        setTimeout(() => {
+                            $("#notifPopup").removeAttr("style");
+                            $("#notifPopup").css({ "display": "none" });
+                        }, 250);
+                    }, 5000);
+                </script>
+                <?php
+                $id_notif = $notification_handler['id'];
+                $temp_active = 0;
+                $result = $conn -> query("update notification_handler set active = $temp_active where id = $id_notif");
+            }
+        ?>
         <div class="py-0">
             <div class="container landing-padding about">
                 <div class="row w-100" style="margin: 0 auto;">
