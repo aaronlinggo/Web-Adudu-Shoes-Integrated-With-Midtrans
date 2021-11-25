@@ -123,7 +123,7 @@
             }
 		}
         ?>
-		<div class="collection_section">
+		<div class="layout-padding">
 			<div class="container">
 				<h1 class="new_text">
 					<strong>Recommended Shoes</strong>
