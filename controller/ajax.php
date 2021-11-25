@@ -110,7 +110,7 @@ if ($action == "tambah") {
                 <span><?= "Rp. " . number_format($amount, 0, ',', '.') ?></span>
             </div>
             <div class="w-100">
-                <form style="margin: 0;">
+                <form style="margin: 0;" method="POST">
                     <input type="hidden" id="user" name="user" value='<?= json_encode($u) ?>'>
                     <input type="hidden" id="cart_item" name="cart_item" value='<?= json_encode($item_details) ?>'>
                     <input type="hidden" id="amount" name="amount" value='<?= $amount ?>'>
@@ -219,7 +219,7 @@ if ($action == "tambah") {
                 <span><?= "Rp. " . number_format($amount, 0, ',', '.') ?></span>
             </div>
             <div class="w-100">
-                <form style="margin: 0;">
+                <form style="margin: 0;" method="POST">
                     <input type="hidden" id="user" name="user" value='<?= json_encode($u) ?>'>
                     <input type="hidden" id="cart_item" name="cart_item" value='<?= json_encode($item_details) ?>'>
                     <input type="hidden" id="amount" name="amount" value='<?= $amount ?>'>

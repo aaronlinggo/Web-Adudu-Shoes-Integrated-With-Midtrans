@@ -103,6 +103,9 @@
     .multi_item{
         height: 200px;
     }
+    #banner_homepage{
+        width: 400px;
+    }
 }
 
 @media (max-width: 576px) {
@@ -357,6 +360,9 @@
     .multi_item{
         height: 700px;
     }
+    #banner_homepage{
+        width: 450px;
+    }
 }
 
 @media (min-width: 576px) {
@@ -593,6 +599,9 @@
     .copyright .info-text {
         font-size: 1.025rem;
     }
+    #banner_homepage{
+        width: 700px;
+    }
 }
 
 @media (min-width: 768px) {
@@ -655,6 +664,9 @@
     }
     .multi_item{
         height: 600px;
+    }
+    #banner_homepage{
+        width: 400px;
     }
 }
 

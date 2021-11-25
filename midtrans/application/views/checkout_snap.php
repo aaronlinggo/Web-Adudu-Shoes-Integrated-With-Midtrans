@@ -271,7 +271,7 @@
 								<span><?= "Rp. " . number_format($amount, 0, ',', '.') ?></span>
 							</div>
 							<div class="w-100">
-								<form style="margin: 0;">
+								<form style="margin: 0;" method="POST">
 									<input type="hidden" id="user" name="user" value='<?= json_encode($u) ?>'>
 									<input type="hidden" id="cart_item" name="cart_item" value='<?= json_encode($item_details) ?>'>
 									<input type="hidden" id="amount" name="amount" value='<?= $amount ?>'>
@@ -296,7 +296,7 @@
 					<div class="info-text font-bold">
 						<div class="flex flex-vcenter">
 							<span style="margin-right: 5px;">FOLLOW US ON</span>
-							<a href="https://github.com/aaronlinggo/Proyek-PW-Adudu.git" target="_blank"><img src="../../images/GitHub_Logo_White.png" alt="" class="flex flex-vcenter" style="width: 65px;"></a>
+							<a href="#" target="_blank"><img src="../../images/GitHub_Logo_White.png" alt="" class="flex flex-vcenter" style="width: 65px;"></a>
 						</div>
 						<br>
 					</div>
@@ -309,13 +309,13 @@
 								<td>Aaron</td>
 								<td>&nbsp;&nbsp;-&nbsp;&nbsp;</td>
 								<td>220116898</td>
-								<td>&nbsp;&nbsp;<a href="https://github.com/aaronlinggo/Proyek-PW-Adudu.git" target="_blank"><img srcset="../../images/linkedin.png" alt="" style="padding-bottom: 1px; max-height: 34px;"></a></td>
+								<td>&nbsp;&nbsp;<a href="#" target="_blank"><img srcset="../../images/linkedin.png" alt="" style="padding-bottom: 1px; max-height: 34px;"></a></td>
 							</tr>
 							<tr class="align-middle">
 								<td>Samuel</td>
 								<td>&nbsp;&nbsp;-&nbsp;&nbsp;</td>
 								<td>220116928</td>
-								<td>&nbsp;&nbsp;<a href="https://github.com/aaronlinggo/Proyek-PW-Adudu.git" target="_blank"><img srcset="../../images/linkedin.png" alt="" style="padding-bottom: 1px; max-height: 34px;"></a></td>
+								<td>&nbsp;&nbsp;<a href="#" target="_blank"><img srcset="../../images/linkedin.png" alt="" style="padding-bottom: 1px; max-height: 34px;"></a></td>
 							</tr>
 						</table>
 					</div>
