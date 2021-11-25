@@ -94,9 +94,9 @@
 		<div id="editModal" class="modal fade">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<div class="modal-header">
+					<div class="modal-header flex-vcenter">
 						<button type="button" class="close" data-dismiss="modal" style="font-size: 1.5em; margin: 0;">&times;</button>
-						<h4 class="modal-title">Order Detail</h4>
+						<h4 class="modal-title" style="padding: 0;">Order Detail</h4>
 					</div>
 					<div class="modal-body" id="form_edit"></div>
 				</div>
