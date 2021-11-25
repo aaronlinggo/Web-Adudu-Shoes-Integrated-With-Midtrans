@@ -1,16 +1,6 @@
 <?php
 session_start();
 
-// $host = 'localhost';
-// $user = 'root';
-// $password = '';
-// $database = 'db_adudu';
-// $port = '3306';
-// $conn = new mysqli($host, $user, $password, $database);
-
-// if($conn -> connect_errno) {
-// 	die("Gagal Connect: " . $conn -> connect_error);
-// }
 require_once("../controller/connection.php");
 
 $id_user = $_SESSION['active'];
@@ -34,7 +24,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <html lang="en-US">
 
 <head>
-	<!-- <title>History | Adudu Shoes</title> -->
 	<script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="<SB-Mid-client-3OxJRhBsnTXSca5E>"></script>
 	<meta http-equiv="X-UA-Compatible" charset="UTF-8" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -48,23 +37,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	<link rel="stylesheet" href="./css/responsive.css">
 	<link rel="stylesheet" href="./css/jquery.mCustomScrollbar.min.css">
 	<link rel="stylesheet" href="./css/owl.carousel.min.css">
-	<!-- <link rel="stylesheet" href="./admin/style.css"> -->
-	<!-- <link rel="icon" href="../../images/logo.png" type="image/png">
-		<link rel="stylesheet" href="../../css/bootstrap.min.css">
-		<link rel="stylesheet" href="../../css/style.css">
-		<link rel="stylesheet" href="../../css/responsive.css">
-		<link rel="stylesheet" href="../../css/jquery.mCustomScrollbar.min.css">
-		<link rel="stylesheet" href="../../css/owl.carousel.min.css"> -->
-	<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
-	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
-	<!-- <link rel="stylesheet" href="../../admin/style.css"> -->
 	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
 	<script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="<SB-Mid-client-3OxJRhBsnTXSca5E>"></script>
 </head>
 
 <body class="main-layout">
-	<!-- <div class="collection_text">History Transaction</div> -->
 	<div class="contact_section">
 		<div class="container-fluid ram">
 			<div class="row">
@@ -183,17 +161,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	<script src="./js/jquery.min.js"></script>
 	<script src="./js/popper.min.js"></script>
 	<script src="./js/bootstrap.bundle.min.js"></script>
-	<!-- <script src="./js/jquery-3.0.0.min.js"></script> -->
-	<!-- <script src="./js/plugin.js"></script> -->
 	<script src="./js/jquery.mCustomScrollbar.concat.min.js"></script>
-	<!-- <script src="./js/custom.js"></script> -->
-	<!-- <script src="../../js/jquery.min.js"></script>
-		<script src="../../js/popper.min.js"></script>
-		<script src="../../js/bootstrap.bundle.min.js"></script>
-		<script src="../../js/jquery-3.0.0.min.js"></script>
-		<script src="../../js/plugin.js"></script>
-		<script src="../../js/jquery.mCustomScrollbar.concat.min.js"></script>
-		<script src="../../js/custom.js"></script> -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
 	<script>
 		$(document).ready(function() {
@@ -206,7 +174,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				interval: false
 			});
 
-			// Scroll slides on android swipes
 			$("#myCarousel").on("touchstart", function(event) {
 				var yClick = event.originalEvent.touches[0].pageY;
 
