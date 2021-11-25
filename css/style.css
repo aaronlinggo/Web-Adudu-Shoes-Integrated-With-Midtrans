@@ -1,14 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Rajdhani:300,400,500,600,700');
 @import url('https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i');
 
-/* @import url(animate.min.css);
-@import url(normalize.css);
-@import url(meanmenu.css);
-@import url(owl.carousel.min.css);
-@import url(slick.css);
-@import url(jquery-ui.css);
-@import url(nice-select.css); */
-
 /* DEFAULT */
 * {
     -webkit-transition: ease all 0.5s;
@@ -822,17 +814,6 @@ button {
     width: 100%;
 }
 
-/* .about-img {
-    float: left;
-    background-color: #ffffff;
-    box-shadow: 0px 0px 10px 0px;
-    height: auto;
-    margin-left: 64px;
-    position: relative;
-    width: 100%;
-    z-index: 1;
-} */
-
 .new_bt {
     float: left;
     background-color: #000;
@@ -869,16 +850,6 @@ button {
     text-align: center;
     width: 100%;
 }
-
-/* .about-img2 {
-    float: left;
-    background-image: url(../images/about-img2.png);
-    box-shadow: 0px 0px 10px 0px;
-    margin-top: 74px;
-    margin-left: -50px;
-    width: 100%;
-    height: auto;
-} */
 
 .shoes-img2 {
     float: left;
