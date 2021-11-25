@@ -38,7 +38,7 @@
             <?php require_once("./section/nav_section.php") ?>
         </div>
         <?php
-            if (isset($notification_handler)){
+            if (count($notification_handler)>0){
                 ?>
                 <div id="notifPopup" class="position-sticky" style="display: none;">
                     <div id="liveToast" class="toast fade hide" role="alert" aria-live="assertive" aria-atomic="true">

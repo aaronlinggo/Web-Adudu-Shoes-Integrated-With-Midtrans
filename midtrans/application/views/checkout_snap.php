@@ -315,8 +315,8 @@
 						'id_user': id_user
 					},
 					success: function(response) {
-						$("#updateQty").html("");
-						$("#updateQty").append(response);
+						$("#checkout-container").html("");
+						$("#checkout-container").append(response);
 					}
 				});
 			}
@@ -331,8 +331,8 @@
 						'id_user': id_user
 					},
 					success: function(response) {
-						$("#updateQty").html("");
-						$("#updateQty").append(response);
+						$("#checkout-container").html("");
+						$("#checkout-container").append(response);
 					}
 				});
 			}
