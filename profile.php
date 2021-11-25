@@ -101,9 +101,9 @@
         ?>
         <div class="container landing-padding about h-auto flex-center position-relative">
             <div class="w-100 h-auto py-3">
-                <div class="h-auto flex" style="border: 1px solid rgba(219, 222, 226, 0); border-radius: 8px; padding: 20px; overflow-y: hidden;">
-                    <div class="col-lg-4 h-auto flex-center flex-vstart" style="padding: 0; position: relative;">
-                        <div id="inner1" class="w-100 h-auto" style="border-radius: 8px; box-shadow: 0 1px 6px 0 rgba(49, 53, 59, 0.12); padding: 10px;"></div>
+                <div class="profile-container h-auto flex flex-wrap">
+                    <div class="inner1-parent col-lg-4 h-auto flex-center flex-vstart position-relative">
+                        <div id="inner1" class="w-100 h-auto"></div>
                     </div>
                     <div id="inner2" class="h-auto flex col-lg-8" style="border-radius: 8px; box-shadow: 0 1px 6px 0 rgba(49, 53, 59, 0); overflow-y: auto; min-height: 150px;">
                     </div>

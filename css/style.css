@@ -32,7 +32,7 @@ body {
 }
 
 html {
-    scroll-behavior: smooth!important;
+    scroll-behavior: smooth !important;
 }
 
 body {
@@ -347,8 +347,9 @@ button {
     max-height: 100%;
 }
 
-.about-section, .about-text {
-    color: #000!important;
+.about-section,
+.about-text {
+    color: #000 !important;
 }
 
 .about-text {
@@ -383,7 +384,7 @@ button {
 }
 
 .query-box .filter-control {
-    height: 36px!important;
+    height: 36px !important;
     margin: 8px 4px;
 }
 
@@ -393,11 +394,11 @@ button {
     padding: 6px 12px;
 }
 
-.query-box .inner::-webkit-scrollbar {
+.query-box .inner::-webkit-scrollbar, .profile-info::-webkit-scrollbar {
     display: none;
 }
 
-.query-box .inner-container {
+.query-box .inner, .profile-info {
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
@@ -442,7 +443,8 @@ button {
     text-align: right;
 }
 
-.catalog-card, .catalog-nav-page {
+.catalog-card,
+.catalog-nav-page {
     margin: 15px 0;
 }
 
@@ -457,9 +459,10 @@ button {
     min-width: 70px;
 }
 
-.filter-control.active, .page-item.active {
-    background-color: rgba(0, 0, 0, 0.15)!important;
-    color: #000!important;
+.filter-control.active,
+.page-item.active {
+    background-color: rgba(0, 0, 0, 0.15) !important;
+    color: #000 !important;
 }
 
 .page-item a {
@@ -495,7 +498,7 @@ button {
     height: 75%;
 }
 
-.img-container:hover > .detail-img {
+.img-container:hover>.detail-img {
     background-size: 85%;
 }
 
@@ -507,7 +510,8 @@ button {
     margin-top: 15px;
 }
 
-.cart-card, .history-card {
+.cart-card,
+.history-card {
     background-color: #fff;
     box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.2);
 }
@@ -540,6 +544,35 @@ button {
     margin: 5px 0;
     padding: 16px;
     width: inherit;
+}
+
+.history-card {
+    margin: 5px 0;
+    padding: 12px;
+    min-height: 50px;
+}
+
+.history-card .sidenumber {
+    font-size: 20px;
+    padding-right: 12px;
+    width: 60px;
+}
+
+.history-card .sideline {
+    border-left: 1px solid rgba(0, 0, 0, 0.3);
+    padding-left: 12px;
+}
+
+.profile-container {
+    border: 1px solid rgba(219, 222, 226, 0);
+    border-radius: 8px;
+    overflow-y: hidden;
+}
+
+#inner1 {
+    border-radius: 8px;
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.2);
+    padding: 10px;
 }
 
 .login-container {
@@ -583,10 +616,14 @@ button {
     min-width: 100px;
 }
 
+.profile-info {
+    overflow-x: auto;
+}
+
 .copyright {
     background-color: #000;
     clear: both;
-    color: #fff!important;
+    color: #fff !important;
     font-family: Poppins;
     font-size: 12pt;
     padding: 0 5%;
@@ -603,12 +640,12 @@ button {
 }
 
 .copyright .info-text {
-    color: #fff!important;
+    color: #fff !important;
     font-weight: 400;
 }
 
 .copyright td {
-    color: #fff!important;
+    color: #fff !important;
 }
 
 .copyright a {
@@ -617,7 +654,7 @@ button {
 }
 
 .copyright a:hover {
-    text-decoration: underline!important;
+    text-decoration: underline !important;
 }
 
 ::-webkit-scrollbar {
@@ -801,6 +838,7 @@ button {
     padding-right: 10px;
     padding-bottom: 25px;
 }
+
 /* MUNGKIN GA PERLU */
 
 .shoes_img {
