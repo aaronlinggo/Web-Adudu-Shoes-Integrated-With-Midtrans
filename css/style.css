@@ -507,7 +507,7 @@ button {
     margin-top: 15px;
 }
 
-.cart-card {
+.cart-card, .history-card {
     background-color: #fff;
     box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.2);
 }
@@ -577,6 +577,10 @@ button {
 .cpanel-logo-container {
     font-size: 7vh;
     text-align: center;
+}
+
+.status-btn {
+    min-width: 100px;
 }
 
 .copyright {

@@ -33,12 +33,12 @@
         <?php require_once("./section/script_section.php") ?>
         <link rel="stylesheet" href="./css/profile.css">
     </head>
-    <body class="main-layout flex flex-column flex-between" style="position: relative;">
-        <div id="header" class="header-section">
+    <body class="main-layout flex flex-column flex-between">
+		<div id="header" class="header-section segment">
             <?php require_once("./section/nav_section.php") ?>
         </div>
         <?php
-            if (count($notification_handler)>0){
+            if(count($notification_handler) > 0) {
                 ?>
                 <div id="notifPopup" class="position-sticky" style="display: none;">
                     <div id="liveToast" class="toast fade hide" role="alert" aria-live="assertive" aria-atomic="true">
@@ -46,7 +46,7 @@
                             <strong style="margin-right: auto;">Payment Notification</strong>
                             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                         </div>
-                        <div class="toast-body">Your #<?= $notification_handler['order_id'] ?> transaction is <?php if ($notification_handler['status'] == 'expire') { echo "not"; } ?> complete.</div>
+                        <div class="toast-body">Your #<?= $notification_handler['order_id'] ?> transaction is <?php if($notification_handler['status'] == 'expire') { echo "not"; } ?> complete.</div>
                     </div>
                 </div>
                 <script>
@@ -67,6 +67,7 @@
                             }, 250);
                         });
                     });
+
                     $("#notifPopup").removeAttr("style");
                     $("#notifPopup").css({
                         "display": "block",
@@ -98,13 +99,13 @@
                 $result = $conn -> query("update notification_handler set active = $temp_active where id = $id_notif");
             }
         ?>
-        <div class="container h-auto position-relative landing-padding about" style="min-height: 100%;">
-            <div class="h-100 py-3">
-                <div class="h-100 flex" style="border: 1px solid rgb(219, 222, 226); border-radius: 8px; padding: 20px; overflow-y: hidden;">
+        <div class="container landing-padding about h-auto flex-center position-relative">
+            <div class="w-100 h-auto py-3">
+                <div class="h-auto flex" style="border: 1px solid rgba(219, 222, 226, 0); border-radius: 8px; padding: 20px; overflow-y: hidden;">
                     <div class="col-lg-4 h-auto flex-center flex-vstart" style="padding: 0; position: relative;">
-                        <div id="inner1" class="w-100 h-auto" style="padding: 10px; border-radius: 8px; box-shadow: 0 1px 6px 0 rgba(49, 53, 59, 0.12); position: sticky; top: 0;"></div>
+                        <div id="inner1" class="w-100 h-auto" style="border-radius: 8px; box-shadow: 0 1px 6px 0 rgba(49, 53, 59, 0.12); padding: 10px;"></div>
                     </div>
-                    <div id="inner2" class="h-100 flex col-lg-8" style="max-height: 100%; overflow-y: auto;">
+                    <div id="inner2" class="h-auto flex col-lg-8" style="border-radius: 8px; box-shadow: 0 1px 6px 0 rgba(49, 53, 59, 0); overflow-y: auto; min-height: 150px;">
                     </div>
                 </div>
             </div>

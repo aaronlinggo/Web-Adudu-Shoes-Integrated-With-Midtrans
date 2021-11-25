@@ -1,24 +1,23 @@
 <?php
-session_start();
+	session_start();
+	require_once("../controller/connection.php");
 
-require_once("../controller/connection.php");
+	$id_user = $_SESSION['active'];
+	$stmt = $conn -> prepare("SELECT * FROM users WHERE id_user = $id_user");
+	$stmt -> execute();
+	$u = $stmt -> get_result() -> fetch_assoc();
 
-$id_user = $_SESSION['active'];
-$stmt = $conn->prepare("SELECT * FROM users WHERE id_user = $id_user");
-$stmt->execute();
-$u = $stmt->get_result()->fetch_assoc();
+	$stmt = $conn -> prepare("SELECT * FROM order_details WHERE user_id = $id_user ORDER BY id_order_details DESC");
+	$stmt -> execute();
+	$order_details = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
 
-$stmt = $conn->prepare("SELECT * FROM order_details WHERE user_id = $id_user ORDER BY id_order_details DESC");
-$stmt->execute();
-$order_details = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	if (isset($_POST['delete'])) {
-		$id_cart = $_POST['id_cart'];
-		$result = $conn->query("DELETE FROM cart_item WHERE id_cart = $id_cart");
-		header('Location: cart.php');
+	if($_SERVER['REQUEST_METHOD'] == 'POST') {
+		if(isset($_POST['delete'])) {
+			$id_cart = $_POST['id_cart'];
+			$result = $conn -> query("DELETE FROM cart_item WHERE id_cart = $id_cart");
+			header('Location: cart.php');
+		}
 	}
-}
 ?>
 
 <html lang="en-US">
@@ -40,69 +39,101 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
 		<script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="<SB-Mid-client-3OxJRhBsnTXSca5E>"></script>
 	</head>
-	<body class="main-layout">
-		<div class="contact_section">
-			<div class="container-fluid ram">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="d-flex flex-row-reverse dashboard_btn" style="padding: 0 1vw;">
-							<button class="btn btn-success" style='margin:0; background-color: #34B1AA;'><a href="./profile.php" style="text-decoration: none; color:inherit">Check for Updates!</a></button>
-						</div>
-						<br>
-						<table class="table table-hover dashboard_btn" style="text-align: center;">
-							<thead>
-								<tr>
-									<th>No.</th>
-									<th>Order ID</th>
-									<th>Subtotal</th>
-									<th>Status</th>
-									<th>See Order</th>
-								</tr>
-							</thead>
-							<tbody>
-								<?php
-								foreach ($order_details as $key => $value) {
-									$id_payment = $value['payment_id'];
-									$stmt = $conn->prepare("SELECT * FROM payment WHERE id = '$id_payment'");
-									$stmt->execute();
-									$payment = $stmt->get_result()->fetch_assoc();
-								?>
-									<tr>
-										<td><?= ($key + 1) ?></td>
-										<td>#<?= $payment['order_id'] ?></td>
-										<td><?= "Rp. " . number_format($payment['gross_amount'], 0, ',', '.') . ",-" ?></td>
-										<td>
-											<?php
-											if ($payment['transaction_status'] == "settlement") {
-											?>
-												<button class="btn btn-success" style="margin: 0; cursor: default; color: white;">Done</button>
-											<?php
-											} else if ($payment['transaction_status'] == "expire") {
-											?>
-												<button class="btn btn-danger" style="margin: 0; cursor: default; background-color: #F95F53;">Expired</button>
-											<?php
-											} else {
-											?>
-												<button class="btn btn-success" id="<?= $payment['id'] ?>" onclick="payNow(this)" style="margin: 0; color: white;">Pay!</button>
-											<?php
-											}
-											?>
-										</td>
-										<td>
-											<button class='btn btn-info' id="<?= $payment['id'] ?>" onclick="showDetail(this)" style='margin:0; background-color: #34B1AA;'>Details</button>
-										</td>
-									</tr>
-								<?php
-								}
-								?>
-							</tbody>
-						</table>
-					</div>
-				</div>
+	<body class="main-layout" id="profile">
+		<div class="col-md-12" style="padding: 0;">
+			<div class="d-flex flex-row-reverse">
+				<button class="btn btn-dark" style="border: 0; margin: 0; margin-bottom: 5px;"><a href="./profile.php" style="color: inherit; text-decoration: none;">Check for Updates!</a></button>
 			</div>
+			<div class="flex flex-column w-100" style="min-height: 150px;">
+				<?php
+					foreach($order_details as $key => $value) {
+						$id_payment = $value['payment_id'];
+						$stmt = $conn -> prepare("SELECT * FROM payment WHERE id = '$id_payment'");
+						$stmt -> execute();
+						$payment = $stmt -> get_result() -> fetch_assoc();
+						?>
+							<div class="history-card flex flex-column border-radius-medium w-100" style="background-color: white; width: 40px; min-height: 50px; margin: 5px 0; padding: 12px;">
+								<div class=" w-100 flex-center flex-between">
+									<span class="payment-text flex-center flex-between" style="font-weight: 600;">Order ID: #<?= $payment['order_id'] ?></span>
+									<span class="flex-center flex-between">
+									<?php
+										if($payment['transaction_status'] == "settlement") {
+										?>
+											<div class="status-btn flex-center border-radius-small" style="background-color: rgb(214, 255, 222); color: rgb(3, 172, 14); margin: 0; padding: 4px;">Done</div>
+										<?php
+										} else if($payment['transaction_status'] == "expire") {
+										?>
+											<div class="status-btn flex-center border-radius-small" style="background-color: rgb(255, 234, 239); color: rgb(239, 20, 74); margin: 0; padding: 4px;">Expired</div>
+										<?php
+										} else {
+										?>
+											<button class="status-btn btn btn-success" id="<?= $payment['id'] ?>" onclick="payNow(this)" style="color: white; margin: 0;">Pay!</button>
+										<?php
+										}
+									?>
+									</span>
+								</div>
+								<div class="payment-text flex flex-vcenter">
+									Rp.&nbsp;<span style="color: #ff4e5b;"><?= number_format($payment['gross_amount'], 0, ',', '.') ?>
+								</div>
+								<button class="status-btn btn btn-info" id="<?= $payment['id'] ?>" onclick="showDetail(this)" style='margin:0; background-color: #34b1aa;'>Details</button>
+							</div>
+						<?php
+					}
+				?>
+			</div>
+
+			<!-- <table class="table table-borderless" style="text-align: center;">
+				<thead>
+					<tr>
+						<th>No.</th>
+						<th>Order ID</th>
+						<th>Subtotal</th>
+						<th>Status</th>
+						<th>See Order</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php
+						foreach($order_details as $key => $value) {
+							$id_payment = $value['payment_id'];
+							$stmt = $conn -> prepare("SELECT * FROM payment WHERE id = '$id_payment'");
+							$stmt -> execute();
+							$payment = $stmt -> get_result() -> fetch_assoc();
+							?>
+							<tr>
+								<td class="align-middle"><?= ($key + 1) ?></td>
+								<td class="align-middle">#<?= $payment['order_id'] ?></td>
+								<td class="align-middle"><?= "Rp. " . number_format($payment['gross_amount'], 0, ',', '.') . ",-" ?></td>
+								<td class="align-middle">
+									<?php
+										if($payment['transaction_status'] == "settlement") {
+										?>
+											<div class="status-btn btn btn-success" style="color: #fff; cursor: default; margin: 0;">Done</div>
+										<?php
+										} else if($payment['transaction_status'] == "expire") {
+										?>
+											<div class="status-btn btn btn-danger" style="background-color: #f95f53; cursor: default; margin: 0;">Expired</div>
+										<?php
+										} else {
+										?>
+											<button class="status-btn btn btn-success" id="<?= $payment['id'] ?>" onclick="payNow(this)" style="color: white; margin: 0;">Pay!</button>
+										<?php
+										}
+									?>
+								</td>
+								<td>
+									<button class="status-btn btn btn-info" id="<?= $payment['id'] ?>" onclick="showDetail(this)" style='margin:0; background-color: #34B1AA;'>Details</button>
+								</td>
+							</tr>
+						<?php
+						}
+					?>
+				</tbody>
+			</table> -->
 		</div>
 		<form action="<?= site_url() ?>/transaction" method="POST" id="frm">
-			<button id="updatepage" style="display: none;">Klik</button>
+			<button id="updatepage" style="display: none;">Click</button>
 		</form>
 		<div id="editModal" class="modal fade">
 			<div class="modal-dialog">
@@ -178,9 +209,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 					$(this).one("touchmove", function(event) {
 						var yMove = event.originalEvent.touches[0].pageY;
 
-						if (Math.floor(yClick - yMove) > 1) {
+						if(Math.floor(yClick - yMove) > 1) {
 							$(".carousel").carousel('next');
-						} else if (Math.floor(yClick - yMove) < -1) {
+						} else if(Math.floor(yClick - yMove) < -1) {
 							$(".carousel").carousel('prev');
 						}
 					});
