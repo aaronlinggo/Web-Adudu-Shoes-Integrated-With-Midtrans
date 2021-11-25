@@ -474,6 +474,12 @@ button {
     position: relative;
 }
 
+.detail-title {
+    font-size: 28px;
+    font-style: italic;
+    line-height: 36px;
+}
+
 .detail-back {
     position: absolute;
     top: 40px;
@@ -481,10 +487,13 @@ button {
     z-index: 11;
 }
 
+.detail-sub {
+    text-align: left;
+}
+
 .detail .img-container {
     background-color: #ecedef;
     position: relative;
-    width: 60%;
 }
 
 .detail-img {
@@ -496,6 +505,12 @@ button {
     -ms-transform: scaleX(-1);
     transform: scaleX(-1);
     height: 75%;
+}
+
+.detail-sec-row {
+    font-size: 18px!important;
+    line-height: 36px;
+    padding: 0;
 }
 
 .img-container:hover>.detail-img {
@@ -520,7 +535,7 @@ button {
     margin-top: 5px;
 }
 
-#cart-box .qty {
+#cart-box .qty, #detail-page .qty {
     border-radius: 50%;
     margin: 0 4px;
     padding: 0;

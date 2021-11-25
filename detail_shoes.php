@@ -23,7 +23,7 @@
         <?php require_once("./section/connection_head.php") ?>
         <?php require_once("./section/script_section.php") ?>
     </head>
-    <body class="main-layout">
+    <body class="main-layout" id="detail-page">
         <div style="height: 100vh; display: flex; flex-flow: column;">
             <div class="header-section">
                 <?php require_once("./section/nav_section.php") ?>
@@ -38,11 +38,11 @@
 				</div>
 			</div>
             <div style="width: 100%; height: 1px; background-color: lightgray;"></div>
-            <div class="detail flex" style="overflow: hidden;">
+            <div class="container detail flex flex-wrap" style="overflow: hidden;">
                 <?php
                     $lokasi = "url('./admin/" . $sepatu[0]['link_gambarsepatu'] . "');";
                 ?>
-                <div class="img-container h-100 flex-center flex-vend">
+                <div id="detail-left" class="img-container h-100 flex-center flex-vend">
                     <div class="detail-back">
                         <a href="./shoes.php" style="margin-right: 4px;">
                             <button class="btn btn-dark">Back</button>
@@ -50,28 +50,97 @@
                     </div>
                     <div class="detail-img w-100" style="<?= "background-image: " . $lokasi ?>"></div>
                 </div>
-                <div class="flex-center flex-column flex-between" style="width: 40%; padding: 40px; height: 100%; max-height: 100%;">
+                <div id="detail-right" class="flex-center flex-column">
                     <div class="w-100">
-                        <h1 class="w-100" style="font-style: italic; line-height: 36px; font-size: 24px;"><?= $sepatu[0]['nama_sepatu'] ?></h1>
-                        <div class="flex">
-                            <h4 style="line-height: 36px; font-size: 20px;">
-                                Rp. <span style="color: #ff4e5b;"><?= number_format($sepatu[0]['harga_sepatu'], 0, ',', '.') ?></span>
+                        <h1 class="detail-title w-100"><?= $sepatu[0]['nama_sepatu'] ?></h1>
+                        <div class="w-100" style="font-size: 18px; min-height: 200px;">
+                            <div class="flex flex-between py-2">
+                                <h4 class="detail-sec-row flex-center" style="font-size: 24px!important;">
+                                    Rp.&nbsp;<span style="color: #ff4e5b;"><?= number_format($sepatu[0]['harga_sepatu'], 0, ',', '.') ?></span>
+                                </h4>
+                            </div>
+                            <div class="flex flex-between pt-3">
+                                <h4 class="detail-sec-row flex-center">
+                                    Available in Size <?= number_format($sepatu[0]['size_sepatu'], 0, ',', '.') ?> (UK)
+                                </h4>
+                            </div>
+                            <div class="py-2" style="text-align: left;">
+                                <?php
+                                    $stmt = $conn -> prepare("SELECT SUM(qty) AS total FROM order_items WHERE sepatu_id = ?");
+                                    $stmt -> bind_param("i", $sepatu[0]['id_sepatu']);
+                                    $stmt -> execute();
+                                    $count = $stmt -> get_result() -> fetch_assoc();
+                                ?>
+                                <?= $count['total'] ?> of this item has been sold.<?php
+                                    if($sepatu[0]['stock_sepatu'] <= 0) {
+                                    ?>
+                                        <span>And now we're out of stock. Please check again later!</span>
+                                    <?php
+                                    } else if($sepatu[0]['stock_sepatu'] <= 5) {
+                                    ?>
+                                        <span>The stock is very low. Grab yours now before it's sold out!</span>
+                                    <?php
+                                    } else {
+                                    ?>
+                                        <span>The stock is still available. Come grab yours now!</span>
+                                    <?php
+                                    }
+                                ?>
+                            </div>
+                            <div class="flex flex-vcenter flex-between pb-3">
+                                <div class="flex">
+                                    Stock : <?= $sepatu[0]['stock_sepatu'] ?>
+                                    <input type="hidden" name="" id="jumlahstock" value="<?= $sepatu[0]['stock_sepatu'] ?>">
+                                </div>
+                                <div class="flex flex-vcenter">
+                                    <span>Qty:&nbsp;&nbsp;</span>
+                                    <div class="flex flex-vcenter">
+                                        <button class="qty btn btn-secondary" onclick="kurang()">-</button>
+                                        <input type="text" name="jumlahqty" id="jumlahqty" class="cart-textbox" value="1" readonly>
+                                        <button class="qty btn btn-secondary" onclick="tambah()">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php
+                                if(isset($_SESSION['active'])) {
+                                ?>
+                                    <button class="w-100 btn btn-dark border-radius-small py-2 my-2" name="addCart" id="addCart" value='<?= $id_sepatu ?>' onclick="addCart(this, 1)">Add to Cart</button>
+                                <?php
+                                } else {
+                                ?>
+                                    <a href="./login.php" class="btn btn-dark border-radius-small py-2 my-2" style="width: 100%;">Add to Cart</a>
+                                <?php
+                                }
+                            ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="width: 100%; height: 1px; background-color: lightgray;"></div>
+        <div class="container detail-bottom">
+            <div id="detail-right-clone" class="flex-center flex-column" style="margin-bottom: 40px;">
+                <div class="w-100">
+                    <h1 class="detail-title w-100"><?= $sepatu[0]['nama_sepatu'] ?></h1>
+                    <div class="w-100" style="font-size: 18px; min-height: 200px;">
+                        <div class="flex flex-between py-2">
+                            <h4 class="detail-sec-row flex-center detail-price" style="font-size: 24px!important;">
+                                Rp.&nbsp;<span style="color: #ff4e5b;"><?= number_format($sepatu[0]['harga_sepatu'], 0, ',', '.') ?></span>
                             </h4>
-                            <h4 style="line-height: 36px; font-size: 20px; padding-left: 15px;">
+                        </div>
+                        <div class="flex flex-between pt-4">
+                            <h4 class="detail-sec-row flex-center">
                                 Available in Size <?= number_format($sepatu[0]['size_sepatu'], 0, ',', '.') ?> (UK)
                             </h4>
                         </div>
-                        <div>
+                        <div class="py-3" style="text-align: left;">
                             <?php
                                 $stmt = $conn -> prepare("SELECT SUM(qty) AS total FROM order_items WHERE sepatu_id = ?");
                                 $stmt -> bind_param("i", $sepatu[0]['id_sepatu']);
                                 $stmt -> execute();
                                 $count = $stmt -> get_result() -> fetch_assoc();
                             ?>
-                            <?= $count['total'] ?> of this item has been sold.
-                        </div>
-                        <div>
-                            <?php
+                            <?= ($count['total'] <= 0) ? "0" : $count['total'] ?> of this item has been sold.<?php
                                 if($sepatu[0]['stock_sepatu'] <= 0) {
                                 ?>
                                     <span>And now we're out of stock. Please check again later!</span>
@@ -86,40 +155,38 @@
                                 <?php
                                 }
                             ?>
-                            Stock Available : <?= $sepatu[0]['stock_sepatu'] ?>
-                            <input type="hidden" name="" id="jumlahstock" value="<?= $sepatu[0]['stock_sepatu'] ?>">
                         </div>
-                        <div class="d-flex justify-content-center">
-                            <span>Qty: </span>
-                            <!-- <button class="btn btn-secondary">-</button>
-                            <input type="text" name="" id="" class="form-control" style="width: 35px;" value="1">
-                            <button class="btn btn-secondary">+</button> -->
-                            <button class="btn btn-secondary" onclick="kurang()">-</button>
-                            <input type="text" name="jumlahqty" id="jumlahqty" class="form-control" style="width: 35px;" value="1" readonly>
-                            <button class="btn btn-secondary" onclick="tambah()">+</button>
+                        <div class="flex flex-vcenter flex-wrap flex-between" style="padding-bottom: 20px;">
+                            <div class="flex" style="padding-bottom: 8px;">
+                                Stock : <?= $sepatu[0]['stock_sepatu'] ?>
+                                <input type="hidden" name="" id="jumlahstock" value="<?= $sepatu[0]['stock_sepatu'] ?>">
+                            </div>
+                            <div class="flex flex-vcenter" style="padding-bottom: 8px;">
+                                <span>Qty:&nbsp;&nbsp;</span>
+                                <div class="flex flex-vcenter">
+                                    <button class="qty btn btn-secondary" onclick="kurang()">-</button>
+                                    <input type="text" name="jumlahqty" id="jumlahqty" class="cart-textbox" value="1" readonly>
+                                    <button class="qty btn btn-secondary" onclick="tambah()">+</button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="w-100">
                         <?php
                             if(isset($_SESSION['active'])) {
                             ?>
-                                <button class="btn btn-dark w-100" name="addCart" id="addCart" value='<?= $id_sepatu ?>' onclick="addCart(this, 1)">Add to Cart</button>
+                                <button class="w-100 btn btn-dark border-radius-small py-2 my-2" name="addCart" id="addCart" value='<?= $id_sepatu ?>' onclick="addCart(this, 1)">Add to Cart</button>
                             <?php
                             } else {
                             ?>
-                                <a href="./login.php" class="btn btn-dark border-radius-small" style="width: 100%;">Add to Cart</a>
+                                <a href="./login.php" class="btn btn-dark border-radius-small py-2 my-2" style="width: 100%;">Add to Cart</a>
                             <?php
                             }
                         ?>
                     </div>
                 </div>
             </div>
-        </div>
-        <div style="width: 100%; height: 1px; background-color: lightgray;"></div>
-        <div style="margin: 60px;">
-            <h1 style="padding-bottom: 20px; text-align: left;"><?= $sepatu[0]['sub_desc'] ?></h1>
+            <h1 class="detail-sub"><?= $sepatu[0]['sub_desc'] ?></h1>
             <div class="desc">
-                <p style="margin: 0; text-align: left;"><?= $sepatu[0]['desc_sepatu'] ?>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod maxime nesciunt ipsa magnam, eaque obcaecati commodi consectetur ad cupiditate quidem perferendis. Earum architecto corrupti, dolorem quis error repellat modi voluptatem esse praesentium reiciendis, dolores quod? Magni laudantium quibusdam minus recusandae optio, id cupiditate ut ea eligendi, quia voluptatem ipsum unde voluptatibus maxime consectetur. Inventore fugit temporibus alias qui, eligendi esse natus quasi blanditiis reprehenderit enim beatae illo tenetur, quibusdam officia. Optio porro animi libero molestiae asperiores, tenetur non sequi omnis reiciendis doloribus dicta commodi ad assumenda minima provident. Ex blanditiis temporibus aperiam vel necessitatibus quaerat molestias saepe, accusantium ducimus ad!</p>
+                <p style="margin: 0; text-align: left;"><?= $sepatu[0]['desc_sepatu'] ?></p>
             </div>
         </div>
         <?php require_once("./section/footer_section.php") ?>
