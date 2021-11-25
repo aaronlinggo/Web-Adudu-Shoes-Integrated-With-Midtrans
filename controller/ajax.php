@@ -5,6 +5,9 @@ if ($action == "tambah") {
     $id = $_REQUEST["id"];
     $action = $_REQUEST["action"];
     $id_user = $_REQUEST["id_user"];
+    $stmt = $conn -> prepare("SELECT * FROM users WHERE id_user = $id_user");
+	$stmt -> execute();
+	$u = $stmt -> get_result() -> fetch_assoc();
     $stmt = $conn->prepare("SELECT * FROM cart_item WHERE id_cart=$id");
     $stmt->execute();
     $cart = $stmt->get_result()->fetch_assoc();
@@ -121,6 +124,9 @@ if ($action == "tambah") {
     $id = $_REQUEST["id"];
     $action = $_REQUEST["action"];
     $id_user = $_REQUEST["id_user"];
+    $stmt = $conn -> prepare("SELECT * FROM users WHERE id_user = $id_user");
+	$stmt -> execute();
+	$u = $stmt -> get_result() -> fetch_assoc();
     $stmt = $conn->prepare("SELECT * FROM cart_item WHERE id_cart=$id");
     $stmt->execute();
     $cart = $stmt->get_result()->fetch_assoc();
