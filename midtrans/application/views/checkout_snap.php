@@ -1,6 +1,5 @@
 <?php
 	session_start();
-
 	require_once("./application/controllers/connection.php");
 
 	$id_user = $_SESSION['active'];
@@ -20,9 +19,9 @@
 		}
 	}
 
-	$stmt = $conn->prepare("SELECT * FROM notification_handler WHERE id_user = $id_user and active = 1 ORDER BY ID DESC");
-	$stmt->execute();
-	$notification_handler = $stmt->get_result()->fetch_assoc() ?? [];
+	$stmt = $conn -> prepare("SELECT * FROM notification_handler WHERE id_user = $id_user and active = 1 ORDER BY ID DESC");
+	$stmt -> execute();
+	$notification_handler = $stmt -> get_result() -> fetch_assoc() ?? [];
 ?>
 
 <html lang="en-US">
@@ -119,15 +118,15 @@
 			</div>
 		</div>
 		<?php
-            if (count($notification_handler)>0){
-                ?>
+            if(count($notification_handler) > 0) {
+				?>
                 <div id="notifPopup" class="position-sticky" style="display: none;">
                     <div id="liveToast" class="toast fade hide" role="alert" aria-live="assertive" aria-atomic="true">
                         <div class="toast-header">
                             <strong style="margin-right: auto;">Payment Notification</strong>
                             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                         </div>
-                        <div class="toast-body">Your #<?= $notification_handler['order_id'] ?> transaction is <?php if ($notification_handler['status'] == 'expire') { echo "not"; } ?> complete.</div>
+                        <div class="toast-body">Your #<?= $notification_handler['order_id'] ?> transaction is <?php if($notification_handler['status'] == 'expire') { echo "not"; } ?> complete.</div>
                     </div>
                 </div>
                 <script>
@@ -148,6 +147,7 @@
                             }, 250);
                         });
                     });
+
                     $("#notifPopup").removeAttr("style");
                     $("#notifPopup").css({
                         "display": "block",
