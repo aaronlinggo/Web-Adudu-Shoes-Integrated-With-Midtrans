@@ -26,9 +26,9 @@
 			<div class="banner_section">
 				<div class="container-fluid">
 					<div class="container-fluid">
-						<div class="carousel-inner flex flex-wrap">
-							<div class="col-sm-1 fullwidth"></div>
-							<div class="col-sm-6">
+						<div class="carousel-inner flex flex-wrap row">
+							<div class="col-md-1 col-12"></div>
+							<div class="col-md-6 col-12">
 								<div class="banner_taital">
 									<h1 class="banner_text">New Shoes Model</h1>
 									<h1 class="mens_text">
@@ -47,12 +47,12 @@
 									<a href="./shoes.php"><button class="more_bt">See More</button></a>
 								</div>
 							</div>
-							<div class="col-sm-5">
+							<div class="col-md-5 col-12">
 								<div class="shoes_img">
 									<?php
 										$lokasi = "./admin/" . $lastShoes[0]['link_gambarsepatu'];
 									?>
-									<img src="<?= $lokasi ?>" style="z-index: -1; width: ;">
+									<img id="banner_homepage" src="<?= $lokasi ?>" style="z-index: -1;">
 								</div>
 							</div>
 						</div>
