@@ -93,6 +93,9 @@
                     }, 5000);
                 </script>
                 <?php
+                $id_notif = $notification_handler['id'];
+                $temp_active = 0;
+                $result = $conn -> query("update notification_handler set active = $temp_active where id = $id_notif");
             }
         ?>
         <div class="container h-auto position-relative landing-padding about" style="min-height: 100%;">
