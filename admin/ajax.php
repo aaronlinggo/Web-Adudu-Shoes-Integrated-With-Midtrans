@@ -369,14 +369,16 @@
                     ?>
                         <tr>
                             <td>
-                                <div class="d-flex">
-                                    <div style="width: 20%; height: 100px; margin-right: 2vh;">
+                                <div class="row">
+                                    <div class="col-lg-4 col-12" style="height: 100px; margin-right: 2vh;">
                                         <img src="<?= $sepatu['link_gambarsepatu'] ?>" alt="" style="width: 100px; height: 100px;">
                                     </div>
-                                    <div class="d-flex flex-column" style="width: 80%;">
-                                        <div class="text-wrap fw-bold"><?= $value['qty'] . "x " . $sepatu['nama_sepatu'] ?></div>
-                                        <div><?= "Size " . $sepatu['size_sepatu'] ?></div>
-                                        <div>Price : <?= "Rp. " . number_format($sepatu['harga_sepatu'], 0, ',', '.') . ",-" ?></div>
+                                    <div class="col-lg-7 col-12">
+                                        <div class="d-flex flex-column">
+                                            <div class="text-wrap fw-bold"><?= $value['qty'] . "x " . $sepatu['nama_sepatu'] ?></div>
+                                            <div><?= "Size " . $sepatu['size_sepatu'] ?></div>
+                                            <div>Price : <?= "Rp. " . number_format($sepatu['harga_sepatu'], 0, ',', '.') . ",-" ?></div>
+                                        </div>
                                     </div>
                                 </div>
                             </td>
@@ -451,14 +453,16 @@
                 ?>
                     <tr>
                         <td>
-                            <div class="d-flex">
-                                <div style="width: 20%; height: 100px; margin-right: 2vh;">
+                            <div class="row">
+                                <div class="col-lg-4 col-12" style="height: 100px; margin-right: 2vh;">
                                     <img src="<?= "./admin/".$sepatu['link_gambarsepatu'] ?>" alt="" style="width: 100px; height: 100px;">
                                 </div>
-                                <div class="d-flex flex-column" style="width: 80%;">
-                                    <div class="text-wrap fw-bold"><?= $value['qty'] . "x " . $sepatu['nama_sepatu'] ?></div>
-                                    <div><?= "Size " . $sepatu['size_sepatu'] ?></div>
-                                    <div>Price : <?= "Rp. " . number_format($sepatu['harga_sepatu'], 0, ',', '.') . ",-" ?></div>
+                                <div class="col-lg-7 col-12">
+                                    <div class="d-flex flex-column">
+                                        <div class="text-wrap fw-bold"><?= $value['qty'] . "x " . $sepatu['nama_sepatu'] ?></div>
+                                        <div><?= "Size " . $sepatu['size_sepatu'] ?></div>
+                                        <div>Price : <?= "Rp. " . number_format($sepatu['harga_sepatu'], 0, ',', '.') . ",-" ?></div>
+                                    </div>
                                 </div>
                             </div>
                         </td>
@@ -540,14 +544,16 @@
                 ?>
                     <tr>
                         <td>
-                            <div class="d-flex">
-                                <div style="width: 20%; height: 100px; margin-right: 2vh;">
+                            <div class="row">
+                                <div class="col-lg-4 col-12" style="height: 100px; margin-right: 2vh;">
                                     <img src="<?= "./admin/".$sepatu['link_gambarsepatu'] ?>" alt="" style="width: 100px; height: 100px;">
                                 </div>
-                                <div class="d-flex flex-column" style="width: 80%;">
-                                    <div class="text-wrap fw-bold"><?= $value['qty'] . "x " . $sepatu['nama_sepatu'] ?></div>
-                                    <div><?= "Size " . $sepatu['size_sepatu'] ?></div>
-                                    <div>Price : <?= "Rp. " . number_format($sepatu['harga_sepatu'], 0, ',', '.') . ",-" ?></div>
+                                <div class="col-lg-7 col-12">
+                                    <div class="d-flex flex-column">
+                                        <div class="text-wrap fw-bold"><?= $value['qty'] . "x " . $sepatu['nama_sepatu'] ?></div>
+                                        <div><?= "Size " . $sepatu['size_sepatu'] ?></div>
+                                        <div>Price : <?= "Rp. " . number_format($sepatu['harga_sepatu'], 0, ',', '.') . ",-" ?></div>
+                                    </div>
                                 </div>
                             </div>
                         </td>
