@@ -28,7 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $sizeShoes = $_POST['sizeShoes'];
         $stockShoes = $_POST['stockShoes'];
         $imagesShoes = $_FILES['imagesShoes'];
-        //ALERT GA MUNCUL BABI
         if (!empty($shoesName)) {
             if ($priceShoes > 0) {
                 if ($descShoes != "") {
@@ -284,7 +283,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <?php require_once("./section/script_section.php") ?>
     <script>
         $(document).ready(function() {
-            //Begin Tampil Form Edit
             $(document).on('click', '.edit_data', function() {
                 var id_sepatu = $(this).attr("id");
                 $.ajax({

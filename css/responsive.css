@@ -96,6 +96,9 @@
     .modal-login .form-info {
         font-size: 15px !important;
     }
+    .multi_item{
+        height: 200px;
+    }
 }
 
 @media (max-width: 576px) {
@@ -317,6 +320,9 @@
 
     .cpanel-logo {
         width: 180px;
+    }
+    .multi_item{
+        height: 700px;
     }
 }
 
@@ -582,6 +588,9 @@
         margin: 0 !important;
         margin-right: 10px !important;
     }
+    .multi_item{
+        height: 600px;
+    }
 }
 
 @media (min-width: 992px) {
@@ -755,6 +764,9 @@
 
     .modal-login.right {
         padding-right: 0;
+    }
+    .multi_item{
+        height: 500px;
     }
 }
 
