@@ -1,7 +1,7 @@
 @media (max-width: 420px) {
     .nav-android-menu.last {
         display: flex;
-        padding-left: 0!important;
+        padding-left: 0 !important;
     }
 
     .nav-android-menu {
@@ -17,22 +17,22 @@
     }
 
     .catalog-img {
-        max-width: 90%!important;
-        max-height: 90%!important;
+        max-width: 90% !important;
+        max-height: 90% !important;
     }
 
     .catalog-btn-container {
         flex-flow: column;
-        margin-top: 15px!important;
+        margin-top: 15px !important;
     }
 
     .catalog-btn {
-        margin: 5px 0!important;
-        width: 100%!important;
+        margin: 5px 0 !important;
+        width: 100% !important;
     }
 
     .catalog-btn.empty-margin {
-        margin-bottom: 0!important;
+        margin-bottom: 0 !important;
     }
 
     #search_bar {
@@ -44,19 +44,19 @@
     }
 
     #search_btn_clone {
-        display: flex!important;
+        display: flex !important;
     }
 
     .page-item.move-forward {
-        display: none!important;
+        display: none !important;
     }
 
     .page-item.move-forward-small {
-        display: flex!important;
+        display: flex !important;
     }
 
     .detail-back .btn {
-        width: 26vw!important;
+        width: 26vw !important;
     }
 
     .cart-img {
@@ -64,7 +64,7 @@
     }
 
     .cart-info {
-        padding-left: 0!important;
+        padding-left: 0 !important;
     }
 
     .cart-control-bottom {
@@ -81,12 +81,20 @@
         margin-bottom: 21px;
     }
 
+    .status-btn {
+        min-width: 70px !important;
+    }
+
+    #checkUpdate {
+        width: 100%;
+    }
+
     .modal-login .title {
-        font-size: 24px!important;
+        font-size: 24px !important;
     }
 
     .modal-login .form-info {
-        font-size: 15px!important;
+        font-size: 15px !important;
     }
     .multi_item{
         height: 200px;
@@ -121,7 +129,7 @@
     }
 
     .last {
-        padding-left: 15px!important;
+        padding-left: 15px !important;
     }
 
     .role-out {
@@ -130,15 +138,15 @@
     }
 
     .nav-item.nav-link.profile {
-        padding-right: 1rem!important;
+        padding-right: 1rem !important;
     }
 
     .landing-padding {
-        padding: 0 40px!important;
+        padding: 0 40px !important;
     }
 
     .landing-padding.about {
-        padding-left: 41px!important;
+        padding-left: 41px !important;
     }
 
     .layout-padding.about {
@@ -159,7 +167,7 @@
     .catalog-btn {
         width: 50%;
     }
-    
+
     .detail-back .btn {
         margin-left: 1px;
         width: 24vw;
@@ -221,7 +229,9 @@
         padding-left: 16px;
     }
 
-    .cart-control, .cart-control .margin-right, .cart-control .margin-right button {
+    .cart-control,
+    .cart-control .margin-right,
+    .cart-control .margin-right button {
         width: 100%;
     }
 
@@ -262,8 +272,26 @@
         font-size: 14px;
     }
 
+    .history-card .sidenumber {
+        display: none !important;
+    }
+
+    .history-card .sideline {
+        border-left: 1px solid rgba(0, 0, 0, 0) !important;
+        padding-left: 0 !important;
+    }
+
+    .profile-container {
+        padding: 20px 0;
+    }
+
+    .inner1-parent,
+    #inner2 {
+        padding: 15px 5px;
+    }
+
     .login-container {
-        padding: 0!important;
+        padding: 0 !important;
     }
 
     .modal-login {
@@ -283,7 +311,7 @@
     }
 
     #cpanel .modal-login .form-info {
-        font-size: 18px!important;
+        font-size: 18px !important;
     }
 
     .cpanel-logo-container {
@@ -330,16 +358,16 @@
     }
 
     .nav-item.nav-link.profile {
-        padding-right: 1rem!important;
+        padding-right: 1rem !important;
         width: 80%;
     }
 
     .landing-padding {
-        padding: 0 30px!important;
+        padding: 0 30px !important;
     }
 
     .landing-padding.about {
-        padding-left: 31px!important;
+        padding-left: 31px !important;
     }
 
     .layout-padding.about {
@@ -434,7 +462,9 @@
         padding-left: 16px;
     }
 
-    .cart-control, .cart-control .margin-right, .cart-control .margin-right button {
+    .cart-control,
+    .cart-control .margin-right,
+    .cart-control .margin-right button {
         width: 100%;
     }
 
@@ -454,8 +484,17 @@
         margin-right: 0;
     }
 
+    .profile-container {
+        padding: 20px 0;
+    }
+
+    .inner1-parent,
+    #inner2 {
+        padding: 15px 5px;
+    }
+
     .login-container {
-        padding: 0!important;
+        padding: 0 !important;
     }
 
     .modal-login {
@@ -509,7 +548,7 @@
     }
 
     .nav-item.nav-link.profile {
-        padding-right: 1rem!important;
+        padding-right: 1rem !important;
     }
 
     .about-section {
@@ -531,7 +570,9 @@
         width: 14vw;
     }
 
-    .cart-control, .cart-control .margin-right, .cart-control .margin-right button {
+    .cart-control,
+    .cart-control .margin-right,
+    .cart-control .margin-right button {
         width: auto;
     }
 
@@ -540,12 +581,12 @@
     }
 
     .cart-control-bottom {
-        margin-bottom: 0!important;
+        margin-bottom: 0 !important;
     }
 
     .cart-control .margin-right {
-        margin: 0!important;
-        margin-right: 10px!important;
+        margin: 0 !important;
+        margin-right: 10px !important;
     }
     .multi_item{
         height: 600px;
@@ -593,11 +634,11 @@
     }
 
     .landing-padding {
-        padding: 0 40px!important;
+        padding: 0 40px !important;
     }
 
     .landing-padding.about {
-        padding-left: 40px!important;
+        padding-left: 40px !important;
     }
 
     .layout-padding.about {
@@ -644,7 +685,7 @@
     }
 
     .query-box .filter-control {
-        height: 36px!important;
+        height: 36px !important;
     }
 
     .catalog-item {
@@ -672,7 +713,7 @@
     }
 
     .placeholder-msg {
-        display: none!important;
+        display: none !important;
     }
 
     .cart-card {
@@ -681,11 +722,23 @@
     }
 
     #payment-box {
-        width: 270px!important;
+        width: 270px !important;
     }
 
     #payment-box .payment-inner {
-        position: fixed!important;
+        position: fixed !important;
+    }
+
+    .profile-container {
+        padding: 20px;
+    }
+
+    .inner1-parent {
+        padding: 0;
+    }
+
+    #inner2 {
+        padding: 0 20px!important;
     }
 
     .login-container {
@@ -694,7 +747,7 @@
     }
 
     .login-container .landing-padding {
-        padding-bottom: 30px!important;
+        padding-bottom: 30px !important;
     }
 
     .modal-login {

@@ -16,11 +16,11 @@
 		}
 	}
 
-	if (isset($_SESSION['active'])){
+	if(isset($_SESSION['active'])){
         $id_user = $_SESSION['active'];
-        $stmt = $conn->prepare("SELECT * FROM notification_handler WHERE id_user = $id_user and active = 1 ORDER BY ID DESC");
-        $stmt->execute();
-        $notification_handler = $stmt->get_result()->fetch_assoc() ?? [];
+        $stmt = $conn -> prepare("SELECT * FROM notification_handler WHERE id_user = $id_user and active = 1 ORDER BY ID DESC");
+        $stmt -> execute();
+        $notification_handler = $stmt -> get_result()->fetch_assoc() ?? [];
     }
 ?>
 
@@ -37,8 +37,8 @@
 		</div>
 		<div id="catalog" class="fullwidth h-auto flex flex-column">
 			<?php
-				if (isset($notification_handler)){
-					if (count($notification_handler)>0){
+				if(isset($notification_handler)) {
+					if(count($notification_handler) > 0) {
 						?>
 						<div id="notifPopup" class="position-sticky" style="display: none;">
 							<div id="liveToast" class="toast fade hide" role="alert" aria-live="assertive" aria-atomic="true">
@@ -46,7 +46,7 @@
 									<strong style="margin-right: auto;">Payment Notification</strong>
 									<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
 								</div>
-								<div class="toast-body">Your #<?= $notification_handler['order_id'] ?> transaction is <?php if ($notification_handler['status'] == 'expire') { echo "not"; } ?> complete.</div>
+								<div class="toast-body">Your #<?= $notification_handler['order_id'] ?> transaction is <?php if($notification_handler['status'] == 'expire') { echo "not"; } ?> complete.</div>
 							</div>
 						</div>
 						<script>
@@ -67,6 +67,7 @@
 									}, 250);
 								});
 							});
+
 							$("#notifPopup").removeAttr("style");
 							$("#notifPopup").css({
 								"display": "block",

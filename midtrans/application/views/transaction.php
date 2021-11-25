@@ -42,7 +42,7 @@
 	<body class="main-layout" id="profile">
 		<div class="col-md-12" style="padding: 0;">
 			<div class="d-flex flex-row-reverse">
-				<button class="btn btn-dark" style="border: 0; margin: 0; margin-bottom: 5px;"><a href="./profile.php" style="color: inherit; text-decoration: none;">Check for Updates!</a></button>
+				<button id="checkUpdate" class="btn btn-dark" style="border: 0; margin: 0; margin-bottom: 5px; font-size: 14px!important;"><a href="./profile.php" style="color: inherit; text-decoration: none; width: 100%;">Check for Updates Here!</a></button>
 			</div>
 			<div class="flex flex-column w-100" style="min-height: 150px;">
 				<?php
@@ -52,85 +52,41 @@
 						$stmt -> execute();
 						$payment = $stmt -> get_result() -> fetch_assoc();
 						?>
-							<div class="history-card flex flex-column border-radius-medium w-100" style="background-color: white; width: 40px; min-height: 50px; margin: 5px 0; padding: 12px;">
-								<div class=" w-100 flex-center flex-between">
-									<span class="payment-text flex-center flex-between" style="font-weight: 600;">Order ID: #<?= $payment['order_id'] ?></span>
-									<span class="flex-center flex-between">
-									<?php
-										if($payment['transaction_status'] == "settlement") {
-										?>
-											<div class="status-btn flex-center border-radius-small" style="background-color: rgb(214, 255, 222); color: rgb(3, 172, 14); margin: 0; padding: 4px;">Done</div>
-										<?php
-										} else if($payment['transaction_status'] == "expire") {
-										?>
-											<div class="status-btn flex-center border-radius-small" style="background-color: rgb(255, 234, 239); color: rgb(239, 20, 74); margin: 0; padding: 4px;">Expired</div>
-										<?php
-										} else {
-										?>
-											<button class="status-btn btn btn-success" id="<?= $payment['id'] ?>" onclick="payNow(this)" style="color: white; margin: 0;">Pay!</button>
-										<?php
-										}
-									?>
-									</span>
+							<div class="history-card flex-center border-radius-medium w-100">
+								<div class="sidenumber flex-center">
+									<?= ($key + 1) ?>
 								</div>
-								<div class="payment-text flex flex-vcenter">
-									Rp.&nbsp;<span style="color: #ff4e5b;"><?= number_format($payment['gross_amount'], 0, ',', '.') ?>
+								<div class="sideline w-100 flex flex-hcenter flex-column">
+									<div class=" w-100 flex-center flex-between">
+										<span class="payment-text flex-center flex-between" style="font-weight: 600;">Order ID: #<?= $payment['order_id'] ?></span>
+										<span class="flex-center flex-between">
+										<?php
+											if($payment['transaction_status'] == "settlement") {
+											?>
+												<div class="status-btn flex-center border-radius-small" style="background-color: rgb(214, 255, 222); color: rgb(3, 172, 14); margin: 0; margin-left: 32px; padding: 4px;">Done</div>
+											<?php
+											} else if($payment['transaction_status'] == "expire") {
+											?>
+												<div class="status-btn flex-center border-radius-small" style="background-color: rgb(255, 234, 239); color: rgb(239, 20, 74); margin: 0; margin-left: 32px; padding: 4px;">Expired</div>
+											<?php
+											} else {
+											?>
+												<button class="status-btn btn btn-success" id="<?= $payment['id'] ?>" onclick="payNow(this)" style="color: white; font-size: 14px; margin: 0; margin-left: 32px; padding: 4px;">Pay!</button>
+											<?php
+											}
+										?>
+										</span>
+									</div>
+									<div class="payment-text flex flex-vcenter">
+										Rp.&nbsp;<span class="flex-center" style="color: #ff4e5b;"><?= number_format($payment['gross_amount'], 0, ',', '.') ?>
+									</div>
+									<button class="status-btn btn btn-info" id="<?= $payment['id'] ?>" onclick="showDetail(this)" style="background-color: #34b1aa; margin: 0; margin-top: 15px;">Details</button>
 								</div>
-								<button class="status-btn btn btn-info" id="<?= $payment['id'] ?>" onclick="showDetail(this)" style='margin:0; background-color: #34b1aa;'>Details</button>
 							</div>
 						<?php
 					}
 				?>
 			</div>
-
-			<!-- <table class="table table-borderless" style="text-align: center;">
-				<thead>
-					<tr>
-						<th>No.</th>
-						<th>Order ID</th>
-						<th>Subtotal</th>
-						<th>Status</th>
-						<th>See Order</th>
-					</tr>
-				</thead>
-				<tbody>
-					<?php
-						foreach($order_details as $key => $value) {
-							$id_payment = $value['payment_id'];
-							$stmt = $conn -> prepare("SELECT * FROM payment WHERE id = '$id_payment'");
-							$stmt -> execute();
-							$payment = $stmt -> get_result() -> fetch_assoc();
-							?>
-							<tr>
-								<td class="align-middle"><?= ($key + 1) ?></td>
-								<td class="align-middle">#<?= $payment['order_id'] ?></td>
-								<td class="align-middle"><?= "Rp. " . number_format($payment['gross_amount'], 0, ',', '.') . ",-" ?></td>
-								<td class="align-middle">
-									<?php
-										if($payment['transaction_status'] == "settlement") {
-										?>
-											<div class="status-btn btn btn-success" style="color: #fff; cursor: default; margin: 0;">Done</div>
-										<?php
-										} else if($payment['transaction_status'] == "expire") {
-										?>
-											<div class="status-btn btn btn-danger" style="background-color: #f95f53; cursor: default; margin: 0;">Expired</div>
-										<?php
-										} else {
-										?>
-											<button class="status-btn btn btn-success" id="<?= $payment['id'] ?>" onclick="payNow(this)" style="color: white; margin: 0;">Pay!</button>
-										<?php
-										}
-									?>
-								</td>
-								<td>
-									<button class="status-btn btn btn-info" id="<?= $payment['id'] ?>" onclick="showDetail(this)" style='margin:0; background-color: #34B1AA;'>Details</button>
-								</td>
-							</tr>
-						<?php
-						}
-					?>
-				</tbody>
-			</table> -->
 		</div>
 		<form action="<?= site_url() ?>/transaction" method="POST" id="frm">
 			<button id="updatepage" style="display: none;">Click</button>

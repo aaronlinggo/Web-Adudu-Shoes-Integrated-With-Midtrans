@@ -86,14 +86,14 @@
     border-radius: 4px;
     height: 2rem;
 }
-.row{
+
+/* .row{
     flex-shrink: 0;
     width: 100%;
     max-width: 100%;
     padding-right: 15px;
-    padding-left: 15px;
-    
-}
+    padding-left: 15px;    
+} */
 
 .modal{
     position: fixed;
