@@ -165,7 +165,7 @@
                                 <span>Qty:&nbsp;&nbsp;</span>
                                 <div class="flex flex-vcenter">
                                     <button class="qty btn btn-secondary" onclick="kurang()">-</button>
-                                    <input type="text" name="jumlahqty" id="jumlahqty" class="cart-textbox" value="1" readonly>
+                                    <input type="text" name="jumlahqty" id="jumlahqty1" class="cart-textbox" value="1" readonly>
                                     <button class="qty btn btn-secondary" onclick="tambah()">+</button>
                                 </div>
                             </div>
@@ -203,6 +203,7 @@
                     document.getElementById("jumlahqty").value = 9;
                     document.getElementById("addCart").setAttribute("onclick", "addCart(this, " + document.getElementById("jumlahqty").value +")");
                 }
+                document.getElementById("jumlahqty1").value = document.getElementById("jumlahqty").value;
 			}
 
 			function kurang() {
@@ -213,6 +214,7 @@
                     document.getElementById("jumlahqty").value = 1;
                     document.getElementById("addCart").setAttribute("onclick", "addCart(this, " + document.getElementById("jumlahqty").value +")");
                 }
+                document.getElementById("jumlahqty1").value = document.getElementById("jumlahqty").value;
 			}
 		</script>
     </body>
