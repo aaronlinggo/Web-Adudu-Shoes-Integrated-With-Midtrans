@@ -167,9 +167,9 @@
 						<div class="col-12">
 							<h3 class="mb-3 new_text"><strong>FEATURED PRODUCTS</strong></h3>
 						</div>
-						<div class="col-12">
+						<div class="col-12" style="overflow: hidden;">
 							<div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
-								<div class="carousel-inner">
+								<div class="carousel-inner" style="overflow: visible;">
 									<div class="row">
 										<?php 
 										for ($i=0; $i < 4; $i++) { 
